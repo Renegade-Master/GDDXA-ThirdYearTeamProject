@@ -1,13 +1,10 @@
 ## *Team 1 Details*
 ---
-1.  * **K-Number:**	K00221230
-    * **Name:**		Ciaran Bent
-
-2.  * **K-Number:**	K00218864
-    * **Name:**		Rory Ryan
-
-3.  * **K-Number:**	K00000000
-    * **Name:**		Owen O'Dea
-	
+| **Name**      | **K-Number**  | **Email**                    |
+| ------------- | ------------- | ---------------------------- |
+| Ciaran Bent   | K00221230     | k00221230@student.lit.ie     |
+| Rory Ryan     | K00218864     | k00218864@student.lit.ie     |
+| Owen O'Dea    | K00218956     | k00218956@student.lit.ie     |	
 ---
 ---
+
