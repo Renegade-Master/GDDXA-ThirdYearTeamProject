@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2048
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "shadowOperative_001", "shadowOperative_001\shadowOperative_001.vcxproj", "{38A7707C-4517-444F-B5D9-595D5EAC89AF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{38A7707C-4517-444F-B5D9-595D5EAC89AF}.Debug|x64.ActiveCfg = Debug|x64
+		{38A7707C-4517-444F-B5D9-595D5EAC89AF}.Debug|x64.Build.0 = Debug|x64
+		{38A7707C-4517-444F-B5D9-595D5EAC89AF}.Debug|x86.ActiveCfg = Debug|Win32
+		{38A7707C-4517-444F-B5D9-595D5EAC89AF}.Debug|x86.Build.0 = Debug|Win32
+		{38A7707C-4517-444F-B5D9-595D5EAC89AF}.Release|x64.ActiveCfg = Release|x64
+		{38A7707C-4517-444F-B5D9-595D5EAC89AF}.Release|x64.Build.0 = Release|x64
+		{38A7707C-4517-444F-B5D9-595D5EAC89AF}.Release|x86.ActiveCfg = Release|Win32
+		{38A7707C-4517-444F-B5D9-595D5EAC89AF}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8F1198F6-8A71-4F04-8615-1F02AC403DBF}
+	EndGlobalSection
+EndGlobal
