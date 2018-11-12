@@ -1,11 +1,20 @@
 /**
-*	@author			[NAME]
-*	@creationDate	XXXX/XX/XX	YYYY/MM/DD
-*	@description	
+*	@author			Ciaran Bent	[K00221230]
+*					Owen O'Dea	[K00218956]
+*					Rory Ryan	[K00218864]
+*	@creationDate	2018/11/12	YYYY/MM/DD
+*	@description
 */
-#include <iostream>
+
+#include "Engine.h"
 
 int main() {
-	std::cout << "Hello, World!";
-	return(0);
+	// Declare an instance of Engine
+	Engine engine;
+
+	// Start the engine
+	engine.run();
+
+	// Quit in the usual way when the engine is stopped
+	return 0;
 }
