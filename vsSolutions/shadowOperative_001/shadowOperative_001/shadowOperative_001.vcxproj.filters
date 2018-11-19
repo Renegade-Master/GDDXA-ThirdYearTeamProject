@@ -174,5 +174,6 @@
     <None Include="shaders\vertShader.vert">
       <Filter>Resource Files\shaders</Filter>
     </None>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
 </Project>

@@ -181,6 +181,7 @@
     <Media Include="sound\reachgoal.wav" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="ClassDiagram.cd" />
     <None Include="shaders\rippleShader.frag" />
     <None Include="shaders\vertShader.vert" />
   </ItemGroup>
