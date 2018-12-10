@@ -20,7 +20,7 @@ private:
 	bool handleInput();
 public:
 	void update(char** m_ArrayLevel);
-	void spawn(sf::Vector2f startPosition, float gravity);
+	void spawn(sf::Vector2i startPosition, float gravity);
 };
 
 #endif // !ENEMY_H

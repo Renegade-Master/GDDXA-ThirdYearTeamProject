@@ -82,17 +82,9 @@ void Engine::run() {
 }
 void Engine::enemySpawn()
 {
-	for (int x = 0;x < m_LM.getLevelSize().x;x++)
+	int numOfEnemies = m_LM.getNumOfEnemies();
+	for (int i = 0;i < numOfEnemies;i++)
 	{
-		for (int y = 0;y < m_LM.getLevelSize().y;y++)
-		{
-			if (m_ArrayLevel[y][x] == 'E')
-			{
-				sf::Vector2f position;
-				position.x = x;
-				position.y = y;
-				Enemy.push_back(createEnemy(position,GRAVITY));
-			}
-		}
+		Enemy.push_back(createEnemy(m_LM.getEnemyPosition(),GRAVITY));
 	}
 }

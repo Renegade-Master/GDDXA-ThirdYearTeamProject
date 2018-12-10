@@ -180,3 +180,15 @@ float LevelManager::getTimeLimit() {
 sf::Vector2i LevelManager::getStartPosition() {
 	return m_StartPosition;
 }
+
+sf::Vector2i LevelManager::getEnemyPosition()
+{
+	sf::Vector2i temp = m_EnemyPosition.back();
+	m_EnemyPosition.pop_back();
+	return temp;
+}
+
+int LevelManager::getNumOfEnemies()
+{
+	return m_EnemyPosition.size();
+}
