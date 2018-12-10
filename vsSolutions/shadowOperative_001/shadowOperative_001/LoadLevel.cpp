@@ -30,6 +30,7 @@ void Engine::loadLevel() {
 
 	// Spawn Thomas and Bob
 	m_Thomas.spawn(m_LM.getStartPosition(), GRAVITY);
+	enemySpawn();
 
 	// Make sure this code isn't run again
 	m_NewLevelRequired = false;

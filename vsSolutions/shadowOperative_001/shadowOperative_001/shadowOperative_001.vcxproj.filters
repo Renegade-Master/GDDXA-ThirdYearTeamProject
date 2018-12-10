@@ -122,6 +122,12 @@
     <ClInclude Include="Bullet.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+<<<<<<< HEAD
+    <ClInclude Include="enemyGenerator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+=======
+>>>>>>> master
   </ItemGroup>
   <ItemGroup>
     <Font Include="fonts\Roboto-Light.ttf">

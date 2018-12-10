@@ -1,7 +1,9 @@
 #include "Enemy.h"
-#include "Engine.h"
+#include "EnemyGenerator.h"
 
-Enemy* createEnemy()
+Enemy* createEnemy(sf::Vector2f position,float Gravity)
 {
-	
+	Enemy* enemy = new Enemy();
+	enemy->spawn(position, Gravity);
+	return enemy;
 }

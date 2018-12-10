@@ -59,3 +59,7 @@ void Enemy::update(char** m_ArrayLevel)
 	//	//alter patrol route
 	//}
 }
+bool Enemy::handleInput()
+{
+	return true;
+}

@@ -18,7 +18,8 @@
 #include "TextureHolder.h"
 #include "Thomas.h"
 #include "Enemy.h"
-
+#include <list>
+#include "enemyGenerator.h"
 class Engine {
 private:
 	// The texture holder
@@ -30,7 +31,10 @@ private:
 	// Thomas and Bob (PlayerCharacters)
 	Thomas m_Thomas;
 
-
+	//Enemy Generator
+	
+	//Enemy list
+	std::list<PlayableCharacter*> Enemy;
 	//Level Manager
 	LevelManager m_LM;
 
@@ -107,8 +111,7 @@ private:
 	// Spawn Enemies
 	void enemySpawn();
 
-	//create a enemy object
-	Enemy* createEnemy();
+	
 
 	// Run will call all the private functions
 	bool detectCollisions(PlayableCharacter& character);

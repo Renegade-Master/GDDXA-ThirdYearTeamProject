@@ -150,6 +150,7 @@
   <ItemGroup>
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="Enemy.h" />
+    <ClInclude Include="enemyGenerator.h" />
     <ClInclude Include="Engine.h" />
     <ClInclude Include="HUD.h" />
     <ClInclude Include="LevelManager.h" />
