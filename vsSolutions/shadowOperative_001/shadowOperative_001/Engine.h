@@ -11,13 +11,13 @@
 #define ENGINE_H
 
 #include <SFML/Graphics.hpp>
-#include "Bob.h"
 #include "HUD.h"
 #include "LevelManager.h"
 #include "ParticleSystem.h"
 #include "SoundManager.h"
 #include "TextureHolder.h"
 #include "Thomas.h"
+#include "Enemy.h"
 
 class Engine {
 private:
@@ -29,7 +29,7 @@ private:
 
 	// Thomas and Bob (PlayerCharacters)
 	Thomas m_Thomas;
-	Bob m_Bob;
+
 
 	//Level Manager
 	LevelManager m_LM;
@@ -103,6 +103,12 @@ private:
 
 	// Load a new Level
 	void loadLevel();
+
+	// Spawn Enemies
+	void enemySpawn();
+
+	//create a enemy object
+	Enemy* createEnemy();
 
 	// Run will call all the private functions
 	bool detectCollisions(PlayableCharacter& character);

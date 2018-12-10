@@ -31,19 +31,23 @@ protected:
 	// How long has this jump lasted so far
 	float m_TimeThisJump;
 
+	// Where is the player
+	sf::Vector2f m_Position;
+
+	// What is the gravity
+	float m_Gravity;
+
 	// Has the player just initialted a jump
 	bool m_JustJumped = false;
 
 	// Private variables and functions come next
 private:
-	// What is the gravity
-	float m_Gravity;
+
 
 	// How fast is the character
 	float m_Speed = 400;
 
-	// Where is the player
-	sf::Vector2f m_Position;
+
 
 	// Where are the characters various body parts?
 	sf::FloatRect m_Feet;

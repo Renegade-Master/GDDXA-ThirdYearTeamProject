@@ -33,9 +33,6 @@ void Engine::draw() {
 		// Draw thomas
 		m_Window.draw(m_Thomas.getSprite());
 
-		// Draw thomas
-		m_Window.draw(m_Bob.getSprite());
-
 		// Draw the particle system
 		if (m_PS.running())	{
 			m_Window.draw(m_PS);
@@ -59,9 +56,6 @@ void Engine::draw() {
 
 		// Draw the Level
 		m_Window.draw(m_VALevel, &m_TextureTiles);
-
-		// Draw thomas
-		m_Window.draw(m_Bob.getSprite());
 
 		// Draw thomas
 		m_Window.draw(m_Thomas.getSprite());
@@ -89,9 +83,6 @@ void Engine::draw() {
 
 		// Draw thomas
 		m_Window.draw(m_Thomas.getSprite());
-
-		// Draw bob
-		m_Window.draw(m_Bob.getSprite());
 
 		// Draw the particle system
 		if (m_PS.running())	{
