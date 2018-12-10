@@ -16,6 +16,8 @@ class Enemy : public PlayableCharacter
 private:
 	sf::Vector2f m_SpawnPosition;
 	bool patrolValid;
+	// This is a pure virtual function
+	bool handleInput();
 public:
 	void update(char** m_ArrayLevel);
 	void spawn(sf::Vector2f startPosition, float gravity);
