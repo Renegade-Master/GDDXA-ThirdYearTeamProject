@@ -73,6 +73,6 @@ void Engine::enemySpawn()
 	int numOfEnemies = m_LM.getNumOfEnemies();
 	for (int i = 0;i < numOfEnemies;i++)
 	{
-		//Enemy.push_back(createEnemy(m_LM.getEnemyPosition(),GRAVITY));
+		m_EnemyList.push_back(createEnemy(m_LM.getEnemyPosition(),GRAVITY));
 	}
 }

@@ -3,6 +3,6 @@
 #ifndef ENEMYGENERATOR_H
 #define	ENEMYGENERATOR_H
 #include "Enemy.h"
-Enemy* createEnemy(sf::Vector2f position, float Gravity);
+Enemy* createEnemy(sf::Vector2i position, float Gravity);
 #endif // !ENEMYGENERATOR_H
 

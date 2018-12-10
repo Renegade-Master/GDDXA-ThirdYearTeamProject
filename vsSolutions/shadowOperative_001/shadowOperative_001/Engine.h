@@ -34,7 +34,7 @@ private:
 	//Enemy Generator
 	
 	//Enemy list
-	std::list<PlayableCharacter*> Enemy;
+	std::list<PlayableCharacter*> m_EnemyList;
 	//Level Manager
 	LevelManager m_LM;
 
