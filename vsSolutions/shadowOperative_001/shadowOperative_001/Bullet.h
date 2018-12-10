@@ -1,7 +1,9 @@
 /**
-*	@author			Ciaran Bent	[K00221230]
-*	@creationDate	2018/12/06	YYYY/MM/DD
-*	@description	...
+*	@author			Ciaran Bent [K00221230]
+*					Owen O'Dea	[K00218956]
+*					Rory Ryan	[]
+*	@creationDate	2018/11/01	YYYY/MM/DD
+*	@description
 */
 
 #pragma once
