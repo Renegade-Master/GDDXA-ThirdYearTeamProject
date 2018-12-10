@@ -32,6 +32,12 @@ void Engine::draw() {
 	// Draw thomas
 	m_Window.draw(m_Thomas.getSprite());
 
+	/*std::list<PlayableCharacter*>::iterator it;
+	for (;it != m_EnemyList.end();it++)
+	{
+		m_Window.draw((*it)->getSprite());
+	}*/
+
 	// Draw the particle system
 	if (m_PS.running())	{
 		m_Window.draw(m_PS);
