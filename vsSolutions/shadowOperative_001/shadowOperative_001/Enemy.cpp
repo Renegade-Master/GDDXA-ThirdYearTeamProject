@@ -14,7 +14,7 @@ void Enemy::spawn(sf::Vector2i startPosition, float gravity)
 	m_Position = (sf::Vector2f)m_SpawnPosition;
 	m_Gravity = gravity;
 	m_Sprite = sf::Sprite(TextureHolder::GetTexture(
-		"graphics/thomas.png"));
+		"graphics/Bob.png"));
 	m_Sprite.setPosition(m_Position);
 	m_RightPressed = true;
 	m_LeftPressed = false;
