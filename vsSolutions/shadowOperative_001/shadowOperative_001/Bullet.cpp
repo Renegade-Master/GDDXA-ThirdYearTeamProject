@@ -32,29 +32,29 @@ void Bullet::shoot(float startX, float startY,
 	float ratioXY = m_BulletSpeed / (1 + gradient);
 
 	// Set the "speed" horizontally and vertically
-	m_BulletDistanceY = ratioXY;
-	m_BulletDistanceX = ratioXY * gradient;
+	m_BulletDistance.y = ratioXY;
+	m_BulletDistance.x = ratioXY * gradient;
 	
 	// Point the bullet in the right direction
 	if (targetX < startX) {
-		m_BulletDistanceX *= -1;
+		m_BulletDistance.x *= -1;
 	}
 
 	if (targetY < startY) {
-		m_BulletDistanceY *= -1;
+		m_BulletDistance.y *= -1;
 	}
 
 	// Finally, assign the results to the
 	// member variables
-	m_XTarget = targetX;
-	m_YTarget = targetY;
+	m_Target.x = targetX;
+	m_Target.y = targetY;
 
 	// Set a max range of 1000 pixels
 	float range = 1000;
-	m_MinX = startX - range;
-	m_MaxX = startX + range;
-	m_MinY = startY - range;
-	m_MaxY = startY + range;
+	m_Min.x = startX - range;
+	m_Max.x = startX + range;
+	m_Min.y = startY - range;
+	m_Max.y = startY + range;
 	
 	// Position the bullet ready to be drawn
 	m_BulletShape.setPosition(m_Position);
@@ -78,15 +78,15 @@ sf::RectangleShape Bullet::getShape() {
 
 void Bullet::update(float elapsedTime) {
 	// Update the bullet position variables
-	m_Position.x += m_BulletDistanceX * elapsedTime;
-	m_Position.y += m_BulletDistanceY * elapsedTime;
+	m_Position.x += m_BulletDistance.x * elapsedTime;
+	m_Position.y += m_BulletDistance.y * elapsedTime;
 
 	// Move the bullet
 	m_BulletShape.setPosition(m_Position);
 
 	// Has the bullet gone out of range?
-	if (m_Position.x < m_MinX || m_Position.x > m_MaxX ||
-		m_Position.y < m_MinY || m_Position.y > m_MaxY)	{
+	if (m_Position.x < m_Min.x || m_Position.x > m_Max.x ||
+		m_Position.y < m_Min.y || m_Position.y > m_Max.y)	{
 		m_InFlight = false;
 	}
 }
