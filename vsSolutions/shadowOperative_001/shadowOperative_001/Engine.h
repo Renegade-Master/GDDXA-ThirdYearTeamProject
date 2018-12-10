@@ -57,13 +57,11 @@ private:
 
 	// The main Views
 	sf::View m_MainView;
-	sf::View m_LeftView;
-	sf::View m_RightView;
+	sf::View m_MiniMap;
 
 	// Three views for the background
 	sf::View m_BGMainView;
-	sf::View m_BGLeftView;
-	sf::View m_BGRightView;
+	sf::View m_BGMiniMap;
 
 	sf::View m_HudView;
 
@@ -79,9 +77,6 @@ private:
 
 	// Is character 1 or 2 the current focus?
 	bool m_Character1 = true;
-
-	// Start in full screen mode
-	bool m_SplitScreen = false;
 
 	// How much time is left in the current level
 	float m_TimeRemaining;
