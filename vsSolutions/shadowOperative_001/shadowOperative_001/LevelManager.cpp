@@ -177,6 +177,6 @@ float LevelManager::getTimeLimit() {
 	return m_BaseTimeLimit * m_TimeModifier;
 
 }
-sf::Vector2f LevelManager::getStartPosition() {
+sf::Vector2i LevelManager::getStartPosition() {
 	return m_StartPosition;
 }

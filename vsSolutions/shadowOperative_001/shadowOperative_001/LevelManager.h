@@ -32,7 +32,7 @@ public:
 
 	float getTimeLimit();
 
-	sf::Vector2f getStartPosition();
+	sf::Vector2i getStartPosition();
 
 	int** nextLevel(sf::VertexArray& rVaLevel);
 
