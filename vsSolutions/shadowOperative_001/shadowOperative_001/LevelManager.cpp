@@ -81,12 +81,35 @@ int** LevelManager::nextLevel(sf::VertexArray& rVaLevel) {
 
 	// Loop through the file and store all the values in the 2d array
 	std::string row;
+	sf::Vector2i temp;
 	int y = 0;
 	while (inputFile >> row) {
 		for (int x = 0; x < row.length(); x++) {
-
 			const char val = row[x];
-			arrayLevel[y][x] = atoi(&val);
+			arrayLevel[y][x] = atoi(&val);	//Warning here is actually leveraged by the game code
+
+			switch (row[x]) {
+			case 'E':
+				temp.x = x;
+				temp.y = y;
+				m_EnemyPosition.push_back(temp);
+			case 'T':
+				arrayLevel[y][x] = 'T';
+				break;
+			case '3':
+				temp.x = x;
+				temp.y = y;
+				m_ItemPosition.push_back(temp);
+				break;
+			case 'P':
+				m_StartPosition.x = x;
+				m_StartPosition.y = y;
+				break;
+			case '4':
+				m_EndPosition.x = x;
+				m_EndPosition.y = y;
+				break;
+			}
 		}
 
 		y++;

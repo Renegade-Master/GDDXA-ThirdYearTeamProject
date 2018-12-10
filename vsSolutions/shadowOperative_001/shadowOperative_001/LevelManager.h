@@ -10,12 +10,17 @@
 #ifndef LEVELMANAGER_H
 #define LEVELMANAGER_H
 
+#include <list>
+
 #include <SFML/Graphics.hpp>
 
 class LevelManager {
 private:
 	sf::Vector2i m_LevelSize;
-	sf::Vector2f m_StartPosition;
+	sf::Vector2i m_StartPosition;
+	sf::Vector2i m_EndPosition;
+	std::list<sf::Vector2i> m_EnemyPosition;
+	std::list<sf::Vector2i> m_ItemPosition;
 	float m_TimeModifier = 1;
 	float m_BaseTimeLimit = 0;
 	int m_CurrentLevel = 0;
