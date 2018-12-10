@@ -8,7 +8,7 @@
 
 #include "Enemy.h"
 #include "TextureHolder.h"
-void Enemy::spawn(sf::Vector2f startPosition, float gravity)
+void Enemy::spawn(sf::Vector2i startPosition, float gravity)
 {
 	m_SpawnPosition = startPosition;
 	m_Position = m_SpawnPosition;

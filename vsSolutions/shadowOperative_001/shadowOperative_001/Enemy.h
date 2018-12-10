@@ -14,7 +14,7 @@
 class Enemy : public PlayableCharacter
 {
 private:
-	sf::Vector2f m_SpawnPosition;
+	sf::Vector2i m_SpawnPosition;
 	bool patrolValid;
 	// This is a pure virtual function
 	bool handleInput();

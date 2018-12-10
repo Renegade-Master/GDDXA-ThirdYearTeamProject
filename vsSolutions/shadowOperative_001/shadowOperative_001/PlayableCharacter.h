@@ -60,7 +60,7 @@ private:
 
 	// All our public functions will come next
 public:
-	void spawn(sf::Vector2f startPosition, float gravity);
+	void spawn(sf::Vector2i startPosition, float gravity);
 
 	// This is a pure virtual function
 	bool virtual handleInput() = 0;

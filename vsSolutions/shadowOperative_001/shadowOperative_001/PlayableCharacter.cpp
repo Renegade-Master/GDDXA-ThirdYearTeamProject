@@ -8,7 +8,7 @@
 
 #include "PlayableCharacter.h"
 
-void PlayableCharacter::spawn(sf::Vector2f startPosition, float gravity) {
+void PlayableCharacter::spawn(sf::Vector2i startPosition, float gravity) {
 	// Place the player at the starting point
 	m_Position.x = startPosition.x;
 	m_Position.y = startPosition.y;
