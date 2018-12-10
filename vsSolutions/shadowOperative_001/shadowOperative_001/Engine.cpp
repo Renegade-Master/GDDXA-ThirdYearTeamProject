@@ -78,3 +78,19 @@ void Engine::run() {
 		draw();
 	}
 }
+void Engine::enemySpawn()
+{
+	for (int x = 0;x < m_LM.getLevelSize.x();x++)
+	{
+		for (int y = 0;y < m_LM.getLevelSize.y();y++)
+		{
+			if (m_ArrayLevel[y][x] == 'E')
+			{
+				sf::Vector2f startPosition;
+				startPosition.x = x;
+				startPosition.y = y;
+				
+			}
+		}
+	}
+}
