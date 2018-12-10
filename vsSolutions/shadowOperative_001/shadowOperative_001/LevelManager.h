@@ -17,7 +17,7 @@
 class LevelManager {
 private:
 	sf::Vector2i m_LevelSize;
-	sf::Vector2f m_StartPosition;
+	sf::Vector2i m_StartPosition;
 	sf::Vector2i m_EndPosition;
 	std::list<sf::Vector2i> m_EnemyPosition;
 	std::list<sf::Vector2i> m_ItemPosition;

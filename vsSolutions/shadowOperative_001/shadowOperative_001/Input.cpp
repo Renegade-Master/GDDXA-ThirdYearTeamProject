@@ -23,16 +23,6 @@ void Engine::input() {
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return)) {
 				m_Playing = true;
 			}
-
-			// Switch between Thomas and Bob
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q)) {
-				m_Character1 = !m_Character1;
-			}
-
-			// Switch between full and split-screen
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::E)) {
-				m_SplitScreen = !m_SplitScreen;
-			}
 		}
 	}
 

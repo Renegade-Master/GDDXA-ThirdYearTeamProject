@@ -11,7 +11,7 @@
 void Enemy::spawn(sf::Vector2i startPosition, float gravity)
 {
 	m_SpawnPosition = startPosition;
-	m_Position = m_SpawnPosition;
+	m_Position = (sf::Vector2f)m_SpawnPosition;
 	m_Gravity = gravity;
 	m_Sprite = sf::Sprite(TextureHolder::GetTexture(
 		"graphics/thomas.png"));

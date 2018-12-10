@@ -25,18 +25,6 @@ Engine::Engine() {
 	m_HudView.reset(
 		sf::FloatRect(0, 0, resolution.x, resolution.y));
 
-	// Inititialize the split-screen Views
-	m_LeftView.setViewport(
-		sf::FloatRect(0.001f, 0.001f, 0.498f, 0.998f));
-
-	m_RightView.setViewport(
-		sf::FloatRect(0.5f, 0.001f, 0.499f, 0.998f));
-
-	m_BGLeftView.setViewport(
-		sf::FloatRect(0.001f, 0.001f, 0.498f, 0.998f));
-
-	m_BGRightView.setViewport(
-		sf::FloatRect(0.5f, 0.001f, 0.499f, 0.998f));
 
 	// Can this graphics card use shaders?
 	if (!sf::Shader::isAvailable())	{
@@ -85,6 +73,6 @@ void Engine::enemySpawn()
 	int numOfEnemies = m_LM.getNumOfEnemies();
 	for (int i = 0;i < numOfEnemies;i++)
 	{
-		Enemy.push_back(createEnemy(m_LM.getEnemyPosition(),GRAVITY));
+		//Enemy.push_back(createEnemy(m_LM.getEnemyPosition(),GRAVITY));
 	}
 }

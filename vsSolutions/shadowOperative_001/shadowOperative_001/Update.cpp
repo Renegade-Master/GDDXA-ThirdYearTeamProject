@@ -65,16 +65,10 @@ void Engine::update(float dtAsSeconds) {
 		}
 	}
 
-	// Set the appropriate view around the appropriate character
-	if (m_SplitScreen) {
-		m_LeftView.setCenter(m_Thomas.getCenter());
-	}
-	else {
 		// Centre full screen around appropriate character
-		if (m_Character1)
-		{
-			m_MainView.setCenter(m_Thomas.getCenter());
-		}
+	if (m_Character1)
+	{
+		m_MainView.setCenter(m_Thomas.getCenter());
 	}
 
 	// Time to update the HUD?
