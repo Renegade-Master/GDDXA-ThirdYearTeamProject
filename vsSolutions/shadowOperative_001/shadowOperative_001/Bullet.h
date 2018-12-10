@@ -29,18 +29,14 @@ private:
 	// What fraction of 1 pixel does the bullet travel, 
 	// Horizontally and vertically each frame?
 	// These values will be derived from m_BulletSpeed
-	float m_BulletDistanceX;
-	float m_BulletDistanceY;
+	sf::Vector2f m_BulletDistance;
 
 	// Where is this bullet headed to?
-	float m_XTarget;
-	float m_YTarget;
+	sf::Vector2f m_Target;
 
 	// Some boundaries so the bullet doesn't fly forever
-	float m_MaxX;
-	float m_MinX;
-	float m_MaxY;
-	float m_MinY;
+	sf::Vector2f m_Max;
+	sf::Vector2f m_Min;
 
 // Public function prototypes go here
 public:
