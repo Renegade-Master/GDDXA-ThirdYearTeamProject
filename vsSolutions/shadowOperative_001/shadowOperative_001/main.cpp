@@ -1,7 +1,9 @@
 /**
 *	@author			Ciaran Bent [K00221230]
+*					Owen O'Dea	[]
+*					Rory Ryan	[]
 *	@creationDate	2018/11/01	YYYY/MM/DD
-*	@description	
+*	@description
 */
 
 #include "Engine.h"
