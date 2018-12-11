@@ -6,6 +6,7 @@
 *	@description
 */
 
+#include <iostream>
 #include "TextureHolder.h"
 #include "Thomas.h"
 
@@ -85,35 +86,77 @@ void Thomas::update(float elapsedTime, int** m_ArrayLevel) {
 bool Thomas::handleInput() {
 	m_JustJumped = false;
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
+	switch (sf::Joystick::isConnected(0)) {
+		case true:
+			//  Jumping
+			if (sf::Joystick::isButtonPressed(0, 0)) {
+				std::cout << "Trying to jump (GamePad)" << std::endl;
 
-		// Start a jump if not already jumping
-		// but only if standing on a block (not falling)
-		if (!m_IsJumping && !m_IsFalling) {
-			m_IsJumping = true;
-			m_TimeThisJump = 0;
-			m_JustJumped = true;
-		}
-	}
-	else {
-		m_IsJumping = false;
-		m_IsFalling = true;
+				// Start a jump if not already jumping
+				// but only if standing on a block (not falling)
+				if (!m_IsJumping && !m_IsFalling) {
+					m_IsJumping = true;
+					m_TimeThisJump = 0;
+					m_JustJumped = true;
+				}
+			}
+			else {
+				m_IsJumping = false;
+				m_IsFalling = true;
 
-	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
-		m_LeftPressed = true;
-	}
-	else {
-		m_LeftPressed = false;
-	}
+			}
 
+			//  Moving Left
+			if (sf::Joystick::getAxisPosition(0, sf::Joystick::X) < -7.5) {
+				m_LeftPressed = true;
+			}
+			else {
+				m_LeftPressed = false;
+			}
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
-		m_RightPressed = true;
-	}
-	else {
-		m_RightPressed = false;
-	}
+			//  Moving Right
+			if (sf::Joystick::getAxisPosition(0, sf::Joystick::X) > 7.5) {
+				m_RightPressed = true;
+			}
+			else {
+				m_RightPressed = false;
+			}
+			break;
+		case false:
+			//  Jumping
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
+
+				// Start a jump if not already jumping
+				// but only if standing on a block (not falling)
+				if (!m_IsJumping && !m_IsFalling) {
+					m_IsJumping = true;
+					m_TimeThisJump = 0;
+					m_JustJumped = true;
+				}
+			}
+			else {
+				m_IsJumping = false;
+				m_IsFalling = true;
+
+			}
+
+			//  Moving Left
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
+				m_LeftPressed = true;
+			}
+			else {
+				m_LeftPressed = false;
+			}
+
+			//  Moving Right
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
+				m_RightPressed = true;
+			}
+			else {
+				m_RightPressed = false;
+			}
+			break;
+	}	
 
 	return m_JustJumped;
 }

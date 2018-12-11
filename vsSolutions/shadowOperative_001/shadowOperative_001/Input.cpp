@@ -25,34 +25,7 @@ void Engine::input() {
 			if (sf::Joystick::isButtonPressed(0, 0)) {
 				//std::cout << "Button 7 is Pressed";
 				m_Playing = true;
-			}
-
-			if (sf::Joystick::isButtonPressed(0, 0))
-			{
-				std::cout << "\nIs Jumping";
-			}
-			if (sf::Joystick::isButtonPressed(0, 2))
-			{
-				std::cout << "\nCrouching";
-			}
-			if (sf::Joystick::isButtonPressed(0, 4))
-			{
-				std::cout << "\nInteract";
-			}
-			if (sf::Joystick::isButtonPressed(0, sf::Joystick::Y))
-			{
-				if ((sf::Joystick::getAxisPosition(0, sf::Joystick::Y) > 3.0) ||
-					(sf::Joystick::getAxisPosition(0, sf::Joystick::Y) < -3.0))
-					std::cout << "\nMovement Direction: Y";
-			}
-			if (sf::Joystick::isButtonPressed(0, sf::Joystick::X))
-			{
-				if((sf::Joystick::getAxisPosition(0,sf::Joystick::X)>3.0)|| 
-					(sf::Joystick::getAxisPosition(0, sf::Joystick::X) < -3.0))
-				std::cout << "\nMovement Direction: X";
-			}
-
-			
+			}			
 		}
 		//  Keyboard Controls
 		if (event.type == sf::Event::KeyPressed) {
