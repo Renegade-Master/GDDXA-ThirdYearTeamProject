@@ -129,7 +129,6 @@ bool Engine::patrolStillValid(int** m_ArrayLevel, Enemy& character)
 				else
 				{
 					std::cout << "\nFeet do not intersect Patrol Loop";
-					return false;
 				}
 			}
 			else
