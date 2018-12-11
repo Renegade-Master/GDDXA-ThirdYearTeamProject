@@ -37,7 +37,6 @@ Engine::Engine() {
 			"shaders/rippleShader.frag");
 	}
 
-
 	m_BackgroundTexture = TextureHolder::GetTexture(
 		"graphics/background.png");
 

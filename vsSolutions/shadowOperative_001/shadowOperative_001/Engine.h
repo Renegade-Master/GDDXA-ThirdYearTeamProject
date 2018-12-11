@@ -31,7 +31,7 @@ public:
 	void run();
 private:
 	// The Tutorial System
-	Tutorial tt;
+	TutorialManager tm;
 
 	// The texture holder
 	TextureHolder th;

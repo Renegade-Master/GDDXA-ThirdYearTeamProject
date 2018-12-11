@@ -8,47 +8,46 @@
 
 #include "Tutorial.h"
 
-Tutorial* Tutorial::m_s_Instance = nullptr;
+TutorialManager* TutorialManager::m_s_Instance = nullptr;
 
-Tutorial::Tutorial() {
+//  A pointer to the Tutorial to be displayed
+static sf::FileInputStream* stream;
+
+TutorialManager::TutorialManager() {
 	assert(m_s_Instance == nullptr);
 	m_s_Instance = this;
 }
 
-std::string& Tutorial::GetTutorial(std::string const& filename) {
+std::string& TutorialManager::GetTutorial(std::string const& filename) {
+	//  Uncomment this to always return something
+	//std::string temp = "NULL";
+	//return *(&temp);
+
 	// Get a reference to m_Tutorials using m_S_Instance
 	std::map<std::string, std::string>& m = m_s_Instance->m_Tutorials;
-	// auto is the equivalent of map<string, string>
 
 	// Create an iterator to hold a key-value-pair (kvp)
 	// and search for the required kvp
 	// using the passed in file name
 	std::map<std::string, std::string>::iterator keyValuePair = m.find(filename);
-	// auto is equivalent of map<string, string>::iterator
-
 
 	// Did we find a match?
 	if (keyValuePair != m.end()) {
 		// Yes
 		// Return the string,
-		// the second part of the kvp, the string
+		// the second part of the kvp, the tutorial text
 		return keyValuePair->second;
 	}
 	else {
 		// File name not found
 		// Create a new key value pair using the filename
-		auto& t_string = m[filename];
-		// Load the texture from file in the usual way
+		std::string& t_string = m[filename];
+		// Load the string from file in the usual way
 		stream->open(filename);
-		std::string* temp = NULL;
-		stream->read(t_string, stream->getSize());
-		//t_string = m[*temp];
-		delete temp;
+		stream->read(&t_string, stream->getSize());
+		stream->~FileInputStream();
 
-		// Return the texture to the calling code
+		// Return the string to the calling code
 		return(t_string);
 	}
-	
-	std::string temp = "NULL";
-	return *(&temp);
 }
