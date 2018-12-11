@@ -13,8 +13,30 @@
 #include <SFML/Graphics.hpp>
 
 class PlayableCharacter {
+public:
+	// Where is the player
+	sf::FloatRect getPosition();
+
+	// A rectangle representing the position of different parts of the sprite
+	sf::FloatRect getFeet();
+	sf::FloatRect getHead();
+	sf::FloatRect getRight();
+	sf::FloatRect getLeft();
+
+	// Send a copy of the sprite to main
+	sf::Sprite getSprite();
+
+	// Make the character stand firm
+	void stopFalling(float position);
+	void stopRight(float position);
+	void stopLeft(float position);
+	void stopJump();
+
+	// Where is the center of the character
+	sf::Vector2f getCenter();
+
 protected:
-	// Of course we will need a sprite
+	// A Sprite
 	sf::Sprite m_Sprite;
 
 	// How long does a jump last
@@ -40,14 +62,17 @@ protected:
 	// Has the player just initialted a jump
 	bool m_JustJumped = false;
 
-	// Private variables and functions come next
-private:
+	void spawn(sf::Vector2i startPosition, float gravity);
 
+	// We will call this function once every frame
+	virtual void update(float elapsedTime) = 0;
+
+	// This is a pure virtual function
+	virtual bool handleInput() = 0;
+	// This class is now abstract and cannot be instanciated
 
 	// How fast is the character
 	float m_Speed = 400;
-
-
 
 	// Where are the characters various body parts?
 	sf::FloatRect m_Feet;
@@ -55,39 +80,7 @@ private:
 	sf::FloatRect m_Right;
 	sf::FloatRect m_Left;
 
-	// And a texture
+	// A texture
 	sf::Texture m_Texture;
-
-	// All our public functions will come next
-public:
-	void spawn(sf::Vector2i startPosition, float gravity);
-
-	// This is a pure virtual function
-	bool virtual handleInput() = 0;
-	// This class is now abstract and cannot be instanciated
-
-	// Where is the player
-	sf::FloatRect getPosition();
-
-	// A rectangle representing the position of different parts of the sprite
-	sf::FloatRect getFeet();
-	sf::FloatRect getHead();
-	sf::FloatRect getRight();
-	sf::FloatRect getLeft();
-
-	// Send a copy of the sprite to main
-	sf::Sprite getSprite();
-
-	// Make the character stand firm
-	void stopFalling(float position);
-	void stopRight(float position);
-	void stopLeft(float position);
-	void stopJump();
-
-	// Where is the center of the character
-	sf::Vector2f getCenter();
-
-	// We will call this function once every frame
-	void update(float elapsedTime);
 };
 #endif // !PLAYABLECHARACTER_H

@@ -6,7 +6,6 @@
 *	@description
 */
 
-#include <stdio.h>
 #include "Engine.h"
 
 void Engine::input() {

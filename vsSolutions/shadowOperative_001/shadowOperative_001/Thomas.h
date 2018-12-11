@@ -17,8 +17,10 @@ public:
 	// A constructor specific to Thomas
 	Thomas();		// Was Thomas::Thomas() but that wasn't working
 
+	virtual void update(float elapsedTime);
+
 	// The overriden input handler for Thomas
-	bool virtual handleInput();
+	virtual bool handleInput();
 
 };
 #endif // !THOMAS_H
