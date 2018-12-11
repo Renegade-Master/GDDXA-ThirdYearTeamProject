@@ -65,10 +65,46 @@ void Enemy::update(float elapsedTime,int** m_ArrayLevel) {
 	//}
 	//this->m_Position.x--;
 
-
+	if (!patrolValid)
+	{
+		if (m_RightPressed)
+		{
+			m_RightPressed = false;
+			m_LeftPressed = true;
+		}
+		else
+		{
+			m_RightPressed = true;
+			m_LeftPressed = false;
+		}
+		patrolValid = true;
+	}
+	if (m_RightPressed)
+	{
+		m_Position.x += (m_Speed * elapsedTime);
+	}
+	if (m_LeftPressed)
+	{
+		m_Position.x -= (m_Speed * elapsedTime);
+	}
 	m_Sprite.setPosition(this->m_Position);
 }
 bool Enemy::handleInput()
 {
 	return true;
+}
+void Enemy::alterPatrol(bool patrol)
+{
+	if (patrol)
+	{
+		patrolValid = true;
+	}
+	else
+	{
+		patrolValid = false;
+	}
+}
+
+sf::FloatRect Enemy::getPosition() {
+	return m_Sprite.getGlobalBounds();
 }

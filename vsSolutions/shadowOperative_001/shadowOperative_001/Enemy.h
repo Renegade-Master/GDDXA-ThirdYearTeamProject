@@ -22,6 +22,8 @@ private:
 public:
 	void update(float elapsedTIme,int** m_ArrayLevel);
 	void spawn(sf::Vector2i startPosition, float gravity);
+	void alterPatrol(bool patrol);
+	sf::FloatRect getPosition();
 };
 
 #endif // !ENEMY_H
