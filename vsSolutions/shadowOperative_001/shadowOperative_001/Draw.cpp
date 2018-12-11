@@ -7,6 +7,7 @@
 */
 
 #include "Engine.h"
+#include <iostream>
 void Engine::draw() {
 	// Rub out the last frame
 	m_Window.clear(sf::Color::White);
@@ -30,10 +31,13 @@ void Engine::draw() {
 
 	// Draw thomas
 	m_Window.draw(m_Thomas.getSprite());
+
 	if (!m_EnemyList.empty())
 	{
-		for (std::list<PlayableCharacter*>::iterator it; it != m_EnemyList.end();it++)
+		//std::cout << "\nNumber of enemies:" << m_LM.getNumOfEnemies();
+		for (std::list<Enemy*>::iterator it = m_EnemyList.begin(); it != m_EnemyList.end();it++)
 		{
+			//std::cout << "\nDrawing enemies";
 			m_Window.draw((*it)->getSprite());
 		}
 	}

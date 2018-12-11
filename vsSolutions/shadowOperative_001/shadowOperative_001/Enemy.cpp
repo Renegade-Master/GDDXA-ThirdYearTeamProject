@@ -8,19 +8,24 @@
 
 #include "Enemy.h"
 #include "TextureHolder.h"
-
+#include <iostream>
 void Enemy::spawn(sf::Vector2i startPosition, float gravity) {
-	m_SpawnPosition = startPosition;
-	m_Position = (sf::Vector2f)m_SpawnPosition;
+	std::cout << "\nEnemy spawn";
+	this->m_SpawnPosition = startPosition;
+	this->m_Position = (sf::Vector2f)m_SpawnPosition;
+	m_Position.x = m_Position.x * 50;
+	m_Position.y = m_Position.y * 50;
+	//m_Position.x = m_SpawnPosition.x;
+	//m_Position.y = m_SpawnPosition.y;
 	m_Gravity = gravity;
 	m_Sprite = sf::Sprite(TextureHolder::GetTexture(
 		"graphics/Bob.png"));
-	m_Sprite.setPosition(m_Position);
+	m_Sprite.setPosition(this->m_Position);
 	m_RightPressed = true;
 	m_LeftPressed = false;
 }
 
-void Enemy::update(float elapsedTime) {
+void Enemy::update(float elapsedTime,int** m_ArrayLevel) {
 	//// Make a rect for all his parts
 	//patrolValid = false;
 	//sf::FloatRect detectionZone = getPosition();
@@ -58,6 +63,10 @@ void Enemy::update(float elapsedTime) {
 	//{
 	//	//alter patrol route
 	//}
+	//this->m_Position.x--;
+
+
+	m_Sprite.setPosition(this->m_Position);
 }
 bool Enemy::handleInput()
 {

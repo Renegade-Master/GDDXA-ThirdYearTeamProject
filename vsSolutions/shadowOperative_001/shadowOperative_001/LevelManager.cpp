@@ -12,7 +12,7 @@
 #include <SFML/Graphics.hpp>
 #include "LevelManager.h"
 #include "TextureHolder.h"
-
+#include <iostream>
 int** LevelManager::nextLevel(sf::VertexArray& rVaLevel) {
 	m_LevelSize.x = 0;
 	m_LevelSize.y = 0;
@@ -93,6 +93,8 @@ int** LevelManager::nextLevel(sf::VertexArray& rVaLevel) {
 				temp.x = x;
 				temp.y = y;
 				m_EnemyPosition.push_back(temp);
+				arrayLevel[y][x] = 0;
+				break;
 			case 'T':
 				arrayLevel[y][x] = 'T';
 				break;
@@ -175,7 +177,6 @@ int LevelManager::getCurrentLevel() {
 
 float LevelManager::getTimeLimit() {
 	return m_BaseTimeLimit * m_TimeModifier;
-
 }
 sf::Vector2i LevelManager::getStartPosition() {
 	return m_StartPosition;
@@ -184,6 +185,7 @@ sf::Vector2i LevelManager::getStartPosition() {
 sf::Vector2i LevelManager::getEnemyPosition()
 {
 	sf::Vector2i temp = m_EnemyPosition.back();
+	std::cout << "\nThis Enemy position: x." << temp.x<<" y,"<<temp.y;
 	m_EnemyPosition.pop_back();
 	return temp;
 }

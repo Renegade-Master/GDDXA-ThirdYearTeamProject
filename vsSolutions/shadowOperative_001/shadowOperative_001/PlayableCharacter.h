@@ -65,7 +65,7 @@ protected:
 	bool m_JustJumped = false;
 
 	// We will call this function once every frame
-	virtual void update(float elapsedTime) = 0;
+	virtual void update(float elapsedTime,int** m_ArrayLevel) = 0;
 
 	// This is a pure virtual function
 	virtual bool handleInput() = 0;

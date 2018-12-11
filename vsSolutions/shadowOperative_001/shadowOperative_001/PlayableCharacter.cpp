@@ -21,7 +21,7 @@ void PlayableCharacter::spawn(sf::Vector2i startPosition, float gravity) {
 
 }
 
-void PlayableCharacter::update(float elapsedTime) {
+void PlayableCharacter::update(float elapsedTime,int** m_ArrayLevel) {
 	// Overridden
 }
 

@@ -20,7 +20,7 @@ private:
 	virtual bool handleInput();
 
 public:
-	void update(float elapsedTIme);
+	void update(float elapsedTIme,int** m_ArrayLevel);
 	void spawn(sf::Vector2i startPosition, float gravity);
 };
 

@@ -94,6 +94,8 @@ bool Engine::detectCollisions(PlayableCharacter& character) {
 				}
 			}
 
+
+
 			//// More collision detection here once we have learned about particle effects
 			// Has the characters' feet touched fire or water?
 			// If so, start a particle effect

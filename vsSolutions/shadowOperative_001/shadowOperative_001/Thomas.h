@@ -17,7 +17,7 @@ public:
 	// A constructor specific to Thomas
 	Thomas();		// Was Thomas::Thomas() but that wasn't working
 
-	virtual void update(float elapsedTime);
+	virtual void update(float elapsedTime, int** m_ArrayLevel);
 
 	// The overriden input handler for Thomas
 	virtual bool handleInput();

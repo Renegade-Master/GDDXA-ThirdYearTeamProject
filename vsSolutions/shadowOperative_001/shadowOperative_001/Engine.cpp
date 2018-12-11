@@ -7,7 +7,7 @@
 */
 
 #include "Engine.h"
-
+#include <iostream>
 Engine::Engine() {
 	// Get the screen resolution and create an SFML window and View
 	sf::Vector2f resolution;
@@ -70,9 +70,12 @@ void Engine::run() {
 }
 void Engine::enemySpawn()
 {
+
 	int numOfEnemies = m_LM.getNumOfEnemies();
 	for (int i = 0;i < numOfEnemies;i++)
 	{
 		m_EnemyList.push_back(createEnemy(m_LM.getEnemyPosition(),GRAVITY));
+		std::cout << "\nlist size" << m_EnemyList.size();
 	}
+
 }

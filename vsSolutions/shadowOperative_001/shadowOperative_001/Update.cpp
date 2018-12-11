@@ -20,7 +20,13 @@ void Engine::update(float dtAsSeconds) {
 
 	if (m_Playing) {
 		// Update Thomas
-		m_Thomas.update(dtAsSeconds);
+		m_Thomas.update(dtAsSeconds,m_ArrayLevel);
+
+		std::list<Enemy*>::iterator it = m_EnemyList.begin();
+		for (;it != m_EnemyList.end();it++)
+		{
+			(*it)->update(dtAsSeconds,m_ArrayLevel);
+		}
 
 		// Detect collisions and see if characters have reached the goal tile
 		// The second part of the if condition is only executed

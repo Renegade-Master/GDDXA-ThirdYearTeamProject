@@ -17,7 +17,7 @@ Thomas::Thomas() {
 	m_JumpDuration = .45;
 }
 
-void Thomas::update(float elapsedTime) {
+void Thomas::update(float elapsedTime, int** m_ArrayLevel) {
 	if (m_RightPressed) {
 		m_Position.x += m_Speed * elapsedTime;
 	}
