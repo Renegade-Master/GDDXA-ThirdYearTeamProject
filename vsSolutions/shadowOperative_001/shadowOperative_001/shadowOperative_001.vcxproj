@@ -176,6 +176,7 @@
     <Image Include="graphics\tiles_sheet.png" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="levels\LEDGER.txt" />
     <Text Include="levels\level1.txt" />
     <Text Include="levels\level11.txt" />
     <Text Include="levels\level111.txt" />
