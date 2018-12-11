@@ -20,6 +20,7 @@
 #include "SoundManager.h"
 #include "TextureHolder.h"
 #include "Thomas.h"
+#include "Tutorial.h"
 
 class Engine {
 public:
@@ -29,6 +30,9 @@ public:
 	// Run will call all the private functions
 	void run();
 private:
+	// The Tutorial System
+	Tutorial tt;
+
 	// The texture holder
 	TextureHolder th;
 
