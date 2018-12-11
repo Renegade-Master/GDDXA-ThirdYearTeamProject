@@ -8,8 +8,8 @@
 
 #include "Enemy.h"
 #include "TextureHolder.h"
-void Enemy::spawn(sf::Vector2i startPosition, float gravity)
-{
+
+void Enemy::spawn(sf::Vector2i startPosition, float gravity) {
 	m_SpawnPosition = startPosition;
 	m_Position = (sf::Vector2f)m_SpawnPosition;
 	m_Gravity = gravity;
@@ -19,8 +19,8 @@ void Enemy::spawn(sf::Vector2i startPosition, float gravity)
 	m_RightPressed = true;
 	m_LeftPressed = false;
 }
-void Enemy::update(char** m_ArrayLevel)
-{
+
+void Enemy::update(float elapsedTime) {
 	//// Make a rect for all his parts
 	//patrolValid = false;
 	//sf::FloatRect detectionZone = getPosition();

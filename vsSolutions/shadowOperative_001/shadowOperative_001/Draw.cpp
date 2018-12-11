@@ -32,8 +32,7 @@ void Engine::draw() {
 	m_Window.draw(m_Thomas.getSprite());
 	if (!m_EnemyList.empty())
 	{
-		std::list<PlayableCharacter*>::iterator it;
-		for (;it != m_EnemyList.end();it++)
+		for (std::list<PlayableCharacter*>::iterator it; it != m_EnemyList.end();it++)
 		{
 			m_Window.draw((*it)->getSprite());
 		}

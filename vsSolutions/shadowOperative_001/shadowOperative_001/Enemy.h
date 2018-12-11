@@ -9,17 +9,18 @@
 #pragma once
 #ifndef ENEMY_H
 #define ENEMY_H
+
 #include "PlayableCharacter.h"
 
-class Enemy : public PlayableCharacter
-{
+class Enemy : public PlayableCharacter {
 private:
 	sf::Vector2i m_SpawnPosition;
 	bool patrolValid;
 	// This is a pure virtual function
-	bool handleInput();
+	virtual bool handleInput();
+
 public:
-	void update(char** m_ArrayLevel);
+	void update(float elapsedTIme);
 	void spawn(sf::Vector2i startPosition, float gravity);
 };
 

@@ -35,6 +35,8 @@ public:
 	// Where is the center of the character
 	sf::Vector2f getCenter();
 
+	void spawn(sf::Vector2i startPosition, float gravity);
+
 protected:
 	// A Sprite
 	sf::Sprite m_Sprite;
@@ -62,14 +64,11 @@ protected:
 	// Has the player just initialted a jump
 	bool m_JustJumped = false;
 
-	void spawn(sf::Vector2i startPosition, float gravity);
-
 	// We will call this function once every frame
 	virtual void update(float elapsedTime) = 0;
 
 	// This is a pure virtual function
 	virtual bool handleInput() = 0;
-	// This class is now abstract and cannot be instanciated
 
 	// How fast is the character
 	float m_Speed = 400;
