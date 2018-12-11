@@ -10,17 +10,24 @@
 #ifndef ENGINE_H
 #define ENGINE_H
 
+#include <list>
 #include <SFML/Graphics.hpp>
+#include "Enemy.h"
+#include "EnemyGenerator.h"
 #include "HUD.h"
 #include "LevelManager.h"
 #include "ParticleSystem.h"
 #include "SoundManager.h"
 #include "TextureHolder.h"
 #include "Thomas.h"
-#include "Enemy.h"
-#include <list>
-#include "enemyGenerator.h"
+
 class Engine {
+public:
+	// The Engine constructor
+	Engine();
+
+	// Run will call all the private functions
+	void run();
 private:
 	// The texture holder
 	TextureHolder th;
@@ -59,10 +66,11 @@ private:
 	sf::View m_MainView;
 	sf::View m_MiniMap;
 
-	// Three views for the background
+	// Two views for the background
 	sf::View m_BGMainView;
 	sf::View m_BGMiniMap;
 
+	//  One view for the HUD
 	sf::View m_HudView;
 
 	// Declare a sprite and a Texture for the background
@@ -106,8 +114,6 @@ private:
 	// Spawn Enemies
 	void enemySpawn();
 
-	
-
 	// Run will call all the private functions
 	bool detectCollisions(PlayableCharacter& character);
 
@@ -117,12 +123,5 @@ private:
 
 	// A vector of Vector2f for the fire emiiter locations
 	std::vector <sf::Vector2f> m_FireEmitters;
-
-public:
-	// The Engine constructor
-	Engine();
-
-	// Run will call all the private functions
-	void run();
 };
 #endif // !ENGINE_H
