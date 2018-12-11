@@ -2,3 +2,9 @@
 0 =AIR
 E =ENMEY
 T =PATH OF THE ENEMYS
+l =Image wirecable
+s =Switch
+4 =EndGoal
+P =Player
+w =window
+d =door
