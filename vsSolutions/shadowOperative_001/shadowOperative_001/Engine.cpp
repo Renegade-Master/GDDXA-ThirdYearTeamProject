@@ -17,7 +17,7 @@ Engine::Engine() {
 	resolution.y = 720;
 
 	m_Window.create(sf::VideoMode(resolution.x, resolution.y),
-		"Thomas was late",
+		"Shadow Operative",
 		sf::Style::Default);
 
 	// Initialize the full screen view
@@ -45,7 +45,7 @@ Engine::Engine() {
 
 	// Load the texture for the background vertex array
 	m_TextureTiles = TextureHolder::GetTexture(
-		"graphics/tiles_sheet.png");
+		"graphics/industrial-tileset.png");
 
 	// Initialize the particle system
 	m_PS.init(1000);

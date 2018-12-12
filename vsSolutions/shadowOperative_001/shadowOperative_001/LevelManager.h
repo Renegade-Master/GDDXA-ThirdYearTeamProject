@@ -24,10 +24,10 @@ private:
 	float m_TimeModifier = 1;
 	float m_BaseTimeLimit = 0;
 	int m_CurrentLevel = 0;
-	const int NUM_LEVELS = 4;
+	const int NUM_LEVELS = 2;
 
 public:
-	const int TILE_SIZE = 50;
+	const int TILE_SIZE = 47;
 	const int VERTS_IN_QUAD = 4;
 
 	float getTimeLimit();

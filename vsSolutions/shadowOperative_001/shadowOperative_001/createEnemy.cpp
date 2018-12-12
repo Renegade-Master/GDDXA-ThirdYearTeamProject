@@ -6,7 +6,6 @@
 *	@description	Create a new Enemy Object
 */
 
-
 #include <iostream>
 #include "Enemy.h"
 #include "EnemyGenerator.h"

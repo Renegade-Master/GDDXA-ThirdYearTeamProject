@@ -38,7 +38,7 @@ sf::Texture& TextureHolder::GetTexture(std::string const& filename) {
 	else {
 		// File name not found
 		// Create a new key value pair using the filename
-		auto& texture = m[filename];
+		sf::Texture& texture = m[filename];
 		// Load the texture from file in the usual way
 		texture.loadFromFile(filename);
 
