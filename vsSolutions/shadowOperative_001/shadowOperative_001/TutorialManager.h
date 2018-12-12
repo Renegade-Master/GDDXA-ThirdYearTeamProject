@@ -7,8 +7,8 @@
 */
 
 #pragma once
-#ifndef TUTORIAL_H
-#define TUTORIAL_H
+#ifndef TUTORIALMANAGER_H
+#define TUTORIALMANAGER_H
 
 #include <assert.h>
 #include <map>
@@ -18,8 +18,8 @@
 class TutorialManager {
 private:
 	// A map container from the STL,
-	// that holds related pairs of String and Texture
-	std::map<std::string, std::string> m_Tutorials;
+	// that holds related pairs of Integers and Strings
+	std::map<int, std::string> m_Tutorials;
 
 	// A pointer of the same type as the class itself
 	// the one and only instance
@@ -27,6 +27,6 @@ private:
 
 public:
 	TutorialManager();
-	static std::string& GetTutorial(std::string const& filename);
+	static std::string& GetTutorial(sf::Vector2i const& filename);
 };
-#endif // !TUTORIAL_H
+#endif // !TUTORIALMANAGER_H
