@@ -84,7 +84,3 @@ void Engine::ItemSpawn()
 		//m_ItemList.push_back(pItemList);
 }
 
-bool Engine::patrolStillValid(int** m_ArrayLevel, Enemy& character)
-{
-	// Make a rect for all his parts
-	sf::FloatRect detectionZone = character.getPosition();
