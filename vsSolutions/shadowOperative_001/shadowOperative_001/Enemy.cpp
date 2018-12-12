@@ -1,7 +1,7 @@
 /**
 *	@author			Ciaran Bent [K00221230]
 *					Owen O'Dea	[K00218956]
-*					Rory Ryan	[]
+*					Rory Ryan	[K00218864]
 *	@creationDate	2018/11/01	YYYY/MM/DD
 *	@description
 */
@@ -25,69 +25,84 @@ void Enemy::spawn(sf::Vector2i startPosition, float gravity) {
 	m_LeftPressed = false;
 }
 
-void Enemy::update(float elapsedTime,int** m_ArrayLevel) {
-	//// Make a rect for all his parts
-	//patrolValid = false;
-	//sf::FloatRect detectionZone = getPosition();
+void Enemy::update(float elapsedTime, int** m_ArrayLevel) {
+	// Make a rect for all his parts
+	patrolValid = false;
+	sf::FloatRect detectionZone = getPosition();
 
-	//const int TILE_SIZE = 50;
-	//// Make a FloatRect to test each block
-	//sf::FloatRect block;
+	const int TILE_SIZE = 50;
+	// Make a FloatRect to test each block
+	sf::FloatRect block;
 
-	//block.width = TILE_SIZE;
-	//block.height = TILE_SIZE;
+	block.width = TILE_SIZE;
+	block.height = TILE_SIZE;
 
-	////Check Zone around characters
-	//int startX = (int)(detectionZone.left / TILE_SIZE) - 1;
-	//int startY = (int)(detectionZone.top / TILE_SIZE) - 1;
-	//int endX = (int)(detectionZone.left / TILE_SIZE) + 2;
-	//int endY = (int)(detectionZone.top / TILE_SIZE) + 3;
-	////see if the enemy is moving and if not Choose a direction to patrol
-	//for (int x = startX; x < endX; x++)
-	//{
-	//	for (int y = startY; y < endY; y++)
-	//	{
-	//		// Initialize the starting position of the current block
-	//		block.left = x * TILE_SIZE;
-	//		block.top = y * TILE_SIZE;
-	//		if (m_ArrayLevel[y][x] == 'T')
-	//		{
-	//			if (getFeet().intersects(block))
-	//			{
-	//				patrolValid = true;
-	//			}
-	//		}
-	//	}
-	//}
-	//if (!patrolValid)
-	//{
-	//	//alter patrol route
-	//}
-	//this->m_Position.x--;
-
+	//Check Zone around characters
+	int startX = (int)(detectionZone.left / TILE_SIZE) - 1;
+	int startY = (int)(detectionZone.top / TILE_SIZE) - 1;
+	int endX = (int)(detectionZone.left / TILE_SIZE) + 2;
+	int endY = (int)(detectionZone.top / TILE_SIZE) + 3;
+	//see if the enemy is moving and if not Choose a direction to patrol
+	if (sincePatrolAlter <= 0)
+	{
+		for (int x = startX; x < endX; x++)
+		{
+			for (int y = startY; y < endY; y++)
+			{
+				// Initialize the starting position of the current block
+				block.left = x * TILE_SIZE;
+				block.top = y * TILE_SIZE;
+				if (m_ArrayLevel[y][x] == 'T' || m_ArrayLevel[y - 1][x] == 'T')
+				{
+					std::cout << "\nChecking patrol loop";
+					if (getFeet().intersects(block))
+					{
+						std::cout << "\\nNot intersect block";
+						patrolValid = false;
+						sincePatrolAlter = 8;
+					}
+					else
+					{
+						std::cout << "\nIntersecting block";
+						patrolValid = true;
+					}
+				}
+			}
+		}
+	}
+	else
+	{
+		sincePatrolAlter--;
+	}
 	if (!patrolValid)
 	{
-		if (m_RightPressed)
-		{
-			m_RightPressed = false;
-			m_LeftPressed = true;
-		}
-		else
-		{
-			m_RightPressed = true;
-			m_LeftPressed = false;
-		}
+		move++;
 		patrolValid = true;
 	}
-	if (m_RightPressed)
+	
+	
+	switch (move)
 	{
-		m_Position.x += (m_Speed * elapsedTime);
-	}
-	if (m_LeftPressed)
-	{
-		m_Position.x -= (m_Speed * elapsedTime);
+	case patrolLeft:
+		this->m_Position.x += this->m_Speed*elapsedTime;
+		break;
+	case patrolRight:
+		this->m_Position.x -= this->m_Speed*elapsedTime;
+		break;
 	}
 	m_Sprite.setPosition(this->m_Position);
+}
+Enemy::patrolDir& operator++(Enemy::patrolDir& mv, int)
+{
+	switch (mv)
+	{
+	case Enemy::patrolLeft:
+		mv = Enemy::patrolRight;
+		return(mv);
+	case Enemy::patrolRight:
+		mv = Enemy::patrolLeft;
+		return(mv);
+	}
 }
 bool Enemy::handleInput()
 {

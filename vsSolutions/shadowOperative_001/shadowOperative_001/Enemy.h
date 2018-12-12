@@ -1,7 +1,7 @@
 /**
 *	@author			Ciaran Bent [K00221230]
 *					Owen O'Dea	[K00218956]
-*					Rory Ryan	[]
+*					Rory Ryan	[K00218864]
 *	@creationDate	2018/11/01	YYYY/MM/DD
 *	@description
 */
@@ -18,7 +18,10 @@ private:
 	bool patrolValid;
 	// This is a pure virtual function
 	virtual bool handleInput();
-
+	enum patrolDir { patrolLeft, patrolRight };
+	patrolDir move = patrolLeft;
+	friend patrolDir& operator++(patrolDir& mv, int incr);
+	int sincePatrolAlter = 0;
 public:
 	void update(float elapsedTIme,int** m_ArrayLevel);
 	void spawn(sf::Vector2i startPosition, float gravity);
