@@ -55,7 +55,7 @@ bool Engine::detectCollisions(PlayableCharacter& character) {
 			// Initialize the starting position of the current block
 			block.left = x * TILE_SIZE;
 			block.top = y * TILE_SIZE;
-
+			/*
 			// Has character been burnt or drowned?
 			// Use head as this allows him to sink a bit
 			if (m_ArrayLevel[y][x] == 2 || m_ArrayLevel[y][x] == 3)	{
@@ -72,10 +72,11 @@ bool Engine::detectCollisions(PlayableCharacter& character) {
 					}
 				}
 			}
-
+			*/
 
 			// Is character colliding with a regular block
-			if ((m_ArrayLevel[y][x] == 1)||(m_ArrayLevel[y][x] == 'T')) {
+			if ((m_ArrayLevel[y][x] == 1)||(m_ArrayLevel[y][x] == 2) ||
+				(m_ArrayLevel[y][x] == 3) || (m_ArrayLevel[y][x] == 4)) {
 
 				if (character.getRight().intersects(block))	{
 					character.stopRight(block.left);
@@ -94,7 +95,7 @@ bool Engine::detectCollisions(PlayableCharacter& character) {
 			}
 
 
-
+			/*
 			//// More collision detection here once we have learned about particle effects
 			// Has the characters' feet touched fire or water?
 			// If so, start a particle effect
@@ -109,10 +110,10 @@ bool Engine::detectCollisions(PlayableCharacter& character) {
 					}
 				}
 			}
-
+			*/
 
 			// Has the character reached the goal?
-			if (m_ArrayLevel[y][x] == 4) {
+			if (m_ArrayLevel[y][x] == 5) {
 				// Character has reached the goal
 				reachedGoal = true;
 			}

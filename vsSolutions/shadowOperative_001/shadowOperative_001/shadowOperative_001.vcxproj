@@ -178,6 +178,7 @@
     <Image Include="graphics\bob.png" />
     <Image Include="graphics\industrial-tileset.png" />
     <Image Include="graphics\thomas.png" />
+    <Image Include="graphics\tileset_001.png" />
     <Image Include="graphics\tiles_sheet.png" />
   </ItemGroup>
   <ItemGroup>
