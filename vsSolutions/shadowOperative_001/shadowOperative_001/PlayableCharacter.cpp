@@ -7,7 +7,7 @@
 */
 
 #include "PlayableCharacter.h"
-
+#include<iostream>
 void PlayableCharacter::spawn(sf::Vector2i startPosition, float gravity) {
 	// Place the player at the starting point
 	m_Position.x = startPosition.x;
@@ -78,4 +78,12 @@ void PlayableCharacter::stopJump() {
 	// Stop a jump early 
 	m_IsJumping = false;
 	m_IsFalling = true;
+}
+int PlayableCharacter::getX()
+{
+	return (int)(this->getCenter().x/50);
+}
+int PlayableCharacter::getY()
+{
+	return (int)(this->getCenter().y/50);
 }

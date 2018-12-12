@@ -128,6 +128,6 @@ private:
 	// A vector of Vector2f for the fire emiiter locations
 	std::vector <sf::Vector2f> m_FireEmitters;
 
-	bool patrolStillValid(int** m_ArrayLevel, Enemy& character);
+	//bool patrolStillValid(int** m_ArrayLevel, Enemy& character);
 };
 #endif // !ENGINE_H

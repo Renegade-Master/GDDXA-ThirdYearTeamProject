@@ -76,66 +76,62 @@ void Engine::enemySpawn()
 		m_EnemyList.push_back(createEnemy(m_LM.getEnemyPosition(),GRAVITY));
 		std::cout << "\nlist size" << m_EnemyList.size();
 	}
-
 }
-bool Engine::patrolStillValid(int** m_ArrayLevel, Enemy& character)
-{
-	// Make a rect for all his parts
-	sf::FloatRect detectionZone = character.getPosition();
-
-	// Make a FloatRect to test each block
-	sf::FloatRect block;
-
-	block.width = TILE_SIZE;
-	block.height = TILE_SIZE;
-
-	// Build a zone around thomas to detect collisions
-	int startX = (int)(detectionZone.left / TILE_SIZE) - 1;
-	int startY = (int)(detectionZone.top / TILE_SIZE) - 1;
-	int endX = (int)(detectionZone.left / TILE_SIZE) + 2;
-
-	// Thomas is quite tall so check a few tiles vertically
-	int endY = (int)(detectionZone.top / TILE_SIZE) + 3;
-
-	// Make sure we don't test positions lower than zero
-	// Or higher than the end of the array
-	if (startX < 0) {
-		startX = 0;
-	}
-	if (startY < 0) {
-		startY = 0;
-	}
-	if (endX >= m_LM.getLevelSize().x) {
-		endX = m_LM.getLevelSize().x;
-	}
-	if (endY >= m_LM.getLevelSize().y) {
-		endY = m_LM.getLevelSize().y;
-	}
-
-	for (int x = startX; x < endX; x++) {
-		for (int y = startY; y < endY; y++) {
-			// Initialize the starting position of the current block
-			block.left = x * TILE_SIZE;
-			block.top = y * TILE_SIZE;
-
-			//check the patrol loop
-			if (m_ArrayLevel[y][x] == 'T')
-			{
-				if (character.getFeet().intersects(block))
-				{
-					std::cout << "\nFeet intersect Patrol Loop";
-					return true;
-				}
-				else
-				{
-					std::cout << "\nFeet do not intersect Patrol Loop";
-				}
-			}
-			else
-			{
-				std::cout << "\nFeet do not intersect Patrol Loop";
-				return false;
-			}
-		}
-	}
-}
+//bool Engine::patrolStillValid(int** m_ArrayLevel, Enemy& character)
+//{
+//	// Make a rect for all his parts
+//	//sf::FloatRect detectionZone = character.getPosition();
+//
+//	//// Make a FloatRect to test each block
+//	//sf::FloatRect block;
+//
+//	//block.width = TILE_SIZE;
+//	//block.height = TILE_SIZE;
+//
+//	//// Build a zone around thomas to detect collisions
+//	//int startX = (int)(detectionZone.left / TILE_SIZE) - 1;
+//	//int startY = (int)(detectionZone.top / TILE_SIZE) - 1;
+//	//int endX = (int)(detectionZone.left / TILE_SIZE) + 2;
+//
+//	//// Thomas is quite tall so check a few tiles vertically
+//	//int endY = (int)(detectionZone.top / TILE_SIZE) + 3;
+//
+//	//// Make sure we don't test positions lower than zero
+//	//// Or higher than the end of the array
+//	//if (startX < 0) {
+//	//	startX = 0;
+//	//}
+//	//if (startY < 0) {
+//	//	startY = 0;
+//	//}
+//	//if (endX >= m_LM.getLevelSize().x) {
+//	//	endX = m_LM.getLevelSize().x;
+//	//}
+//	//if (endY >= m_LM.getLevelSize().y) {
+//	//	endY = m_LM.getLevelSize().y;
+//	//}
+//
+//	//for (int x = startX; x < endX; x++) {
+//	//	for (int y = startY; y < endY; y++) {
+//	//		// Initialize the starting position of the current block
+//	//		block.left = x * TILE_SIZE;
+//	//		block.top = y * TILE_SIZE;
+//
+//	//		//check the patrol loop
+//	//		if (m_ArrayLevel[y][x] == 'T')
+//	//		{
+//	//			if (character.getFeet().intersects(block))
+//	//			{
+//	//				std::cout << "\nFeet intersect Patrol Loop";
+//	//				return true;
+//	//			}
+//	//			else
+//	//			{
+//	//				std::cout << "\nFeet do not intersect Patrol Loop";
+//	//				return false;
+//	//			}
+//	//		}
+//	//	}
+//	//}
+//
+//}

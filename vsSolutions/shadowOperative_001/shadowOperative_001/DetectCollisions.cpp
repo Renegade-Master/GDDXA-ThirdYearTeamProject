@@ -65,7 +65,6 @@ bool Engine::detectCollisions(PlayableCharacter& character) {
 					if (m_ArrayLevel[y][x] == 2) {// Fire, ouch!
 						// Play a sound
 						m_SM.playFallInFire();
-
 					}
 					else {// Water
 						// Play a sound
@@ -76,7 +75,7 @@ bool Engine::detectCollisions(PlayableCharacter& character) {
 
 
 			// Is character colliding with a regular block
-			if (m_ArrayLevel[y][x] == 1) {
+			if ((m_ArrayLevel[y][x] == 1)||(m_ArrayLevel[y][x] == 'T')) {
 
 				if (character.getRight().intersects(block))	{
 					character.stopRight(block.left);
