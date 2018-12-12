@@ -21,6 +21,7 @@
 #include "TextureHolder.h"
 #include "Thomas.h"
 #include "Tutorial.h"
+#include "Item.h"
 
 class Engine {
 public:
@@ -46,6 +47,10 @@ private:
 	
 	//Enemy list
 	std::list<Enemy*> m_EnemyList;
+
+	//Item list
+	std::list<Item*> m_ItemList;
+
 	//Level Manager
 	LevelManager m_LM;
 
@@ -117,6 +122,9 @@ private:
 
 	// Spawn Enemies
 	void enemySpawn();
+
+	// Spawn Items
+	void ItemSpawn();
 
 	// Run will call all the private functions
 	bool detectCollisions(PlayableCharacter& character);

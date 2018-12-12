@@ -8,6 +8,7 @@
 
 #include "Engine.h"
 #include <iostream>
+
 Engine::Engine() {
 	// Get the screen resolution and create an SFML window and View
 	sf::Vector2f resolution;
@@ -78,6 +79,12 @@ void Engine::enemySpawn()
 	}
 
 }
+//Spawns in the items into the game.
+void Engine::ItemSpawn()
+{
+		//m_ItemList.push_back(pItemList);
+}
+
 bool Engine::patrolStillValid(int** m_ArrayLevel, Enemy& character)
 {
 	// Make a rect for all his parts
