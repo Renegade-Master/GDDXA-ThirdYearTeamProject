@@ -150,7 +150,7 @@
     <ClCompile Include="SoundManager.cpp" />
     <ClCompile Include="TextureHolder.cpp" />
     <ClCompile Include="Thomas.cpp" />
-    <ClCompile Include="Tutorial.cpp" />
+    <ClCompile Include="TutorialManager.cpp" />
     <ClCompile Include="Update.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -168,7 +168,7 @@
     <ClInclude Include="SoundManager.h" />
     <ClInclude Include="TextureHolder.h" />
     <ClInclude Include="Thomas.h" />
-    <ClInclude Include="Tutorial.h" />
+    <ClInclude Include="TutorialManager.h" />
   </ItemGroup>
   <ItemGroup>
     <Font Include="fonts\Roboto-Light.ttf" />
@@ -199,7 +199,15 @@
     <None Include="ClassDiagram.cd" />
     <None Include="shaders\rippleShader.frag" />
     <None Include="shaders\vertShader.vert" />
+    <None Include="tutorials\tut_doublejumping.tutorial" />
+    <None Include="tutorials\tut_holdoffceilings.tutorial" />
+    <None Include="tutorials\tut_holdwalls.tutorial" />
+    <None Include="tutorials\tut_infoEnemy.tutorial" />
     <None Include="tutorials\tut_jumping.tutorial" />
+    <None Include="tutorials\tut_sneak.tutorial" />
+    <None Include="tutorials\tut_sprint.tutorial" />
+    <None Include="tutorials\tut_stungun.tutorial" />
+    <None Include="tutorials\tut_switch.tutorial" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

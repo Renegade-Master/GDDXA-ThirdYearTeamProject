@@ -46,9 +46,9 @@ std::string& TutorialManager::GetTutorial(sf::Vector2i const& position) {
 		// Create a new key value pair using the filename
 		std::string& t_string = m[hashValue];
 		// Load the string from file in the usual way
-		//stream->open(filename);
-		//stream->read(&t_string, stream->getSize());
-		//stream->~FileInputStream();
+		stream->open(std::string("tutorials\\") += std::to_string(hashValue));
+		stream->read(&t_string, stream->getSize());
+		stream->~FileInputStream();
 
 		// Return the string to the calling code
 		return(t_string);
