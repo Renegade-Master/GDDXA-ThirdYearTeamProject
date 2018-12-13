@@ -85,7 +85,8 @@ void Engine::ItemSpawn() {
 
 /**
 *	Is the Player using a controller?
-*/
+*//*
 bool Engine::getControls() {
 	return(m_usingController);
 }
+*/

@@ -26,7 +26,7 @@ void Engine::input() {
 			if (sf::Joystick::isButtonPressed(0, 0)) {
 				//std::cout << "Button 7 is Pressed";
 				m_Playing = true;
-			}			
+			}
 		}
 		//  Keyboard Controls
 		if (event.type == sf::Event::KeyPressed) {
