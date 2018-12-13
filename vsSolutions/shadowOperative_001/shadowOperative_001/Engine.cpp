@@ -48,7 +48,7 @@ Engine::Engine() {
 	}
 
 	m_BackgroundTexture = TextureHolder::GetTexture(
-		"graphics/background_007.png");
+		"graphics/background1-720.png");
 
 	// Associate the sprite with the texture
 	m_BackgroundSprite.setTexture(m_BackgroundTexture);
