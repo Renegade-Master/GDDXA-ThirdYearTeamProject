@@ -27,6 +27,6 @@ private:
 
 public:
 	TutorialManager();
-	static std::string& GetTutorial(sf::Vector2i const& filename);
+	static std::string& GetTutorial(sf::Vector2i const& position);
 };
 #endif // !TUTORIALMANAGER_H

@@ -15,6 +15,7 @@ void Engine::input() {
 	while (m_Window.pollEvent(event)) {
 		//  GamePad Controls
 		if (event.type == sf::Event::JoystickButtonPressed) {
+			m_usingController = true;
 			// Handle the player quitting
 			if (sf::Joystick::isButtonPressed(0, 7)) {
 				//std::cout << "Button 0 is Pressed";
@@ -29,6 +30,7 @@ void Engine::input() {
 		}
 		//  Keyboard Controls
 		if (event.type == sf::Event::KeyPressed) {
+			m_usingController = false;
 			// Handle the player quitting
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
 				m_Window.close();

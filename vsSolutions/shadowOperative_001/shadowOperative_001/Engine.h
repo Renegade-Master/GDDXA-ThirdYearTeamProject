@@ -27,10 +27,13 @@ class Engine {
 public:
 	// The Engine constructor
 	Engine();
-
+	
 	// Run will call all the private functions
 	void run();
 private:
+	//  Is the Player using a controller?
+	bool m_usingController = true;
+
 	// The Tutorial System
 	TutorialManager tm;
 
@@ -135,6 +138,9 @@ private:
 
 	// A vector of Vector2f for the fire emiiter locations
 	std::vector <sf::Vector2f> m_FireEmitters;
+
+	//  Is the Player using a controller?
+	//bool getControls();
 
 	//bool patrolStillValid(int** m_ArrayLevel, Enemy& character);
 };
