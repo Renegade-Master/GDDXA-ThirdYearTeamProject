@@ -71,7 +71,7 @@ protected:
 	virtual bool handleInput() = 0;
 
 	// How fast is the character
-	float m_Speed = 200;
+	float m_Speed = 500;
 
 	// Where are the characters various body parts?
 	sf::FloatRect m_Feet;
