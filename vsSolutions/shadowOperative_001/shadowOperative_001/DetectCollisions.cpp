@@ -84,8 +84,7 @@ bool Engine::detectCollisions(PlayableCharacter& character) {
 				else if (character.getLeft().intersects(block))	{
 					character.stopLeft(block.left);
 				}
-
-
+				
 				if (character.getFeet().intersects(block)) {
 					character.stopFalling(block.top);
 				}
@@ -113,7 +112,7 @@ bool Engine::detectCollisions(PlayableCharacter& character) {
 			*/
 
 			// Has the character reached the goal?
-			if (m_ArrayLevel[y][x] == 5) {
+			if (m_ArrayLevel[y][x] == 6) {
 				// Character has reached the goal
 				reachedGoal = true;
 			}
