@@ -57,7 +57,7 @@ Engine::Engine() {
 
 	// Load the texture for the background vertex array
 	m_TextureTiles = TextureHolder::GetTexture(
-		"graphics/tileset_001.png");
+		"graphics/tileset_002.png");
 
 	// Initialize the particle system
 	m_PS.init(1000);
@@ -96,7 +96,6 @@ void Engine::ItemSpawn() {
 
 /**
 *	Is the Player using a controller?
-<<<<<<< Updated upstream
 *//*
 bool Engine::getControls() {
 	return(m_usingController);

@@ -20,11 +20,7 @@
 #include "SoundManager.h"
 #include "TextureHolder.h"
 #include "Thomas.h"
-//<<<<<<< Updated upstream
 #include "TutorialManager.h"
-//=======
-//#include "TutorialManager.h"
-//>>>>>>> Stashed changes
 #include "Item.h"
 
 class Engine {
