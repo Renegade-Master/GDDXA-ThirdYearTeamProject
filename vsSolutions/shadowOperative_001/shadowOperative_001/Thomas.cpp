@@ -41,6 +41,7 @@ void Thomas::update(float elapsedTime, int** m_ArrayLevel) {
 		else {
 			m_IsJumping = false;
 			m_IsFalling = true;
+			
 		}
 
 	}
@@ -98,31 +99,40 @@ bool Thomas::handleInput() {
 					m_IsJumping = true;
 					m_TimeThisJump = 0;
 					m_JustJumped = true;
+					//m_Sprite = sf::Sprite(TextureHolder::GetTexture(
+						//"graphics/Jump_DOWN_000.png"));
 				}
 			}
 			else {
 				m_IsJumping = false;
 				m_IsFalling = true;
-
+				//m_Sprite = sf::Sprite(TextureHolder::GetTexture(
+				//	"graphics/Fly_004.png"));
 			}
 
 			//  Moving Left
 			if (sf::Joystick::getAxisPosition(0, sf::Joystick::X) < -7.5) {
 				m_LeftPressed = true;
 
-			//	m_Sprite = sf::Sprite(TextureHolder::GetTexture(
-				//	"graphics/tileset_001.png"));
+				m_Sprite = sf::Sprite(TextureHolder::GetTexture(
+					"graphics/Walk_left.png"));
 			}
 			else {
 				m_LeftPressed = false;
+			//	m_Sprite = sf::Sprite(TextureHolder::GetTexture(
+				//	"graphics/Idle_004.png"));
 			}
 
 			//  Moving Right
 			if (sf::Joystick::getAxisPosition(0, sf::Joystick::X) > 7.5) {
 				m_RightPressed = true;
+				m_Sprite = sf::Sprite(TextureHolder::GetTexture(
+					"graphics/Walk_003.png"));
 			}
 			else {
 				m_RightPressed = false;
+				//m_Sprite = sf::Sprite(TextureHolder::GetTexture(
+				//	"graphics/Idle_004.png"));
 			}
 			break;
 		case false:
@@ -135,12 +145,15 @@ bool Thomas::handleInput() {
 					m_IsJumping = true;
 					m_TimeThisJump = 0;
 					m_JustJumped = true;
+				//	m_Sprite = sf::Sprite(TextureHolder::GetTexture(
+					//	"graphics/Jump_DOWN_000.png"));
 				}
 			}
 			else {
 				m_IsJumping = false;
 				m_IsFalling = true;
-
+				//m_Sprite = sf::Sprite(TextureHolder::GetTexture(
+				//	"graphics/Idle_004.png"));
 			}
 
 			//  Moving Left
