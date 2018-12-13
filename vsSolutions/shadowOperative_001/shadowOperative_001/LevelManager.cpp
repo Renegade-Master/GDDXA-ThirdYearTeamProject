@@ -94,7 +94,7 @@ int** LevelManager::nextLevel(sf::VertexArray& rVaLevel) {
 				temp.x = x;
 				temp.y = y;
 				m_EnemyPosition.push_back(temp);
-				arrayLevel[y][x] = 0;
+				arrayLevel[y][x] = 'T';
 				break;
 			case 'T':
 				arrayLevel[y][x] = 'T';
@@ -146,7 +146,32 @@ int** LevelManager::nextLevel(sf::VertexArray& rVaLevel) {
 				sf::Vector2f((x * TILE_SIZE), (y * TILE_SIZE) + TILE_SIZE);
 
 			// Which tile from the sprite sheet should we use
-			int verticalOffset = arrayLevel[y][x] * TILE_SIZE;
+			int verticalOffset = arrayLevel[y][x];
+			switch(arrayLevel[y][x]) {
+			case 'd':
+				
+				break;
+			case 'D':
+
+				break;
+			case 'E':
+				verticalOffset = 0;  // We want a transparent tile here
+				break;
+			case 'P':
+				verticalOffset = 0;  // We want a transparent tile here
+				break;
+			case 's':
+
+				break;
+			case 'T':
+				verticalOffset = 0;  // We want a transparent tile here
+				break;
+			case 'w':
+
+				break;
+			}
+			verticalOffset *= TILE_SIZE;
+			//std::cout << arrayLevel[y][x] << std::endl;;
 
 			rVaLevel[currentVertex + 0].texCoords =
 				sf::Vector2f(0, 0 + verticalOffset);
