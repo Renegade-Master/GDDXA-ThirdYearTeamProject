@@ -76,7 +76,7 @@ bool Engine::detectCollisions(PlayableCharacter& character) {
 
 			// Is character colliding with a regular block
 			if ((m_ArrayLevel[y][x] == 1)||(m_ArrayLevel[y][x] == 2) ||
-				(m_ArrayLevel[y][x] == 3) || (m_ArrayLevel[y][x] == 4)) {
+				(m_ArrayLevel[y][x] == 3) || (m_ArrayLevel[y][x] == 5)) {
 
 				if (character.getRight().intersects(block))	{
 					character.stopRight(block.left);

@@ -20,7 +20,11 @@
 #include "SoundManager.h"
 #include "TextureHolder.h"
 #include "Thomas.h"
+//<<<<<<< Updated upstream
 #include "TutorialManager.h"
+//=======
+//#include "TutorialManager.h"
+//>>>>>>> Stashed changes
 #include "Item.h"
 
 class Engine {
@@ -35,7 +39,7 @@ private:
 	bool m_usingController = true;
 
 	// The Tutorial System
-	TutorialManager tm;
+	//TutorialManager tm;
 
 	// The texture holder
 	TextureHolder th;
