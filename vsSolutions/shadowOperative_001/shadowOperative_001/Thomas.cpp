@@ -173,6 +173,5 @@ bool Thomas::handleInput() {
 			}
 			break;
 	}	
-
 	return m_JustJumped;
 }
