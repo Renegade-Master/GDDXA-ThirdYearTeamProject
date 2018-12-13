@@ -28,9 +28,14 @@ Engine::Engine() {
 
 	//MiniMap
 	/*Set Minimap to be in the top right corner and to be in 25%*/
-	m_MiniMap.setViewport(sf::FloatRect(0.001f, 0.8f, 0.25f, 0.9f));
-	m_BGMiniMap.setViewport(sf::FloatRect(0.001f, 0.8f, 0.25f, 0.9f));
-	
+	m_MiniMap.setSize(resolution.x / 20, resolution.y / 20);
+	m_MiniMap.setViewport(sf::FloatRect(0.001f, 0.8f, 0.25f, 0.2f));
+	m_BGMiniMap.setViewport(sf::FloatRect(0.001f, 0.8f, 0.25f, 0.2f));
+	m_MiniMap.setRotation(180.f);
+	m_BGMiniMap.setRotation(180.f);
+	/*m_MiniMap.setViewport(sf::FloatRect(0.001f, 0.8f, 0.3f, 0.25f));
+	m_BGMiniMap.setViewport(sf::FloatRect(0.001f, 0.8f, 0.3f, 0.25f));*/
+	m_MiniMap.zoom(-30.00);
 
 
 	// Can this graphics card use shaders?
