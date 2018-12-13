@@ -90,7 +90,7 @@ bool Thomas::handleInput() {
 		case true:
 			//  Jumping
 			if (sf::Joystick::isButtonPressed(0, 0)) {
-				std::cout << "Trying to jump (GamePad)" << std::endl;
+				//std::cout << "Trying to jump (GamePad)" << std::endl;
 
 				// Start a jump if not already jumping
 				// but only if standing on a block (not falling)

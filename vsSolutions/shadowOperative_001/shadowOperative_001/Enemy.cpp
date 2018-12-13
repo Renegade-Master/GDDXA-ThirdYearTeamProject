@@ -9,8 +9,9 @@
 #include "Enemy.h"
 #include "TextureHolder.h"
 #include <iostream>
+
 void Enemy::spawn(sf::Vector2i startPosition, float gravity) {
-	std::cout << "\nEnemy spawn";
+	//std::cout << "\nEnemy spawn";
 	this->m_SpawnPosition = startPosition;
 	this->m_Position = (sf::Vector2f)m_SpawnPosition;
 	m_Position.x = m_Position.x * 50;
@@ -54,16 +55,16 @@ void Enemy::update(float elapsedTime, int** m_ArrayLevel) {
 				block.top = y * TILE_SIZE;
 				if (m_ArrayLevel[y][x] == 'T' || m_ArrayLevel[y - 1][x] == 'T')
 				{
-					std::cout << "\nChecking patrol loop";
+					//std::cout << "\nChecking patrol loop";
 					if (getFeet().intersects(block))
 					{
-						std::cout << "\\nNot intersect block";
+						//std::cout << "\\nNot intersect block";
 						patrolValid = false;
 						sincePatrolAlter = 8;
 					}
 					else
 					{
-						std::cout << "\nIntersecting block";
+						//std::cout << "\nIntersecting block";
 						patrolValid = true;
 					}
 				}

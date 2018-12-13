@@ -20,7 +20,7 @@
 #include "SoundManager.h"
 #include "TextureHolder.h"
 #include "Thomas.h"
-#include "Tutorial.h"
+#include "TutorialManager.h"
 #include "Item.h"
 
 class Engine {

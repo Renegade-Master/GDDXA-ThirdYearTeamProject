@@ -75,7 +75,7 @@ void Engine::enemySpawn()
 	for (int i = 0;i < numOfEnemies;i++)
 	{
 		m_EnemyList.push_back(createEnemy(m_LM.getEnemyPosition(),GRAVITY));
-		std::cout << "\nlist size" << m_EnemyList.size();
+		//std::cout << "\nlist size" << m_EnemyList.size();
 	}
 }
 //Spawns in the items into the game.

@@ -59,7 +59,7 @@ void SoundManager::playFire(sf::Vector2f emitterLocation, sf::Vector2f listenerL
 
 		if (m_Fire1Sound.getStatus() == sf::Sound::Status::Stopped) {
 			// Play the sound, if its not already
-			m_Fire1Sound.play();
+			//m_Fire1Sound.play();
 		}
 		break;
 
@@ -68,7 +68,7 @@ void SoundManager::playFire(sf::Vector2f emitterLocation, sf::Vector2f listenerL
 		m_Fire2Sound.setPosition(emitterLocation.x, emitterLocation.y, 0.0f);
 
 		if (m_Fire2Sound.getStatus() == sf::Sound::Status::Stopped) {
-			m_Fire2Sound.play();
+			//m_Fire2Sound.play();
 		}
 		break;
 
@@ -77,7 +77,7 @@ void SoundManager::playFire(sf::Vector2f emitterLocation, sf::Vector2f listenerL
 		m_Fire3Sound.setPosition(emitterLocation.x, emitterLocation.y, 0.0f);
 
 		if (m_Fire3Sound.getStatus() == sf::Sound::Status::Stopped) {
-			m_Fire3Sound.play();
+			//m_Fire3Sound.play();
 		}
 		break;
 	}
