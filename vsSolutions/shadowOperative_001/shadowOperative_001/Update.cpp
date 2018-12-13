@@ -93,9 +93,10 @@ void Engine::update(float dtAsSeconds) {
 		m_Hud.setTime(ssTime.str());
 
 		// Update the level text
-		ssLevel << "Level:" << m_LM.getCurrentLevel();
-		m_Hud.setLevel(ssLevel.str());
-
+		sf::Text isHidden = m_Hud.getHidden();
+		m_Hud.setHidden(isHidden);
+		//add call to player Gun later
+		m_Hud.setGunCharge(100);
 		m_FramesSinceLastHUDUpdate = 0;
 	}
 

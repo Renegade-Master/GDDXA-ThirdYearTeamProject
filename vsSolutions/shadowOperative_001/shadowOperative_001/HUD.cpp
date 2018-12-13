@@ -43,11 +43,14 @@ Hud::Hud()
 	m_TimeText.setString("------");
 
 	// Level
-	m_LevelText.setFont(m_Font);
-	m_LevelText.setCharacterSize(75);
-	m_LevelText.setFillColor(sf::Color::White);
-	m_LevelText.setPosition(25, 0);
-	m_LevelText.setString("1");
+	m_isHidden.setFont(m_Font);
+	m_isHidden.setCharacterSize(50);
+	m_isHidden.setFillColor(sf::Color::White);
+	m_isHidden.setPosition(25, 0);
+	m_isHidden.setString("1");
+
+	m_GunCharge.setPosition(resolution.x - (resolution.x /10), 10);
+	m_GunCharge.setFillColor(sf::Color::Yellow);
 }
 
 sf::Text Hud::getMessage() {
@@ -61,11 +64,27 @@ sf::Text Hud::getLevel() {
 sf::Text Hud::getTime() {
 	return m_TimeText;
 }
-
+sf::Text Hud::getHidden()
+{
+	m_isHidden.setString("Hidden(temp)");
+	return m_isHidden;
+}
 void Hud::setLevel(sf::String text) {
 	m_LevelText.setString(text);
+}
+void Hud::setHidden(sf::Text text)
+{
+	m_isHidden = text;
 }
 
 void Hud::setTime(sf::String text) {
 	m_TimeText.setString(text);
+}
+void Hud::setGunCharge(float charge)
+{
+	m_GunCharge.setSize(sf::Vector2f(charge, 30));
+}
+sf::RectangleShape Hud::getGunCharge()
+{
+	return m_GunCharge;
 }

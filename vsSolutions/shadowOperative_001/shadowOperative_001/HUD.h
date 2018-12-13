@@ -19,11 +19,20 @@ private:
 	sf::Text m_TimeText;
 	sf::Text m_LevelText;
 
+	sf::Text m_isHidden;
+
+	sf::RectangleShape m_GunCharge;
 public:
 	Hud();
 	sf::Text getMessage();
 	sf::Text getLevel();
 	sf::Text getTime();
+
+	sf::Text getHidden();
+	void setHidden(sf::Text text);
+
+	void setGunCharge(float charge);
+	sf::RectangleShape getGunCharge();
 
 	void setLevel(sf::String text);
 	void setTime(sf::String text);
