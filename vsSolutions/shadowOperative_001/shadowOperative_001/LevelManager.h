@@ -27,7 +27,7 @@ private:
 	const int NUM_LEVELS = 2;
 
 public:
-	const int TILE_SIZE = 47;
+	const int TILE_SIZE = 50;
 	const int VERTS_IN_QUAD = 4;
 
 	float getTimeLimit();
