@@ -177,11 +177,18 @@
   <ItemGroup>
     <Image Include="graphics\background.png" />
     <Image Include="graphics\bob.png" />
+    <Image Include="graphics\Crouch_down_000.png" />
+    <Image Include="graphics\Fly_004.png" />
+    <Image Include="graphics\Idle_004.png" />
     <Image Include="graphics\industrial-tileset.png" />
+    <Image Include="graphics\Jump_DOWN_000.png" />
     <Image Include="graphics\thomas.png" />
     <Image Include="graphics\tileset_001.png" />
     <Image Include="graphics\tileset_002.png" />
+    <Image Include="graphics\tileset_003.png" />
     <Image Include="graphics\tiles_sheet.png" />
+    <Image Include="graphics\Walk_003.png" />
+    <Image Include="graphics\Walk_left.png" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="levels\_Legend.md" />
