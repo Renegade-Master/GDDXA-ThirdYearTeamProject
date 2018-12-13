@@ -29,6 +29,8 @@ void Engine::draw() {
 	// Draw the Level
 	m_Window.draw(m_VALevel, &m_TextureTiles);
 
+	
+
 	// Draw thomas
 	m_Window.draw(m_Thomas.getSprite());
 
@@ -55,6 +57,13 @@ void Engine::draw() {
 	if (!m_Playing)	{
 		m_Window.draw(m_Hud.getMessage());
 	}
+
+
+	m_Window.setView(m_BGMiniMap);
+	m_Window.draw(m_BackgroundSprite);
+	m_Window.setView(m_MiniMap);
+	m_Window.draw(m_Thomas.getSprite());
+
 
 	// Show everything we have just drawn
 	m_Window.display();

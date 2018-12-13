@@ -26,6 +26,12 @@ Engine::Engine() {
 	m_HudView.reset(
 		sf::FloatRect(0, 0, resolution.x, resolution.y));
 
+	//MiniMap
+	/*Set Minimap to be in the top right corner and to be in 25%*/
+	m_MiniMap.setViewport(sf::FloatRect(0.001f, 0.8f, 0.25f, 0.9f));
+	m_BGMiniMap.setViewport(sf::FloatRect(0.001f, 0.8f, 0.25f, 0.9f));
+	
+
 
 	// Can this graphics card use shaders?
 	if (!sf::Shader::isAvailable())	{
@@ -85,8 +91,15 @@ void Engine::ItemSpawn() {
 
 /**
 *	Is the Player using a controller?
+<<<<<<< Updated upstream
 *//*
 bool Engine::getControls() {
 	return(m_usingController);
 }
 */
+
+
+//bool Engine::getControls() {
+//	return(m_usingController);
+//}
+
