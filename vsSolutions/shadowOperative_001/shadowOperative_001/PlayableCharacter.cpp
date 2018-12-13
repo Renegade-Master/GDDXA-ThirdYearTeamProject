@@ -79,11 +79,3 @@ void PlayableCharacter::stopJump() {
 	m_IsJumping = false;
 	m_IsFalling = true;
 }
-int PlayableCharacter::getX()
-{
-	return (int)(this->getCenter().x/50);
-}
-int PlayableCharacter::getY()
-{
-	return (int)(this->getCenter().y/50);
-}

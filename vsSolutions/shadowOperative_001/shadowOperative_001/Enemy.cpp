@@ -31,7 +31,7 @@ void Enemy::update(float elapsedTime, int** m_ArrayLevel) {
 	patrolValid = false;
 	sf::FloatRect detectionZone = getPosition();
 
-	const int TILE_SIZE = 50;
+	const int TILE_SIZE = 47;
 	// Make a FloatRect to test each block
 	sf::FloatRect block;
 

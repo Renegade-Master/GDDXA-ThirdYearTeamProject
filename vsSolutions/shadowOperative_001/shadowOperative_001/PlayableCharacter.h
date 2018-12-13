@@ -36,8 +36,6 @@ public:
 	sf::Vector2f getCenter();
 
 	void spawn(sf::Vector2i startPosition, float gravity);
-	int getX();
-	int getY();
 
 protected:
 	// A Sprite

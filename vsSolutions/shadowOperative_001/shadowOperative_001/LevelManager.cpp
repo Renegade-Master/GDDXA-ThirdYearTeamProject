@@ -105,8 +105,8 @@ int** LevelManager::nextLevel(sf::VertexArray& rVaLevel) {
 				m_ItemPosition.push_back(temp);
 				break;
 			case 'P':
-				m_StartPosition.x = x;
-				m_StartPosition.y = y;
+				m_StartPosition.x = x * TILE_SIZE;
+				m_StartPosition.y = y * TILE_SIZE;
 				break;
 			case '4':
 				m_EndPosition.x = x;

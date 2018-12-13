@@ -65,7 +65,7 @@ private:
 	int m_FramesSinceLastHUDUpdate = 0;
 	int m_TargetFramesPerHUDUpdate = 500;
 
-	const int TILE_SIZE = 50;
+	const int TILE_SIZE = 47;
 	const int VERTS_IN_QUAD = 4;
 
 	// The force pushing the characters down
