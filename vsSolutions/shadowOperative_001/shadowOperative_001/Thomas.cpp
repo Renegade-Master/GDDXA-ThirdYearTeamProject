@@ -15,7 +15,7 @@ Thomas::Thomas() {
 	m_Sprite = sf::Sprite(TextureHolder::GetTexture(
 		"graphics/thomas.png"));
 
-	m_JumpDuration = .45;
+	m_JumpDuration = 2;
 }
 
 void Thomas::update(float elapsedTime, int** m_ArrayLevel) {
@@ -109,6 +109,9 @@ bool Thomas::handleInput() {
 			//  Moving Left
 			if (sf::Joystick::getAxisPosition(0, sf::Joystick::X) < -7.5) {
 				m_LeftPressed = true;
+
+			//	m_Sprite = sf::Sprite(TextureHolder::GetTexture(
+				//	"graphics/tileset_001.png"));
 			}
 			else {
 				m_LeftPressed = false;
