@@ -43,12 +43,12 @@ Engine::Engine() {
 	}
 	else {
 		// Load two shaders (1 vertex, 1 fragment)
-		m_RippleShader.loadFromFile("shaders/vertShader.vert",
-			"shaders/rippleShader.frag");
+		/*m_RippleShader.loadFromFile("shaders/vertShader.vert",
+			"shaders/rippleShader.frag");*/
 	}
 
 	m_BackgroundTexture = TextureHolder::GetTexture(
-		"graphics/background.png");
+		"graphics/background_007.png");
 
 	// Associate the sprite with the texture
 	m_BackgroundSprite.setTexture(m_BackgroundTexture);
