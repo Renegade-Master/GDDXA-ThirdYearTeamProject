@@ -27,14 +27,12 @@ Engine::Engine() {
 		sf::FloatRect(0, 0, resolution.x, resolution.y));
 
 	//MiniMap
-	/*Set Minimap to be in the top right corner and to be in 25%*/
+	/*Set Minimap to be in the bottom left corner*/
 	m_MiniMap.setSize(resolution.x / 20, resolution.y / 20);
 	m_MiniMap.setViewport(sf::FloatRect(0.001f, 0.8f, 0.25f, 0.2f));
 	m_BGMiniMap.setViewport(sf::FloatRect(0.001f, 0.8f, 0.25f, 0.2f));
 	m_MiniMap.setRotation(180.f);
 	m_BGMiniMap.setRotation(180.f);
-	/*m_MiniMap.setViewport(sf::FloatRect(0.001f, 0.8f, 0.3f, 0.25f));
-	m_BGMiniMap.setViewport(sf::FloatRect(0.001f, 0.8f, 0.3f, 0.25f));*/
 	m_MiniMap.zoom(-30.00);
 
 
