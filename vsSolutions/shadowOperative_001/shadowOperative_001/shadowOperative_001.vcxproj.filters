@@ -1,0 +1,272 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Resource Files\fonts">
+      <UniqueIdentifier>{37a465e1-6f21-4379-9a54-3b546bd62b19}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\graphics">
+      <UniqueIdentifier>{8aa150fd-5ea5-45e3-9ba5-f65040615410}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\levels">
+      <UniqueIdentifier>{9595f56d-8492-4cec-b424-c1b8c34d86c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\shaders">
+      <UniqueIdentifier>{89700ae5-7484-4544-8fcc-8b700d222ebe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\sounds">
+      <UniqueIdentifier>{74837387-7e86-4950-a638-90ed3c94efb1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\tutorials">
+      <UniqueIdentifier>{f23deb2e-c05d-49cf-ab64-9248f90b9b42}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DetectCollisions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Draw.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Input.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LoadLevel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayableCharacter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureHolder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Thomas.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Update.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="HUD.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Particle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PopulateEmitters.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Bullet.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CreateEnemy.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Door.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Item.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TutorialManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CharacterAnimation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Engine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayableCharacter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureHolder.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Thomas.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HUD.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Particle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Bullet.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyGenerator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Door.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Item.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TutorialManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="fonts\Roboto-Light.ttf">
+      <Filter>Resource Files\fonts</Filter>
+    </Font>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="graphics\background.png">
+      <Filter>Resource Files\graphics</Filter>
+    </Image>
+    <Image Include="graphics\bob.png">
+      <Filter>Resource Files\graphics</Filter>
+    </Image>
+    <Image Include="graphics\thomas.png">
+      <Filter>Resource Files\graphics</Filter>
+    </Image>
+    <Image Include="graphics\tiles_sheet.png">
+      <Filter>Resource Files\graphics</Filter>
+    </Image>
+    <Image Include="graphics\industrial-tileset.png">
+      <Filter>Resource Files\graphics</Filter>
+    </Image>
+    <Image Include="graphics\tileset_001.png">
+      <Filter>Resource Files\graphics</Filter>
+    </Image>
+    <Image Include="graphics\tileset_002.png">
+      <Filter>Resource Files\graphics</Filter>
+    </Image>
+    <Image Include="graphics\Crouch_down_000.png">
+      <Filter>Resource Files\graphics</Filter>
+    </Image>
+    <Image Include="graphics\Fly_004.png">
+      <Filter>Resource Files\graphics</Filter>
+    </Image>
+    <Image Include="graphics\Idle_004.png">
+      <Filter>Resource Files\graphics</Filter>
+    </Image>
+    <Image Include="graphics\Jump_DOWN_000.png">
+      <Filter>Resource Files\graphics</Filter>
+    </Image>
+    <Image Include="graphics\tileset_003.png">
+      <Filter>Resource Files\graphics</Filter>
+    </Image>
+    <Image Include="graphics\Walk_003.png">
+      <Filter>Resource Files\graphics</Filter>
+    </Image>
+    <Image Include="graphics\Walk_left.png">
+      <Filter>Resource Files\graphics</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="levels\level1.txt">
+      <Filter>Resource Files\levels</Filter>
+    </Text>
+    <Text Include="levels\level5.txt">
+      <Filter>Resource Files\levels</Filter>
+    </Text>
+    <Text Include="levels\level11.txt">
+      <Filter>Resource Files\levels</Filter>
+    </Text>
+    <Text Include="levels\level111.txt">
+      <Filter>Resource Files\levels</Filter>
+    </Text>
+    <Text Include="levels\_Legend.md">
+      <Filter>Resource Files\levels</Filter>
+    </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="sound\fallinfire.wav">
+      <Filter>Resource Files\sounds</Filter>
+    </Media>
+    <Media Include="sound\fallinwater.wav">
+      <Filter>Resource Files\sounds</Filter>
+    </Media>
+    <Media Include="sound\fire1.wav">
+      <Filter>Resource Files\sounds</Filter>
+    </Media>
+    <Media Include="sound\jump.wav">
+      <Filter>Resource Files\sounds</Filter>
+    </Media>
+    <Media Include="sound\reachgoal.wav">
+      <Filter>Resource Files\sounds</Filter>
+    </Media>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="shaders\rippleShader.frag">
+      <Filter>Resource Files\shaders</Filter>
+    </None>
+    <None Include="shaders\vertShader.vert">
+      <Filter>Resource Files\shaders</Filter>
+    </None>
+    <None Include="ClassDiagram.cd" />
+    <None Include="tutorials\tut_jumping.tutorial">
+      <Filter>Resource Files\tutorials</Filter>
+    </None>
+    <None Include="tutorials\tut_doublejumping.tutorial">
+      <Filter>Resource Files\tutorials</Filter>
+    </None>
+    <None Include="tutorials\tut_holdoffceilings.tutorial">
+      <Filter>Resource Files\tutorials</Filter>
+    </None>
+    <None Include="tutorials\tut_holdwalls.tutorial">
+      <Filter>Resource Files\tutorials</Filter>
+    </None>
+    <None Include="tutorials\tut_infoEnemy.tutorial">
+      <Filter>Resource Files\tutorials</Filter>
+    </None>
+    <None Include="tutorials\tut_sneak.tutorial">
+      <Filter>Resource Files\tutorials</Filter>
+    </None>
+    <None Include="tutorials\tut_sprint.tutorial">
+      <Filter>Resource Files\tutorials</Filter>
+    </None>
+    <None Include="tutorials\tut_stungun.tutorial">
+      <Filter>Resource Files\tutorials</Filter>
+    </None>
+    <None Include="tutorials\tut_switch.tutorial">
+      <Filter>Resource Files\tutorials</Filter>
+    </None>
+  </ItemGroup>
+</Project>

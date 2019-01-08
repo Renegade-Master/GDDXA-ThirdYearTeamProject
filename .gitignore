@@ -9,8 +9,6 @@
 *.user
 *.userosscache
 *.sln.docstates
-*.filters
-*.vcxproj
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
@@ -213,7 +211,7 @@ _pkginfo.txt
 # files ending in .cache can be ignored
 *.[Cc]ache
 # but keep track of directories ending in .cache
-!*.[Cc]ache/
+!?*.[Cc]ache/
 
 # Others
 ClientBin/
@@ -338,4 +336,8 @@ ASALocalRun/
 
 # Local History for Visual Studio
 .localhistory/
-vsSolutions/shadowOperative_001/shadowOperative_001/graphics/temp/
+
+# BeatPulse healthcheck temp database 
+healthchecksdb
+
+**/_temp/
