@@ -18,7 +18,7 @@ void Engine::update(float dtAsSeconds) {
 		loadLevel();
 	}
 
-	if (m_Playing) {
+	if (GameState == State::PLAYING) {
 		// Update Thomas
 		m_Thomas.update(dtAsSeconds,m_ArrayLevel);
 

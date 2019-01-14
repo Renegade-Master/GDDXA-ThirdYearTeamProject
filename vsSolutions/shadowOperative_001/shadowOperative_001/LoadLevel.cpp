@@ -9,7 +9,8 @@
 #include "Engine.h"
 
 void Engine::loadLevel() {
-	m_Playing = false;
+	//m_Playing = false;
+	GameState = State::LOADING;
 
 	// Delete the previously allocated memory
 	for (int i = 0; i < m_LM.getLevelSize().y; ++i)	{

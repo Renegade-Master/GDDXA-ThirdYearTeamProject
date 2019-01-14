@@ -55,7 +55,7 @@ void Engine::draw() {
 	m_Window.draw(m_Hud.getHidden());
 	//m_Window.draw(m_Hud.getTime());
 	m_Window.draw(m_Hud.getGunCharge());
-	if (!m_Playing)	{
+	if (GameState == State::PAUSED)	{
 		m_Window.draw(m_Hud.getMessage());
 	}
 

@@ -25,7 +25,8 @@ void Engine::input() {
 			// Handle the player starting the game
 			if (sf::Joystick::isButtonPressed(0, 0)) {
 				//std::cout << "Button 7 is Pressed";
-				m_Playing = true;
+				//m_Playing = true;
+				GameState = State::PLAYING;
 			}
 		}
 		//  Keyboard Controls
@@ -38,7 +39,8 @@ void Engine::input() {
 
 			// Handle the player starting the game
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return)) {
-				m_Playing = true;
+				//m_Playing = true;
+				GameState = State::PLAYING;
 			}
 		}
 	}
