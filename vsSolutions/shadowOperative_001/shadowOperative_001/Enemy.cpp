@@ -92,6 +92,14 @@ void Enemy::update(float elapsedTime, int** m_ArrayLevel) {
 		break;
 	}
 	m_Sprite.setPosition(this->m_Position);
+	if (Enemy::patrolRight)
+	{
+		cone.updateConePos(this->m_Position, this->detectionDistance3, this->sightAngle, true);
+	}
+	else
+	{
+		cone.updateConePos(this->m_Position, this->detectionDistance3, this->sightAngle, false);
+	}
 }
 Enemy::patrolDir& operator++(Enemy::patrolDir& mv, int)
 {
@@ -123,4 +131,12 @@ void Enemy::alterPatrol(bool patrol)
 
 sf::FloatRect Enemy::getPosition() {
 	return m_Sprite.getGlobalBounds();
+}
+bool Enemy::detectPlayer()
+{
+	return false;
+}
+sf::ConvexShape Enemy::getCone()
+{
+	return cone.getCone();
 }

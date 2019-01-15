@@ -60,15 +60,18 @@ void Engine::draw() {
 	}
 
 
-	m_Window.setView(m_BGMiniMap);
-	m_Window.draw(m_BackgroundSprite);
-	m_Window.setView(m_MiniMap);
-	m_Window.draw(m_VALevel, &m_TextureTiles);
-	m_Window.draw(m_Thomas.getSprite());
-	for (std::list<Enemy*>::iterator iter = m_EnemyList.begin();
-		iter != m_EnemyList.end();iter++)
-	{
-		m_Window.draw((*iter)->getSprite());
+		m_Window.setView(m_BGMiniMap);
+		m_Window.draw(m_BackgroundSprite);
+		m_Window.setView(m_MiniMap);
+		m_Window.draw(m_VALevel, &m_TextureTiles);
+		m_Window.draw(m_Thomas.getSprite());
+		for (std::list<Enemy*>::iterator iter = m_EnemyList.begin();
+			iter != m_EnemyList.end(); iter++)
+		{
+			m_Window.draw((*iter)->getSprite());
+			m_Window.draw((*iter)->getCone());
+		}
+
 	}
 	
 
