@@ -9,7 +9,7 @@
 #include <sstream>
 #include <SFML/Graphics.hpp>
 #include "Engine.h"
-
+#include<iostream>
 void Engine::update(float dtAsSeconds) {
 
 	if (m_NewLevelRequired)	{
@@ -26,6 +26,10 @@ void Engine::update(float dtAsSeconds) {
 		for (;it != m_EnemyList.end();it++)
 		{
 			(*it)->update(dtAsSeconds,m_ArrayLevel);
+			if ((*it)->getCone().getLocalBounds().intersects(m_Thomas.getPosition()))
+			{
+				std::cout << "Detected";
+			}
 		}
 
 		// Detect collisions and see if characters have reached the goal tile

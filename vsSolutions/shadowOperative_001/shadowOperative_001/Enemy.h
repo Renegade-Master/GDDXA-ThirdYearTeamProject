@@ -31,7 +31,7 @@ public:
 	void spawn(sf::Vector2i startPosition, float gravity);
 	void alterPatrol(bool patrol);
 	sf::FloatRect getPosition();
-	bool detectPlayer();
+	bool detectPlayer(sf::Vector2f playPos);
 	sf::ConvexShape getCone();
 };
 

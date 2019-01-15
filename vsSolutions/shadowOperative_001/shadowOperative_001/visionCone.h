@@ -2,6 +2,13 @@
 #ifndef VISIONCONE_H
 #define VISIONCONE_H
 #include <SFML/Graphics.hpp>
+#include <math.h>
+#include <algorithm>
+struct Line
+{
+	sf::Vector2f p1;
+	sf::Vector2f p2;
+};
 class visionCone
 {
 private:

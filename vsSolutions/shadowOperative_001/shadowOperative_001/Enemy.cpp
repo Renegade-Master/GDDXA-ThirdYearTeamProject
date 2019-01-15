@@ -128,11 +128,10 @@ void Enemy::alterPatrol(bool patrol)
 		patrolValid = false;
 	}
 }
-
 sf::FloatRect Enemy::getPosition() {
 	return m_Sprite.getGlobalBounds();
 }
-bool Enemy::detectPlayer()
+bool Enemy::detectPlayer(sf::Vector2f playPos)
 {
 	return false;
 }
