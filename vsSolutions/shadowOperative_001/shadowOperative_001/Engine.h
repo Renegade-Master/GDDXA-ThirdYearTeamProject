@@ -39,7 +39,7 @@ private:
 
 	// Game States
 	enum class State {MAIN_MENU, PLAYING, PAUSED, SETTINGS, LOADING};
-	State GameState = State::MAIN_MENU;
+	State GameState = State::PLAYING;
 
 	// The texture holder
 	TextureHolder th;
