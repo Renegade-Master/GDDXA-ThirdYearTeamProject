@@ -72,6 +72,7 @@ void Engine::draw() {
 			iter != m_EnemyList.end(); iter++)
 		{
 			m_Window.draw((*iter)->getSprite());
+			m_Window.draw((*iter)->getCone());
 		}
 	}
 	else if (GameState == State::PAUSED) {

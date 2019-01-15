@@ -9,7 +9,7 @@
 #include <sstream>
 #include <SFML/Graphics.hpp>
 #include "Engine.h"
-
+#include<iostream>
 void Engine::update(float dtAsSeconds) {
 
 	if (GameState == State::MAIN_MENU) {
@@ -27,7 +27,11 @@ void Engine::update(float dtAsSeconds) {
 		
 		for (std::list<Enemy*>::iterator it = m_EnemyList.begin(); it != m_EnemyList.end(); it++)
 		{
-			(*it)->update(dtAsSeconds, m_ArrayLevel);
+			(*it)->update(dtAsSeconds,m_ArrayLevel);
+			if ((*it)->getCone().getLocalBounds().intersects(m_Thomas.getPosition()))
+			{
+				std::cout << "Detected";
+			}
 		}
 
 		// Detect collisions and see if characters have reached the goal tile
