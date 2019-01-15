@@ -140,6 +140,7 @@
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="HUD.cpp" />
+    <ClCompile Include="InitButtons.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="LevelManager.cpp" />

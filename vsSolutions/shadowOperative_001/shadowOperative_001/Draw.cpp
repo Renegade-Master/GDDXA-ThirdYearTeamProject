@@ -15,7 +15,12 @@ void Engine::draw() {
 	m_Window.clear(sf::Color::Black);
 
 	if (GameState == State::MAIN_MENU) {
-		// Put Main Menu Screen draw code here
+		// Switch to m_MainView
+		m_Window.setView(m_MainView);
+
+		for (std::list<GUI::Button>::iterator it = m_mainMenuButtons.begin(); it != m_mainMenuButtons.end(); ++it) {
+			m_Window.draw(*it);
+		}
 	}
 	else if (GameState == State::PLAYING) {
 		// Update the shader parameters

@@ -10,8 +10,6 @@
 #include "Engine.h"
 
 Engine::Engine() {
-	// Get the screen resolution and create an SFML window and View
-	sf::Vector2f resolution;
 	//resolution.x = sf::VideoMode::getDesktopMode().width;
 	//resolution.y = sf::VideoMode::getDesktopMode().height;
 	resolution.x = 1280;
@@ -59,6 +57,10 @@ Engine::Engine() {
 
 	// Initialize the particle system
 	m_PS.init(1000);
+
+	// Initialise all the Buttons
+	m_buttonFont.loadFromFile("fonts/Roboto-Light.ttf");
+	initButtons();
 }
 
 void Engine::run() {

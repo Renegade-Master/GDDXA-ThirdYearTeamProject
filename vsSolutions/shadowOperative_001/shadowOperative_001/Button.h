@@ -61,6 +61,8 @@ namespace GUI {
 
 		void update(sf::Event& e, sf::RenderWindow& window);
 
+		GUI::Button* getPointer();
+
 	private:
 		void init();
 
