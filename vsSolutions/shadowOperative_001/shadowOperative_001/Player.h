@@ -7,8 +7,8 @@
 */
 
 #pragma once
-#ifndef THOMAS_H
-#define THOMAS_H
+#ifndef PLAYER_H
+#define PLAYER_H
 
 #include "PlayableCharacter.h"
 
@@ -23,4 +23,4 @@ public:
 	virtual bool handleInput();
 
 };
-#endif // !THOMAS_H
+#endif // !PLAYER_H

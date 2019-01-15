@@ -19,7 +19,7 @@
 #include "ParticleSystem.h"
 #include "SoundManager.h"
 #include "TextureHolder.h"
-#include "Thomas.h"
+#include "PLayer.h"
 #include "TutorialManager.h"
 #include "Item.h"
 

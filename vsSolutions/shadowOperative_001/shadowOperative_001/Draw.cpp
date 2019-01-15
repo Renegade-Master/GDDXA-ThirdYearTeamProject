@@ -10,6 +10,7 @@
 
 #include "Engine.h"
 
+
 void Engine::draw() {
 	// Rub out the last frame
 	m_Window.clear(sf::Color::Black);
@@ -37,7 +38,7 @@ void Engine::draw() {
 
 
 
-		// Draw thomas
+		// Draw Player
 		m_Window.draw(m_Player.getSprite());
 
 		if (!m_EnemyList.empty())
@@ -83,7 +84,6 @@ void Engine::draw() {
 	else if (GameState == State::LOADING) {
 		// Put Loading Screen draw code here
 	}
-
 	// Show everything we have just drawn
 	m_Window.display();
 }

@@ -8,12 +8,21 @@
 
 #include <iostream>
 #include "TextureHolder.h"
-#include "Thomas.h"
+#include "Player.h"
 
 Player::Player() {
 	// Associate a texture with the sprite
 	m_Sprite = sf::Sprite(TextureHolder::GetTexture(
-		"graphics/thomas.png"));
+		"graphics/idle__001.png"));
+
+	m_SpriteRunningRight = sf::Sprite(TextureHolder::GetTexture(
+		"graphics/RunRight__001.png"));
+
+	m_SpriteRunningLeft = sf::Sprite(TextureHolder::GetTexture(
+		"graphics/RunLeft__001.png"));
+
+	m_SpriteFalling = sf::Sprite(TextureHolder::GetTexture(
+		"graphics/Glide_000.png"));
 
 	m_JumpDuration = 2;
 }
@@ -37,11 +46,11 @@ void Player::update(float elapsedTime, int** m_ArrayLevel) {
 		if (m_TimeThisJump < m_JumpDuration) {
 			// Move up at twice gravity
 			m_Position.y -= m_Gravity * 2 * elapsedTime;
+			//CharacterAnimation = State::FALLING;
 		}
 		else {
 			m_IsJumping = false;
-			m_IsFalling = true;
-			
+			m_IsFalling = true;	
 		}
 
 	}
@@ -81,11 +90,16 @@ void Player::update(float elapsedTime, int** m_ArrayLevel) {
 
 	// Move the sprite into position
 	m_Sprite.setPosition(m_Position);
+	m_SpriteRunningRight.setPosition(m_Position);
+	m_SpriteRunningLeft.setPosition(m_Position);
+	m_SpriteFalling.setPosition(m_Position);
+
 }
 
 // A virtual function
 bool Player::handleInput() {
 	m_JustJumped = false;
+	CharacterAnimation = State::IDLE;
 
 	switch (sf::Joystick::isConnected(-1)) { // Controller support DISABLED
 		case true:
@@ -99,27 +113,37 @@ bool Player::handleInput() {
 					m_IsJumping = true;
 					m_TimeThisJump = 0;
 					m_JustJumped = true;
+					CharacterAnimation = State::FALLING;
 				}
 			}
 			else {
 				m_IsJumping = false;
 				m_IsFalling = true;
+				CharacterAnimation = State::FALLING;
 			}
 
 			//  Moving Left
 			if (sf::Joystick::getAxisPosition(0, sf::Joystick::X) < -7.5) {
 				m_LeftPressed = true;
+				//Changes the the sprite to runnning right
+				CharacterAnimation = State::RUNNINGLEFT;
 			}
 			else {
 				m_LeftPressed = false;
+				//Changes the the sprite to idle position
+				//State CharacterAnimation = State::IDLE;
 			}
 
 			//  Moving Right
 			if (sf::Joystick::getAxisPosition(0, sf::Joystick::X) > 7.5) {
 				m_RightPressed = true;
+				//Changes the the sprite to runnning right
+			    CharacterAnimation = State::RUNNINGRIGHT;
 			}
 			else {
 				m_RightPressed = false;
+				//Changes the the sprite to idle position
+				//State CharacterAnimation = State::IDLE;
 			}
 			break;
 		case false:
@@ -132,27 +156,37 @@ bool Player::handleInput() {
 					m_IsJumping = true;
 					m_TimeThisJump = 0;
 					m_JustJumped = true;
+					CharacterAnimation = State::FALLING;
 				}
 			}
 			else {
 				m_IsJumping = false;
 				m_IsFalling = true;
+				CharacterAnimation = State::FALLING;
 			}
 
 			//  Moving Left
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
 				m_LeftPressed = true;
+				//Changes the the sprite to running left
+				CharacterAnimation = State::RUNNINGLEFT;
 			}
 			else {
 				m_LeftPressed = false;
+				//Changes the the sprite to idle position
+				//CharacterAnimation = State::IDLE;
 			}
 
 			//  Moving Right
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
 				m_RightPressed = true;
+				//Changes the the sprite to running right
+				CharacterAnimation = State::RUNNINGRIGHT;
 			}
 			else {
 				m_RightPressed = false;
+				//Changes the the sprite to idle position
+				//CharacterAnimation = State::IDLE;
 			}
 			break;
 	}	

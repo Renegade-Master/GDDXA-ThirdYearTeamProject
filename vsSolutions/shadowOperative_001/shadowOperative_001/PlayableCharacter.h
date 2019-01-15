@@ -14,6 +14,11 @@
 
 class PlayableCharacter {
 public:
+
+	// Game States
+	enum class State { IDLE, RUNNINGRIGHT, RUNNINGLEFT, JUMPING, FALLING};
+	State CharacterAnimation = State::IDLE;
+
 	// Where is the player
 	sf::FloatRect getPosition();
 
@@ -38,8 +43,11 @@ public:
 	void spawn(sf::Vector2i startPosition, float gravity);
 
 protected:
-	// A Sprite
+	// A Sprite Animations
 	sf::Sprite m_Sprite;
+	sf::Sprite m_SpriteRunningRight;
+	sf::Sprite m_SpriteRunningLeft;
+	sf::Sprite m_SpriteFalling;
 
 	// How long does a jump last
 	float m_JumpDuration;
