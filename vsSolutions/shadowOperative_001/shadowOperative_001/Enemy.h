@@ -24,7 +24,7 @@ private:
 	friend patrolDir& operator++(patrolDir& mv, int incr);
 	int sincePatrolAlter = 0;
 	int sightAngle = 60;
-	int detectionDistance1 = 50, detectionDistance2 = 100, detectionDistance3 = 150;
+	int detectionDistance = 300;
 	visionCone cone;
 public:
 	void update(float elapsedTIme,int** m_ArrayLevel);

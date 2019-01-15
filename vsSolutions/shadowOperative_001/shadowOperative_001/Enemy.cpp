@@ -92,13 +92,13 @@ void Enemy::update(float elapsedTime, int** m_ArrayLevel) {
 		break;
 	}
 	m_Sprite.setPosition(this->m_Position);
-	if (Enemy::patrolRight)
+	if (move == patrolLeft)
 	{
-		cone.updateConePos(this->m_Position, this->detectionDistance3, this->sightAngle, true);
+		cone.updateConePos(this->m_Position, this->detectionDistance, this->sightAngle, true);
 	}
 	else
 	{
-		cone.updateConePos(this->m_Position, this->detectionDistance3, this->sightAngle, false);
+		cone.updateConePos(this->m_Position, this->detectionDistance, this->sightAngle, false);
 	}
 }
 Enemy::patrolDir& operator++(Enemy::patrolDir& mv, int)

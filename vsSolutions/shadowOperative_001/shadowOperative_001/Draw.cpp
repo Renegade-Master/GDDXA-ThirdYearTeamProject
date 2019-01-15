@@ -72,7 +72,7 @@ void Engine::draw() {
 			m_Window.draw((*iter)->getCone());
 		}
 
-	}
+	
 	
 
 
