@@ -27,7 +27,7 @@ class Engine {
 public:
 	// The Engine constructor
 	Engine();
-	
+
 	// Run will call all the private functions
 	void run();
 private:
@@ -36,6 +36,10 @@ private:
 
 	// The Tutorial System
 	//TutorialManager tm;
+
+	// Game States
+	enum class State { MAIN_MENU, PLAYING, PAUSED, SETTINGS, LOADING };
+	State GameState = State::PAUSED;
 
 	// The texture holder
 	TextureHolder th;
@@ -47,7 +51,7 @@ private:
 	Thomas m_Thomas;
 
 	//Enemy Generator
-	
+
 	//Enemy list
 	std::list<Enemy*> m_EnemyList;
 
@@ -91,9 +95,6 @@ private:
 
 	// Declare a shader for the background
 	sf::Shader m_RippleShader;
-
-	// Is the game currently playing?
-	bool m_Playing = false;
 
 	// Is character 1 or 2 the current focus?
 	bool m_Character1 = true;

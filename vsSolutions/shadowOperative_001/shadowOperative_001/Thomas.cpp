@@ -87,7 +87,7 @@ void Thomas::update(float elapsedTime, int** m_ArrayLevel) {
 bool Thomas::handleInput() {
 	m_JustJumped = false;
 
-	switch (sf::Joystick::isConnected(0)) {
+	switch (sf::Joystick::isConnected(-1)) { // Controller support DISABLED
 		case true:
 			//  Jumping
 			if (sf::Joystick::isButtonPressed(0, 0)) {

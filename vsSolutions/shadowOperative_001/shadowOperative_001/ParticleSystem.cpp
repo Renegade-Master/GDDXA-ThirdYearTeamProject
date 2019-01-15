@@ -33,10 +33,9 @@ void ParticleSystem::init(int numParticles) {
 
 void ParticleSystem::update(float dt) {
 	m_Duration -= dt;
-	std::vector<Particle>::iterator i;
 	int currentVertex = 0;
 
-	for (i = m_Particles.begin(); i != m_Particles.end(); i++) {
+	for (std::vector<Particle>::iterator i = m_Particles.begin(); i != m_Particles.end(); i++) {
 		// Move the particle
 		(*i).update(dt);
 
@@ -57,10 +56,10 @@ void ParticleSystem::emitParticles(sf::Vector2f startPosition) {
 	m_IsRunning = true;
 	m_Duration = 2;
 
-	std::vector<Particle>::iterator i;
+	;
 	int currentVertex = 0;
 
-	for (i = m_Particles.begin(); i != m_Particles.end(); i++) {
+	for (std::vector<Particle>::iterator i = m_Particles.begin(); i != m_Particles.end(); i++) {
 		m_Vertices[currentVertex].color = sf::Color::Yellow;
 		(*i).setPosition(startPosition);
 

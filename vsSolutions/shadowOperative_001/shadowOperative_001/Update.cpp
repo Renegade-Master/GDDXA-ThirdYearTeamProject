@@ -12,20 +12,22 @@
 
 void Engine::update(float dtAsSeconds) {
 
-	if (m_NewLevelRequired)	{
-
-		// Load a Level
-		loadLevel();
+	if (GameState == State::MAIN_MENU) {
+		// Put Main Menu Screen Update code here
 	}
+	else if (GameState == State::PLAYING) {
+		if (m_NewLevelRequired) {
+			
+			// Load a Level
+			loadLevel();
+		}
 
-	if (m_Playing) {
 		// Update Thomas
-		m_Thomas.update(dtAsSeconds,m_ArrayLevel);
-
-		std::list<Enemy*>::iterator it = m_EnemyList.begin();
-		for (;it != m_EnemyList.end();it++)
+		m_Thomas.update(dtAsSeconds, m_ArrayLevel);
+		
+		for (std::list<Enemy*>::iterator it = m_EnemyList.begin(); it != m_EnemyList.end(); it++)
 		{
-			(*it)->update(dtAsSeconds,m_ArrayLevel);
+			(*it)->update(dtAsSeconds, m_ArrayLevel);
 		}
 
 		// Detect collisions and see if characters have reached the goal tile
@@ -48,60 +50,67 @@ void Engine::update(float dtAsSeconds) {
 			m_NewLevelRequired = true;
 		}
 
-	}// End if playing
+		// Check if a fire sound needs to be played
 
-	// Check if a fire sound needs to be played
-	std::vector<sf::Vector2f>::iterator it;
+		// Iterate through the vector of Vector2f objects
+		for (std::vector<sf::Vector2f>::iterator it = m_FireEmitters.begin(); it != m_FireEmitters.end(); it++) {
+			// Where is this emitter?
+			// Store the location in pos
+			float posX = (*it).x;
+			float posY = (*it).y;
 
-	// Iterate through the vector of Vector2f objects
-	for (it = m_FireEmitters.begin(); it != m_FireEmitters.end(); it++) {
-		// Where is this emitter?
-		// Store the location in pos
-		float posX = (*it).x;
-		float posY = (*it).y;
+			// is the emiter near the player?
+			// Make a 500 pixel rectangle around the emitter
+			sf::FloatRect localRect(posX - 250, posY - 250, 500, 500);
 
-		// is the emiter near the player?
-		// Make a 500 pixel rectangle around the emitter
-		sf::FloatRect localRect(posX - 250, posY - 250, 500, 500);
-
-		// Is the player inside localRect?
-		if (m_Thomas.getPosition().intersects(localRect)) {
-			// Play the sound and pass in the location as well
-			m_SM.playFire(sf::Vector2f(posX, posY), m_Thomas.getCenter());
+			// Is the player inside localRect?
+			if (m_Thomas.getPosition().intersects(localRect)) {
+				// Play the sound and pass in the location as well
+				m_SM.playFire(sf::Vector2f(posX, posY), m_Thomas.getCenter());
+			}
 		}
-	}
 
 		// Centre full screen around appropriate character
-	if (m_Character1)
-	{
-		m_MainView.setCenter(m_Thomas.getCenter());
-		m_MiniMap.setCenter(m_Thomas.getCenter());
+		if (m_Character1)
+		{
+			m_MainView.setCenter(m_Thomas.getCenter());
+			m_MiniMap.setCenter(m_Thomas.getCenter());
+		}
+
+		// Time to update the HUD?
+		// Increment the number of frames since the last HUD calculation
+		m_FramesSinceLastHUDUpdate++;
+
+		// Update the HUD every m_TargetFramesPerHUDUpdate frames
+		if (m_FramesSinceLastHUDUpdate > m_TargetFramesPerHUDUpdate) {
+			// Update game HUD text
+			std::stringstream ssTime;
+			std::stringstream ssLevel;
+
+			// Update the time text
+			ssTime << (int)m_TimeRemaining;
+			m_Hud.setTime(ssTime.str());
+
+			// Update the level text
+			sf::Text isHidden = m_Hud.getHidden();
+			m_Hud.setHidden(isHidden);
+			//add call to player Gun later
+			m_Hud.setGunCharge(100);
+			m_FramesSinceLastHUDUpdate = 0;
+		}
+
+		// Update the particles
+		if (m_PS.running()) {
+			m_PS.update(dtAsSeconds);
+		}
 	}
-
-	// Time to update the HUD?
-	// Increment the number of frames since the last HUD calculation
-	m_FramesSinceLastHUDUpdate++;
-
-	// Update the HUD every m_TargetFramesPerHUDUpdate frames
-	if (m_FramesSinceLastHUDUpdate > m_TargetFramesPerHUDUpdate) {
-		// Update game HUD text
-		std::stringstream ssTime;
-		std::stringstream ssLevel;
-
-		// Update the time text
-		ssTime << (int)m_TimeRemaining;
-		m_Hud.setTime(ssTime.str());
-
-		// Update the level text
-		sf::Text isHidden = m_Hud.getHidden();
-		m_Hud.setHidden(isHidden);
-		//add call to player Gun later
-		m_Hud.setGunCharge(100);
-		m_FramesSinceLastHUDUpdate = 0;
+	else if (GameState == State::PAUSED) {
+		// Put Paused Screen Update code here
 	}
-
-	// Update the particles
-	if (m_PS.running()) {
-		m_PS.update(dtAsSeconds);
+	else if (GameState == State::SETTINGS) {
+		// Put Settings Screen Update code here
+	}
+	else if (GameState == State::LOADING) {
+		// Put Loading Screen Update code here
 	}
 }
