@@ -1,6 +1,8 @@
 /**
-*	@author			[NAME]
-*	@creationDate	XXXX/XX/XX	YYYY/MM/DD
+*	@author			Ciaran Bent [K00221230]
+*					Owen O'Dea	[K00218956]
+*					Rory Ryan	[K00218864]
+*	@creationDate	2019/01/15	YYYY/MM/DD
 *	@description
 */
 
@@ -13,7 +15,7 @@
 #include <SFML\Graphics.hpp>
 
 namespace GUI {
-	namespace Style	{
+	namespace Style {
 		enum {
 			none = 0,
 			save = 1,
@@ -22,7 +24,7 @@ namespace GUI {
 		};
 	};
 
-	namespace State	{
+	namespace State {
 		enum {
 			normal = 0,
 			hovered = 1,
@@ -48,7 +50,7 @@ namespace GUI {
 		void setBorderRadius(float r) { m_borderRadius = r; };
 		void setPosition(sf::Vector2f position) { m_position = position; };
 		void setSize(unsigned int size);
-		
+
 		void setText(std::string s);
 		void setStyle(sf::Uint32 Style);
 		void setFont(sf::Font& font);
@@ -63,7 +65,7 @@ namespace GUI {
 		void init();
 
 		virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
-		
+
 		sf::Color m_bgNormal;
 		sf::Color m_bgHover;
 		sf::Color m_bgClicked;

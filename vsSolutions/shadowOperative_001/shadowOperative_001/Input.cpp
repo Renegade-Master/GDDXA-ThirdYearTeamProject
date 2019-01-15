@@ -1,7 +1,7 @@
 /**
 *	@author			Ciaran Bent [K00221230]
 *					Owen O'Dea	[K00218956]
-*					Rory Ryan	[]
+*					Rory Ryan	[K00218864]
 *	@creationDate	2018/11/01	YYYY/MM/DD
 *	@description
 */
@@ -16,8 +16,8 @@ void Engine::input() {
 		// Put Main Menu Screen Input code here
 	}
 	else if (GameState == State::PLAYING) {
-		// Handle input specific to Thomas
-		if (m_Thomas.handleInput()) {
+		// Handle input specific to Player
+		if (m_Player.handleInput()) {
 			// Play a jump sound
 			m_SM.playJump();
 		}

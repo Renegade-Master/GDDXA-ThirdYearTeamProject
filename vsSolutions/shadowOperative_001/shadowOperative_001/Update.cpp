@@ -1,7 +1,7 @@
 /**
 *	@author			Ciaran Bent [K00221230]
 *					Owen O'Dea	[K00218956]
-*					Rory Ryan	[]
+*					Rory Ryan	[K00218864]
 *	@creationDate	2018/11/01	YYYY/MM/DD
 *	@description
 */
@@ -22,8 +22,8 @@ void Engine::update(float dtAsSeconds) {
 			loadLevel();
 		}
 
-		// Update Thomas
-		m_Thomas.update(dtAsSeconds, m_ArrayLevel);
+		// Update Player
+		m_Player.update(dtAsSeconds, m_ArrayLevel);
 		
 		for (std::list<Enemy*>::iterator it = m_EnemyList.begin(); it != m_EnemyList.end(); it++)
 		{
@@ -33,7 +33,7 @@ void Engine::update(float dtAsSeconds) {
 		// Detect collisions and see if characters have reached the goal tile
 		// The second part of the if condition is only executed
 		// when thomas is touching the home tile
-		if (detectCollisions(m_Thomas)) {
+		if (detectCollisions(m_Player)) {
 			// New level required
 			m_NewLevelRequired = true;
 
@@ -45,7 +45,7 @@ void Engine::update(float dtAsSeconds) {
 		// Count down the time the player has left
 		//m_TimeRemaining -= dtAsSeconds;
 
-		// Have Thomas and Bob run out of time?
+		// Have Player and Bob run out of time?
 		if (m_TimeRemaining <= 0) {
 			m_NewLevelRequired = true;
 		}
@@ -64,17 +64,17 @@ void Engine::update(float dtAsSeconds) {
 			sf::FloatRect localRect(posX - 250, posY - 250, 500, 500);
 
 			// Is the player inside localRect?
-			if (m_Thomas.getPosition().intersects(localRect)) {
+			if (m_Player.getPosition().intersects(localRect)) {
 				// Play the sound and pass in the location as well
-				m_SM.playFire(sf::Vector2f(posX, posY), m_Thomas.getCenter());
+				m_SM.playFire(sf::Vector2f(posX, posY), m_Player.getCenter());
 			}
 		}
 
 		// Centre full screen around appropriate character
 		if (m_Character1)
 		{
-			m_MainView.setCenter(m_Thomas.getCenter());
-			m_MiniMap.setCenter(m_Thomas.getCenter());
+			m_MainView.setCenter(m_Player.getCenter());
+			m_MiniMap.setCenter(m_Player.getCenter());
 		}
 
 		// Time to update the HUD?

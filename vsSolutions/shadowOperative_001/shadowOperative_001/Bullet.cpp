@@ -1,12 +1,12 @@
 /**
 *	@author			Ciaran Bent [K00221230]
 *					Owen O'Dea	[K00218956]
-*					Rory Ryan	[]
+*					Rory Ryan	[K00218864]
 *	@creationDate	2018/11/01	YYYY/MM/DD
 *	@description
 */
 
-#include "bullet.h"
+#include "Bullet.h"
 
 // The constructor
 Bullet::Bullet() {
@@ -34,7 +34,7 @@ void Bullet::shoot(float startX, float startY,
 	// Set the "speed" horizontally and vertically
 	m_BulletDistance.y = ratioXY;
 	m_BulletDistance.x = ratioXY * gradient;
-	
+
 	// Point the bullet in the right direction
 	if (targetX < startX) {
 		m_BulletDistance.x *= -1;
@@ -55,7 +55,7 @@ void Bullet::shoot(float startX, float startY,
 	m_Max.x = startX + range;
 	m_Min.y = startY - range;
 	m_Max.y = startY + range;
-	
+
 	// Position the bullet ready to be drawn
 	m_BulletShape.setPosition(m_Position);
 }
@@ -86,7 +86,7 @@ void Bullet::update(float elapsedTime) {
 
 	// Has the bullet gone out of range?
 	if (m_Position.x < m_Min.x || m_Position.x > m_Max.x ||
-		m_Position.y < m_Min.y || m_Position.y > m_Max.y)	{
+		m_Position.y < m_Min.y || m_Position.y > m_Max.y) {
 		m_InFlight = false;
 	}
 }

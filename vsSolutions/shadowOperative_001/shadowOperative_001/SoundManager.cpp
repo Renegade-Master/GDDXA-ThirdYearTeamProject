@@ -1,7 +1,7 @@
 /**
 *	@author			Ciaran Bent [K00221230]
 *					Owen O'Dea	[K00218956]
-*					Rory Ryan	[]
+*					Rory Ryan	[K00218864]
 *	@creationDate	2018/11/01	YYYY/MM/DD
 *	@description
 */
@@ -49,7 +49,7 @@ SoundManager::SoundManager() {
 }
 
 void SoundManager::playFire(sf::Vector2f emitterLocation, sf::Vector2f listenerLocation) {
-	// Where is the listener? Thomas.
+	// Where is the listener? Player.
 	sf::Listener::setPosition(listenerLocation.x, listenerLocation.y, 0.0f);
 
 	switch (m_NextSound) {

@@ -1,7 +1,7 @@
 /**
 *	@author			Ciaran Bent [K00221230]
 *					Owen O'Dea	[K00218956]
-*					Rory Ryan	[]
+*					Rory Ryan	[K00218864]
 *	@creationDate	2018/11/01	YYYY/MM/DD
 *	@description
 */
@@ -24,7 +24,7 @@ bool Engine::detectCollisions(PlayableCharacter& character) {
 	int startY = (int)(detectionZone.top / TILE_SIZE) - 1;
 	int endX = (int)(detectionZone.left / TILE_SIZE) + 2;
 
-	// Thomas is quite tall so check a few tiles vertically
+	// Player is quite tall so check a few tiles vertically
 	int endY = (int)(detectionZone.top / TILE_SIZE) + 3;
 
 	// Make sure we don't test positions lower than zero

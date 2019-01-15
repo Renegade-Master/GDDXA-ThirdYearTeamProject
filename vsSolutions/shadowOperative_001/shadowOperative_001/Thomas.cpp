@@ -1,7 +1,7 @@
 /**
 *	@author			Ciaran Bent [K00221230]
 *					Owen O'Dea	[K00218956]
-*					Rory Ryan	[]
+*					Rory Ryan	[K00218864]
 *	@creationDate	2018/11/01	YYYY/MM/DD
 *	@description
 */
@@ -10,7 +10,7 @@
 #include "TextureHolder.h"
 #include "Thomas.h"
 
-Thomas::Thomas() {
+Player::Player() {
 	// Associate a texture with the sprite
 	m_Sprite = sf::Sprite(TextureHolder::GetTexture(
 		"graphics/thomas.png"));
@@ -18,7 +18,7 @@ Thomas::Thomas() {
 	m_JumpDuration = 2;
 }
 
-void Thomas::update(float elapsedTime, int** m_ArrayLevel) {
+void Player::update(float elapsedTime, int** m_ArrayLevel) {
 	if (m_RightPressed) {
 		m_Position.x += m_Speed * elapsedTime;
 	}
@@ -84,7 +84,7 @@ void Thomas::update(float elapsedTime, int** m_ArrayLevel) {
 }
 
 // A virtual function
-bool Thomas::handleInput() {
+bool Player::handleInput() {
 	m_JustJumped = false;
 
 	switch (sf::Joystick::isConnected(-1)) { // Controller support DISABLED
