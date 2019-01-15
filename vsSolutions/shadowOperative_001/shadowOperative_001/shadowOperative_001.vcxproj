@@ -154,6 +154,7 @@
     <ClCompile Include="Thomas.cpp" />
     <ClCompile Include="TutorialManager.cpp" />
     <ClCompile Include="Update.cpp" />
+    <ClCompile Include="visionCone.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bullet.h" />
@@ -172,6 +173,7 @@
     <ClInclude Include="TextureHolder.h" />
     <ClInclude Include="Thomas.h" />
     <ClInclude Include="TutorialManager.h" />
+    <ClInclude Include="visionCone.h" />
   </ItemGroup>
   <ItemGroup>
     <Font Include="fonts\Roboto-Light.ttf" />

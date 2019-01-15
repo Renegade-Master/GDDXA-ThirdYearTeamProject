@@ -11,6 +11,7 @@
 #define ENEMY_H
 
 #include "PlayableCharacter.h"
+#include "visionCone.h"
 
 class Enemy : public PlayableCharacter {
 private:
@@ -24,12 +25,14 @@ private:
 	int sincePatrolAlter = 0;
 	int sightAngle = 60;
 	int detectionDistance1 = 50, detectionDistance2 = 100, detectionDistance3 = 150;
+	visionCone cone;
 public:
 	void update(float elapsedTIme,int** m_ArrayLevel);
 	void spawn(sf::Vector2i startPosition, float gravity);
 	void alterPatrol(bool patrol);
 	sf::FloatRect getPosition();
 	bool detectPlayer();
+	sf::ConvexShape getCone();
 };
 
 #endif // !ENEMY_H
