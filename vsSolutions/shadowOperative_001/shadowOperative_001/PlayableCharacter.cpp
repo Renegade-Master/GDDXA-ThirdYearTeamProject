@@ -53,9 +53,24 @@ sf::FloatRect PlayableCharacter::getRight() {
 }
 
 sf::Sprite PlayableCharacter::getSprite() {
-	return m_Sprite;
-}
+	switch (CharacterAnimation) {
+	case State::IDLE:
+		return m_Sprite;
+		break;
+	
+	case State::RUNNINGRIGHT:
+		return m_SpriteRunningRight;
+		break;
 
+	case State::RUNNINGLEFT:
+		return m_SpriteRunningLeft;
+		break;
+
+	case State::FALLING:
+		return m_SpriteFalling;
+		break;
+	}
+}
 
 void PlayableCharacter::stopFalling(float position) {
 	m_Position.y = position - getPosition().height;

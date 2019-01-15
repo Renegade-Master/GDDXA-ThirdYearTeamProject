@@ -114,7 +114,7 @@ void Engine::update(float dtAsSeconds) {
 	else if (GameState == State::SETTINGS) {
 		// Put Settings Screen Update code here
 	}
-	else if (GameState == State::LOADING) {
+	else if (GameState == Engine::State::LOADING) {
 		// Put Loading Screen Update code here
 	}
 }

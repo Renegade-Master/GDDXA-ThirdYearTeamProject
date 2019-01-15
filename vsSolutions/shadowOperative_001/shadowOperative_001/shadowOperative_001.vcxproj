@@ -151,7 +151,7 @@
     <ClCompile Include="PopulateEmitters.cpp" />
     <ClCompile Include="SoundManager.cpp" />
     <ClCompile Include="TextureHolder.cpp" />
-    <ClCompile Include="Thomas.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="TutorialManager.cpp" />
     <ClCompile Include="Update.cpp" />
     <ClCompile Include="visionCone.cpp" />
@@ -171,7 +171,7 @@
     <ClInclude Include="PlayableCharacter.h" />
     <ClInclude Include="SoundManager.h" />
     <ClInclude Include="TextureHolder.h" />
-    <ClInclude Include="Thomas.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="TutorialManager.h" />
     <ClInclude Include="visionCone.h" />
   </ItemGroup>

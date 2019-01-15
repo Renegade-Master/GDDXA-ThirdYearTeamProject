@@ -3,12 +3,12 @@
 *					Owen O'Dea	[K00218956]
 *					Rory Ryan	[K00218864]
 *	@creationDate	2018/11/01	YYYY/MM/DD
-*	@description
+*	@description	...
 */
 
 #pragma once
-#ifndef THOMAS_H
-#define THOMAS_H
+#ifndef PLAYER_H
+#define PLAYER_H
 
 #include "PlayableCharacter.h"
 
@@ -23,4 +23,4 @@ public:
 	virtual bool handleInput();
 
 };
-#endif // !THOMAS_H
+#endif // !PLAYER_H
