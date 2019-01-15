@@ -1,6 +1,8 @@
 /**
-*	@author			[NAME]
-*	@creationDate	XXXX/XX/XX	YYYY/MM/DD
+*	@author			Ciaran Bent [K00221230]
+*					Owen O'Dea	[K00218956]
+*					Rory Ryan	[]
+*	@creationDate	2019/01/15	YYYY/MM/DD
 *	@description
 */
 
