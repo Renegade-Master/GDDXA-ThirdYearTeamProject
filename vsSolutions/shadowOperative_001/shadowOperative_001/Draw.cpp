@@ -12,7 +12,7 @@
 
 void Engine::draw() {
 	// Rub out the last frame
-	m_Window.clear(sf::Color::White);
+	m_Window.clear(sf::Color::Black);
 
 	if (GameState == State::MAIN_MENU) {
 		// Put Main Menu Screen draw code here
@@ -61,9 +61,6 @@ void Engine::draw() {
 		m_Window.draw(m_Hud.getHidden());
 		//m_Window.draw(m_Hud.getTime());
 		m_Window.draw(m_Hud.getGunCharge());
-		if (GameState == State::PAUSED) {
-			m_Window.draw(m_Hud.getMessage());
-		}
 
 
 		m_Window.setView(m_BGMiniMap);
@@ -78,7 +75,7 @@ void Engine::draw() {
 		}
 	}
 	else if (GameState == State::PAUSED) {
-		// Put Paused Screen draw code here
+		m_Window.draw(m_Hud.getMessage());
 	}
 	else if (GameState == State::SETTINGS) {
 		// Put Settings Screen draw code here

@@ -16,7 +16,15 @@ void Engine::input() {
 		// Put Main Menu Screen Input code here
 	}
 	else if (GameState == State::PLAYING) {
+		// Handle input specific to Thomas
+		if (m_Thomas.handleInput()) {
+			// Play a jump sound
+			m_SM.playJump();
+		}
+	}
+	else if (GameState == State::PAUSED) {
 		while (m_Window.pollEvent(event)) {
+			// Maybe replace with nested Switch statement?
 			//  GamePad Controls
 			if (event.type == sf::Event::JoystickButtonPressed) {
 				m_usingController = true;
@@ -48,20 +56,11 @@ void Engine::input() {
 				}
 			}
 		}
-
-		// Handle input specific to Thomas
-		if (m_Thomas.handleInput()) {
-			// Play a jump sound
-			m_SM.playJump();
-		}
 	}
-	if (GameState == State::PAUSED) {
-		// Put Paused Screen Input code here
-	}
-	if (GameState == State::SETTINGS) {
+	else if (GameState == State::SETTINGS) {
 		// Put Settings Screen Input code here
 	}
-	if (GameState == State::LOADING) {
+	else if (GameState == State::LOADING) {
 		// Put Loading Screen Input code here
 	}
 }

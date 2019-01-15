@@ -35,4 +35,5 @@ void Engine::loadLevel() {
 
 	// Make sure this code isn't run again
 	m_NewLevelRequired = false;
+	GameState = State::PLAYING;
 }

@@ -17,16 +17,15 @@ void Engine::update(float dtAsSeconds) {
 	}
 	else if (GameState == State::PLAYING) {
 		if (m_NewLevelRequired) {
-
+			
 			// Load a Level
 			loadLevel();
 		}
 
 		// Update Thomas
 		m_Thomas.update(dtAsSeconds, m_ArrayLevel);
-
-		std::list<Enemy*>::iterator it = m_EnemyList.begin();
-		for (; it != m_EnemyList.end(); it++)
+		
+		for (std::list<Enemy*>::iterator it = m_EnemyList.begin(); it != m_EnemyList.end(); it++)
 		{
 			(*it)->update(dtAsSeconds, m_ArrayLevel);
 		}
@@ -52,10 +51,9 @@ void Engine::update(float dtAsSeconds) {
 		}
 
 		// Check if a fire sound needs to be played
-		std::vector<sf::Vector2f>::iterator it;
 
 		// Iterate through the vector of Vector2f objects
-		for (it = m_FireEmitters.begin(); it != m_FireEmitters.end(); it++) {
+		for (std::vector<sf::Vector2f>::iterator it = m_FireEmitters.begin(); it != m_FireEmitters.end(); it++) {
 			// Where is this emitter?
 			// Store the location in pos
 			float posX = (*it).x;
