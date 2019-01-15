@@ -27,7 +27,7 @@ class Engine {
 public:
 	// The Engine constructor
 	Engine();
-	
+
 	// Run will call all the private functions
 	void run();
 private:
@@ -38,8 +38,8 @@ private:
 	//TutorialManager tm;
 
 	// Game States
-	enum class State {MAIN_MENU, PLAYING, PAUSED, SETTINGS, LOADING};
-	State GameState = State::MAIN_MENU;
+	enum class State { MAIN_MENU, PLAYING, PAUSED, SETTINGS, LOADING };
+	State GameState = State::PLAYING;
 
 	// The texture holder
 	TextureHolder th;
@@ -51,7 +51,7 @@ private:
 	Thomas m_Thomas;
 
 	//Enemy Generator
-	
+
 	//Enemy list
 	std::list<Enemy*> m_EnemyList;
 
