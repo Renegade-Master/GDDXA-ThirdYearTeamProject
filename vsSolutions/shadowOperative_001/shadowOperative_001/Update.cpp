@@ -47,7 +47,7 @@ void Engine::update(float dtAsSeconds) {
 		for (std::list<Enemy*>::iterator it = m_EnemyList.begin(); it != m_EnemyList.end(); it++)
 		{
 			(*it)->update(dtAsSeconds,m_ArrayLevel);
-			if ((*it)->getCone().getLocalBounds().intersects(m_Thomas.getPosition()))
+			if ((*it)->getCone().getLocalBounds().intersects(m_Player.getPosition()))
 			{
 				std::cout << "Detected";
 			}
