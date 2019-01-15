@@ -20,7 +20,7 @@ void Enemy::spawn(sf::Vector2i startPosition, float gravity) {
 	//m_Position.y = m_SpawnPosition.y;
 	m_Gravity = gravity;
 	m_Sprite = sf::Sprite(TextureHolder::GetTexture(
-		"graphics/Bob.png"));
+		"graphics/Enemy001.png"));
 	m_Sprite.setPosition(this->m_Position);
 	m_RightPressed = true;
 	m_LeftPressed = false;
@@ -29,8 +29,9 @@ void Enemy::spawn(sf::Vector2i startPosition, float gravity) {
 void Enemy::update(float elapsedTime, int** m_ArrayLevel) {
 	// Make a rect for all his parts
 	patrolValid = false;
+	
 	sf::FloatRect detectionZone = getPosition();
-
+	
 	const int TILE_SIZE = 50;
 	// Make a FloatRect to test each block
 	sf::FloatRect block;
@@ -123,4 +124,8 @@ void Enemy::alterPatrol(bool patrol)
 
 sf::FloatRect Enemy::getPosition() {
 	return m_Sprite.getGlobalBounds();
+}
+bool Enemy::detectPlayer()
+{
+	(this->getPosition().x)
 }

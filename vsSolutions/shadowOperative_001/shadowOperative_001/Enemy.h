@@ -22,11 +22,14 @@ private:
 	patrolDir move = patrolLeft;
 	friend patrolDir& operator++(patrolDir& mv, int incr);
 	int sincePatrolAlter = 0;
+	int sightAngle = 60;
+	int detectionDistance1 = 50, detectionDistance2 = 100, detectionDistance3 = 150;
 public:
 	void update(float elapsedTIme,int** m_ArrayLevel);
 	void spawn(sf::Vector2i startPosition, float gravity);
 	void alterPatrol(bool patrol);
 	sf::FloatRect getPosition();
+	bool detectPlayer();
 };
 
 #endif // !ENEMY_H
