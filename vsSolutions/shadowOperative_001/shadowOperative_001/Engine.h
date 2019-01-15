@@ -11,17 +11,20 @@
 #define ENGINE_H
 
 #include <list>
+
 #include <SFML/Graphics.hpp>
+
+#include "Button.h"
 #include "Enemy.h"
 #include "EnemyGenerator.h"
 #include "HUD.h"
+#include "Item.h"
 #include "LevelManager.h"
 #include "ParticleSystem.h"
 #include "SoundManager.h"
 #include "TextureHolder.h"
 #include "PLayer.h"
 #include "TutorialManager.h"
-#include "Item.h"
 
 class Engine {
 public:
@@ -31,15 +34,21 @@ public:
 	// Run will call all the private functions
 	void run();
 private:
+	// Get the screen resolution and create an SFML window and View
+	sf::Vector2f resolution;
+
 	//  Is the Player using a controller?
 	bool m_usingController = true;
+
+	// Handle events
+	sf::Event m_event;
 
 	// The Tutorial System
 	//TutorialManager tm;
 
 	// Game States
 	enum class State { MAIN_MENU, PLAYING, PAUSED, SETTINGS, LOADING };
-	State GameState = State::PAUSED;
+	State GameState = State::MAIN_MENU;
 
 	// The texture holder
 	TextureHolder th;
@@ -140,9 +149,15 @@ private:
 	// A vector of Vector2f for the fire emiiter locations
 	std::vector <sf::Vector2f> m_FireEmitters;
 
-	//  Is the Player using a controller?
-	//bool getControls();
+	// Button Lists
+	void initButtons();
+	sf::Font m_buttonFont;
 
-	//bool patrolStillValid(int** m_ArrayLevel, Enemy& character);
+	//	Main Menu
+	std::list<GUI::Button> m_mainMenuButtons;
+	//	Paused
+	std::list<GUI::Button*> m_pausedButtons;
+	//	Settings
+	std::list<GUI::Button*> m_settingsButtons;
 };
 #endif // !ENGINE_H

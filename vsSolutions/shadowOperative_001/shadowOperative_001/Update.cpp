@@ -13,7 +13,26 @@
 void Engine::update(float dtAsSeconds) {
 
 	if (GameState == State::MAIN_MENU) {
-		// Put Main Menu Screen Update code here
+		int i = 0;
+		for (std::list<GUI::Button>::iterator it = m_mainMenuButtons.begin(); it != m_mainMenuButtons.end(); ++it) {
+			switch (i++) {
+			case 0: // Enter Game
+				if (it->getState() == GUI::State::clicked) {
+					GameState = State::PAUSED;
+				}
+				break;
+			case 1: // Settings
+				if (it->getState() == GUI::State::clicked) {
+					//GameState = State::SETTINGS;
+				}
+				break;
+			case 2: // Quit
+				if (it->getState() == GUI::State::clicked) {
+					m_Window.close();
+				}
+				break;
+			}
+		}
 	}
 	else if (GameState == State::PLAYING) {
 		if (m_NewLevelRequired) {

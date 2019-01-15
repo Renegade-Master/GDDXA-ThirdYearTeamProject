@@ -327,6 +327,13 @@ void GUI::Button::update(sf::Event& e, sf::RenderWindow& window) {
 	}
 }
 
+/**
+*	@description	- Return a Pointer to 'this' Button.
+*/
+GUI::Button* GUI::Button::getPointer() {
+	GUI::Button* newButton = this;
+	return(newButton);
+}
 
 /**
 *	@description	- Draw the button.  Overloads default draw() inherited from sf::Drawable
