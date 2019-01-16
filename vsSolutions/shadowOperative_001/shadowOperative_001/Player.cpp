@@ -32,10 +32,16 @@ Player::Player() {
 void Player::update(float elapsedTime, int** m_ArrayLevel) {
 	if (m_RightPressed) {
 		m_Position.x += m_Speed * elapsedTime;
+
+		//Changes the the sprite to runnning right
+		m_Direction = Direction::RIGHT;
 	}
 
 	if (m_LeftPressed) {
 		m_Position.x -= m_Speed * elapsedTime;
+
+		//Changes the the sprite to running left
+		m_Direction = Direction::LEFT;
 	}
 
 
@@ -51,7 +57,7 @@ void Player::update(float elapsedTime, int** m_ArrayLevel) {
 			//CharacterAnimation = State::FALLING;
 		}
 		else {
-			m_State = State::IDLE;
+			m_State = State::FALLING;
 			playerjump = 0;
 			//m_IsJumping = false;
 			//m_IsFalling = true;	
@@ -141,8 +147,7 @@ bool Player::handleInput() {
 			//  Moving Right
 			if (sf::Joystick::getAxisPosition(0, sf::Joystick::X) > 7.5) {
 				m_RightPressed = true;
-				//Changes the the sprite to runnning right
-			    m_Direction = Direction::RIGHT;
+				
 			}
 			else {
 				m_RightPressed = false;
@@ -185,24 +190,24 @@ bool Player::handleInput() {
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
 				m_LeftPressed = true;
 				//Changes the the sprite to running left
-				m_Direction = Direction::LEFT;
+		//		m_Direction = Direction::LEFT;
 			}
 			else {
 				m_LeftPressed = false;
 				//Changes the the sprite to idle position
-				//CharacterAnimation = State::IDLE;
+				m_Direction = Direction::NOT;
 			}
 
 			//  Moving Right
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
 				m_RightPressed = true;
 				//Changes the the sprite to running right
-				m_Direction = Direction::RIGHT;
+		//		m_Direction = Direction::RIGHT;
 			}
 			else {
 				m_RightPressed = false;
 				//Changes the the sprite to idle position
-				//CharacterAnimation = State::IDLE;
+				m_Direction = Direction::NOT;
 			}
 			break;
 	}	

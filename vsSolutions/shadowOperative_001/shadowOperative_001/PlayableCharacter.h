@@ -56,7 +56,7 @@ protected:
 
 
 	int playerjump=0;
-	int	jumpallowed =1;
+	int	jumpallowed =2;
 
 	// How long does a jump last
 	float m_JumpDuration;
