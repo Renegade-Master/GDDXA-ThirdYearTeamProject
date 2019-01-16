@@ -26,7 +26,7 @@ private:
 	int sightAngle = 60;
 	int detectionDistance = 300;
 	visionCone cone;
-	float enemyDetection;
+	float awarenessOfPlayer;
 public:
 	void update(float elapsedTIme,int** m_ArrayLevel);
 	void spawn(sf::Vector2i startPosition, float gravity);
@@ -34,6 +34,9 @@ public:
 	sf::FloatRect getPosition();
 	bool detectPlayer(sf::Vector2f playPos);
 	sf::ConvexShape getCone();
+	void increaseAwarenessLevel(sf::Vector2f playPos,int detectionLevel);
+	float getAwareness();
+	double calcDistance(sf::Vector2f playPos,sf::Vector2f thisPos);
 };
 
 #endif // !ENEMY_H

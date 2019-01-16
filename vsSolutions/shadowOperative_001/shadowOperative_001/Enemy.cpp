@@ -24,7 +24,7 @@ void Enemy::spawn(sf::Vector2i startPosition, float gravity) {
 	m_Sprite.setPosition(this->m_Position);
 	m_RightPressed = true;
 	m_LeftPressed = false;
-	enemyDetection = 0;
+	awarenessOfPlayer = 0;
 }
 
 void Enemy::update(float elapsedTime, int** m_ArrayLevel) {
@@ -139,4 +139,43 @@ bool Enemy::detectPlayer(sf::Vector2f playPos)
 sf::ConvexShape Enemy::getCone()
 {
 	return cone.getCone();
+}
+void Enemy::increaseAwarenessLevel(sf::Vector2f playPos, int detectionLevel)
+{
+	switch (detectionLevel)
+	{
+	case 1: 
+		std::cout << "\nAwareness 1";
+		if (calcDistance(playPos, this->getCenter()) > 100)
+		{
+			awarenessOfPlayer += awarenessOfPlayer + 0.00000001;
+		}
+		break;
+	case 2:
+		std::cout << "\nAwareness 2";
+		if (calcDistance(playPos, this->getCenter()) > 50)
+		{
+			awarenessOfPlayer += awarenessOfPlayer + 0.1;
+		}
+		break;
+	case 3:
+		std::cout << "\nAwareness 3";
+		if (calcDistance(playPos, this->getCenter()) <= 50)
+		{
+			awarenessOfPlayer += awarenessOfPlayer + 0.25;
+		}
+		break;
+	}
+}
+float Enemy::getAwareness()
+{
+	return awarenessOfPlayer;
+}
+double Enemy::calcDistance(sf::Vector2f playPos, sf::Vector2f thisPos)
+{
+	double distance;
+	double distancex = ((playPos.x - thisPos.x) * (playPos.x - thisPos.x));
+	double distancey = ((playPos.y - thisPos.y) * (playPos.y - thisPos.y));
+
+	return distance = sqrt(distancex - distancey);
 }

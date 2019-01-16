@@ -44,12 +44,22 @@ void Engine::update(float dtAsSeconds) {
 		// Update Player
 		m_Player.update(dtAsSeconds, m_ArrayLevel);
 		
+		//update Enemy
 		for (std::list<Enemy*>::iterator it = m_EnemyList.begin(); it != m_EnemyList.end(); it++)
 		{
 			(*it)->update(dtAsSeconds,m_ArrayLevel);
+			//check for player
 			if ((*it)->getCone().getLocalBounds().intersects(m_Player.getPosition()))
 			{
-				std::cout << "Detected";
+				(*it)->increaseAwarenessLevel(m_Player.getCenter(),m_Player.getDetectLevel());
+				if ((*it)->getAwareness() <= 100.0)
+				{
+					std::cout << "\nDetected";
+				}
+				if ((*it)->getAwareness() >= 1)
+				{
+					std::cout << "\n" << (*it)->getAwareness();
+				}
 			}
 		}
 

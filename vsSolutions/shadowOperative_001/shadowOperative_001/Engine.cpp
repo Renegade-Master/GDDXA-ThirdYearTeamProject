@@ -12,12 +12,14 @@
 Engine::Engine() {
 	//resolution.x = sf::VideoMode::getDesktopMode().width;
 	//resolution.y = sf::VideoMode::getDesktopMode().height;
+	
 	resolution.x = 1280;
 	resolution.y = 720;
 
 	m_Window.create(sf::VideoMode(resolution.x, resolution.y),
 		"Shadow Operative",
 		sf::Style::Default);
+	m_Window.setFramerateLimit(60);
 
 	// Initialize the full screen view
 	m_MainView.setSize(resolution);
