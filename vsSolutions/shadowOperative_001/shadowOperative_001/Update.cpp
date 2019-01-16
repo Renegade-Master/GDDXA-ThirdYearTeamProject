@@ -51,13 +51,14 @@ void Engine::update(float dtAsSeconds) {
 			//check for player
 			if ((*it)->getCone().getLocalBounds().intersects(m_Player.getPosition()))
 			{
-				(*it)->increaseAwarenessLevel(m_Player.getCenter(),m_Player.getDetectLevel());
-				if ((*it)->getAwareness() <= 100.0)
+				if (m_GameTimeTotal.asMilliseconds()
+					- (*it)->getlastdetectTime() > 500)
 				{
-					std::cout << "\nDetected";
-				}
-				if ((*it)->getAwareness() >= 1)
-				{
+					(*it)->increaseAwarenessLevel(m_Player.getCenter(), m_Player.getDetectLevel(),m_GameTimeTotal);
+					if ((*it)->getAwareness() <= 100.0)
+					{
+						std::cout << "\nDetected";
+					}
 					std::cout << "\n" << (*it)->getAwareness();
 				}
 			}

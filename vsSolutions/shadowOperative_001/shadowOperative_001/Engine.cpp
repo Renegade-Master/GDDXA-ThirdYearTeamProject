@@ -63,12 +63,13 @@ Engine::Engine() {
 	// Initialise all the Buttons
 	m_buttonFont.loadFromFile("fonts/Roboto-Light.ttf");
 	initButtons();
+	
 }
 
 void Engine::run() {
 	// Timing 	
 	sf::Clock clock;
-
+	
 	while (m_Window.isOpen()) {
 		sf::Time dt = clock.restart();
 		// Update the total game time
@@ -86,7 +87,7 @@ void Engine::enemySpawn() {
 
 	int numOfEnemies = m_LM.getNumOfEnemies();
 	for (int i = 0;i < numOfEnemies;i++) {
-		m_EnemyList.push_back(createEnemy(m_LM.getEnemyPosition(),GRAVITY));
+		m_EnemyList.push_back(createEnemy(m_LM.getEnemyPosition(),GRAVITY,m_GameTimeTotal));
 		//std::cout << "\nlist size" << m_EnemyList.size();
 	}
 }

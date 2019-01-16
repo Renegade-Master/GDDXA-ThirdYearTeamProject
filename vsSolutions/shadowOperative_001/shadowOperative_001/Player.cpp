@@ -25,7 +25,7 @@ Player::Player() {
 		"graphics/Glide_000.png"));
 
 	m_JumpDuration = 2;
-	detectionLevel = 1;
+	detectionLevel = 2;
 }
 int Player::getDetectLevel()
 {
