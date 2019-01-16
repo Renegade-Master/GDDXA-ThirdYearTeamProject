@@ -108,7 +108,7 @@ void Player::update(float elapsedTime, int** m_ArrayLevel) {
 
 // A virtual function
 bool Player::handleInput() {
-//	m_JustJumped = false;
+	m_JustJumped = false;
 //	CharacterAnimation = State::IDLE;
 
 	switch (sf::Joystick::isConnected(-1)) { // Controller support DISABLED
@@ -159,31 +159,35 @@ bool Player::handleInput() {
 			//  Jumping
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
 				
-				if (playerjump <= jumpallowed)
+			//	for (int playerjump=0; playerjump < jumpallowed; playerjump++)
+				//{
+				if (playerjump< jumpallowed)
 				{
 					m_State = State::JUMPING;
 					playerjump = playerjump + 1;
 				}
-				
+				//}
+				//m_State = State::JUMPING;
 					
 				// Start a jump if not already jumping
 				// but only if standing on a block (not falling)
-			//		if (CharacterAnimation == State::IDLE) {
+				if (m_State == State::JUMPING) {
 					//m_IsJumping = true;
-					//m_TimeThisJump = 0;
-				//	m_JustJumped = true;
+					m_TimeThisJump = 0;
+					m_JustJumped = true;
 					//CharacterAnimation = State::FALLING;
 			/*	if (!m_IsJumping && !m_IsFalling) {
 					m_IsJumping = true;
 					m_TimeThisJump = 0;
 					m_JustJumped = true;
 					CharacterAnimation = State::FALLING;*/
-				//}
+				}
 			}
 			else {
 				//m_IsJumping = false;
 				//m_IsFalling = true;
 				m_State = State::FALLING;
+				playerjump = 0;
 			}
 
 			//  Moving Left
@@ -211,6 +215,6 @@ bool Player::handleInput() {
 			}
 			break;
 	}	
-	//return m_JustJumped;
-	return 0;
+	return m_JustJumped;
+	//return 0;
 }
