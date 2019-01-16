@@ -15,9 +15,14 @@
 class PlayableCharacter {
 public:
 
-	// Game States
-	enum class State { IDLE, RUNNINGRIGHT, RUNNINGLEFT, JUMPING, FALLING};
-	State CharacterAnimation = State::IDLE;
+	// Game States Animations
+	//enum class State { IDLE, RUNNINGRIGHT, RUNNINGLEFT, JUMPING, FALLING};
+	enum class Direction { NOT, RIGHT, LEFT };
+	Direction m_Direction = Direction::NOT;
+
+	//enum class State_Fall_or_Jum { idle, jump, fall,};
+	enum class State { IDLE, WALKING, JUMPING, FALLING, CROUCHING };
+	State m_State = State::IDLE;
 
 	// Where is the player
 	sf::FloatRect getPosition();
@@ -49,12 +54,16 @@ protected:
 	sf::Sprite m_SpriteRunningLeft;
 	sf::Sprite m_SpriteFalling;
 
+
+	int playerjump=0;
+	int	jumpallowed =1;
+
 	// How long does a jump last
 	float m_JumpDuration;
 
 	// Is character currently jumping or falling
-	bool m_IsJumping;
-	bool m_IsFalling;
+	//bool m_IsJumping;
+	//bool m_IsFalling;
 
 	// Which directions is the character currently moving in
 	bool m_LeftPressed;

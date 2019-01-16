@@ -53,18 +53,21 @@ sf::FloatRect PlayableCharacter::getRight() {
 }
 
 sf::Sprite PlayableCharacter::getSprite() {
-	switch (CharacterAnimation) {
-	case State::IDLE:
+	switch (m_Direction) {
+	case Direction::NOT:
 		return m_Sprite;
 		break;
 	
-	case State::RUNNINGRIGHT:
+	case Direction::RIGHT:
 		return m_SpriteRunningRight;
 		break;
 
-	case State::RUNNINGLEFT:
+	case Direction::LEFT:
 		return m_SpriteRunningLeft;
 		break;
+
+	}
+	switch (m_State) {
 
 	case State::FALLING:
 		return m_SpriteFalling;
@@ -75,22 +78,30 @@ sf::Sprite PlayableCharacter::getSprite() {
 void PlayableCharacter::stopFalling(float position) {
 	m_Position.y = position - getPosition().height;
 	m_Sprite.setPosition(m_Position);
-	m_IsFalling = false;
+	//m_IsFalling = false;
+	m_State = State::IDLE;
+	//m_Direction = Direction::NOT;
 }
 
 void PlayableCharacter::stopRight(float position) {
 
 	m_Position.x = position - m_Sprite.getGlobalBounds().width;
 	m_Sprite.setPosition(m_Position);
+	//m_State = State::IDLE;
+	//m_Direction = Direction::NOT;
 }
 
 void PlayableCharacter::stopLeft(float position) {
 	m_Position.x = position + m_Sprite.getGlobalBounds().width;
 	m_Sprite.setPosition(m_Position);
+	//m_State = State::IDLE;
+	//m_Direction = Direction::NOT;
 }
 
 void PlayableCharacter::stopJump() {
 	// Stop a jump early 
-	m_IsJumping = false;
-	m_IsFalling = true;
+	//m_IsJumping = false;
+	//m_IsFalling = true;
+	  m_State = State::FALLING;
+	//m_Direction = Direction::NOT;
 }

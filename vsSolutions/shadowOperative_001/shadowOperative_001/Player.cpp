@@ -10,6 +10,8 @@
 #include "TextureHolder.h"
 #include "Player.h"
 
+
+
 Player::Player() {
 	// Associate a texture with the sprite
 	m_Sprite = sf::Sprite(TextureHolder::GetTexture(
@@ -38,7 +40,7 @@ void Player::update(float elapsedTime, int** m_ArrayLevel) {
 
 
 	// Handle Jumping
-	if (m_IsJumping) {
+	if (m_State == State::JUMPING) {
 		// Update how long the jump has been going
 		m_TimeThisJump += elapsedTime;
 
@@ -49,14 +51,16 @@ void Player::update(float elapsedTime, int** m_ArrayLevel) {
 			//CharacterAnimation = State::FALLING;
 		}
 		else {
-			m_IsJumping = false;
-			m_IsFalling = true;	
+			m_State = State::IDLE;
+			playerjump = 0;
+			//m_IsJumping = false;
+			//m_IsFalling = true;	
 		}
 
 	}
 
 	// Apply gravity
-	if (m_IsFalling) {
+	if (m_State == State::FALLING) {
 		m_Position.y += m_Gravity * elapsedTime;
 	}
 
@@ -98,13 +102,13 @@ void Player::update(float elapsedTime, int** m_ArrayLevel) {
 
 // A virtual function
 bool Player::handleInput() {
-	m_JustJumped = false;
-	CharacterAnimation = State::IDLE;
+//	m_JustJumped = false;
+//	CharacterAnimation = State::IDLE;
 
 	switch (sf::Joystick::isConnected(-1)) { // Controller support DISABLED
 		case true:
 			//  Jumping
-			if (sf::Joystick::isButtonPressed(0, 0)) {
+		/*	if (sf::Joystick::isButtonPressed(0, 0)) {
 				//std::cout << "Trying to jump (GamePad)" << std::endl;
 
 				// Start a jump if not already jumping
@@ -120,13 +124,13 @@ bool Player::handleInput() {
 				m_IsJumping = false;
 				m_IsFalling = true;
 				CharacterAnimation = State::FALLING;
-			}
+			}*/
 
 			//  Moving Left
 			if (sf::Joystick::getAxisPosition(0, sf::Joystick::X) < -7.5) {
 				m_LeftPressed = true;
 				//Changes the the sprite to runnning right
-				CharacterAnimation = State::RUNNINGLEFT;
+				m_Direction = Direction::LEFT;
 			}
 			else {
 				m_LeftPressed = false;
@@ -138,7 +142,7 @@ bool Player::handleInput() {
 			if (sf::Joystick::getAxisPosition(0, sf::Joystick::X) > 7.5) {
 				m_RightPressed = true;
 				//Changes the the sprite to runnning right
-			    CharacterAnimation = State::RUNNINGRIGHT;
+			    m_Direction = Direction::RIGHT;
 			}
 			else {
 				m_RightPressed = false;
@@ -149,27 +153,39 @@ bool Player::handleInput() {
 		case false:
 			//  Jumping
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
-
+				
+				if (playerjump <= jumpallowed)
+				{
+					m_State = State::JUMPING;
+					playerjump = playerjump + 1;
+				}
+				
+					
 				// Start a jump if not already jumping
 				// but only if standing on a block (not falling)
-				if (!m_IsJumping && !m_IsFalling) {
+			//		if (CharacterAnimation == State::IDLE) {
+					//m_IsJumping = true;
+					//m_TimeThisJump = 0;
+				//	m_JustJumped = true;
+					//CharacterAnimation = State::FALLING;
+			/*	if (!m_IsJumping && !m_IsFalling) {
 					m_IsJumping = true;
 					m_TimeThisJump = 0;
 					m_JustJumped = true;
-					CharacterAnimation = State::FALLING;
-				}
+					CharacterAnimation = State::FALLING;*/
+				//}
 			}
 			else {
-				m_IsJumping = false;
-				m_IsFalling = true;
-				CharacterAnimation = State::FALLING;
+				//m_IsJumping = false;
+				//m_IsFalling = true;
+				m_State = State::FALLING;
 			}
 
 			//  Moving Left
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
 				m_LeftPressed = true;
 				//Changes the the sprite to running left
-				CharacterAnimation = State::RUNNINGLEFT;
+				m_Direction = Direction::LEFT;
 			}
 			else {
 				m_LeftPressed = false;
@@ -181,7 +197,7 @@ bool Player::handleInput() {
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
 				m_RightPressed = true;
 				//Changes the the sprite to running right
-				CharacterAnimation = State::RUNNINGRIGHT;
+				m_Direction = Direction::RIGHT;
 			}
 			else {
 				m_RightPressed = false;
@@ -190,5 +206,6 @@ bool Player::handleInput() {
 			}
 			break;
 	}	
-	return m_JustJumped;
+	//return m_JustJumped;
+	return 0;
 }
