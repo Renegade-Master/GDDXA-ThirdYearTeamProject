@@ -26,7 +26,7 @@ Player::Player() {
 	m_SpriteFalling = sf::Sprite(TextureHolder::GetTexture(
 		"graphics/Glide_000.png"));
 
-	m_JumpDuration = 2;
+	m_JumpDuration = 1;
 }
 
 void Player::update(float elapsedTime, int** m_ArrayLevel) {
@@ -54,11 +54,10 @@ void Player::update(float elapsedTime, int** m_ArrayLevel) {
 		if (m_TimeThisJump < m_JumpDuration) {
 			// Move up at twice gravity
 			m_Position.y -= m_Gravity * 2 * elapsedTime;
-			//CharacterAnimation = State::FALLING;
+			//m_State = State::FALLING;
 		}
 		else {
 			m_State = State::FALLING;
-			playerjump = 0;
 			//m_IsJumping = false;
 			//m_IsFalling = true;	
 		}
@@ -161,33 +160,42 @@ bool Player::handleInput() {
 				
 			//	for (int playerjump=0; playerjump < jumpallowed; playerjump++)
 				//{
-				if (playerjump< jumpallowed)
+				if (playerjump <= jumpallowed && m_TimeThisJump < m_JumpDuration)
 				{
 					m_State = State::JUMPING;
-					playerjump = playerjump + 1;
+					playerjump++;
+					m_TimeThisJump = 0;
+					m_JustJumped = true;
 				}
+			/*	else
+				{
+					m_State = State::FALLING;
+				}*/
 				//}
 				//m_State = State::JUMPING;
 					
 				// Start a jump if not already jumping
 				// but only if standing on a block (not falling)
-				if (m_State == State::JUMPING) {
+			/*	if (m_State == State::JUMPING) {
 					//m_IsJumping = true;
 					m_TimeThisJump = 0;
 					m_JustJumped = true;
+				}*/
+					
 					//CharacterAnimation = State::FALLING;
 			/*	if (!m_IsJumping && !m_IsFalling) {
 					m_IsJumping = true;
 					m_TimeThisJump = 0;
 					m_JustJumped = true;
 					CharacterAnimation = State::FALLING;*/
-				}
+				
 			}
 			else {
 				//m_IsJumping = false;
 				//m_IsFalling = true;
 				m_State = State::FALLING;
-				playerjump = 0;
+				
+				
 			}
 
 			//  Moving Left

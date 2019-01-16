@@ -79,7 +79,9 @@ void PlayableCharacter::stopFalling(float position) {
 	m_Position.y = position - getPosition().height;
 	m_Sprite.setPosition(m_Position);
 	//m_IsFalling = false;
-	m_State = State::FALLING;
+	m_State = State::IDLE;
+	playerjump = 0;
+	m_JustJumped = false;
 	//m_Direction = Direction::NOT;
 }
 
@@ -103,5 +105,6 @@ void PlayableCharacter::stopJump() {
 	//m_IsJumping = false;
 	//m_IsFalling = true;
 	  m_State = State::FALLING;
+	  //m_JustJumped = false;
 	//m_Direction = Direction::NOT;
 }
