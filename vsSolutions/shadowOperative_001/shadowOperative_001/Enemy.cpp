@@ -24,6 +24,7 @@ void Enemy::spawn(sf::Vector2i startPosition, float gravity) {
 	m_Sprite.setPosition(this->m_Position);
 	m_RightPressed = true;
 	m_LeftPressed = false;
+	enemyDetection = 0;
 }
 
 void Enemy::update(float elapsedTime, int** m_ArrayLevel) {

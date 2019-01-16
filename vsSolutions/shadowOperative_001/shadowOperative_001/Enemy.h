@@ -26,6 +26,7 @@ private:
 	int sightAngle = 60;
 	int detectionDistance = 300;
 	visionCone cone;
+	float enemyDetection;
 public:
 	void update(float elapsedTIme,int** m_ArrayLevel);
 	void spawn(sf::Vector2i startPosition, float gravity);
