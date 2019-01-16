@@ -53,6 +53,7 @@ void Engine::draw() {
 			{
 				//std::cout << "\nDrawing enemies";
 				m_Window.draw((*it)->getSprite());
+				m_Window.draw((*it)->getDetectMeter());
 			}
 		}
 

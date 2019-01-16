@@ -12,7 +12,7 @@
 
 #include "Enemy.h"
 
-Enemy* createEnemy(sf::Vector2i position, float Gravity);
+Enemy* createEnemy(sf::Vector2i position, float Gravity,sf::Time gameStart);
 
 #endif // !ENEMYGENERATOR_H
 

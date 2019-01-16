@@ -25,8 +25,12 @@ Player::Player() {
 		"graphics/Glide_000.png"));
 
 	m_JumpDuration = 2;
+	detectionLevel = 2;
 }
-
+int Player::getDetectLevel()
+{
+	return detectionLevel;
+}
 void Player::update(float elapsedTime, int** m_ArrayLevel) {
 	if (m_RightPressed) {
 		m_Position.x += m_Speed * elapsedTime;

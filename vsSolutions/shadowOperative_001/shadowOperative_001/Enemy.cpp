@@ -10,7 +10,7 @@
 #include "TextureHolder.h"
 #include <iostream>
 
-void Enemy::spawn(sf::Vector2i startPosition, float gravity) {
+void Enemy::spawn(sf::Vector2i startPosition, float gravity, sf::Time gameStart) {
 	//std::cout << "\nEnemy spawn";
 	this->m_SpawnPosition = startPosition;
 	this->m_Position = (sf::Vector2f)m_SpawnPosition;
@@ -24,12 +24,21 @@ void Enemy::spawn(sf::Vector2i startPosition, float gravity) {
 	m_Sprite.setPosition(this->m_Position);
 	m_RightPressed = true;
 	m_LeftPressed = false;
+	awarenessOfPlayer = 0.0;
+	lastDetectionEvent = gameStart;
+	detectMeter.setSize(sf::Vector2f(10, this->getAwareness()));
+	detectMeter.setFillColor(sf::Color::Red);
+	detectMeter.setPosition(this->getCenter().x-5, this->getCenter().y - 30);
 }
 
 void Enemy::update(float elapsedTime, int** m_ArrayLevel) {
 	// Make a rect for all his parts
 	patrolValid = false;
 	sf::FloatRect detectionZone = getPosition();
+
+	//update detection meter
+	detectMeter.setSize(sf::Vector2f(10, this->getAwareness()));
+	detectMeter.setPosition(this->getCenter().x-5, this->getCenter().y - 30);
 
 	const int TILE_SIZE = 50;
 	// Make a FloatRect to test each block
@@ -138,4 +147,60 @@ bool Enemy::detectPlayer(sf::Vector2f playPos)
 sf::ConvexShape Enemy::getCone()
 {
 	return cone.getCone();
+}
+void Enemy::increaseAwarenessLevel(sf::Vector2f playPos, int detectionLevel,sf::Time gameTimeTotal)
+{
+	switch (detectionLevel)
+	{
+	case 1: 
+		std::cout << "\nAwareness 1";
+		if (calcDistance(playPos, this->getCenter()) > 100)
+		{
+			std::cout<<"\nDistance: 100+";
+			awarenessOfPlayer += 1.0;
+		}
+		break;
+	case 2:
+		std::cout << "\nAwareness 2";
+		if (calcDistance(playPos, this->getCenter()) > 50)
+		{
+			std::cout<<"\nDistance: 50+";
+			awarenessOfPlayer += 1.5;
+		}
+		break;
+	case 3:
+		std::cout << "\nAwareness 3";
+		if (calcDistance(playPos, this->getCenter()) <= 50)
+		{
+			std::cout<<"\nDistance: <50";
+			awarenessOfPlayer += 2.0;
+		}
+		break;
+	}
+	lastDetectionEvent = gameTimeTotal;
+}
+float Enemy::getAwareness()
+{
+	return awarenessOfPlayer;
+}
+float Enemy::getlastdetectTime()
+{
+	return lastDetectionEvent.asMilliseconds();
+}
+double Enemy::calcDistance(sf::Vector2f playPos, sf::Vector2f thisPos)
+{
+	double distance;
+	double distancex = ((playPos.x - thisPos.x) * (playPos.x - thisPos.x));
+	double distancey = ((playPos.y - thisPos.y) * (playPos.y - thisPos.y));
+
+	return distance = sqrt(distancex - distancey);
+}
+sf::RectangleShape Enemy::getDetectMeter()
+{
+	return detectMeter;
+}
+void Enemy::reduceAwareness(sf::Time gameTimeTotal)
+{
+	awarenessOfPlayer--;
+	lastDetectionEvent = gameTimeTotal;
 }

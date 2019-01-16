@@ -26,13 +26,25 @@ private:
 	int sightAngle = 60;
 	int detectionDistance = 300;
 	visionCone cone;
+	float awarenessOfPlayer;
+
+	//detection Event recorder used to slow execution of detection events to reasonable pace
+	sf::Time lastDetectionEvent;
+	//detection meter
+	sf::RectangleShape detectMeter;
 public:
 	void update(float elapsedTIme,int** m_ArrayLevel);
-	void spawn(sf::Vector2i startPosition, float gravity);
+	void spawn(sf::Vector2i startPosition, float gravity,sf::Time gameStart);
 	void alterPatrol(bool patrol);
 	sf::FloatRect getPosition();
 	bool detectPlayer(sf::Vector2f playPos);
 	sf::ConvexShape getCone();
+	void increaseAwarenessLevel(sf::Vector2f playPos,int detectionLevel,sf::Time gameTimeTotal);
+	float getAwareness();
+	double calcDistance(sf::Vector2f playPos,sf::Vector2f thisPos);
+	float getlastdetectTime();
+	sf::RectangleShape getDetectMeter();
+	void reduceAwareness(sf::Time gameTimeTotal);
 };
 
 #endif // !ENEMY_H

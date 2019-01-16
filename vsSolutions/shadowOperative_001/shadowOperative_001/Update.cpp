@@ -44,12 +44,34 @@ void Engine::update(float dtAsSeconds) {
 		// Update Player
 		m_Player.update(dtAsSeconds, m_ArrayLevel);
 		
+		//update Enemy
 		for (std::list<Enemy*>::iterator it = m_EnemyList.begin(); it != m_EnemyList.end(); it++)
 		{
 			(*it)->update(dtAsSeconds,m_ArrayLevel);
+			//check for player
 			if ((*it)->getCone().getLocalBounds().intersects(m_Player.getPosition()))
 			{
-				std::cout << "Detected";
+				//check if enemy detection Event happened in the last second
+				if (m_GameTimeTotal.asMilliseconds()
+					- (*it)->getlastdetectTime() > 500)
+				{
+					(*it)->increaseAwarenessLevel(m_Player.getCenter(), m_Player.getDetectLevel(),m_GameTimeTotal);
+					if ((*it)->getAwareness() <= 100.0)
+					{
+						std::cout << "\nDetected";
+					}
+					std::cout << "\n" << (*it)->getAwareness();
+				}
+			}
+			else if ((*it)->getAwareness() >= 0)
+			{
+				//check if enemy detection Event happened in the last second
+				if (m_GameTimeTotal.asMilliseconds()
+					- (*it)->getlastdetectTime() > 500)
+				{
+					//reduce Enemies detectionLevel
+					(*it)->reduceAwareness(m_GameTimeTotal);
+				}
 			}
 		}
 

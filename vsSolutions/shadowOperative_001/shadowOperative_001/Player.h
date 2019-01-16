@@ -22,5 +22,8 @@ public:
 	// The overriden input handler for Player
 	virtual bool handleInput();
 
+	int getDetectLevel();
+private:
+	int detectionLevel;
 };
 #endif // !PLAYER_H
