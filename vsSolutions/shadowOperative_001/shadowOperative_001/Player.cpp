@@ -3,7 +3,9 @@
 *					Owen O'Dea	[K00218956]
 *					Rory Ryan	[K00218864]
 *	@creationDate	2018/11/01	YYYY/MM/DD
-*	@description
+*	@description	...
+*
+*	@notes	1.		Exchange m_rightPressed for direction::right
 */
 
 #include <iostream>
@@ -131,25 +133,29 @@ bool Player::handleInput() {
 				CharacterAnimation = State::FALLING;
 			}*/
 
+			// Reset to IDLE when not Moving
+			if (sf::Joystick::getAxisPosition(0, sf::Joystick::X) > -7.5) {
+
 			//  Moving Left
 			if (sf::Joystick::getAxisPosition(0, sf::Joystick::X) < -7.5) {
-				m_LeftPressed = true;
+				//m_LeftPressed = true;
 				//Changes the the sprite to runnning right
 				m_Direction = Direction::LEFT;
 			}
 			else {
-				m_LeftPressed = false;
+				//m_LeftPressed = false;
 				//Changes the the sprite to idle position
 				//State CharacterAnimation = State::IDLE;
 			}
 
 			//  Moving Right
 			if (sf::Joystick::getAxisPosition(0, sf::Joystick::X) > 7.5) {
-				m_RightPressed = true;
+				//m_RightPressed = true;
+				m_Direction = Direction::RIGHT;
 				
 			}
 			else {
-				m_RightPressed = false;
+				//m_RightPressed = false;
 				//Changes the the sprite to idle position
 				//State CharacterAnimation = State::IDLE;
 			}

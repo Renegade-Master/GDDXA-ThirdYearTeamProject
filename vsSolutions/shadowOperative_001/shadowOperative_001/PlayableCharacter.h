@@ -66,8 +66,8 @@ protected:
 	//bool m_IsFalling;
 
 	// Which directions is the character currently moving in
-	bool m_LeftPressed;
-	bool m_RightPressed;
+	//bool m_LeftPressed;
+	//bool m_RightPressed;
 
 	// How long has this jump lasted so far
 	float m_TimeThisJump;
