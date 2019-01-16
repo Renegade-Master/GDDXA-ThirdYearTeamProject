@@ -24,7 +24,7 @@ void Enemy::spawn(sf::Vector2i startPosition, float gravity, sf::Time gameStart)
 	m_Sprite.setPosition(this->m_Position);
 	m_RightPressed = true;
 	m_LeftPressed = false;
-	awarenessOfPlayer = 5.0;
+	awarenessOfPlayer = 0.0;
 	lastDetectionEvent = gameStart;
 	detectMeter.setSize(sf::Vector2f(10, this->getAwareness()));
 	detectMeter.setFillColor(sf::Color::Red);
@@ -198,4 +198,9 @@ double Enemy::calcDistance(sf::Vector2f playPos, sf::Vector2f thisPos)
 sf::RectangleShape Enemy::getDetectMeter()
 {
 	return detectMeter;
+}
+void Enemy::reduceAwareness(sf::Time gameTimeTotal)
+{
+	awarenessOfPlayer--;
+	lastDetectionEvent = gameTimeTotal;
 }

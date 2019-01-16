@@ -51,6 +51,7 @@ void Engine::update(float dtAsSeconds) {
 			//check for player
 			if ((*it)->getCone().getLocalBounds().intersects(m_Player.getPosition()))
 			{
+				//check if enemy detection Event happened in the last second
 				if (m_GameTimeTotal.asMilliseconds()
 					- (*it)->getlastdetectTime() > 500)
 				{
@@ -60,6 +61,16 @@ void Engine::update(float dtAsSeconds) {
 						std::cout << "\nDetected";
 					}
 					std::cout << "\n" << (*it)->getAwareness();
+				}
+			}
+			else if ((*it)->getAwareness() >= 0)
+			{
+				//check if enemy detection Event happened in the last second
+				if (m_GameTimeTotal.asMilliseconds()
+					- (*it)->getlastdetectTime() > 500)
+				{
+					//reduce Enemies detectionLevel
+					(*it)->reduceAwareness(m_GameTimeTotal);
 				}
 			}
 		}

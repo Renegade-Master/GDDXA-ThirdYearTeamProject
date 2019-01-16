@@ -44,6 +44,7 @@ public:
 	double calcDistance(sf::Vector2f playPos,sf::Vector2f thisPos);
 	float getlastdetectTime();
 	sf::RectangleShape getDetectMeter();
+	void reduceAwareness(sf::Time gameTimeTotal);
 };
 
 #endif // !ENEMY_H
