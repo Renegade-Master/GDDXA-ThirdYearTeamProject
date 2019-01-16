@@ -24,14 +24,21 @@ void Enemy::spawn(sf::Vector2i startPosition, float gravity, sf::Time gameStart)
 	m_Sprite.setPosition(this->m_Position);
 	m_RightPressed = true;
 	m_LeftPressed = false;
-	awarenessOfPlayer = 0.0;
+	awarenessOfPlayer = 5.0;
 	lastDetectionEvent = gameStart;
+	detectMeter.setSize(sf::Vector2f(10, this->getAwareness()));
+	detectMeter.setFillColor(sf::Color::Red);
+	detectMeter.setPosition(this->getCenter().x-5, this->getCenter().y - 30);
 }
 
 void Enemy::update(float elapsedTime, int** m_ArrayLevel) {
 	// Make a rect for all his parts
 	patrolValid = false;
 	sf::FloatRect detectionZone = getPosition();
+
+	//update detection meter
+	detectMeter.setSize(sf::Vector2f(10, this->getAwareness()));
+	detectMeter.setPosition(this->getCenter().x-5, this->getCenter().y - 30);
 
 	const int TILE_SIZE = 50;
 	// Make a FloatRect to test each block
@@ -187,4 +194,8 @@ double Enemy::calcDistance(sf::Vector2f playPos, sf::Vector2f thisPos)
 	double distancey = ((playPos.y - thisPos.y) * (playPos.y - thisPos.y));
 
 	return distance = sqrt(distancex - distancey);
+}
+sf::RectangleShape Enemy::getDetectMeter()
+{
+	return detectMeter;
 }

@@ -30,7 +30,8 @@ private:
 
 	//detection Event recorder used to slow execution of detection events to reasonable pace
 	sf::Time lastDetectionEvent;
-	
+	//detection meter
+	sf::RectangleShape detectMeter;
 public:
 	void update(float elapsedTIme,int** m_ArrayLevel);
 	void spawn(sf::Vector2i startPosition, float gravity,sf::Time gameStart);
@@ -42,6 +43,7 @@ public:
 	float getAwareness();
 	double calcDistance(sf::Vector2f playPos,sf::Vector2f thisPos);
 	float getlastdetectTime();
+	sf::RectangleShape getDetectMeter();
 };
 
 #endif // !ENEMY_H

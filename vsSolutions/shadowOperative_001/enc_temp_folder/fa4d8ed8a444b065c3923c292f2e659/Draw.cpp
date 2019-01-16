@@ -80,6 +80,7 @@ void Engine::draw() {
 		{
 			m_Window.draw((*iter)->getSprite());
 			m_Window.draw((*iter)->getCone());
+			m_Window.draw((*iter)->getDetectMeter());
 		}
 	}
 	else if (GameState == State::PAUSED) {
