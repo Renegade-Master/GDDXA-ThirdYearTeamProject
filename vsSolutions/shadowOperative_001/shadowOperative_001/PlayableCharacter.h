@@ -15,14 +15,13 @@
 class PlayableCharacter {
 public:
 
-	// Game States Animations
-	//enum class State { IDLE, RUNNINGRIGHT, RUNNINGLEFT, JUMPING, FALLING};
-	enum class Direction { NOT, RIGHT, LEFT };
-	Direction m_Direction = Direction::NOT;
-
-	//enum class State_Fall_or_Jum { idle, jump, fall,};
-	enum class State { IDLE, WALKING, JUMPING, FALLING, CROUCHING };
-	State m_State = State::IDLE;
+	// PlayableCharacter Direction Action
+	enum class Direction { IDLE, RIGHT, LEFT };
+	Direction m_Direction = Direction::IDLE;
+	
+	// PlayableCharacter Action Action
+	enum class Action { IDLE, WALKING, JUMPING, FALLING, CROUCHING };
+	Action m_Action = Action::IDLE;
 
 	// Where is the player
 	sf::FloatRect getPosition();
@@ -55,8 +54,8 @@ protected:
 	sf::Sprite m_SpriteFalling;
 
 
-	int playerjump=0;
-	int	jumpallowed =2;
+	int m_jumpCounter = 0;
+	int	maxJumps = 2;
 
 	// How long does a jump last
 	float m_JumpDuration;
@@ -79,13 +78,13 @@ protected:
 	float m_Gravity;
 
 	// Has the player just initialted a jump
-	bool m_JustJumped = false;
+	//bool m_JustJumped = false;
 
 	// We will call this function once every frame
 	virtual void update(float elapsedTime,int** m_ArrayLevel) = 0;
 
 	// This is a pure virtual function
-	virtual bool handleInput() = 0;
+	virtual void handleInput() = 0;
 
 	// How fast is the character
 	float m_Speed = 500;

@@ -11,6 +11,7 @@
 #define PARTICLESYSTEM_H
 
 #include <SFML/Graphics.hpp>
+
 #include "Particle.h"
 
 class ParticleSystem : public sf::Drawable {

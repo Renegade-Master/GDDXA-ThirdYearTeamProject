@@ -7,8 +7,6 @@
 */
 
 #include "Enemy.h"
-#include "TextureHolder.h"
-#include <iostream>
 
 void Enemy::spawn(sf::Vector2i startPosition, float gravity) {
 	//std::cout << "\nEnemy spawn";
@@ -22,8 +20,8 @@ void Enemy::spawn(sf::Vector2i startPosition, float gravity) {
 	m_Sprite = sf::Sprite(TextureHolder::GetTexture(
 		"graphics/Bob.png"));
 	m_Sprite.setPosition(this->m_Position);
-	m_RightPressed = true;
-	m_LeftPressed = false;
+	//m_RightPressed = true;
+	//m_LeftPressed = false;
 }
 
 void Enemy::update(float elapsedTime, int** m_ArrayLevel) {
@@ -113,9 +111,9 @@ Enemy::patrolDir& operator++(Enemy::patrolDir& mv, int)
 		return(mv);
 	}
 }
-bool Enemy::handleInput()
+void Enemy::handleInput()
 {
-	return true;
+	// Doesn't seem to be anything to do here.
 }
 void Enemy::alterPatrol(bool patrol)
 {

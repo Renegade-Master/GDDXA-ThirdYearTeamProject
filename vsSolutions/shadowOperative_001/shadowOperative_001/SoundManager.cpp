@@ -6,7 +6,6 @@
 *	@description
 */
 
-#include <SFML/Audio.hpp>
 #include "SoundManager.h"
 
 SoundManager::SoundManager() {

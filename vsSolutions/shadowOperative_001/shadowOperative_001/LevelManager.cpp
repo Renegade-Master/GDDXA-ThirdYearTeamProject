@@ -6,13 +6,7 @@
 *	@description
 */
 
-#include <fstream>
-#include <sstream>
-#include <SFML/Audio.hpp>
-#include <SFML/Graphics.hpp>
 #include "LevelManager.h"
-#include "TextureHolder.h"
-#include <iostream>
 
 int** LevelManager::nextLevel(sf::VertexArray& rVaLevel) {
 	m_LevelSize.x = 0;

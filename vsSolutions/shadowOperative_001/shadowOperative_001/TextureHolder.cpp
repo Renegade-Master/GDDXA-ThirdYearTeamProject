@@ -6,7 +6,6 @@
 *	@description
 */
 
-#include <assert.h>
 #include "TextureHolder.h"
 
 TextureHolder* TextureHolder::m_s_Instance = nullptr;

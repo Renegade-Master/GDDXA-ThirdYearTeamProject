@@ -8,227 +8,142 @@
 *	@notes	1.		Exchange m_rightPressed for direction::right
 */
 
-#include <iostream>
-#include "TextureHolder.h"
 #include "Player.h"
-
-
+#include "TextureHolder.h"
 
 Player::Player() {
 	// Associate a texture with the sprite
 	m_Sprite = sf::Sprite(TextureHolder::GetTexture(
 		"graphics/idle__001.png"));
 
-	m_SpriteRunningRight = sf::Sprite(TextureHolder::GetTexture(
+	/*m_SpriteRunningRight = sf::Sprite(TextureHolder::GetTexture(
 		"graphics/RunRight__001.png"));
 
 	m_SpriteRunningLeft = sf::Sprite(TextureHolder::GetTexture(
 		"graphics/RunLeft__001.png"));
 
 	m_SpriteFalling = sf::Sprite(TextureHolder::GetTexture(
-		"graphics/Glide_000.png"));
+		"graphics/Glide_000.png"));*/
 
 	m_JumpDuration = 1;
 }
 
 void Player::update(float elapsedTime, int** m_ArrayLevel) {
-	if (m_RightPressed) {
-		m_Position.x += m_Speed * elapsedTime;
+	if (this->m_Direction == Direction::RIGHT) {
+		this->m_Position.x += this->m_Speed * elapsedTime;
 
 		//Changes the the sprite to runnning right
-		m_Direction = Direction::RIGHT;
+		this->m_Sprite = sf::Sprite(TextureHolder::GetTexture(
+			"graphics/RunRight__001.png"));
 	}
-
-	if (m_LeftPressed) {
-		m_Position.x -= m_Speed * elapsedTime;
+	else if (this->m_Direction == Direction::LEFT) {
+		this->m_Position.x -= this->m_Speed * elapsedTime;
 
 		//Changes the the sprite to running left
-		m_Direction = Direction::LEFT;
+		this->m_Sprite = sf::Sprite(TextureHolder::GetTexture(
+			"graphics/RunLeft__001.png"));
 	}
 
-
 	// Handle Jumping
-	if (m_State == State::JUMPING) {
+	if (this->m_Action == Action::JUMPING) {
 		// Update how long the jump has been going
-		m_TimeThisJump += elapsedTime;
+		this->m_TimeThisJump += elapsedTime;
 
-		// Is the jump going upwards
-		if (m_TimeThisJump < m_JumpDuration) {
-			// Move up at twice gravity
-			m_Position.y -= m_Gravity * 2 * elapsedTime;
-			//m_State = State::FALLING;
+		// Has this jump gone on for too long?
+		if (this->m_TimeThisJump < this->m_JumpDuration) {
+			// Continue jumping
+			this->m_Position.y -= this->m_Gravity * 2 * elapsedTime;
 		}
 		else {
-			m_State = State::FALLING;
-			//m_IsJumping = false;
-			//m_IsFalling = true;	
+			this->m_Action = Action::FALLING;
 		}
-
 	}
 
 	// Apply gravity
-	if (m_State == State::FALLING) {
-		m_Position.y += m_Gravity * elapsedTime;
+	if (this->m_Action == Action::FALLING) {
+		this->m_Position.y += this->m_Gravity * elapsedTime;
+		this->m_SpriteFalling = sf::Sprite(TextureHolder::GetTexture(
+			"graphics/Glide_000.png"));
 	}
 
 	// Update the rect for all body parts
-	sf::FloatRect r = getPosition();
+	sf::FloatRect r = this->getPosition();
 
 
 	// Feet
-	m_Feet.left = r.left + 3;
-	m_Feet.top = r.top + r.height - 1;
-	m_Feet.width = r.width - 6;
-	m_Feet.height = 1;
+	this->m_Feet.left = r.left + 3;
+	this->m_Feet.top = r.top + r.height - 1;
+	this->m_Feet.width = r.width - 6;
+	this->m_Feet.height = 1;
 
 	// Head
-	m_Head.left = r.left;
-	m_Head.top = r.top + (r.height * .3);
-	m_Head.width = r.width;
-	m_Head.height = 1;
+	this->m_Head.left = r.left;
+	this->m_Head.top = r.top + (r.height * .3);
+	this->m_Head.width = r.width;
+	this->m_Head.height = 1;
 
 	// Right
-	m_Right.left = r.left + r.width - 2;
-	m_Right.top = r.top + r.height * .35;
-	m_Right.width = 1;
-	m_Right.height = r.height * .3;
+	this->m_Right.left = r.left + r.width - 2;
+	this->m_Right.top = r.top + r.height * .35;
+	this->m_Right.width = 1;
+	this->m_Right.height = r.height * .3;
 
 	// Left
-	m_Left.left = r.left;
-	m_Left.top = r.top + r.height * .5;
-	m_Left.width = 1;
-	m_Left.height = r.height * .3;
+	this->m_Left.left = r.left;
+	this->m_Left.top = r.top + r.height * .5;
+	this->m_Left.width = 1;
+	this->m_Left.height = r.height * .3;
 
 	// Move the sprite into position
-	m_Sprite.setPosition(m_Position);
-	m_SpriteRunningRight.setPosition(m_Position);
-	m_SpriteRunningLeft.setPosition(m_Position);
-	m_SpriteFalling.setPosition(m_Position);
+	this->m_Sprite.setPosition(this->m_Position);
+	this->m_SpriteRunningRight.setPosition(this->m_Position);
+	this->m_SpriteRunningLeft.setPosition(this->m_Position);
+	this->m_SpriteFalling.setPosition(this->m_Position);
 
 }
 
 // A virtual function
-bool Player::handleInput() {
-	m_JustJumped = false;
-//	CharacterAnimation = State::IDLE;
+void Player::handleInput() {
+	//  Jumping
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
+		if (this->m_jumpCounter == 0
+			&& this->m_Action != Action::JUMPING) {
 
-	switch (sf::Joystick::isConnected(-1)) { // Controller support DISABLED
-		case true:
-			//  Jumping
-		/*	if (sf::Joystick::isButtonPressed(0, 0)) {
-				//std::cout << "Trying to jump (GamePad)" << std::endl;
+			this->m_Action = Action::JUMPING;
+			this->m_jumpCounter++;
+		}
+		else if (this->m_Action == Action::JUMPING
+			&& this->m_jumpCounter < this->maxJumps
+			&& this->m_TimeThisJump < this->m_JumpDuration) {
 
-				// Start a jump if not already jumping
-				// but only if standing on a block (not falling)
-				if (!m_IsJumping && !m_IsFalling) {
-					m_IsJumping = true;
-					m_TimeThisJump = 0;
-					m_JustJumped = true;
-					CharacterAnimation = State::FALLING;
-				}
-			}
-			else {
-				m_IsJumping = false;
-				m_IsFalling = true;
-				CharacterAnimation = State::FALLING;
-			}*/
+			this->m_jumpCounter++;
+		}
+		else if (this->m_Action == Action::JUMPING
+			&& this->m_jumpCounter >= this->maxJumps
+			&& this->m_TimeThisJump >= this->m_JumpDuration) {
 
-			// Reset to IDLE when not Moving
-			if (sf::Joystick::getAxisPosition(0, sf::Joystick::X) > -7.5) {
+			this->m_Action = Action::FALLING;
+		}	
+	}
 
-			//  Moving Left
-			if (sf::Joystick::getAxisPosition(0, sf::Joystick::X) < -7.5) {
-				//m_LeftPressed = true;
-				//Changes the the sprite to runnning right
-				m_Direction = Direction::LEFT;
-			}
-			else {
-				//m_LeftPressed = false;
-				//Changes the the sprite to idle position
-				//State CharacterAnimation = State::IDLE;
-			}
+	//  Moving Left
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
+		this->m_Direction = Direction::LEFT;
+	}
 
-			//  Moving Right
-			if (sf::Joystick::getAxisPosition(0, sf::Joystick::X) > 7.5) {
-				//m_RightPressed = true;
-				m_Direction = Direction::RIGHT;
-				
-			}
-			else {
-				//m_RightPressed = false;
-				//Changes the the sprite to idle position
-				//State CharacterAnimation = State::IDLE;
-			}
-			break;
-		case false:
-			//  Jumping
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
-				
-			//	for (int playerjump=0; playerjump < jumpallowed; playerjump++)
-				//{
-				if (playerjump <= jumpallowed && m_TimeThisJump < m_JumpDuration)
-				{
-					m_State = State::JUMPING;
-					playerjump++;
-					m_TimeThisJump = 0;
-					m_JustJumped = true;
-				}
-			/*	else
-				{
-					m_State = State::FALLING;
-				}*/
-				//}
-				//m_State = State::JUMPING;
-					
-				// Start a jump if not already jumping
-				// but only if standing on a block (not falling)
-			/*	if (m_State == State::JUMPING) {
-					//m_IsJumping = true;
-					m_TimeThisJump = 0;
-					m_JustJumped = true;
-				}*/
-					
-					//CharacterAnimation = State::FALLING;
-			/*	if (!m_IsJumping && !m_IsFalling) {
-					m_IsJumping = true;
-					m_TimeThisJump = 0;
-					m_JustJumped = true;
-					CharacterAnimation = State::FALLING;*/
-				
-			}
-			else {
-				//m_IsJumping = false;
-				//m_IsFalling = true;
-				m_State = State::FALLING;
-				
-				
-			}
+	//  Moving Right
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
+		this->m_Direction = Direction::RIGHT;
+	}
 
-			//  Moving Left
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
-				m_LeftPressed = true;
-				//Changes the the sprite to running left
-		//		m_Direction = Direction::LEFT;
-			}
-			else {
-				m_LeftPressed = false;
-				//Changes the the sprite to idle position
-				m_Direction = Direction::NOT;
-			}
-
-			//  Moving Right
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
-				m_RightPressed = true;
-				//Changes the the sprite to running right
-		//		m_Direction = Direction::RIGHT;
-			}
-			else {
-				m_RightPressed = false;
-				//Changes the the sprite to idle position
-				m_Direction = Direction::NOT;
-			}
-			break;
-	}	
-	return m_JustJumped;
-	//return 0;
+	// If nothing is pressed
+	if (!sf::Keyboard::isKeyPressed(sf::Keyboard::W)
+		&& !sf::Keyboard::isKeyPressed(sf::Keyboard::A)
+		&& !sf::Keyboard::isKeyPressed(sf::Keyboard::D)
+		&& this->m_Action != Action::JUMPING
+		&& this->m_Action != Action::FALLING) {
+		
+		this->m_Action = Action::IDLE;
+		this->m_Direction = Direction::IDLE;
+	}
 }
