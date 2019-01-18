@@ -18,7 +18,7 @@ Player::Player() {
 		"graphics/idle__001.png"));
 
 	m_SpriteRunningRight = sf::Sprite(TextureHolder::GetTexture(
-		"graphics/Sprites/Attack__005.png"));
+		"graphics/Sprites/JumpRight__0.png"));
 
 	m_SpriteRunningLeft = sf::Sprite(TextureHolder::GetTexture(
 		"graphics/RunLeft__001.png"));
@@ -26,7 +26,7 @@ Player::Player() {
 	m_SpriteFalling = sf::Sprite(TextureHolder::GetTexture(
 		"graphics/Glide_000.png"));
 
-	m_JumpDuration = 1;
+	m_JumpDuration = 2;
 }
 
 void Player::update(float elapsedTime, int** m_ArrayLevel) {
