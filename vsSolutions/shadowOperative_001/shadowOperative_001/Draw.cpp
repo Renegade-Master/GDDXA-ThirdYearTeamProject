@@ -19,6 +19,9 @@ void Engine::draw() {
 		// Switch to m_MainView
 		m_Window.setView(m_MainView);
 
+		// Draw the background, complete with shader effect for the Menu
+		m_Window.draw(m_MenuBackgroundSprite, &m_RippleShader);
+
 		for (std::list<GUI::Button>::iterator it = m_mainMenuButtons.begin(); it != m_mainMenuButtons.end(); ++it) {
 			m_Window.draw(*it);
 		}

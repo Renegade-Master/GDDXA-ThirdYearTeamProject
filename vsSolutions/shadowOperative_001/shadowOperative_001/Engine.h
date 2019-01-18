@@ -102,6 +102,10 @@ private:
 	sf::Sprite m_BackgroundSprite;
 	sf::Texture m_BackgroundTexture;
 
+	// Declare a sprite and a Texture for the background in the Menu
+	sf::Sprite m_MenuBackgroundSprite;
+	sf::Texture m_MenuBackgroundTexture;
+
 	// Declare a shader for the background
 	sf::Shader m_RippleShader;
 
