@@ -55,7 +55,7 @@ Engine::Engine() {
 
 	//Menu Background
 	m_MenuBackgroundTexture = TextureHolder::GetTexture(
-		"graphics/background1-720.png");
+		"graphics/MenuBackground.png");
 
 	// Associate the sprite with the texture for the Menu
 	m_MenuBackgroundSprite.setTexture(m_MenuBackgroundTexture);

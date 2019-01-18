@@ -86,7 +86,11 @@ void Engine::draw() {
 		}
 	}
 	else if (GameState == State::PAUSED) {
+		//Background of paused menu
+		m_Window.draw(m_BackgroundSprite, &m_RippleShader);
+		//Message for the paused Game state
 		m_Window.draw(m_Hud.getMessage());
+
 	}
 	else if (GameState == State::SETTINGS) {
 		// Put Settings Screen draw code here
