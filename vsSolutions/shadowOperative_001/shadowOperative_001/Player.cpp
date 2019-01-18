@@ -117,12 +117,12 @@ void Player::handleInput() {
 
 	//  Moving Left
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
-		this->m_Action = Action::WALKING;
+		//this->m_Action = Action::WALKING;
 		this->m_Direction = Direction::LEFT;
 	}
 	//  Moving Right
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
-		this->m_Action = Action::WALKING;
+		//this->m_Action = Action::WALKING;
 		this->m_Direction = Direction::RIGHT;
 	}
 	

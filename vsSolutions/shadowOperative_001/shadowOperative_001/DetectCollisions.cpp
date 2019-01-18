@@ -77,11 +77,11 @@ bool Engine::detectCollisions(PlayableCharacter& character) {
 					character.stopJump();
 				}
 			}
-			if (!character.getFeet().intersects(block)){
+			else if (!character.getFeet().intersects(block)
+				&& character.m_Action != PlayableCharacter::Action::JUMPING){
+				
 				character.m_Action = PlayableCharacter::Action::FALLING;
 			}
-
-
 
 			/*
 			//// More collision detection here once we have learned about particle effects
