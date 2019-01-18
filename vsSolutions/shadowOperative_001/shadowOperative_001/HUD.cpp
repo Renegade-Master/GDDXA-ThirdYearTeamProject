@@ -47,7 +47,7 @@ Hud::Hud()
 	m_isHidden.setCharacterSize(50);
 	m_isHidden.setFillColor(sf::Color::White);
 	m_isHidden.setPosition(25, 0);
-	m_isHidden.setString("1");
+	//m_isHidden.setString("1");
 
 	m_GunCharge.setPosition(resolution.x - (resolution.x /10), 10);
 	m_GunCharge.setFillColor(sf::Color::Yellow);
@@ -66,15 +66,30 @@ sf::Text Hud::getTime() {
 }
 sf::Text Hud::getHidden()
 {
-	m_isHidden.setString("Hidden(temp)");
+	//m_isHidden.setString("Hidden(temp)");
 	return m_isHidden;
 }
 void Hud::setLevel(sf::String text) {
 	m_LevelText.setString(text);
 }
-void Hud::setHidden(sf::Text text)
+void Hud::setHidden(int hidden)
 {
-	m_isHidden = text;
+	switch (hidden)
+	{
+	case 1:
+		m_isHidden.setString("hidden");
+		break;
+	case 2:
+		m_isHidden.setString("Caution");
+		break;
+	case 3:
+		m_isHidden.setString("DETECTED!!!!!");
+		break;
+	default:
+		m_isHidden.setString("????");
+		break;
+	}
+	m_isHidden;
 }
 
 void Hud::setTime(sf::String text) {

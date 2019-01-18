@@ -29,7 +29,7 @@ public:
 	sf::Text getTime();
 
 	sf::Text getHidden();
-	void setHidden(sf::Text text);
+	void setHidden(int hidden);
 
 	void setGunCharge(float charge);
 	sf::RectangleShape getGunCharge();
