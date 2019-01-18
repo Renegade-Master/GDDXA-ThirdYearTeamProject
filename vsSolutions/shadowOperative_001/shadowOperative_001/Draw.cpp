@@ -19,6 +19,9 @@ void Engine::draw() {
 		// Switch to m_MainView
 		m_Window.setView(m_MainView);
 
+		// Draw the background, complete with shader effect for the Menu
+		m_Window.draw(m_MenuBackgroundSprite, &m_RippleShader);
+
 		for (std::list<GUI::Button>::iterator it = m_mainMenuButtons.begin(); it != m_mainMenuButtons.end(); ++it) {
 			m_Window.draw(*it);
 		}
@@ -83,7 +86,11 @@ void Engine::draw() {
 		}
 	}
 	else if (GameState == State::PAUSED) {
+		//Background of paused menu
+		m_Window.draw(m_BackgroundSprite, &m_RippleShader);
+		//Message for the paused Game state
 		m_Window.draw(m_Hud.getMessage());
+
 	}
 	else if (GameState == State::SETTINGS) {
 		// Put Settings Screen draw code here

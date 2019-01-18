@@ -53,6 +53,13 @@ Engine::Engine() {
 	// Associate the sprite with the texture
 	m_BackgroundSprite.setTexture(m_BackgroundTexture);
 
+	//Menu Background
+	m_MenuBackgroundTexture = TextureHolder::GetTexture(
+		"graphics/MenuBackground.png");
+
+	// Associate the sprite with the texture for the Menu
+	m_MenuBackgroundSprite.setTexture(m_MenuBackgroundTexture);
+
 	// Load the texture for the background vertex array
 	m_TextureTiles = TextureHolder::GetTexture(
 		"graphics/tileset_003.png");
