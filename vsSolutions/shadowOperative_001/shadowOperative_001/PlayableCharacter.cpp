@@ -26,7 +26,7 @@ void PlayableCharacter::spawn(sf::Vector2i startPosition, float gravity) {
 	this->m_Action = Action::IDLE;
 	this->m_Direction = Direction::IDLE;
 	this->m_jumpCounter = 0;
-	this->m_jumpDuration = 0.0;
+	this->m_jumpDuration = 0.0f;
 
 }
 
@@ -90,7 +90,7 @@ void PlayableCharacter::stopFalling(float position) {
 	this->m_jumpCounter = 0;
 	this->m_jumpDuration = 0.0f;
 	this->m_Action = Action::IDLE;
-	this->m_Direction = Direction::IDLE;
+	//this->m_Direction = Direction::IDLE;
 }
 
 /**
