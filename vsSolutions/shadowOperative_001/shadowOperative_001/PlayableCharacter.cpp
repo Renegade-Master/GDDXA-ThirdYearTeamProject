@@ -81,7 +81,7 @@ void PlayableCharacter::stopFalling(float position) {
 	//m_IsFalling = false;
 	m_State = State::IDLE;
 	playerjump = 0;
-	m_JustJumped = false;
+	
 	//m_Direction = Direction::NOT;
 }
 

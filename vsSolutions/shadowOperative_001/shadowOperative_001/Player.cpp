@@ -18,7 +18,7 @@ Player::Player() {
 		"graphics/idle__001.png"));
 
 	m_SpriteRunningRight = sf::Sprite(TextureHolder::GetTexture(
-		"graphics/RunRight__001.png"));
+		"graphics/Sprites/Attack__005.png"));
 
 	m_SpriteRunningLeft = sf::Sprite(TextureHolder::GetTexture(
 		"graphics/RunLeft__001.png"));
@@ -160,7 +160,7 @@ bool Player::handleInput() {
 				
 			//	for (int playerjump=0; playerjump < jumpallowed; playerjump++)
 				//{
-				if (playerjump <= jumpallowed && m_TimeThisJump < m_JumpDuration)
+				if (playerjump < jumpallowed && m_TimeThisJump < m_JumpDuration)
 				{
 					m_State = State::JUMPING;
 					playerjump++;
