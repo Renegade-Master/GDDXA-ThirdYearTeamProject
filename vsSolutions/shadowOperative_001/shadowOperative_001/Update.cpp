@@ -9,10 +9,12 @@
 #include <sstream>
 #include <SFML/Graphics.hpp>
 #include "Engine.h"
-#include<iostream>
+#include <iostream>
 void Engine::update(float dtAsSeconds) {
 
 	if (GameState == State::MAIN_MENU) {
+		m_MainView.reset(
+			sf::FloatRect(0, 0, resolution.x, resolution.y));
 		int i = 0;
 		for (std::list<GUI::Button>::iterator it = m_mainMenuButtons.begin(); it != m_mainMenuButtons.end(); ++it) {
 			switch (i++) {
