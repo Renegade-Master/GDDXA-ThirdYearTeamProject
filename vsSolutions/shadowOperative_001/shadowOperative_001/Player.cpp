@@ -45,6 +45,7 @@ void Player::update(float elapsedTime, int** m_ArrayLevel) {
 	// Handle Direction
 	if (m_Direction == Direction::IDLE) {
 		// Look at the Nearest Enemy
+		
 		// Set Sprite to IDLE
 		m_Sprite = sf::Sprite(TextureHolder::GetTexture(
 			"graphics/idle__001.png"));
@@ -64,7 +65,7 @@ void Player::update(float elapsedTime, int** m_ArrayLevel) {
 			"graphics/RunLeft__001.png"));
 	}
 
-	if (this->m_Action == Action::FALLING) {
+	else if (this->m_Action == Action::FALLING) {
 		// Set Player Sprite to Falling
 		this->m_Sprite = sf::Sprite(TextureHolder::GetTexture(
 			"graphics/Glide_000.png"));
@@ -75,27 +76,27 @@ void Player::update(float elapsedTime, int** m_ArrayLevel) {
 	
 	// Feet
 	this->m_Feet.left = m_Position.x;
-	this->m_Feet.top = m_Position.y + r.height;
+	this->m_Feet.top = m_Position.y + (r.height * 0.9);
 	this->m_Feet.width = r.width;
-	this->m_Feet.height = 6;
+	this->m_Feet.height = r.height * 0.1;
 
 	// Head
-	this->m_Head.left = r.left;
-	this->m_Head.top = r.top + (r.height * .3);
+	this->m_Head.left = m_Position.x;
+	this->m_Head.top = m_Position.y;
 	this->m_Head.width = r.width;
-	this->m_Head.height = 1;
+	this->m_Head.height = r.height * 0.1;
 
 	// Right
-	this->m_Right.left = r.left + r.width - 2;
-	this->m_Right.top = r.top + r.height * .35;
-	this->m_Right.width = 1;
-	this->m_Right.height = r.height * .3;
+	this->m_Right.left = m_Position.x + (r.width * 0.9);
+	this->m_Right.top = m_Position.y + (r.height * 0.1);
+	this->m_Right.width = r.width * 0.1;
+	this->m_Right.height = r.height * 0.8;
 
 	// Left
-	this->m_Left.left = r.left;
-	this->m_Left.top = r.top + r.height * .5;
-	this->m_Left.width = 1;
-	this->m_Left.height = r.height * .3;
+	this->m_Left.left = m_Position.x;
+	this->m_Left.top = m_Position.y + (r.height * 0.1);
+	this->m_Left.width = r.width * 0.1;
+	this->m_Left.height = r.height * 0.8;
 
 	// Move the sprite into position
 	this->m_Sprite.setPosition(this->m_Position);
@@ -126,12 +127,13 @@ void Player::handleInput() {
 	}
 	
 	// If nothing is pressed
-	if (!sf::Keyboard::isKeyPressed(sf::Keyboard::A)
+	/*if (!sf::Keyboard::isKeyPressed(sf::Keyboard::A)
 		&& !sf::Keyboard::isKeyPressed(sf::Keyboard::D)
 		&& this->m_Action != Action::JUMPING
-		/*&& this->m_Action != Action::FALLING*/) {
-
-		this->m_Action = Action::FALLING;
+		&& this->m_Action != Action::FALLING) {*/
+	else {
+		//this->m_Action = Action::IDLE;
+		this->m_Direction = Direction::IDLE;
 	}
 
 	

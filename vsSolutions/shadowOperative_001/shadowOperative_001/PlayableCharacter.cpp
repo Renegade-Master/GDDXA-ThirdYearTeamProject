@@ -100,7 +100,7 @@ void PlayableCharacter::stopRight(float position) {
 
 	this->m_Position.x = position - this->m_Sprite.getGlobalBounds().width;
 	this->m_Sprite.setPosition(this->m_Position);
-	this->m_Action = Action::IDLE;
+	//this->m_Action = Action::IDLE;
 	this->m_Direction = Direction::IDLE;
 }
 
@@ -110,7 +110,7 @@ void PlayableCharacter::stopRight(float position) {
 void PlayableCharacter::stopLeft(float position) {
 	this->m_Position.x = position + this->m_Sprite.getGlobalBounds().width;
 	this->m_Sprite.setPosition(this->m_Position);
-	this->m_Action = Action::IDLE;
+	//this->m_Action = Action::IDLE;
 	this->m_Direction = Direction::IDLE;
 }
 
