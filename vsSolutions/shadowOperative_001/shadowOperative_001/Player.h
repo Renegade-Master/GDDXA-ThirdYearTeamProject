@@ -20,7 +20,7 @@ public:
 	virtual void update(float elapsedTime, int** m_ArrayLevel);
 
 	// The overriden input handler for Player
-	virtual void handleInput();
+	virtual void PlayableCharacter::handleInput();
 
 };
 #endif // !PLAYER_H

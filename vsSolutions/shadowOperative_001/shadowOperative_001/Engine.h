@@ -57,7 +57,7 @@ private:
 	// create a particle system
 	ParticleSystem m_PS;
 
-	// Player and Bob (PlayerCharacters)
+	// Player (PlayerCharacters)
 	Player m_Player;
 
 	//Enemy Generator

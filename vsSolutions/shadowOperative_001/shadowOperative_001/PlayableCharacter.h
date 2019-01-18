@@ -53,23 +53,12 @@ protected:
 	sf::Sprite m_SpriteRunningLeft;
 	sf::Sprite m_SpriteFalling;
 
-
-	int m_jumpCounter = 0;
-	int	maxJumps = 2;
-
-	// How long does a jump last
-	float m_JumpDuration;
-
-	// Is character currently jumping or falling
-	//bool m_IsJumping;
-	//bool m_IsFalling;
-
-	// Which directions is the character currently moving in
-	//bool m_LeftPressed;
-	//bool m_RightPressed;
-
-	// How long has this jump lasted so far
-	float m_TimeThisJump;
+	// Jump Controls
+	float m_jumpDuration;
+	int m_jumpCounter;
+	
+	float maxJumpDuration = 0.5f;
+	int	maxJumps = 1;
 
 	// Where is the player
 	sf::Vector2f m_Position;

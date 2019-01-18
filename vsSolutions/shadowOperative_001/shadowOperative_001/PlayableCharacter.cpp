@@ -21,6 +21,12 @@ void PlayableCharacter::spawn(sf::Vector2i startPosition, float gravity) {
 
 	// Move the sprite in to position
 	this->m_Sprite.setPosition(this->m_Position);
+	
+	// Initialise Control stats
+	this->m_Action = Action::IDLE;
+	this->m_Direction = Direction::IDLE;
+	this->m_jumpCounter = 0;
+	this->m_jumpDuration = 0.0;
 
 }
 
@@ -48,6 +54,10 @@ sf::Vector2f PlayableCharacter::getCenter() {
 	);
 }
 
+
+/**
+*	Return various hitboxes.
+*/
 sf::FloatRect PlayableCharacter::getFeet() {
 	return this->m_Feet;
 }
@@ -79,7 +89,7 @@ void PlayableCharacter::stopFalling(float position) {
 	this->m_Sprite.setPosition(this->m_Position);
 	
 	this->m_jumpCounter = 0;
-	//this->m_JumpDuration = 0.0;
+	this->m_jumpDuration = 0.0f;
 	this->m_Action = Action::IDLE;
 }
 

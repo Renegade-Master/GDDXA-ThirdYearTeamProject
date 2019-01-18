@@ -41,6 +41,9 @@ sf::Texture& TextureHolder::GetTexture(std::string const& filename) {
 		// Load the texture from file in the usual way
 		texture.loadFromFile(filename);
 
+		// Apply Anti-Aliasing to the Texture
+		texture.setSmooth(true);
+
 		// Return the texture to the calling code
 		return texture;
 	}

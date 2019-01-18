@@ -12,24 +12,45 @@
 #include "TextureHolder.h"
 
 Player::Player() {
-	// Associate a texture with the sprite
-	m_Sprite = sf::Sprite(TextureHolder::GetTexture(
-		"graphics/idle__001.png"));
+	int	maxJumps = 2;
 
-	/*m_SpriteRunningRight = sf::Sprite(TextureHolder::GetTexture(
-		"graphics/RunRight__001.png"));
-
-	m_SpriteRunningLeft = sf::Sprite(TextureHolder::GetTexture(
-		"graphics/RunLeft__001.png"));
-
-	m_SpriteFalling = sf::Sprite(TextureHolder::GetTexture(
-		"graphics/Glide_000.png"));*/
-
-	m_JumpDuration = 1;
 }
 
 void Player::update(float elapsedTime, int** m_ArrayLevel) {
-	if (this->m_Direction == Direction::RIGHT) {
+	// Handle Actions
+	if (this->m_Action == Action::IDLE) {
+
+	}
+	else if (this->m_Action == Action::WALKING) {
+
+	}
+	else if (this->m_Action == Action::FALLING) {
+		this->m_Position.y += this->m_Gravity * elapsedTime;
+	}
+	else if (this->m_Action == Action::JUMPING) {
+		// Update how long the jump has been going
+		this->m_jumpDuration += elapsedTime;
+
+		// Add the jump time to the timer
+		this->m_Position.y -= this->m_Gravity * 2 * elapsedTime;
+
+		// Character jump has gone on long enough
+		if (this->m_jumpDuration >= this->maxJumpDuration) {
+			this->m_Action = Action::FALLING;
+		}
+	}
+	else if (this->m_Action == Action::CROUCHING) {
+
+	}
+	
+	// Handle Direction
+	if (m_Direction == Direction::IDLE) {
+		// Look at the Nearest Enemy
+		// Set Sprite to IDLE
+		m_Sprite = sf::Sprite(TextureHolder::GetTexture(
+			"graphics/idle__001.png"));
+	}
+	else if (this->m_Direction == Direction::RIGHT) {
 		this->m_Position.x += this->m_Speed * elapsedTime;
 
 		//Changes the the sprite to runnning right
@@ -44,25 +65,9 @@ void Player::update(float elapsedTime, int** m_ArrayLevel) {
 			"graphics/RunLeft__001.png"));
 	}
 
-	// Handle Jumping
-	if (this->m_Action == Action::JUMPING) {
-		// Update how long the jump has been going
-		this->m_TimeThisJump += elapsedTime;
-
-		// Has this jump gone on for too long?
-		if (this->m_TimeThisJump < this->m_JumpDuration) {
-			// Continue jumping
-			this->m_Position.y -= this->m_Gravity * 2 * elapsedTime;
-		}
-		else {
-			this->m_Action = Action::FALLING;
-		}
-	}
-
-	// Apply gravity
 	if (this->m_Action == Action::FALLING) {
-		this->m_Position.y += this->m_Gravity * elapsedTime;
-		this->m_SpriteFalling = sf::Sprite(TextureHolder::GetTexture(
+		// Set Player Sprite to Falling
+		this->m_Sprite = sf::Sprite(TextureHolder::GetTexture(
 			"graphics/Glide_000.png"));
 	}
 
@@ -96,49 +101,35 @@ void Player::update(float elapsedTime, int** m_ArrayLevel) {
 
 	// Move the sprite into position
 	this->m_Sprite.setPosition(this->m_Position);
-	this->m_SpriteRunningRight.setPosition(this->m_Position);
-	this->m_SpriteRunningLeft.setPosition(this->m_Position);
-	this->m_SpriteFalling.setPosition(this->m_Position);
 
 }
 
 // A virtual function
 void Player::handleInput() {
 	//  Jumping
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
-		if (this->m_jumpCounter == 0
-			&& this->m_Action != Action::JUMPING) {
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
+		// Character not already jumping
+		if (this->m_jumpCounter < this->maxJumps) {
 
 			this->m_Action = Action::JUMPING;
 			this->m_jumpCounter++;
 		}
-		else if (this->m_Action == Action::JUMPING
-			&& this->m_jumpCounter < this->maxJumps
-			&& this->m_TimeThisJump < this->m_JumpDuration) {
-
-			this->m_jumpCounter++;
-		}
-		else if (this->m_Action == Action::JUMPING
-			&& this->m_jumpCounter >= this->maxJumps
-			&& this->m_TimeThisJump >= this->m_JumpDuration) {
-
-			this->m_Action = Action::FALLING;
-		}	
 	}
 
 	//  Moving Left
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
+		this->m_Action = Action::WALKING;
 		this->m_Direction = Direction::LEFT;
 	}
 
 	//  Moving Right
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
+		this->m_Action = Action::WALKING;
 		this->m_Direction = Direction::RIGHT;
 	}
 
 	// If nothing is pressed
-	if (!sf::Keyboard::isKeyPressed(sf::Keyboard::W)
-		&& !sf::Keyboard::isKeyPressed(sf::Keyboard::A)
+	if (!sf::Keyboard::isKeyPressed(sf::Keyboard::A)
 		&& !sf::Keyboard::isKeyPressed(sf::Keyboard::D)
 		&& this->m_Action != Action::JUMPING
 		&& this->m_Action != Action::FALLING) {
