@@ -13,7 +13,6 @@
 
 Player::Player() {
 	int	maxJumps = 2;
-
 }
 
 void Player::update(float elapsedTime, int** m_ArrayLevel) {
@@ -73,13 +72,12 @@ void Player::update(float elapsedTime, int** m_ArrayLevel) {
 
 	// Update the rect for all body parts
 	sf::FloatRect r = this->getPosition();
-
-
+	
 	// Feet
-	this->m_Feet.left = r.left + 3;
-	this->m_Feet.top = r.top + r.height - 1;
-	this->m_Feet.width = r.width - 6;
-	this->m_Feet.height = 1;
+	this->m_Feet.left = m_Position.x;
+	this->m_Feet.top = m_Position.y + r.height;
+	this->m_Feet.width = r.width;
+	this->m_Feet.height = 6;
 
 	// Head
 	this->m_Head.left = r.left;
@@ -121,20 +119,20 @@ void Player::handleInput() {
 		this->m_Action = Action::WALKING;
 		this->m_Direction = Direction::LEFT;
 	}
-
 	//  Moving Right
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
 		this->m_Action = Action::WALKING;
 		this->m_Direction = Direction::RIGHT;
 	}
-
+	
 	// If nothing is pressed
 	if (!sf::Keyboard::isKeyPressed(sf::Keyboard::A)
 		&& !sf::Keyboard::isKeyPressed(sf::Keyboard::D)
 		&& this->m_Action != Action::JUMPING
-		&& this->m_Action != Action::FALLING) {
-		
-		this->m_Action = Action::IDLE;
-		this->m_Direction = Direction::IDLE;
+		/*&& this->m_Action != Action::FALLING*/) {
+
+		this->m_Action = Action::FALLING;
 	}
+
+	
 }
