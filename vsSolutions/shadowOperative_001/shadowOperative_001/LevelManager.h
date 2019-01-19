@@ -10,9 +10,13 @@
 #ifndef LEVELMANAGER_H
 #define LEVELMANAGER_H
 
+#include <fstream>
+#include <iostream>
 #include <list>
 
 #include <SFML/Graphics.hpp>
+
+#include "LevelManager.h"
 
 class LevelManager {
 private:

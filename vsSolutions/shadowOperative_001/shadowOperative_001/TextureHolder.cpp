@@ -6,7 +6,6 @@
 *	@description
 */
 
-#include <assert.h>
 #include "TextureHolder.h"
 
 TextureHolder* TextureHolder::m_s_Instance = nullptr;
@@ -41,6 +40,9 @@ sf::Texture& TextureHolder::GetTexture(std::string const& filename) {
 		sf::Texture& texture = m[filename];
 		// Load the texture from file in the usual way
 		texture.loadFromFile(filename);
+
+		// Apply Anti-Aliasing to the Texture
+		texture.setSmooth(true);
 
 		// Return the texture to the calling code
 		return texture;

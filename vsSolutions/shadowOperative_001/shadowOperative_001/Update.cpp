@@ -6,10 +6,8 @@
 *	@description
 */
 
-#include <sstream>
-#include <SFML/Graphics.hpp>
 #include "Engine.h"
-#include <iostream>
+
 void Engine::update(float dtAsSeconds) {
 
 	if (GameState == State::MAIN_MENU) {
@@ -157,7 +155,7 @@ void Engine::update(float dtAsSeconds) {
 	else if (GameState == State::SETTINGS) {
 		// Put Settings Screen Update code here
 	}
-	else if (GameState == Engine::State::LOADING) {
+	else if (GameState == State::LOADING) {
 		// Put Loading Screen Update code here
 	}
 }

@@ -55,28 +55,12 @@ bool Engine::detectCollisions(PlayableCharacter& character) {
 			// Initialize the starting position of the current block
 			block.left = x * TILE_SIZE;
 			block.top = y * TILE_SIZE;
-			/*
-			// Has character been burnt or drowned?
-			// Use head as this allows him to sink a bit
-			if (m_ArrayLevel[y][x] == 2 || m_ArrayLevel[y][x] == 3)	{
-				if (character.getHead().intersects(block)) {
-					character.spawn(m_LM.getStartPosition(), GRAVITY);
-					// Which sound should be played?
-					if (m_ArrayLevel[y][x] == 2) {// Fire, ouch!
-						// Play a sound
-						m_SM.playFallInFire();
-					}
-					else {// Water
-						// Play a sound
-						m_SM.playFallInWater();
-					}
-				}
-			}
-			*/
 
 			// Is character colliding with a regular block
-			if ((m_ArrayLevel[y][x] == 1)||(m_ArrayLevel[y][x] == 2) ||
-				(m_ArrayLevel[y][x] == 3) || (m_ArrayLevel[y][x] == 5) || (m_ArrayLevel[y][x] == 6)) {
+			if ((m_ArrayLevel[y][x] == 1) || (m_ArrayLevel[y][x] == 2) ||
+				(m_ArrayLevel[y][x] == 3) || (m_ArrayLevel[y][x] == 5) ||
+				(m_ArrayLevel[y][x] == 6) || (m_ArrayLevel[y][x] == 7) ||
+				(m_ArrayLevel[y][x] == 8)) {
 
 				if (character.getRight().intersects(block))	{
 					character.stopRight(block.left);
@@ -87,12 +71,17 @@ bool Engine::detectCollisions(PlayableCharacter& character) {
 				
 				if (character.getFeet().intersects(block)) {
 					character.stopFalling(block.top);
+					std::cout << "We should have stopped now" << std::endl;
 				}
 				else if (character.getHead().intersects(block))	{
 					character.stopJump();
 				}
 			}
-
+			else if (!character.getFeet().intersects(block)
+				&& character.m_Action != PlayableCharacter::Action::JUMPING){
+				
+				character.m_Action = PlayableCharacter::Action::FALLING;
+			}
 
 			/*
 			//// More collision detection here once we have learned about particle effects

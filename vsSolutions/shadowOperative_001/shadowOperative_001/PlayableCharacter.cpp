@@ -7,90 +7,116 @@
 */
 
 #include "PlayableCharacter.h"
-#include<iostream>
+
+/**
+*	Create a new PlayableCharacter at the specified position.
+*/
 void PlayableCharacter::spawn(sf::Vector2i startPosition, float gravity) {
 	// Place the player at the starting point
-	m_Position.x = startPosition.x;
-	m_Position.y = startPosition.y;
+	this->m_Position.x = startPosition.x;
+	this->m_Position.y = startPosition.y;
 
 	// Initialize the gravity
-	m_Gravity = gravity;
+	this->m_Gravity = gravity;
 
 	// Move the sprite in to position
-	m_Sprite.setPosition(m_Position);
+	this->m_Sprite.setPosition(this->m_Position);
+	
+	// Initialise Control stats
+	this->m_Action = Action::IDLE;
+	this->m_Direction = Direction::IDLE;
+	this->m_jumpCounter = 0;
+	this->m_jumpDuration = 0.0f;
 
 }
 
+/**
+*	Update this PlayerCharacter with the time and Level data.
+*/
 void PlayableCharacter::update(float elapsedTime,int** m_ArrayLevel) {
 	// Overridden
 }
 
+/**
+*	Return a FloatRect containing this PlayableCharacter.
+*/
 sf::FloatRect PlayableCharacter::getPosition() {
-	return m_Sprite.getGlobalBounds();
+	return this->m_Sprite.getGlobalBounds();
 }
 
+/**
+*	Return the Centre point of this PlayableCharacter.
+*/
 sf::Vector2f PlayableCharacter::getCenter() {
 	return sf::Vector2f(
-		m_Position.x + m_Sprite.getGlobalBounds().width / 2,
-		m_Position.y + m_Sprite.getGlobalBounds().height / 2
+		this->m_Position.x + this->m_Sprite.getGlobalBounds().width / 2,
+		this->m_Position.y + this->m_Sprite.getGlobalBounds().height / 2
 	);
 }
 
+/**
+*	Return various hitboxes.
+*/
 sf::FloatRect PlayableCharacter::getFeet() {
-	return m_Feet;
+	return this->m_Feet;
 }
 
 sf::FloatRect PlayableCharacter::getHead() {
-	return m_Head;
+	return this->m_Head;
 }
 
 sf::FloatRect PlayableCharacter::getLeft() {
-	return m_Left;
+	return this->m_Left;
 }
 
 sf::FloatRect PlayableCharacter::getRight() {
-	return m_Right;
+	return this->m_Right;
 }
 
+/**
+*	Return this Object's Sprite.
+*/
 sf::Sprite PlayableCharacter::getSprite() {
-	switch (CharacterAnimation) {
-	case State::IDLE:
-		return m_Sprite;
-		break;
-	
-	case State::RUNNINGRIGHT:
-		return m_SpriteRunningRight;
-		break;
-
-	case State::RUNNINGLEFT:
-		return m_SpriteRunningLeft;
-		break;
-
-	case State::FALLING:
-		return m_SpriteFalling;
-		break;
-	}
+	return this->m_Sprite;
 }
 
+/**
+*	Stop FALLING when colliding with an Object.
+*/
 void PlayableCharacter::stopFalling(float position) {
-	m_Position.y = position - getPosition().height;
-	m_Sprite.setPosition(m_Position);
-	m_IsFalling = false;
+	this->m_Position.y = position - this->getPosition().height;
+	this->m_Sprite.setPosition(this->m_Position);
+	
+	this->m_jumpCounter = 0;
+	this->m_jumpDuration = 0.0f;
+	this->m_Action = Action::IDLE;
+	//this->m_Direction = Direction::IDLE;
 }
 
+/**
+*	Stop moving RIGHT when colliding with an Object.
+*/
 void PlayableCharacter::stopRight(float position) {
 
-	m_Position.x = position - m_Sprite.getGlobalBounds().width;
-	m_Sprite.setPosition(m_Position);
+	this->m_Position.x = position - this->m_Sprite.getGlobalBounds().width;
+	this->m_Sprite.setPosition(this->m_Position);
+	//this->m_Action = Action::IDLE;
+	this->m_Direction = Direction::IDLE;
 }
 
+/**
+*	Stop moving LEFT when colliding with an Object.
+*/
 void PlayableCharacter::stopLeft(float position) {
-	m_Position.x = position + m_Sprite.getGlobalBounds().width;
-	m_Sprite.setPosition(m_Position);
+	this->m_Position.x = position + this->m_Sprite.getGlobalBounds().width;
+	this->m_Sprite.setPosition(this->m_Position);
+	//this->m_Action = Action::IDLE;
+	this->m_Direction = Direction::IDLE;
 }
 
+/**
+*	Stop a Jump early when colliding.
+*/
 void PlayableCharacter::stopJump() {
-	// Stop a jump early 
-	m_IsJumping = false;
-	m_IsFalling = true;
+	this->m_Action = Action::FALLING;
 }

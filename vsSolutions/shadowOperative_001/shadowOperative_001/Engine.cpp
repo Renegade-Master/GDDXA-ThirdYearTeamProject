@@ -6,7 +6,6 @@
 *	@description
 */
 
-#include <iostream>
 #include "Engine.h"
 
 Engine::Engine() {

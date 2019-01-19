@@ -3,7 +3,7 @@
 *					Owen O'Dea	[K00218956]
 *					Rory Ryan	[K00218864]
 *	@creationDate	2018/11/01	YYYY/MM/DD
-*	@description
+*	@description	...
 */
 
 #pragma once
@@ -15,9 +15,13 @@
 class PlayableCharacter {
 public:
 
-	// Game States
-	enum class State { IDLE, RUNNINGRIGHT, RUNNINGLEFT, JUMPING, FALLING};
-	State CharacterAnimation = State::IDLE;
+	// PlayableCharacter Direction Action
+	enum class Direction { IDLE, RIGHT, LEFT };
+	Direction m_Direction = Direction::IDLE;
+	
+	// PlayableCharacter Action Action
+	enum class Action { IDLE, WALKING, JUMPING, FALLING, CROUCHING };
+	Action m_Action = Action::IDLE;
 
 	// Where is the player
 	sf::FloatRect getPosition();
@@ -49,19 +53,12 @@ protected:
 	sf::Sprite m_SpriteRunningLeft;
 	sf::Sprite m_SpriteFalling;
 
-	// How long does a jump last
-	float m_JumpDuration;
-
-	// Is character currently jumping or falling
-	bool m_IsJumping;
-	bool m_IsFalling;
-
-	// Which directions is the character currently moving in
-	bool m_LeftPressed;
-	bool m_RightPressed;
-
-	// How long has this jump lasted so far
-	float m_TimeThisJump;
+	// Jump Controls
+	float m_jumpDuration;
+	int m_jumpCounter;
+	
+	float maxJumpDuration = 0.5f;
+	int	maxJumps = 1;
 
 	// Where is the player
 	sf::Vector2f m_Position;
@@ -70,13 +67,13 @@ protected:
 	float m_Gravity;
 
 	// Has the player just initialted a jump
-	bool m_JustJumped = false;
+	//bool m_JustJumped = false;
 
 	// We will call this function once every frame
 	virtual void update(float elapsedTime,int** m_ArrayLevel) = 0;
 
 	// This is a pure virtual function
-	virtual bool handleInput() = 0;
+	virtual void handleInput() = 0;
 
 	// How fast is the character
 	float m_Speed = 100;

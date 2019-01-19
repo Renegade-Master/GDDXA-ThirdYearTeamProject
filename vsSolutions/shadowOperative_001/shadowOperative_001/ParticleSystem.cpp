@@ -6,7 +6,6 @@
 *	@description
 */
 
-#include <SFML/Graphics.hpp>
 #include "ParticleSystem.h"
 
 void ParticleSystem::init(int numParticles) {

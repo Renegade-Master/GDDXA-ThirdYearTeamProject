@@ -7,7 +7,6 @@
 */
 
 #include "Engine.h"
-#include<iostream>
 
 void Engine::input() {
 	//sf::Event m_event;
@@ -24,10 +23,7 @@ void Engine::input() {
 	else if (GameState == State::PLAYING) {
 		m_Window.setMouseCursorVisible(false);
 		// Handle input specific to Player
-		if (m_Player.handleInput()) {
-			// Play a jump sound
-			m_SM.playJump();
-		}
+		m_Player.handleInput();
 	}
 	else if (GameState == State::PAUSED) {
 		m_Window.setMouseCursorVisible(true);

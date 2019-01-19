@@ -11,6 +11,7 @@
 #define ENEMY_H
 
 #include "PlayableCharacter.h"
+#include "TextureHolder.h"
 #include "visionCone.h"
 
 class Enemy : public PlayableCharacter {
@@ -18,7 +19,7 @@ private:
 	sf::Vector2i m_SpawnPosition;
 	bool patrolValid;
 	// This is a pure virtual function
-	virtual bool handleInput();
+	virtual void handleInput();
 	enum patrolDir { patrolLeft, patrolRight };
 	patrolDir move = patrolLeft;
 	friend patrolDir& operator++(patrolDir& mv, int incr);

@@ -11,6 +11,7 @@
 #define ENGINE_H
 
 #include <list>
+#include <sstream>
 
 #include <SFML/Graphics.hpp>
 
@@ -21,9 +22,9 @@
 #include "Item.h"
 #include "LevelManager.h"
 #include "ParticleSystem.h"
+#include "Player.h"
 #include "SoundManager.h"
 #include "TextureHolder.h"
-#include "PLayer.h"
 #include "TutorialManager.h"
 
 class Engine {
@@ -48,7 +49,7 @@ private:
 
 	// Game States
 	enum class State { MAIN_MENU, PLAYING, PAUSED, SETTINGS, LOADING };
-	State GameState = State::MAIN_MENU;
+	State GameState = State::PAUSED;
 
 	// The texture holder
 	TextureHolder th;
@@ -56,7 +57,7 @@ private:
 	// create a particle system
 	ParticleSystem m_PS;
 
-	// Player and Bob (PlayerCharacters)
+	// Player (PlayerCharacters)
 	Player m_Player;
 
 	//Enemy Generator
