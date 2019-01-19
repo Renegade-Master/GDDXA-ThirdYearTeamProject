@@ -64,6 +64,9 @@ public:
 
 	// Update the bullet each frame
 	void update(float elapsedTime);
+
+	//get Bullet x,y
+	sf::Vector2f getCenter();
 };
 
 #endif // BULLET_H

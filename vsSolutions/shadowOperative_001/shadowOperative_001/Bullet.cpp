@@ -74,7 +74,10 @@ void Bullet::stop() {
 bool Bullet::isInFlight() {
 	return m_InFlight;
 }
-
+sf::Vector2f Bullet::getCenter()
+{
+	return m_Position;
+}
 sf::FloatRect Bullet::getPosition() {
 	return m_BulletSprite.getGlobalBounds();
 	//return m_BulletShape.getGlobalBounds();
@@ -110,6 +113,8 @@ void Bullet::update(float elapsedTime) {
 		m_Position.y < m_Min.y || m_Position.y > m_Max.y) {
 		m_InFlight = false;
 	}
+	//has the bullet collided with a wall
+	
 	/*std::cout << "\n position final calculation";
 	std::cout << "\n Bullet positin is now: x," << m_Position.x << " , y:" << m_Position.y;
 	std::cout << "\n BulletShape positin is now: x," << m_BulletShape.getPosition().x << " , y:" << m_BulletShape.getPosition().y;*/

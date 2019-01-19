@@ -62,14 +62,6 @@ Engine::Engine() {
 	// Initialise all the Buttons
 	m_buttonFont.loadFromFile("fonts/Roboto-Light.ttf");
 	initButtons();
-	
-	/*Bullet bullets[5];
-	for (int i = 0;i < 5;i++)
-	{
-		bullets[i].init();
-	}*/
-	
-	
 }
 
 void Engine::run() {

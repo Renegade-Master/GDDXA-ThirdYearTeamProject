@@ -61,7 +61,7 @@ void Engine::draw() {
 		{
 			if (bullets[i].isInFlight())
 			{
-				std::cout << "\nDrawing bullets" << i;
+				//std::cout << "\nDrawing bullets" << i;
 				m_Window.draw(bullets[i].getShape());
 				m_Window.draw(bullets[i].getSprite());
 			}

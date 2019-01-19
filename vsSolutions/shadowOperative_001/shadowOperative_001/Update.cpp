@@ -45,7 +45,7 @@ void Engine::update(float dtAsSeconds) {
 		m_Player.update(dtAsSeconds, m_ArrayLevel);
 
 
-		//update bullets
+		//Handle-Update bullets
 		if (m_GameTimeTotal.asMilliseconds()
 			- m_SinceLastShot.asMilliseconds() > 10000 / 2)
 		{
@@ -62,14 +62,45 @@ void Engine::update(float dtAsSeconds) {
 				currentBullet++;
 				m_Player.playerShot(false);
 				m_SinceLastShot = m_GameTimeTotal;
+				if (currentBullet > 4)
+				{
+					currentBullet = 0;
+				}
 			}
 		}
 		for (int i = 0;i < 5;i++)
 		{
 			if (bullets[i].isInFlight())
 			{
-				//std::cout << "\nupdating bullets " <<i;
+				std::cout << "\nupdating bullets " <<i;
 				bullets[i].update(dtAsSeconds);
+				int bulletX = ((int)bullets[i].getCenter().x / TILE_SIZE);
+				int bulletY = ((int)bullets[i].getCenter().y / TILE_SIZE);
+				if (bulletX < 0)
+				{
+					bulletX = 0;
+				}
+				if (bulletX > m_LM.getLevelSize().x)
+				{
+					bulletX = m_LM.getLevelSize().x;
+				}
+				if (bulletY < 0)
+				{
+					bulletY = 0;
+				}
+				if (bulletY > m_LM.getLevelSize().y)
+				{
+					bulletY = m_LM.getLevelSize().y;
+				}
+
+				std::cout << "\nbulletX:" << bulletX;
+				std::cout << "\nbulletY:" << bulletY;
+				if ((m_ArrayLevel[bulletY][bulletX] == 1) || (m_ArrayLevel[bulletY][bulletX] == 2) ||
+					(m_ArrayLevel[bulletY][bulletX] == 3) || (m_ArrayLevel[bulletY][bulletX] == 5))
+				{
+					std::cout << "\nBullet hit wall";
+					bullets[i].stop();
+				}
 			}
 		}
 
