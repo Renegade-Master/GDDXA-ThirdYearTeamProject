@@ -132,7 +132,6 @@
   <ItemGroup>
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Button.cpp" />
-    <ClCompile Include="CharacterAnimation.cpp" />
     <ClCompile Include="CreateEnemy.cpp" />
     <ClCompile Include="DetectCollisions.cpp" />
     <ClCompile Include="Door.cpp" />
@@ -181,12 +180,27 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="graphics\background.png" />
+    <Image Include="graphics\background1-720.png" />
+    <Image Include="graphics\background_001.png" />
+    <Image Include="graphics\background_002.png" />
+    <Image Include="graphics\background_003.png" />
+    <Image Include="graphics\background_005.png" />
+    <Image Include="graphics\background_007.png" />
     <Image Include="graphics\bob.png" />
     <Image Include="graphics\Crouch_down_000.png" />
+    <Image Include="graphics\Enemy000.png" />
+    <Image Include="graphics\Enemy001.png" />
     <Image Include="graphics\Fly_004.png" />
+    <Image Include="graphics\Glide_000.png" />
     <Image Include="graphics\Idle_004.png" />
+    <Image Include="graphics\Idle__001.png" />
     <Image Include="graphics\industrial-tileset.png" />
     <Image Include="graphics\Jump_DOWN_000.png" />
+    <Image Include="graphics\MenuBackground.png" />
+    <Image Include="graphics\PlayerAnimationSheet.png" />
+    <Image Include="graphics\RunLeft__001.png" />
+    <Image Include="graphics\RunRight__001.png" />
+    <Image Include="graphics\Run__002.png" />
     <Image Include="graphics\thomas.png" />
     <Image Include="graphics\tileset_001.png" />
     <Image Include="graphics\tileset_002.png" />

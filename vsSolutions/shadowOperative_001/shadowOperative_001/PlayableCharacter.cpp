@@ -21,6 +21,7 @@ void PlayableCharacter::spawn(sf::Vector2i startPosition, float gravity) {
 
 	// Move the sprite in to position
 	this->m_Sprite.setPosition(this->m_Position);
+	this->m_animationFrame = 0;
 	
 	// Initialise Movement stats
 	this->m_Speed = 500.0f;
@@ -28,7 +29,6 @@ void PlayableCharacter::spawn(sf::Vector2i startPosition, float gravity) {
 	this->m_Direction = Direction::IDLE;
 	this->m_jumpCounter = 0;
 	this->m_jumpDuration = 0.0f;
-
 }
 
 /**

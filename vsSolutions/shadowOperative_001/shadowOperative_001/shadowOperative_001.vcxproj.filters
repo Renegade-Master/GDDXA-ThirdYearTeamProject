@@ -96,9 +96,6 @@
     <ClCompile Include="TutorialManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CharacterAnimation.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Button.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -211,6 +208,51 @@
       <Filter>Resource Files\graphics</Filter>
     </Image>
     <Image Include="graphics\Walk_left.png">
+      <Filter>Resource Files\graphics</Filter>
+    </Image>
+    <Image Include="graphics\background_001.png">
+      <Filter>Resource Files\graphics</Filter>
+    </Image>
+    <Image Include="graphics\background_002.png">
+      <Filter>Resource Files\graphics</Filter>
+    </Image>
+    <Image Include="graphics\background_003.png">
+      <Filter>Resource Files\graphics</Filter>
+    </Image>
+    <Image Include="graphics\background_005.png">
+      <Filter>Resource Files\graphics</Filter>
+    </Image>
+    <Image Include="graphics\background_007.png">
+      <Filter>Resource Files\graphics</Filter>
+    </Image>
+    <Image Include="graphics\background1-720.png">
+      <Filter>Resource Files\graphics</Filter>
+    </Image>
+    <Image Include="graphics\Enemy000.png">
+      <Filter>Resource Files\graphics</Filter>
+    </Image>
+    <Image Include="graphics\Enemy001.png">
+      <Filter>Resource Files\graphics</Filter>
+    </Image>
+    <Image Include="graphics\Glide_000.png">
+      <Filter>Resource Files\graphics</Filter>
+    </Image>
+    <Image Include="graphics\Idle__001.png">
+      <Filter>Resource Files\graphics</Filter>
+    </Image>
+    <Image Include="graphics\MenuBackground.png">
+      <Filter>Resource Files\graphics</Filter>
+    </Image>
+    <Image Include="graphics\PlayerAnimationSheet.png">
+      <Filter>Resource Files\graphics</Filter>
+    </Image>
+    <Image Include="graphics\Run__002.png">
+      <Filter>Resource Files\graphics</Filter>
+    </Image>
+    <Image Include="graphics\RunLeft__001.png">
+      <Filter>Resource Files\graphics</Filter>
+    </Image>
+    <Image Include="graphics\RunRight__001.png">
       <Filter>Resource Files\graphics</Filter>
     </Image>
   </ItemGroup>
