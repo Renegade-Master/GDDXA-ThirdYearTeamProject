@@ -143,19 +143,28 @@ int** LevelManager::nextLevel(sf::VertexArray& rVaLevel) {
 			int verticalOffset = arrayLevel[y][x];
 			switch(arrayLevel[y][x]) {
 			case 'd':
-				
+				verticalOffset = 10;
 				break;
 			case 'D':
-
+				verticalOffset = 11;
+				break;
+			case 'b':
+				verticalOffset = 12;
+				break;
+			case 's':
+				verticalOffset = 13;
+				break;
+			case 'k':
+				verticalOffset = 14;
+				break;
+			case 'j':
+				verticalOffset = 15;
 				break;
 			case 'E':
 				verticalOffset = 0;  // We want a transparent tile here
 				break;
 			case 'P':
 				verticalOffset = 0;  // We want a transparent tile here
-				break;
-			case 's':
-
 				break;
 			case 'T':
 				verticalOffset = 0;  // We want a transparent tile here
