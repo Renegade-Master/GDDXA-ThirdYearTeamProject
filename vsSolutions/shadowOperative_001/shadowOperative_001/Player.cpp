@@ -245,3 +245,7 @@ float Player::getShotCost()
 {
 	return shotCost;
 }
+float Player::getMaxCharge()
+{
+	return maxGunChargeLevel;
+}

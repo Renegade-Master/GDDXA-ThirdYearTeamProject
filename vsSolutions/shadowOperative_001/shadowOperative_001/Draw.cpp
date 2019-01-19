@@ -77,6 +77,7 @@ void Engine::draw() {
 		m_Window.setView(m_HudView);
 		m_Window.draw(m_Hud.getHidden());
 		//m_Window.draw(m_Hud.getTime());
+		m_Window.draw(m_Hud.getGunBackground());
 		m_Window.draw(m_Hud.getGunCharge());
 
 		
@@ -91,7 +92,6 @@ void Engine::draw() {
 			m_Window.draw((*iter)->getSprite());
 			m_Window.draw((*iter)->getCone());
 		}
-		
 	}
 	else if (GameState == State::PAUSED) {
 		m_Window.draw(m_Hud.getMessage());

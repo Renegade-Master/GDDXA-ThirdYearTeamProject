@@ -30,6 +30,7 @@ public:
 	void chargeGun(float dtAsSeconds);
 	float getChargeLevel();
 	float getShotCost();
+	float getMaxCharge();
 private:
 	bool shooting;
 	int detectionLevel;

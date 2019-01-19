@@ -70,6 +70,7 @@ void Engine::update(float dtAsSeconds) {
 				}
 			}
 		}
+		m_Hud.setGunCharge(m_Player.getChargeLevel());
 		for (int i = 0;i < 5;i++)
 		{
 			if (bullets[i].isInFlight())

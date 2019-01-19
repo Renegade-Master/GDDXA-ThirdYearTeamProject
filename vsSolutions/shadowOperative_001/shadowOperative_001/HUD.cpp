@@ -49,6 +49,11 @@ Hud::Hud()
 	m_isHidden.setPosition(25, 0);
 	//m_isHidden.setString("1");
 
+	//StunGun charge
+	m_GunChargebackground.setPosition(resolution.x - (resolution.x / 10)-1.0, 10);
+	m_GunChargebackground.setFillColor(sf::Color::Black);
+	m_GunChargebackground.setOutlineColor(sf::Color::Color(169,169,169,255));
+	m_GunChargebackground.setOutlineThickness(4.5);
 	m_GunCharge.setPosition(resolution.x - (resolution.x /10), 10);
 	m_GunCharge.setFillColor(sf::Color::Yellow);
 }
@@ -102,4 +107,12 @@ void Hud::setGunCharge(float charge)
 sf::RectangleShape Hud::getGunCharge()
 {
 	return m_GunCharge;
+}
+void Hud::setGunChargeBackground(float maxCharge)
+{
+	m_GunChargebackground.setSize(sf::Vector2f(maxCharge, 30));
+}
+sf::RectangleShape Hud::getGunBackground()
+{
+	return m_GunChargebackground;
 }

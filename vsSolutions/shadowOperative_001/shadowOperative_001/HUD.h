@@ -20,7 +20,8 @@ private:
 	sf::Text m_LevelText;
 
 	sf::Text m_isHidden;
-
+	//GunCharge readout
+	sf::RectangleShape m_GunChargebackground;
 	sf::RectangleShape m_GunCharge;
 public:
 	Hud();
@@ -33,6 +34,8 @@ public:
 
 	void setGunCharge(float charge);
 	sf::RectangleShape getGunCharge();
+	void setGunChargeBackground(float maxCharge);
+	sf::RectangleShape getGunBackground();
 
 	void setLevel(sf::String text);
 	void setTime(sf::String text);

@@ -45,6 +45,7 @@ void Engine::input() {
 				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return)) {
 					//m_Playing = true;
 					GameState = State::PLAYING;
+					m_Hud.setGunChargeBackground(m_Player.getMaxCharge()+2.0);
 				}
 			}
 			//  GamePad Controls
