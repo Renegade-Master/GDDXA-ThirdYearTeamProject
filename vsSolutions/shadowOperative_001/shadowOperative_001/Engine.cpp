@@ -11,7 +11,6 @@
 Engine::Engine() {
 	//resolution.x = sf::VideoMode::getDesktopMode().width;
 	//resolution.y = sf::VideoMode::getDesktopMode().height;
-	
 	resolution.x = 1280;
 	resolution.y = 720;
 
@@ -69,7 +68,6 @@ Engine::Engine() {
 	// Initialise all the Buttons
 	m_buttonFont.loadFromFile("fonts/Roboto-Light.ttf");
 	initButtons();
-	
 }
 
 void Engine::run() {

@@ -152,7 +152,8 @@ void Enemy::increaseAwarenessLevel(sf::Vector2f playPos, int detectionLevel,sf::
 	{
 	case 1: 
 		std::cout << "\nAwareness 1";
-		if (calcDistance(playPos, this->getCenter()) > 100)
+		if (calcDistance(playPos, this->getCenter()) <= 50)
+		
 		{
 			std::cout<<"\nDistance: 100+";
 			awarenessOfPlayer += 1.0;
@@ -168,7 +169,7 @@ void Enemy::increaseAwarenessLevel(sf::Vector2f playPos, int detectionLevel,sf::
 		break;
 	case 3:
 		std::cout << "\nAwareness 3";
-		if (calcDistance(playPos, this->getCenter()) <= 50)
+		if (calcDistance(playPos, this->getCenter()) > 100) 
 		{
 			std::cout<<"\nDistance: <50";
 			awarenessOfPlayer += 2.0;

@@ -10,8 +10,14 @@
 
 // The constructor
 Bullet::Bullet() {
-	m_BulletShape.setSize(sf::Vector2f(2, 2));
+	//std::cout << "\nBullet initialised";
+	m_BulletSprite = sf::Sprite(TextureHolder::GetTexture(
+		"graphics/Bullet_000.png"));
+	m_BulletSprite.setPosition(this->m_Position);
+	//m_BulletShape.setSize(sf::Vector2f(10, 10));
+	m_InFlight = false;
 }
+
 
 void Bullet::shoot(float startX, float startY,
 	float targetX, float targetY) {
@@ -57,7 +63,8 @@ void Bullet::shoot(float startX, float startY,
 	m_Max.y = startY + range;
 
 	// Position the bullet ready to be drawn
-	m_BulletShape.setPosition(m_Position);
+	m_BulletSprite.setPosition(startX,startY);
+	m_BulletShape.setPosition(startX, startY);
 }
 
 void Bullet::stop() {
@@ -67,21 +74,38 @@ void Bullet::stop() {
 bool Bullet::isInFlight() {
 	return m_InFlight;
 }
-
+sf::Vector2f Bullet::getCenter()
+{
+	return m_Position;
+}
 sf::FloatRect Bullet::getPosition() {
-	return m_BulletShape.getGlobalBounds();
+	return m_BulletSprite.getGlobalBounds();
+	//return m_BulletShape.getGlobalBounds();
 }
 
-sf::RectangleShape Bullet::getShape() {
+sf::Sprite Bullet::getSprite() {
+	return m_BulletSprite;
+}
+sf::RectangleShape Bullet::getShape()
+{
+	std::cout << "\ncalling bulletShape";
 	return m_BulletShape;
 }
-
 void Bullet::update(float elapsedTime) {
+	/*std::cout << "\nelapsed Time:" << elapsedTime;
+	std::cout << "\n Starting position recalculated";
+	std::cout << "\n Bullet positin is now: x," << m_Position.x << " , y:" << m_Position.y;
+	std::cout << "\n BulletShape positin is now: x," << m_BulletShape.getPosition().x << " , y:" << m_BulletShape.getPosition().y;*/
 	// Update the bullet position variables
+	/*std::cout<<"\n m_BulletDistance.x ="<< m_BulletDistance.x;
+	std::cout << "\n m_BulletDistance.y =" << m_BulletDistance.y;*/
 	m_Position.x += m_BulletDistance.x * elapsedTime;
 	m_Position.y += m_BulletDistance.y * elapsedTime;
-
+	/*std::cout << "\n position recalculated";
+	std::cout << "\n Bullet positin is now: x," << m_Position.x << " , y:" << m_Position.y;
+	std::cout << "\n BulletShape positin is now: x," << m_BulletShape.getPosition().x << " , y:" << m_BulletShape.getPosition().y;*/
 	// Move the bullet
+	m_BulletSprite.setPosition(m_Position);
 	m_BulletShape.setPosition(m_Position);
 
 	// Has the bullet gone out of range?
@@ -89,4 +113,9 @@ void Bullet::update(float elapsedTime) {
 		m_Position.y < m_Min.y || m_Position.y > m_Max.y) {
 		m_InFlight = false;
 	}
+	//has the bullet collided with a wall
+	
+	/*std::cout << "\n position final calculation";
+	std::cout << "\n Bullet positin is now: x," << m_Position.x << " , y:" << m_Position.y;
+	std::cout << "\n BulletShape positin is now: x," << m_BulletShape.getPosition().x << " , y:" << m_BulletShape.getPosition().y;*/
 }
