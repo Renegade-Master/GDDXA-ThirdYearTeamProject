@@ -77,6 +77,7 @@ int** LevelManager::nextLevel(sf::VertexArray& rVaLevel) {
 	// Loop through the file and store all the values in the 2d array
 	std::string row;
 	sf::Vector2i temp;
+	int verticalOffset;
 	int y = 0;
 	while (inputFile >> row) {
 		for (int x = 0; x < row.length(); x++) {
@@ -105,6 +106,21 @@ int** LevelManager::nextLevel(sf::VertexArray& rVaLevel) {
 			case '4':
 				m_EndPosition.x = x;
 				m_EndPosition.y = y;
+				break;
+			case 'D':
+				arrayLevel[y][x] = 'D';
+				break;
+			case 'b':
+				arrayLevel[y][x] = 'b';
+				break;
+			case 's':
+				arrayLevel[y][x] = 's';
+				break;
+			case 'k':
+				arrayLevel[y][x] = 'k';
+				break;
+			case 'j':
+				arrayLevel[y][x] = 'j';
 				break;
 			}
 		}
@@ -138,30 +154,27 @@ int** LevelManager::nextLevel(sf::VertexArray& rVaLevel) {
 
 			rVaLevel[currentVertex + 3].position =
 				sf::Vector2f((x * TILE_SIZE), (y * TILE_SIZE) + TILE_SIZE);
-
+			
 			// Which tile from the sprite sheet should we use
-			int verticalOffset = arrayLevel[y][x];
+			verticalOffset = arrayLevel[y][x];
 			switch(arrayLevel[y][x]) {
-			case 'd':
+			case 'D':
 				verticalOffset = 10;
 				break;
-			case 'D':
+			case 'b':
 				verticalOffset = 11;
 				break;
-			case 'b':
+			case 's':
 				verticalOffset = 12;
 				break;
-			case 's':
+			case 'k':
 				verticalOffset = 13;
 				break;
-			case 'k':
+			case 'j':
 				verticalOffset = 14;
 				break;
-			case 'j':
-				verticalOffset = 15;
-				break;
 			case 'E':
-				verticalOffset = 0;  // We want a transparent tile here
+				verticalOffset = 0;  // We want a transparent tile here				
 				break;
 			case 'P':
 				verticalOffset = 0;  // We want a transparent tile here

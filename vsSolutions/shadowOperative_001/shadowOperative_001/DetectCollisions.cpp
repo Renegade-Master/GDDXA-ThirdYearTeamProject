@@ -71,7 +71,7 @@ bool Engine::detectCollisions(PlayableCharacter& character) {
 				
 				if (character.getFeet().intersects(block)) {
 					character.stopFalling(block.top);
-					std::cout << "We should have stopped now" << std::endl;
+					//std::cout << "We should have stopped now" << std::endl;
 				}
 				else if (character.getHead().intersects(block))	{
 					character.stopJump();
