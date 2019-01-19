@@ -17,12 +17,12 @@
 
 class PlayableCharacter {
 public:
-	// PlayableCharacter Direction Action
-	enum class Direction { IDLE, RIGHT, LEFT };
+	// PlayableCharacter Direction State
+	enum class Direction { LEFT, RIGHT, IDLE };
 	Direction m_Direction = Direction::IDLE;
 	
-	// PlayableCharacter Action Action
-	enum class Action { IDLE, WALKING, JUMPING, FALLING, CROUCHING };
+	// PlayableCharacter Action State
+	enum class Action { IDLE, RUNNING, JUMPING, ATTACKING, FALLING, CROUCHING };
 	Action m_Action = Action::IDLE;
 
 	// Where is the player
@@ -49,7 +49,10 @@ public:
 	void spawn(sf::Vector2i startPosition, float gravity);
 
 protected:
-	// A Sprite Animations
+	// Sprite Animation Variables
+	int aniFrameWidth;
+	int aniFrameHeight;
+	int frameXOffset;
 	int m_animationFrame;
 	int m_animationType;
 	int m_maxAnimationFrames;

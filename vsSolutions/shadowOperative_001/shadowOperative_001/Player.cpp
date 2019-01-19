@@ -5,8 +5,7 @@
 *	@creationDate	2018/11/01	YYYY/MM/DD
 *	@description	...
 *
-*	@notes	1.		Exchange m_rightPressed for direction::right -- DONE
-*			2.		Measurements for Player Sprite
+*	@notes	1.		Measurements for Player Sprite
 *						Idle
 *							L	Width: 35	Height: 66	XOffset: 0
 *							R	Width: 35	Height: 66	XOffset: 35
@@ -39,21 +38,31 @@ void Player::update(float elapsedTime, int** m_ArrayLevel) {
 	if (this->m_animationFrame > m_maxAnimationFrames) {
 		this->m_animationFrame = 0;
 	}
+
+	this->m_timeSinceLastFrame += elapsedTime;
 	
 	/***-------------***\
 	|	HANDLE ACTIONS	|
 	\***-------------***/
 
 	if (this->m_Action == Action::IDLE) {
-
+		this->aniFrameWidth = 35;
+		this->aniFrameHeight = 66;
+		//this->frameXOffset = int(this->m_Action) * aniFrameWidth;
+		this->frameXOffset = 0;
 	}
-	else if (this->m_Action == Action::WALKING) {
-
-	}
-	else if (this->m_Action == Action::FALLING) {
-		this->m_Position.y += this->m_Gravity * elapsedTime;
+	else if (this->m_Action == Action::RUNNING) {
+		this->aniFrameWidth = 50;
+		this->aniFrameHeight = 66;
+		//this->frameXOffset = int(this->m_Action) * aniFrameWidth;
+		this->frameXOffset = 71;
 	}
 	else if (this->m_Action == Action::JUMPING) {
+		this->aniFrameWidth = 52;
+		this->aniFrameHeight = 64;
+		//this->frameXOffset = int(this->m_Action) * aniFrameWidth;
+		this->frameXOffset = 171;
+
 		// Update how long the jump has been going
 		this->m_jumpDuration += elapsedTime;
 
@@ -65,35 +74,61 @@ void Player::update(float elapsedTime, int** m_ArrayLevel) {
 			this->m_Action = Action::FALLING;
 		}
 	}
-	else if (this->m_Action == Action::CROUCHING) {
+	else if (this->m_Action == Action::ATTACKING) {
+		this->aniFrameWidth = 68;
+		this->aniFrameHeight = 66;
+		//this->frameXOffset = int(this->m_Action) * aniFrameWidth;
+		this->frameXOffset = 275;
+	}
+	else if (this->m_Action == Action::FALLING) {
+		/*this->aniFrameWidth = 0;
+		this->aniFrameHeight = 0;*/
 
+		this->m_Position.y += this->m_Gravity * elapsedTime;
+	}
+	else if (this->m_Action == Action::CROUCHING) {
+		/*this->aniFrameWidth = 0;
+		this->aniFrameHeight = 0;*/
 	}
 	
 	/***-----------------***\
 	|	HANDLE DIRECTIONS	|
 	\***-----------------***/
-
-	if (m_Direction == Direction::IDLE) {
-		// Look at the Nearest Enemy
-		
-		this->m_Texture.loadFromImage(m_animationSheet, sf::IntRect(0, int(this->m_Action) * 66,35,66));
-		this->m_Sprite.setTexture(m_Texture);
-	}
-	else if (this->m_Direction == Direction::RIGHT) {
-		this->m_Position.x += this->m_Speed * elapsedTime;
-
-		//Changes the the sprite to runnning right
-		this->m_Sprite = sf::Sprite(TextureHolder::GetTexture(
-			"graphics/RunRight__001.png"));
-	}
-	else if (this->m_Direction == Direction::LEFT) {
+	
+	if (this->m_Direction == Direction::LEFT) {
 		this->m_Position.x -= this->m_Speed * elapsedTime;
 
 		//Changes the the sprite to running left
 		this->m_Sprite = sf::Sprite(TextureHolder::GetTexture(
 			"graphics/RunLeft__001.png"));
 	}
+	else if (this->m_Direction == Direction::RIGHT) {
+		this->m_Position.x += this->m_Speed * elapsedTime;
+		
+		this->frameXOffset += this->aniFrameWidth;
 
+		//Changes the the sprite to runnning right
+		this->m_Sprite = sf::Sprite(TextureHolder::GetTexture(
+			"graphics/RunRight__001.png"));
+	}
+	else if (m_Direction == Direction::IDLE) {
+		// Look at the Nearest Enemy
+
+		this->frameXOffset += this->aniFrameWidth;
+
+		// Set the Animation Sprite
+		if (this->m_timeSinceLastFrame > 0.167f) {
+			this->m_Texture.loadFromImage(
+				m_animationSheet, 
+				sf::IntRect(
+					this->frameXOffset, 
+					this->animationCounter * this->aniFrameHeight, 
+					this->aniFrameWidth, 
+					this->aniFrameHeight));
+			this->m_Sprite.setTexture(m_Texture);
+			this->m_timeSinceLastFrame = 0.0f;
+		}
+	}
 	else if (this->m_Action == Action::FALLING) {
 		// Set Player Sprite to Falling
 		this->m_Sprite = sf::Sprite(TextureHolder::GetTexture(
@@ -150,20 +185,16 @@ void Player::handleInput() {
 
 	//  Moving Left
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
-		//this->m_Action = Action::WALKING;
+		//this->m_Action = Action::RUNNING;
 		this->m_Direction = Direction::LEFT;
 	}
 	//  Moving Right
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
-		//this->m_Action = Action::WALKING;
+		//this->m_Action = Action::RUNNING;
 		this->m_Direction = Direction::RIGHT;
 	}
 	
 	// If nothing is pressed
-	/*if (!sf::Keyboard::isKeyPressed(sf::Keyboard::A)
-		&& !sf::Keyboard::isKeyPressed(sf::Keyboard::D)
-		&& this->m_Action != Action::JUMPING
-		&& this->m_Action != Action::FALLING) {*/
 	else {
 		//this->m_Action = Action::IDLE;
 		this->m_Direction = Direction::IDLE;
