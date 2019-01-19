@@ -198,6 +198,7 @@
     <Image Include="graphics\Jump_DOWN_000.png" />
     <Image Include="graphics\MenuBackground.png" />
     <Image Include="graphics\PlayerAnimationSheet.png" />
+    <Image Include="graphics\PlayerAnimationSheet_02.png" />
     <Image Include="graphics\RunLeft__001.png" />
     <Image Include="graphics\RunRight__001.png" />
     <Image Include="graphics\Run__002.png" />
@@ -225,6 +226,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
+    <None Include="graphics\Enemy001.xcf" />
     <None Include="shaders\rippleShader.frag" />
     <None Include="shaders\vertShader.vert" />
     <None Include="tutorials\tut_doublejumping.tutorial" />

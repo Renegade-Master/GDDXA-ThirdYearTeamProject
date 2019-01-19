@@ -255,6 +255,9 @@
     <Image Include="graphics\RunRight__001.png">
       <Filter>Resource Files\graphics</Filter>
     </Image>
+    <Image Include="graphics\PlayerAnimationSheet_02.png">
+      <Filter>Resource Files\graphics</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Text Include="levels\level1.txt">
@@ -324,6 +327,9 @@
     </None>
     <None Include="tutorials\tut_switch.tutorial">
       <Filter>Resource Files\tutorials</Filter>
+    </None>
+    <None Include="graphics\Enemy001.xcf">
+      <Filter>Resource Files\graphics</Filter>
     </None>
   </ItemGroup>
 </Project>

@@ -10,8 +10,8 @@
 *							L	Width: 35	Height: 66	XOffset: 0
 *							R	Width: 35	Height: 66	XOffset: 35
 *						Run
-*							L	Width: 50	Height: 66	XOffset: 71
-*							R	Width: 50	Height: 66	XOffset: 121
+*							L	Width: 50	Height: 69	XOffset: 71
+*							R	Width: 50	Height: 69	XOffset: 121
 *						Jump
 *							L	Width: 52	Height: 64	XOffset: 171
 *							R	Width: 52	Height: 64	XOffset: 223
@@ -29,13 +29,13 @@
 Player::Player() {
 	this->maxJumps = 2;
 
-	this->m_animationSheet.loadFromFile("graphics\\PlayerAnimationSheet.png");
+	this->m_animationSheet.loadFromFile("graphics\\PlayerAnimationSheet_02.png");
 	this->m_maxAnimationFrames = 10;
 }
 
 void Player::update(float elapsedTime, int** m_ArrayLevel) {
 	// Set Sprite Animation Frame
-	if (this->frameYOffset > m_maxAnimationFrames) {
+	if (this->frameYOffset >= this->m_maxAnimationFrames) {
 		this->frameYOffset = 0;
 	}
 
@@ -52,7 +52,7 @@ void Player::update(float elapsedTime, int** m_ArrayLevel) {
 	}
 	else if (this->m_Action == Action::RUNNING) {
 		this->frameWidth = 50;
-		this->frameHeight = 66;
+		this->frameHeight = 69;
 		this->frameXOffset = 71;
 	}
 	else if (this->m_Action == Action::JUMPING) {
@@ -97,6 +97,7 @@ void Player::update(float elapsedTime, int** m_ArrayLevel) {
 		//Changes the the sprite to running left
 		/*this->m_Sprite = sf::Sprite(TextureHolder::GetTexture(
 			"graphics/RunLeft__001.png"));*/
+		
 		// Set the Animation Sprite
 		if (this->m_timeSinceLastFrame > frameSwitchTime) {
 			this->m_Texture.loadFromImage(
@@ -113,21 +114,22 @@ void Player::update(float elapsedTime, int** m_ArrayLevel) {
 	else if (this->m_Direction == Direction::RIGHT) {
 		this->m_Position.x += this->m_Speed * elapsedTime;
 		
-		this->frameXOffset += this->frameWidth;
+		//this->frameXOffset += this->frameWidth;
 
 		//Changes the the sprite to runnning right
 		/*this->m_Sprite = sf::Sprite(TextureHolder::GetTexture(
 			"graphics/RunRight__001.png"));*/
+		
 		// Set the Animation Sprite
 		if (this->m_timeSinceLastFrame > frameSwitchTime) {
 			this->m_Texture.loadFromImage(
 				m_animationSheet,
 				sf::IntRect(
-					this->frameXOffset,
+					this->frameXOffset + this->frameWidth,
 					this->frameYOffset * this->frameHeight,
 					this->frameWidth,
 					this->frameHeight));
-			this->m_Sprite.setTexture(m_Texture);
+			this->m_Sprite.setTexture(this->m_Texture);
 			this->m_timeSinceLastFrame = 0.0f;
 		}
 	}
