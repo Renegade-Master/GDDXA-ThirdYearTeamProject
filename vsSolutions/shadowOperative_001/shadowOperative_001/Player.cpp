@@ -35,8 +35,8 @@ Player::Player() {
 
 void Player::update(float elapsedTime, int** m_ArrayLevel) {
 	// Set Sprite Animation Frame
-	if (this->m_animationFrame > m_maxAnimationFrames) {
-		this->m_animationFrame = 0;
+	if (this->frameYOffset > m_maxAnimationFrames) {
+		this->frameYOffset = 0;
 	}
 
 	this->m_timeSinceLastFrame += elapsedTime;
@@ -46,21 +46,18 @@ void Player::update(float elapsedTime, int** m_ArrayLevel) {
 	\***-------------***/
 
 	if (this->m_Action == Action::IDLE) {
-		this->aniFrameWidth = 35;
-		this->aniFrameHeight = 66;
-		//this->frameXOffset = int(this->m_Action) * aniFrameWidth;
+		this->frameWidth = 35;
+		this->frameHeight = 66;
 		this->frameXOffset = 0;
 	}
 	else if (this->m_Action == Action::RUNNING) {
-		this->aniFrameWidth = 50;
-		this->aniFrameHeight = 66;
-		//this->frameXOffset = int(this->m_Action) * aniFrameWidth;
+		this->frameWidth = 50;
+		this->frameHeight = 66;
 		this->frameXOffset = 71;
 	}
 	else if (this->m_Action == Action::JUMPING) {
-		this->aniFrameWidth = 52;
-		this->aniFrameHeight = 64;
-		//this->frameXOffset = int(this->m_Action) * aniFrameWidth;
+		this->frameWidth = 52;
+		this->frameHeight = 64;
 		this->frameXOffset = 171;
 
 		// Update how long the jump has been going
@@ -75,20 +72,19 @@ void Player::update(float elapsedTime, int** m_ArrayLevel) {
 		}
 	}
 	else if (this->m_Action == Action::ATTACKING) {
-		this->aniFrameWidth = 68;
-		this->aniFrameHeight = 66;
-		//this->frameXOffset = int(this->m_Action) * aniFrameWidth;
+		this->frameWidth = 68;
+		this->frameHeight = 66;
 		this->frameXOffset = 275;
 	}
 	else if (this->m_Action == Action::FALLING) {
-		/*this->aniFrameWidth = 0;
-		this->aniFrameHeight = 0;*/
+		/*this->frameWidth = 0;
+		this->frameHeight = 0;*/
 
 		this->m_Position.y += this->m_Gravity * elapsedTime;
 	}
 	else if (this->m_Action == Action::CROUCHING) {
-		/*this->aniFrameWidth = 0;
-		this->aniFrameHeight = 0;*/
+		/*this->frameWidth = 0;
+		this->frameHeight = 0;*/
 	}
 	
 	/***-----------------***\
@@ -99,32 +95,56 @@ void Player::update(float elapsedTime, int** m_ArrayLevel) {
 		this->m_Position.x -= this->m_Speed * elapsedTime;
 
 		//Changes the the sprite to running left
-		this->m_Sprite = sf::Sprite(TextureHolder::GetTexture(
-			"graphics/RunLeft__001.png"));
+		/*this->m_Sprite = sf::Sprite(TextureHolder::GetTexture(
+			"graphics/RunLeft__001.png"));*/
+		// Set the Animation Sprite
+		if (this->m_timeSinceLastFrame > frameSwitchTime) {
+			this->m_Texture.loadFromImage(
+				m_animationSheet,
+				sf::IntRect(
+					this->frameXOffset,
+					this->frameYOffset * this->frameHeight,
+					this->frameWidth,
+					this->frameHeight));
+			this->m_Sprite.setTexture(m_Texture);
+			this->m_timeSinceLastFrame = 0.0f;
+		}
 	}
 	else if (this->m_Direction == Direction::RIGHT) {
 		this->m_Position.x += this->m_Speed * elapsedTime;
 		
-		this->frameXOffset += this->aniFrameWidth;
+		this->frameXOffset += this->frameWidth;
 
 		//Changes the the sprite to runnning right
-		this->m_Sprite = sf::Sprite(TextureHolder::GetTexture(
-			"graphics/RunRight__001.png"));
+		/*this->m_Sprite = sf::Sprite(TextureHolder::GetTexture(
+			"graphics/RunRight__001.png"));*/
+		// Set the Animation Sprite
+		if (this->m_timeSinceLastFrame > frameSwitchTime) {
+			this->m_Texture.loadFromImage(
+				m_animationSheet,
+				sf::IntRect(
+					this->frameXOffset,
+					this->frameYOffset * this->frameHeight,
+					this->frameWidth,
+					this->frameHeight));
+			this->m_Sprite.setTexture(m_Texture);
+			this->m_timeSinceLastFrame = 0.0f;
+		}
 	}
 	else if (m_Direction == Direction::IDLE) {
 		// Look at the Nearest Enemy
 
-		this->frameXOffset += this->aniFrameWidth;
+		//this->frameXOffset += this->frameWidth;
 
 		// Set the Animation Sprite
-		if (this->m_timeSinceLastFrame > 0.167f) {
+		if (this->m_timeSinceLastFrame > frameSwitchTime) {
 			this->m_Texture.loadFromImage(
 				m_animationSheet, 
 				sf::IntRect(
 					this->frameXOffset, 
-					this->animationCounter * this->aniFrameHeight, 
-					this->aniFrameWidth, 
-					this->aniFrameHeight));
+					this->frameYOffset * this->frameHeight, 
+					this->frameWidth, 
+					this->frameHeight));
 			this->m_Sprite.setTexture(m_Texture);
 			this->m_timeSinceLastFrame = 0.0f;
 		}
@@ -134,6 +154,8 @@ void Player::update(float elapsedTime, int** m_ArrayLevel) {
 		this->m_Sprite = sf::Sprite(TextureHolder::GetTexture(
 			"graphics/Glide_000.png"));
 	}
+	
+	this->frameYOffset++;
 
 	/***-------------***\
 	|	RESIZE HITBOX	|

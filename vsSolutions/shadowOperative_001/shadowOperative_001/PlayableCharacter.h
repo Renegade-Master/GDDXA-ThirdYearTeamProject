@@ -50,13 +50,13 @@ public:
 
 protected:
 	// Sprite Animation Variables
-	int aniFrameWidth;
-	int aniFrameHeight;
+	int frameWidth;
+	int frameHeight;
 	int frameXOffset;
-	int m_animationFrame;
-	int m_animationType;
+	int frameYOffset;
 	int m_maxAnimationFrames;
 	float m_timeSinceLastFrame;
+	float frameSwitchTime = 0.167f;
 
 	sf::Image m_animationSheet;
 	sf::Sprite m_Sprite;
@@ -97,6 +97,5 @@ protected:
 
 	// A texture
 	sf::Texture m_Texture;
-	int animationCounter = 0;
 };
 #endif // !PLAYABLECHARACTER_H
