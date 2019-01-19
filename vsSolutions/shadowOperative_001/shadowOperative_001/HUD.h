@@ -11,7 +11,7 @@
 #define HUD_H
 
 #include <SFML/Graphics.hpp>
-
+//New For fix
 class Hud {
 private:
 	sf::Font m_Font;
