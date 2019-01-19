@@ -26,8 +26,16 @@ public:
 
 	bool isShooting();
 	void playerShot(bool shot);
+
+	void chargeGun(float dtAsSeconds);
+	float getChargeLevel();
+	float getShotCost();
 private:
 	bool shooting;
 	int detectionLevel;
+	float gunChargeLevel;
+	float gunChargeRate = 2.0f;
+	float maxGunChargeLevel = 100.0f;
+	float shotCost = 10.0f;
 };
 #endif // !PLAYER_H

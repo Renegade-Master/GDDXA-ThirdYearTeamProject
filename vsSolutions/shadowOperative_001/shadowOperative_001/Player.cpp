@@ -26,6 +26,9 @@ Player::Player() {
 
 	m_JumpDuration = 2;
 	detectionLevel = 3;
+
+	//gun
+	gunChargeLevel = maxGunChargeLevel;
 }
 int Player::getDetectLevel()
 {
@@ -97,7 +100,8 @@ void Player::update(float elapsedTime, int** m_ArrayLevel) {
 	m_SpriteRunningRight.setPosition(m_Position);
 	m_SpriteRunningLeft.setPosition(m_Position);
 	m_SpriteFalling.setPosition(m_Position);
-
+	//charge weapon
+	chargeGun(elapsedTime);
 }
 
 // A virtual function
@@ -214,5 +218,30 @@ bool Player::isShooting()
 }
 void Player::playerShot(bool shot)
 {
+	gunChargeLevel -= shotCost;
 	shooting = false;
+}
+void Player::chargeGun(float dtAsSeconds)
+{
+	if (!shooting)
+	{
+		if (gunChargeLevel + gunChargeRate * dtAsSeconds<= maxGunChargeLevel)
+		{
+			std::cout << "\n gunChargeLevel:" << gunChargeLevel << " += gunChargeRate * dtAsSeconds = " 
+				<< gunChargeLevel + gunChargeRate * dtAsSeconds;
+			gunChargeLevel += gunChargeRate * dtAsSeconds;
+		}
+		else
+		{
+			gunChargeLevel = maxGunChargeLevel;
+		}
+	}
+}
+float Player::getChargeLevel()
+{
+	return gunChargeLevel;
+}
+float Player::getShotCost()
+{
+	return shotCost;
 }

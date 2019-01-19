@@ -46,8 +46,10 @@ void Engine::update(float dtAsSeconds) {
 
 
 		//Handle-Update bullets
-		if (m_GameTimeTotal.asMilliseconds()
-			- m_SinceLastShot.asMilliseconds() > 10000 / 2)
+		std::cout << "\nGun Charge:" << m_Player.getChargeLevel();
+		if ((m_GameTimeTotal.asMilliseconds()
+			- m_SinceLastShot.asMilliseconds() > 100)&& 
+			(m_Player.getChargeLevel()>m_Player.getShotCost()))
 		{
 			std::cout << "\nvalid shooting";
 			if (m_Player.isShooting())
@@ -72,7 +74,7 @@ void Engine::update(float dtAsSeconds) {
 		{
 			if (bullets[i].isInFlight())
 			{
-				std::cout << "\nupdating bullets " <<i;
+				//std::cout << "\nupdating bullets " <<i;
 				bullets[i].update(dtAsSeconds);
 				int bulletX = ((int)bullets[i].getCenter().x / TILE_SIZE);
 				int bulletY = ((int)bullets[i].getCenter().y / TILE_SIZE);
@@ -93,12 +95,12 @@ void Engine::update(float dtAsSeconds) {
 					bulletY = m_LM.getLevelSize().y;
 				}
 
-				std::cout << "\nbulletX:" << bulletX;
-				std::cout << "\nbulletY:" << bulletY;
+				/*std::cout << "\nbulletX:" << bulletX;
+				std::cout << "\nbulletY:" << bulletY;*/
 				if ((m_ArrayLevel[bulletY][bulletX] == 1) || (m_ArrayLevel[bulletY][bulletX] == 2) ||
 					(m_ArrayLevel[bulletY][bulletX] == 3) || (m_ArrayLevel[bulletY][bulletX] == 5))
 				{
-					std::cout << "\nBullet hit wall";
+					//std::cout << "\nBullet hit wall";
 					bullets[i].stop();
 				}
 			}
