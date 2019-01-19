@@ -56,7 +56,17 @@ void Engine::draw() {
 				m_Window.draw((*it)->getDetectMeter());
 			}
 		}
-
+		//Draw the bullets
+		for (int i = 0;i < 5; i++)
+		{
+			if (bullets[i].isInFlight())
+			{
+				std::cout << "\nDrawing bullets" << i;
+				m_Window.draw(bullets[i].getShape());
+				m_Window.draw(bullets[i].getSprite());
+			}
+		}
+		
 		// Draw the particle system
 		if (m_PS.running()) {
 			m_Window.draw(m_PS);
@@ -69,7 +79,7 @@ void Engine::draw() {
 		//m_Window.draw(m_Hud.getTime());
 		m_Window.draw(m_Hud.getGunCharge());
 
-
+		
 		m_Window.setView(m_BGMiniMap);
 		m_Window.draw(m_BackgroundSprite);
 		m_Window.setView(m_MiniMap);
@@ -81,6 +91,7 @@ void Engine::draw() {
 			m_Window.draw((*iter)->getSprite());
 			m_Window.draw((*iter)->getCone());
 		}
+		
 	}
 	else if (GameState == State::PAUSED) {
 		m_Window.draw(m_Hud.getMessage());

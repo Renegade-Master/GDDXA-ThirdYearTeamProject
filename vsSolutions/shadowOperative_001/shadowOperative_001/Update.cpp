@@ -38,13 +38,42 @@ void Engine::update(float dtAsSeconds) {
 	}
 	else if (GameState == State::PLAYING) {
 		if (m_NewLevelRequired) {
-			
 			// Load a Level
 			loadLevel();
 		}
-
 		// Update Player
 		m_Player.update(dtAsSeconds, m_ArrayLevel);
+
+
+		//update bullets
+		if (m_GameTimeTotal.asMilliseconds()
+			- m_SinceLastShot.asMilliseconds() > 10000 / 2)
+		{
+			std::cout << "\nvalid shooting";
+			if (m_Player.isShooting())
+			{
+				bullets[currentBullet].shoot(
+					m_Player.getCenter().x, m_Player.getCenter().y,
+					m_Player.getCenter().x + 10, m_Player.getCenter().y + 0.0001);
+				/*std::cout << "\nm_Player.getCenter().x"<< m_Player.getCenter().x<<
+					"\nm_Player.getCenter().y"<< m_Player.getCenter().y << 
+					"\nm_Player.getCenter().x + 10 " << m_Player.getCenter().x+10 <<
+					"\nm_Player.getCenter().y" << m_Player.getCenter().y +0.0001;*/
+				currentBullet++;
+				m_Player.playerShot(false);
+				m_SinceLastShot = m_GameTimeTotal;
+			}
+		}
+		for (int i = 0;i < 5;i++)
+		{
+			if (bullets[i].isInFlight())
+			{
+				//std::cout << "\nupdating bullets " <<i;
+				bullets[i].update(dtAsSeconds);
+			}
+		}
+
+
 		
 		//update Enemy
 		for (std::list<Enemy*>::iterator it = m_EnemyList.begin(); it != m_EnemyList.end(); it++)

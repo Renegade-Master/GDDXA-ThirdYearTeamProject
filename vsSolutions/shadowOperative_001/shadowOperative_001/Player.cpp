@@ -192,7 +192,27 @@ bool Player::handleInput() {
 				//Changes the the sprite to idle position
 				//CharacterAnimation = State::IDLE;
 			}
+
+			// Shooting
+			if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+			{ 
+				//shoot
+				shooting = true;
+			}
+			else
+			{
+				//dont shoot
+				shooting = false;
+			}
 			break;
 	}	
 	return m_JustJumped;
+}
+bool Player::isShooting()
+{
+	return shooting;
+}
+void Player::playerShot(bool shot)
+{
+	shooting = false;
 }

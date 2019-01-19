@@ -23,7 +23,11 @@ public:
 	virtual bool handleInput();
 
 	int getDetectLevel();
+
+	bool isShooting();
+	void playerShot(bool shot);
 private:
+	bool shooting;
 	int detectionLevel;
 };
 #endif // !PLAYER_H

@@ -25,6 +25,7 @@
 #include "TextureHolder.h"
 #include "PLayer.h"
 #include "TutorialManager.h"
+#include "Bullet.h"
 
 class Engine {
 public:
@@ -34,6 +35,8 @@ public:
 	// Run will call all the private functions
 	void run();
 private:
+	
+
 	// Get the screen resolution and create an SFML window and View
 	sf::Vector2f resolution;
 
@@ -112,6 +115,8 @@ private:
 	float m_TimeRemaining;
 	sf::Time m_GameTimeTotal;
 
+	//Since last shot
+	sf::Time m_SinceLastShot;
 	// Is it time for a new/first level?
 	bool m_NewLevelRequired = true;
 
@@ -159,5 +164,9 @@ private:
 	std::list<GUI::Button*> m_pausedButtons;
 	//	Settings
 	std::list<GUI::Button*> m_settingsButtons;
+
+	// Bullets
+	Bullet bullets[5];
+	int currentBullet = 0;
 };
 #endif // !ENGINE_H
