@@ -10,6 +10,8 @@
 #ifndef PLAYABLECHARACTER_H
 #define PLAYABLECHARACTER_H
 
+#include <iostream>
+
 #include <SFML/Graphics.hpp>
 
 class PlayableCharacter {
