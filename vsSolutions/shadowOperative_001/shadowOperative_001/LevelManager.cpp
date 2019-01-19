@@ -122,6 +122,18 @@ int** LevelManager::nextLevel(sf::VertexArray& rVaLevel) {
 			case 'j':
 				arrayLevel[y][x] = 'j';
 				break;
+			case 'F':
+				arrayLevel[y][x] = 'F';
+				break;
+			case 'G':
+				arrayLevel[y][x] = 'G';
+				break;
+			case 'H':
+				arrayLevel[y][x] = 'H';
+				break;
+			case 'u':
+				arrayLevel[y][x] = 'u';
+				break;
 			}
 		}
 
@@ -172,6 +184,18 @@ int** LevelManager::nextLevel(sf::VertexArray& rVaLevel) {
 				break;
 			case 'j':
 				verticalOffset = 14;
+				break;
+			case 'u':
+				verticalOffset = 15;
+				break;
+			case 'F':
+				verticalOffset = 16;
+				break;
+			case 'G':
+				verticalOffset = 17;
+				break;
+			case 'H':
+				verticalOffset = 18;
 				break;
 			case 'E':
 				verticalOffset = 0;  // We want a transparent tile here				
