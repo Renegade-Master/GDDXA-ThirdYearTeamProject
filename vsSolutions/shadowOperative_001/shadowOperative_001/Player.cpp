@@ -5,21 +5,45 @@
 *	@creationDate	2018/11/01	YYYY/MM/DD
 *	@description	...
 *
-*	@notes	1.		Exchange m_rightPressed for direction::right
+*	@notes	1.		Exchange m_rightPressed for direction::right -- DONE
+*			2.		Measurements for Player Sprite
+*						Idle
+*							L	Width: 35	Height: 66	XOffset: 0
+*							R	Width: 35	Height: 66	XOffset: 35
+*						Run
+*							L	Width: 50	Height: 66	XOffset: 71
+*							R	Width: 50	Height: 66	XOffset: 121
+*						Jump
+*							L	Width: 52	Height: 64	XOffset: 171
+*							R	Width: 52	Height: 64	XOffset: 223
+*						Attack
+*							L	Width: 68	Height: 66	XOffset: 275
+*							R	Width: 68	Height: 66	XOffset: 343
 */
 
 #include "Player.h"
 #include "TextureHolder.h"
 
+/**
+*	Default constructor.
+*/
 Player::Player() {
-	int	maxJumps = 2;
+	this->maxJumps = 2;
+
+	this->m_animationSheet.loadFromFile("graphics\\PlayerAnimationSheet.png");
+	this->m_maxAnimationFrames = 10;
 }
-int Player::getDetectLevel()
-{
-	return detectionLevel;
-}
+
 void Player::update(float elapsedTime, int** m_ArrayLevel) {
-	// Handle Actions
+	// Set Sprite Animation Frame
+	if (this->m_animationFrame > m_maxAnimationFrames) {
+		this->m_animationFrame = 0;
+	}
+	
+	/***-------------***\
+	|	HANDLE ACTIONS	|
+	\***-------------***/
+
 	if (this->m_Action == Action::IDLE) {
 
 	}
@@ -45,13 +69,15 @@ void Player::update(float elapsedTime, int** m_ArrayLevel) {
 
 	}
 	
-	// Handle Direction
+	/***-----------------***\
+	|	HANDLE DIRECTIONS	|
+	\***-----------------***/
+
 	if (m_Direction == Direction::IDLE) {
 		// Look at the Nearest Enemy
 		
-		// Set Sprite to IDLE
-		m_Sprite = sf::Sprite(TextureHolder::GetTexture(
-			"graphics/idle__001.png"));
+		this->m_Texture.loadFromImage(m_animationSheet, sf::IntRect(0, int(this->m_Action) * 66,35,66));
+		this->m_Sprite.setTexture(m_Texture);
 	}
 	else if (this->m_Direction == Direction::RIGHT) {
 		this->m_Position.x += this->m_Speed * elapsedTime;
@@ -73,6 +99,10 @@ void Player::update(float elapsedTime, int** m_ArrayLevel) {
 		this->m_Sprite = sf::Sprite(TextureHolder::GetTexture(
 			"graphics/Glide_000.png"));
 	}
+
+	/***-------------***\
+	|	RESIZE HITBOX	|
+	\***-------------***/
 
 	// Update the rect for all body parts
 	sf::FloatRect r = this->getPosition();
@@ -137,7 +167,10 @@ void Player::handleInput() {
 	else {
 		//this->m_Action = Action::IDLE;
 		this->m_Direction = Direction::IDLE;
-	}
+	}	
+}
 
-	
+int Player::getDetectLevel()
+{
+	return detectionLevel;
 }

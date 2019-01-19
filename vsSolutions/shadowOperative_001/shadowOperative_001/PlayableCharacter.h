@@ -10,13 +10,13 @@
 #ifndef PLAYABLECHARACTER_H
 #define PLAYABLECHARACTER_H
 
+#include <fstream>
 #include <iostream>
 
 #include <SFML/Graphics.hpp>
 
 class PlayableCharacter {
 public:
-
 	// PlayableCharacter Direction Action
 	enum class Direction { IDLE, RIGHT, LEFT };
 	Direction m_Direction = Direction::IDLE;
@@ -50,6 +50,12 @@ public:
 
 protected:
 	// A Sprite Animations
+	int m_animationFrame;
+	int m_animationType;
+	int m_maxAnimationFrames;
+	float m_timeSinceLastFrame;
+
+	sf::Image m_animationSheet;
 	sf::Sprite m_Sprite;
 	sf::Sprite m_SpriteRunningRight;
 	sf::Sprite m_SpriteRunningLeft;
@@ -88,5 +94,6 @@ protected:
 
 	// A texture
 	sf::Texture m_Texture;
+	int animationCounter = 0;
 };
 #endif // !PLAYABLECHARACTER_H
