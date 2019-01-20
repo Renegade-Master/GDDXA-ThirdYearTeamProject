@@ -60,7 +60,9 @@ bool Engine::detectCollisions(PlayableCharacter& character) {
 			if ((m_ArrayLevel[y][x] == 1) || (m_ArrayLevel[y][x] == 2) ||
 				(m_ArrayLevel[y][x] == 3) || (m_ArrayLevel[y][x] == 5) ||
 				(m_ArrayLevel[y][x] == 6) || (m_ArrayLevel[y][x] == 7) ||
-				(m_ArrayLevel[y][x] == 8)) {
+				(m_ArrayLevel[y][x] == 8) || (m_ArrayLevel[y][x] == 'j')||
+				(m_ArrayLevel[y][x] == 'k') || (m_ArrayLevel[y][x] == 'u') ||
+				(m_ArrayLevel[y][x] == 9)) {
 
 				if (character.getRight().intersects(block))	{
 					character.stopRight(block.left);
@@ -71,7 +73,7 @@ bool Engine::detectCollisions(PlayableCharacter& character) {
 				
 				if (character.getFeet().intersects(block)) {
 					character.stopFalling(block.top);
-					std::cout << "We should have stopped now" << std::endl;
+					//std::cout << "We should have stopped now" << std::endl;
 				}
 				else if (character.getHead().intersects(block))	{
 					character.stopJump();
