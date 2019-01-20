@@ -11,6 +11,7 @@
 #define PLAYER_H
 
 #include "PlayableCharacter.h"
+#include "laser.h"
 
 class Player : public PlayableCharacter {
 public:
@@ -23,7 +24,29 @@ public:
 	virtual void PlayableCharacter::handleInput();
 
 	int getDetectLevel();
+
+	bool isShooting();
+	void playerShot(bool shot);
+
+	void chargeGun(float dtAsSeconds);
+	float getChargeLevel();
+	float getShotCost();
+	float getMaxCharge();
+	//aiming
+	void toggleTargeting();
+	bool isTargeting();
+	void updateTargeting(sf::Vector2f mousePos);
+	sf::ConvexShape getlaser();
 private:
+	bool shooting;
 	int detectionLevel;
+	float gunChargeLevel = 100.0f;
+	float gunChargeRate = 2.0f;
+	float maxGunChargeLevel = 100.0f;
+	float shotCost = 10.0f;
+
+	//aiming
+	bool targeting = false;
+	laser targetingLaser;
 };
 #endif // !PLAYER_H

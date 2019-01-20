@@ -12,8 +12,8 @@
 
 #include <fstream>
 #include <iostream>
-
 #include <SFML/Graphics.hpp>
+#include "laser.h"
 
 class PlayableCharacter {
 public:
@@ -101,5 +101,8 @@ protected:
 
 	// A texture
 	sf::Texture m_Texture;
+
+	//laserTargeting
+	laser targetingLaser;
 };
 #endif // !PLAYABLECHARACTER_H

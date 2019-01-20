@@ -44,10 +44,97 @@ void Engine::update(float dtAsSeconds) {
 		// Update Player
 		m_Player.update(dtAsSeconds, m_ArrayLevel);
 		
+		if (m_Player.isTargeting())
+		{
+			std::cout << "\nUpdating targeting";
+			m_Player.updateTargeting(mouseWorldPosition);
+		}
+
+		//Handle-Update bullets
+		//std::cout << "\nGun Charge:" << m_Player.getChargeLevel();
+		if ((m_GameTimeTotal.asMilliseconds()
+			- m_SinceLastShot.asMilliseconds() > 500) &&
+			(m_Player.getChargeLevel() > m_Player.getShotCost()))
+		{
+			//std::cout << "\nvalid shooting";
+			if (m_Player.isShooting())
+			{
+				bullets[currentBullet].shoot(
+					m_Player.getCenter().x + 25, m_Player.getCenter().y - 25,
+					mouseWorldPosition.x, mouseWorldPosition.y);
+					//m_Player.getCenter().x + 25 + 10, m_Player.getCenter().y - 24.9);
+				/*std::cout << "\nm_Player.getCenter().x"<< m_Player.getCenter().x<<
+					"\nm_Player.getCenter().y"<< m_Player.getCenter().y <<
+					"\nm_Player.getCenter().x + 10 " << m_Player.getCenter().x+10 <<
+					"\nm_Player.getCenter().y" << m_Player.getCenter().y +0.0001;*/
+				bullets[currentBullet].setShotPower(11);
+				currentBullet++;
+				m_Player.playerShot(false);
+				m_SinceLastShot = m_GameTimeTotal;
+				if (currentBullet > 4)
+				{
+					currentBullet = 0;
+				}
+			}
+		}
+		m_Hud.setGunCharge(m_Player.getChargeLevel());
+		for (int i = 0;i < 5;i++)
+		{
+			if (bullets[i].isInFlight())
+			{
+				//std::cout << "\nupdating bullets " <<i;
+				bullets[i].update(dtAsSeconds);
+				int bulletX = ((int)bullets[i].getCenter().x / TILE_SIZE);
+				int bulletY = ((int)bullets[i].getCenter().y / TILE_SIZE);
+				if (bulletX < 0)
+				{
+					bulletX = 0;
+				}
+				if (bulletX > m_LM.getLevelSize().x)
+				{
+					bulletX = m_LM.getLevelSize().x;
+				}
+				if (bulletY < 0)
+				{
+					bulletY = 0;
+				}
+				if (bulletY > m_LM.getLevelSize().y)
+				{
+					bulletY = m_LM.getLevelSize().y;
+				}
+
+				/*std::cout << "\nbulletX:" << bulletX;
+				std::cout << "\nbulletY:" << bulletY;*/
+				if ((m_ArrayLevel[bulletY][bulletX] == 1) || (m_ArrayLevel[bulletY][bulletX] == 2) ||
+					(m_ArrayLevel[bulletY][bulletX] == 3) || (m_ArrayLevel[bulletY][bulletX] == 5))
+				{
+					//std::cout << "\nBullet hit wall";
+					bullets[i].stop();
+				}
+			}
+		}
+
+		
 		//update Enemy
 		for (std::list<Enemy*>::iterator it = m_EnemyList.begin(); it != m_EnemyList.end(); it++)
 		{
 			(*it)->update(dtAsSeconds,m_ArrayLevel);
+			//check for bulletCollision
+			for (int i = 0;i < 5;i++)
+			{
+				if (bullets[i].isInFlight())
+				{
+					if (bullets[i].getSprite().getGlobalBounds().intersects
+						((*it)->getSprite().getGlobalBounds()))
+					{
+						std::cout << "\n Taking damage!!!!!!";
+						bullets[i].stop();
+						//(*it)->//LosesHealthDies
+						(*it)->takeDamage(bullets[i].getShotPower());
+						//(*it)->//is Enemy knoicked unconcious?
+					}
+				}
+			}
 			//check for player
 			if ((*it)->getCone().getLocalBounds().intersects(m_Player.getPosition()))
 			{
@@ -148,6 +235,13 @@ void Engine::update(float dtAsSeconds) {
 		if (m_PS.running()) {
 			m_PS.update(dtAsSeconds);
 		}
+
+		//update Muse positioning
+		mouseScreenPosition = sf::Mouse::getPosition();
+
+		// Convert mouse position to world coordinates of mainView
+		mouseWorldPosition = m_Window.mapPixelToCoords(
+			sf::Mouse::getPosition(), m_MainView);
 	}
 	else if (GameState == State::PAUSED) {
 		// Put Paused Screen Update code here

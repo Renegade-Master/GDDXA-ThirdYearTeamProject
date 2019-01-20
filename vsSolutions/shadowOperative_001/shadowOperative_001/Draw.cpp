@@ -49,6 +49,12 @@ void Engine::draw() {
 		// Draw Player
 		m_Window.draw(m_Player.getSprite());
 
+		//drawing targeting laser
+		if (m_Player.isTargeting()) {
+			m_Window.draw(m_Player.getlaser());
+		}
+
+		//Draw Enemies
 		if (!m_EnemyList.empty())
 		{
 			//std::cout << "\nNumber of enemies:" << m_LM.getNumOfEnemies();
@@ -57,6 +63,16 @@ void Engine::draw() {
 				//std::cout << "\nDrawing enemies";
 				m_Window.draw((*it)->getSprite());
 				m_Window.draw((*it)->getDetectMeter());
+			}
+		}
+		//Draw the bullets
+		for (int i = 0;i < 5; i++)
+		{
+			if (bullets[i].isInFlight())
+			{
+				//std::cout << "\nDrawing bullets" << i;
+				//m_Window.draw(bullets[i].getShape());
+				m_Window.draw(bullets[i].getSprite());
 			}
 		}
 
@@ -70,6 +86,7 @@ void Engine::draw() {
 		m_Window.setView(m_HudView);
 		m_Window.draw(m_Hud.getHidden());
 		//m_Window.draw(m_Hud.getTime());
+		m_Window.draw(m_Hud.getGunBackground());
 		m_Window.draw(m_Hud.getGunCharge());
 
 
