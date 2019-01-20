@@ -7,6 +7,7 @@
 */
 
 #include "Engine.h"
+#include "LevelManager.h"
 
 bool Engine::detectCollisions(PlayableCharacter& character) {
 	bool reachedGoal = false;
@@ -59,11 +60,12 @@ bool Engine::detectCollisions(PlayableCharacter& character) {
 
 			// Is character colliding with a regular block
 			if ((m_ArrayLevel[y][x] == 1) || (m_ArrayLevel[y][x] == 2) ||
-				(m_ArrayLevel[y][x] == 3) || (m_ArrayLevel[y][x] == 5) ||
+				(m_ArrayLevel[y][x] == 3) || (m_ArrayLevel[y][x] == 4) ||
+				(m_ArrayLevel[y][x] == 5) ||
 				(m_ArrayLevel[y][x] == 6) || (m_ArrayLevel[y][x] == 7) ||
 				(m_ArrayLevel[y][x] == 8) || (m_ArrayLevel[y][x] == 'j')||
 				(m_ArrayLevel[y][x] == 'k') || (m_ArrayLevel[y][x] == 'u') ||
-				(m_ArrayLevel[y][x] == 9)) {
+				(m_ArrayLevel[y][x] == 9) || (m_ArrayLevel[y][x] == door)) {
 
 				if (character.getRight().intersects(block))	{
 					character.stopRight(block.left);
@@ -92,6 +94,47 @@ bool Engine::detectCollisions(PlayableCharacter& character) {
 					character.m_Action = PlayableCharacter::Action::IDLE;
 				}
 			}
+
+			//This code will check if the player hits a switch and it will open doors.
+			if ((m_ArrayLevel[y][x] == 's'))
+			{
+				if (character.getRight().intersects(block)) {
+					door = 'open';
+					std::cout << "The switch has been used.";
+				}
+				else if (character.getLeft().intersects(block)) {
+					door = 'open';
+					std::cout << "The switch has been used.";
+				}
+				if (character.getFeet().intersects(block)) {
+					door = 'open';
+					std::cout << "The switch has been used.";
+				}
+				else if (character.getHead().intersects(block)) {
+					door = 'open';
+					std::cout << "The switch has been used.";
+				}
+			}
+				//This code will lock all the doors.
+				if ((m_ArrayLevel[y][x] == 'r'))
+				{
+					if (character.getRight().intersects(block)) {
+						door = 'd';
+						std::cout << "R has been hit";
+					}
+					else if (character.getLeft().intersects(block)) {
+						door = 'd';
+						std::cout << "R has been hit";
+					}
+					if (character.getFeet().intersects(block)) {
+						door = 'd';
+						std::cout << "R has been hit";
+					}
+					else if (character.getHead().intersects(block)) {
+						door = 'd';
+						std::cout << "R has been hit";
+					}
+				}		
 
 			/*
 			//// More collision detection here once we have learned about particle effects

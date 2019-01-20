@@ -27,10 +27,10 @@ public:
 	// Send a copy of the sprite to main
 	sf::Sprite getSprite();
 
-	// Make the item stand firm
+	/*// Make the item stand firm
 	void stopFalling(float position);
 	void stopRight(float position);
-	void stopLeft(float position);
+	void stopLeft(float position);*/
 
 	// Where is the center of the character
 	sf::Vector2f getCenter();
@@ -39,7 +39,7 @@ public:
 
 protected:
 	// A Sprite
-	sf::Sprite m_Sprite;
+	sf::Sprite m_DoorSprite;
 
 	// Where is the item
 	sf::Vector2f m_Position;
