@@ -77,7 +77,7 @@ void Engine::run() {
 	
 	while (m_Window.isOpen()) {
 		sf::Time dt = clock.restart();
-		// Update the total game time
+	   	// Update the total game time
 		m_GameTimeTotal += dt;
 		// Make a decimal fraction from the delta time
 		float dtAsSeconds = dt.asSeconds();
