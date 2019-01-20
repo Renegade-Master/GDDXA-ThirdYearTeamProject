@@ -11,6 +11,8 @@
 #define BULLET_H
 
 #include <SFML/Graphics.hpp>
+#include <iostream>
+#include "TextureHolder.h"
 
 class Bullet {
 private:
@@ -19,6 +21,7 @@ private:
 
 	// What each bullet looks like
 	sf::RectangleShape m_BulletShape;
+	sf::Sprite m_BulletSprite;
 
 	// Is this bullet currently whizzing through the air
 	bool m_InFlight = false;
@@ -57,10 +60,13 @@ public:
 	sf::FloatRect getPosition();
 
 	// Return the actual shape (for drawing)
-	sf::RectangleShape getShape();
+	sf::Sprite getSprite();
 
 	// Update the bullet each frame
 	void update(float elapsedTime);
+
+	//getX,Y
+	sf::Vector2f getCenter();
 };
 
 #endif // BULLET_H

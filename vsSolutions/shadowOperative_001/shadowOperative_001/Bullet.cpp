@@ -10,7 +10,12 @@
 
 // The constructor
 Bullet::Bullet() {
-	m_BulletShape.setSize(sf::Vector2f(2, 2));
+	//std::cout << "\nBullet initialised";
+	m_BulletSprite = sf::Sprite(TextureHolder::GetTexture(
+		"graphics/Objects/Bullet_000.png"));
+	m_BulletSprite.setPosition(this->m_Position);
+	//m_BulletShape.setSize(sf::Vector2f(10, 10));
+	m_InFlight = false;
 }
 
 void Bullet::shoot(float startX, float startY,
@@ -57,7 +62,8 @@ void Bullet::shoot(float startX, float startY,
 	m_Max.y = startY + range;
 
 	// Position the bullet ready to be drawn
-	m_BulletShape.setPosition(m_Position);
+	m_BulletSprite.setPosition(startX, startY);
+	m_BulletShape.setPosition(startX, startY);
 }
 
 void Bullet::stop() {
@@ -69,11 +75,11 @@ bool Bullet::isInFlight() {
 }
 
 sf::FloatRect Bullet::getPosition() {
-	return m_BulletShape.getGlobalBounds();
+	return m_BulletSprite.getGlobalBounds();
 }
 
-sf::RectangleShape Bullet::getShape() {
-	return m_BulletShape;
+sf::Sprite Bullet::getSprite() {
+	return m_BulletSprite;
 }
 
 void Bullet::update(float elapsedTime) {
@@ -82,6 +88,7 @@ void Bullet::update(float elapsedTime) {
 	m_Position.y += m_BulletDistance.y * elapsedTime;
 
 	// Move the bullet
+	m_BulletSprite.setPosition(m_Position);
 	m_BulletShape.setPosition(m_Position);
 
 	// Has the bullet gone out of range?
@@ -89,4 +96,8 @@ void Bullet::update(float elapsedTime) {
 		m_Position.y < m_Min.y || m_Position.y > m_Max.y) {
 		m_InFlight = false;
 	}
+}
+sf::Vector2f Bullet::getCenter()
+{
+	return m_Position;
 }

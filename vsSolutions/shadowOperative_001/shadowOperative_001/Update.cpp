@@ -43,6 +43,69 @@ void Engine::update(float dtAsSeconds) {
 
 		// Update Player
 		m_Player.update(dtAsSeconds, m_ArrayLevel);
+
+		//Handle-Update bullets
+		std::cout << "\nGun Charge:" << m_Player.getChargeLevel();
+		if ((m_GameTimeTotal.asMilliseconds()
+			- m_SinceLastShot.asMilliseconds() > 100) &&
+			(m_Player.getChargeLevel() > m_Player.getShotCost()))
+		{
+			std::cout << "\nvalid shooting";
+			if (m_Player.isShooting())
+			{
+				bullets[currentBullet].shoot(
+					m_Player.getCenter().x, m_Player.getCenter().y,
+					m_Player.getCenter().x + 10, m_Player.getCenter().y + 0.0001);
+				/*std::cout << "\nm_Player.getCenter().x"<< m_Player.getCenter().x<<
+					"\nm_Player.getCenter().y"<< m_Player.getCenter().y <<
+					"\nm_Player.getCenter().x + 10 " << m_Player.getCenter().x+10 <<
+					"\nm_Player.getCenter().y" << m_Player.getCenter().y +0.0001;*/
+				currentBullet++;
+				m_Player.playerShot(false);
+				m_SinceLastShot = m_GameTimeTotal;
+				if (currentBullet > 4)
+				{
+					currentBullet = 0;
+				}
+			}
+		}
+		m_Hud.setGunCharge(m_Player.getChargeLevel());
+		for (int i = 0;i < 5;i++)
+		{
+			if (bullets[i].isInFlight())
+			{
+				//std::cout << "\nupdating bullets " <<i;
+				bullets[i].update(dtAsSeconds);
+				int bulletX = ((int)bullets[i].getCenter().x / TILE_SIZE);
+				int bulletY = ((int)bullets[i].getCenter().y / TILE_SIZE);
+				if (bulletX < 0)
+				{
+					bulletX = 0;
+				}
+				if (bulletX > m_LM.getLevelSize().x)
+				{
+					bulletX = m_LM.getLevelSize().x;
+				}
+				if (bulletY < 0)
+				{
+					bulletY = 0;
+				}
+				if (bulletY > m_LM.getLevelSize().y)
+				{
+					bulletY = m_LM.getLevelSize().y;
+				}
+
+				/*std::cout << "\nbulletX:" << bulletX;
+				std::cout << "\nbulletY:" << bulletY;*/
+				if ((m_ArrayLevel[bulletY][bulletX] == 1) || (m_ArrayLevel[bulletY][bulletX] == 2) ||
+					(m_ArrayLevel[bulletY][bulletX] == 3) || (m_ArrayLevel[bulletY][bulletX] == 5))
+				{
+					//std::cout << "\nBullet hit wall";
+					bullets[i].stop();
+				}
+			}
+		}
+
 		
 		//update Enemy
 		for (std::list<Enemy*>::iterator it = m_EnemyList.begin(); it != m_EnemyList.end(); it++)
