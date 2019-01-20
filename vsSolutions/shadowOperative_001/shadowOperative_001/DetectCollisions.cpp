@@ -8,6 +8,7 @@
 
 #include "Engine.h"
 
+
 bool Engine::detectCollisions(PlayableCharacter& character) {
 	bool reachedGoal = false;
 	// Make a rect for all his parts
@@ -82,6 +83,15 @@ bool Engine::detectCollisions(PlayableCharacter& character) {
 			else if (!character.getFeet().intersects(block)
 				&& character.m_Action != PlayableCharacter::Action::JUMPING){
 				
+				if ((m_ArrayLevel[y][x] == 's'))
+				{
+					if (character.getRight().intersects(block)) {
+					   // door = 'd';
+					}
+					else if (character.getLeft().intersects(block)) {
+					    //door = 'd';
+					}
+				}
 				character.m_Action = PlayableCharacter::Action::FALLING;
 			}
 

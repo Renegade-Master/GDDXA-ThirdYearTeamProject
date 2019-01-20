@@ -110,6 +110,9 @@ int** LevelManager::nextLevel(sf::VertexArray& rVaLevel) {
 			case 'D':
 				arrayLevel[y][x] = 'D';
 				break;
+			case 'd':
+				arrayLevel[y][x] = 'D';
+				break;
 			case 'b':
 				arrayLevel[y][x] = 'b';
 				break;
@@ -172,6 +175,9 @@ int** LevelManager::nextLevel(sf::VertexArray& rVaLevel) {
 			switch(arrayLevel[y][x]) {
 			case 'D':
 				verticalOffset = 10;
+				break;
+			case 'd':
+				verticalOffset = 19;
 				break;
 			case 'b':
 				verticalOffset = 11;
