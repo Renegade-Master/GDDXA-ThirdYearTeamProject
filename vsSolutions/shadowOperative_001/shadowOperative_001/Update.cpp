@@ -43,11 +43,17 @@ void Engine::update(float dtAsSeconds) {
 
 		// Update Player
 		m_Player.update(dtAsSeconds, m_ArrayLevel);
+		
+		if (m_Player.isTargeting())
+		{
+			std::cout << "\nUpdating targeting";
+			m_Player.updateTargeting(mouseWorldPosition);
+		}
 
 		//Handle-Update bullets
 		//std::cout << "\nGun Charge:" << m_Player.getChargeLevel();
 		if ((m_GameTimeTotal.asMilliseconds()
-			- m_SinceLastShot.asMilliseconds() > 100) &&
+			- m_SinceLastShot.asMilliseconds() > 500) &&
 			(m_Player.getChargeLevel() > m_Player.getShotCost()))
 		{
 			//std::cout << "\nvalid shooting";
@@ -55,7 +61,8 @@ void Engine::update(float dtAsSeconds) {
 			{
 				bullets[currentBullet].shoot(
 					m_Player.getCenter().x + 25, m_Player.getCenter().y - 25,
-					m_Player.getCenter().x + 25 + 10, m_Player.getCenter().y - 24.9);
+					mouseWorldPosition.x, mouseWorldPosition.y);
+					//m_Player.getCenter().x + 25 + 10, m_Player.getCenter().y - 24.9);
 				/*std::cout << "\nm_Player.getCenter().x"<< m_Player.getCenter().x<<
 					"\nm_Player.getCenter().y"<< m_Player.getCenter().y <<
 					"\nm_Player.getCenter().x + 10 " << m_Player.getCenter().x+10 <<
@@ -153,7 +160,6 @@ void Engine::update(float dtAsSeconds) {
 					(*it)->reduceAwareness(m_GameTimeTotal);
 				}
 			}
-
 		}
 
 		// Detect collisions and see if characters have reached the goal tile
@@ -229,6 +235,13 @@ void Engine::update(float dtAsSeconds) {
 		if (m_PS.running()) {
 			m_PS.update(dtAsSeconds);
 		}
+
+		//update Muse positioning
+		mouseScreenPosition = sf::Mouse::getPosition();
+
+		// Convert mouse position to world coordinates of mainView
+		mouseWorldPosition = m_Window.mapPixelToCoords(
+			sf::Mouse::getPosition(), m_MainView);
 	}
 	else if (GameState == State::PAUSED) {
 		// Put Paused Screen Update code here

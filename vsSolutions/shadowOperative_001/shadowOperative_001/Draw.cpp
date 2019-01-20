@@ -49,6 +49,11 @@ void Engine::draw() {
 		// Draw Player
 		m_Window.draw(m_Player.getSprite());
 
+		//drawing targeting laser
+		if (m_Player.isTargeting()) {
+			m_Window.draw(m_Player.getlaser());
+		}
+
 		//Draw Enemies
 		if (!m_EnemyList.empty())
 		{
