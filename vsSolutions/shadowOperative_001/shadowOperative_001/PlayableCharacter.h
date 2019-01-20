@@ -22,8 +22,12 @@ public:
 	Direction m_Direction = Direction::IDLE;
 	
 	// PlayableCharacter Action State
-	enum class Action { IDLE, RUNNING, JUMPING, ATTACKING, FALLING, CROUCHING };
+	enum class Action { FALLING, JUMPING, RUNNING, CROUCHING, ATTACKING, IDLE };
 	Action m_Action = Action::IDLE;
+
+	// Variables to Store the last action
+	Direction m_LastDirection = Direction::IDLE;
+	Action m_LastAction = Action::IDLE;
 
 	// Where is the player
 	sf::FloatRect getPosition();
@@ -56,7 +60,7 @@ protected:
 	int frameYOffset;
 	int m_maxAnimationFrames;
 	float m_timeSinceLastFrame;
-	float frameSwitchTime = 0.250f;
+	float frameSwitchTime = 0.167f;
 
 	sf::Image m_animationSheet;
 	sf::Sprite m_Sprite;
@@ -73,6 +77,8 @@ protected:
 
 	// Where is the player
 	sf::Vector2f m_Position;
+	// Where was the Player
+	sf::Vector2f m_LastPosition;
 
 	// What is the gravity
 	float m_Gravity;

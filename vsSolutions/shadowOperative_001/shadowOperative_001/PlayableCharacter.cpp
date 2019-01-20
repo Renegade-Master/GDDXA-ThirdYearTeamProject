@@ -91,7 +91,6 @@ void PlayableCharacter::stopFalling(float position) {
 	this->m_jumpCounter = 0;
 	this->m_jumpDuration = 0.0f;
 	this->m_Action = Action::IDLE;
-	//this->m_Direction = Direction::IDLE;
 }
 
 /**

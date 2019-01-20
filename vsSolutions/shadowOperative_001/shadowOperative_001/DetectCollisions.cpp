@@ -47,6 +47,7 @@ bool Engine::detectCollisions(PlayableCharacter& character) {
 	sf::FloatRect level(0, 0, m_LM.getLevelSize().x * TILE_SIZE, m_LM.getLevelSize().y * TILE_SIZE);
 	if (!character.getPosition().intersects(level))	{
 		// respawn the character
+		std::cout << "YOU DIED!" << std::endl;
 		character.spawn(m_LM.getStartPosition(), GRAVITY);
 	}
 
@@ -71,17 +72,16 @@ bool Engine::detectCollisions(PlayableCharacter& character) {
 				
 				if (character.getFeet().intersects(block)) {
 					character.stopFalling(block.top);
-					std::cout << "We should have stopped now" << std::endl;
 				}
 				else if (character.getHead().intersects(block))	{
 					character.stopJump();
 				}
 			}
-			else if (!character.getFeet().intersects(block)
+			/*else if (!character.getFeet().intersects(block)
 				&& character.m_Action != PlayableCharacter::Action::JUMPING){
 				
 				character.m_Action = PlayableCharacter::Action::FALLING;
-			}
+			}*/
 
 			/*
 			//// More collision detection here once we have learned about particle effects
