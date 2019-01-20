@@ -101,3 +101,11 @@ sf::Vector2f Bullet::getCenter()
 {
 	return m_Position;
 }
+void Bullet::setShotPower(float power)
+{
+	this->shotPower = power;
+}
+float Bullet::getShotPower()
+{
+	return shotPower;
+}

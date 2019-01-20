@@ -41,6 +41,9 @@ private:
 	sf::Vector2f m_Max;
 	sf::Vector2f m_Min;
 
+	//How much dameage will the bullet do
+	float shotPower = 10;
+
 // Public function prototypes go here
 public:
 	// The constructor
@@ -67,6 +70,10 @@ public:
 
 	//getX,Y
 	sf::Vector2f getCenter();
+
+	//Bullet damage
+	void setShotPower(float power);
+	float getShotPower();
 };
 
 #endif // BULLET_H

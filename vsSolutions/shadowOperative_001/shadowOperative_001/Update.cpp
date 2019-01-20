@@ -45,21 +45,22 @@ void Engine::update(float dtAsSeconds) {
 		m_Player.update(dtAsSeconds, m_ArrayLevel);
 
 		//Handle-Update bullets
-		std::cout << "\nGun Charge:" << m_Player.getChargeLevel();
+		//std::cout << "\nGun Charge:" << m_Player.getChargeLevel();
 		if ((m_GameTimeTotal.asMilliseconds()
 			- m_SinceLastShot.asMilliseconds() > 100) &&
 			(m_Player.getChargeLevel() > m_Player.getShotCost()))
 		{
-			std::cout << "\nvalid shooting";
+			//std::cout << "\nvalid shooting";
 			if (m_Player.isShooting())
 			{
 				bullets[currentBullet].shoot(
-					m_Player.getCenter().x, m_Player.getCenter().y,
-					m_Player.getCenter().x + 10, m_Player.getCenter().y + 0.0001);
+					m_Player.getCenter().x + 25, m_Player.getCenter().y - 25,
+					m_Player.getCenter().x + 25 + 10, m_Player.getCenter().y - 24.9);
 				/*std::cout << "\nm_Player.getCenter().x"<< m_Player.getCenter().x<<
 					"\nm_Player.getCenter().y"<< m_Player.getCenter().y <<
 					"\nm_Player.getCenter().x + 10 " << m_Player.getCenter().x+10 <<
 					"\nm_Player.getCenter().y" << m_Player.getCenter().y +0.0001;*/
+				bullets[currentBullet].setShotPower(11);
 				currentBullet++;
 				m_Player.playerShot(false);
 				m_SinceLastShot = m_GameTimeTotal;
@@ -111,6 +112,22 @@ void Engine::update(float dtAsSeconds) {
 		for (std::list<Enemy*>::iterator it = m_EnemyList.begin(); it != m_EnemyList.end(); it++)
 		{
 			(*it)->update(dtAsSeconds,m_ArrayLevel);
+			//check for bulletCollision
+			for (int i = 0;i < 5;i++)
+			{
+				if (bullets[i].isInFlight())
+				{
+					if (bullets[i].getSprite().getGlobalBounds().intersects
+						((*it)->getSprite().getGlobalBounds()))
+					{
+						std::cout << "\n Taking damage!!!!!!";
+						bullets[i].stop();
+						//(*it)->//LosesHealthDies
+						(*it)->takeDamage(bullets[i].getShotPower());
+						//(*it)->//is Enemy knoicked unconcious?
+					}
+				}
+			}
 			//check for player
 			if ((*it)->getCone().getLocalBounds().intersects(m_Player.getPosition()))
 			{
@@ -136,6 +153,7 @@ void Engine::update(float dtAsSeconds) {
 					(*it)->reduceAwareness(m_GameTimeTotal);
 				}
 			}
+
 		}
 
 		// Detect collisions and see if characters have reached the goal tile

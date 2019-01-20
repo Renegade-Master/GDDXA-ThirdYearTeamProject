@@ -165,8 +165,8 @@ void Player::chargeGun(float dtAsSeconds)
 	{
 		if (gunChargeLevel + gunChargeRate * dtAsSeconds <= maxGunChargeLevel)
 		{
-			std::cout << "\n gunChargeLevel:" << gunChargeLevel << " += gunChargeRate * dtAsSeconds = "
-				<< gunChargeLevel + gunChargeRate * dtAsSeconds;
+			/*std::cout << "\n gunChargeLevel:" << gunChargeLevel << " += gunChargeRate * dtAsSeconds = "
+				<< gunChargeLevel + gunChargeRate * dtAsSeconds;*/
 			gunChargeLevel += gunChargeRate * dtAsSeconds;
 		}
 		else
