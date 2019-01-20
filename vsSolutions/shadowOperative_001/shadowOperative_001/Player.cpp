@@ -38,13 +38,6 @@ void Player::update(float elapsedTime, int** m_ArrayLevel) {
 	
 	this->frameXOffset = 0;
 	this->m_timeSinceLastFrame += elapsedTime;
-
-	// Stop falling constantly for no good reason
-	/*if (this->m_LastAction == Action::FALLING
-		&& (this->m_LastPosition.y - this->m_Position.y) < (this->m_LastPosition.y + (this->m_LastPosition.y * 0.3))) {
-
-		this->m_Action = Action::IDLE;
-	}*/
 	
 	/***-------------***\
 	|	HANDLE ACTIONS	|
@@ -191,6 +184,16 @@ void Player::update(float elapsedTime, int** m_ArrayLevel) {
 	this->m_Left.top = m_Position.y + (r.height * 0.1);
 	this->m_Left.width = r.width * 0.1;
 	this->m_Left.height = r.height * 0.8;
+
+	// Recentre the Sprite
+	/*this->m_Sprite.setOrigin(frameWidth / 2.0f, frameHeight / 2.0f);*/
+
+	if (this->m_Direction == Direction::LEFT) {
+		//this->m_Sprite.setOrigin(frameWidth / 2.0f, frameHeight / 2.0f);
+		this->m_Sprite.setOrigin(sf::Vector2f(m_Sprite.getTexture()->getSize().x * 0.5, m_Sprite.getTexture()->getSize().y * 0.5));
+		//sprite.setOrigin(sf::Vector2f(sprite.getTexture()->getSize().x * 0.5, sprite.getTexture()->getSize().y * 0.5));
+		this->m_Sprite.scale(-1.0f, 1.0f);
+	}
 
 	// Move the sprite into position
 	this->m_Sprite.setPosition(this->m_Position);
