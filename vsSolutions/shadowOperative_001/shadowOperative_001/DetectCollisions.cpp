@@ -59,7 +59,8 @@ bool Engine::detectCollisions(PlayableCharacter& character) {
 
 			// Is character colliding with a regular block
 			if ((m_ArrayLevel[y][x] == 1) || (m_ArrayLevel[y][x] == 2) ||
-				(m_ArrayLevel[y][x] == 3) || (m_ArrayLevel[y][x] == 5) ||
+				(m_ArrayLevel[y][x] == 3) || (m_ArrayLevel[y][x] == 4) ||
+				(m_ArrayLevel[y][x] == 5) ||
 				(m_ArrayLevel[y][x] == 6) || (m_ArrayLevel[y][x] == 7) ||
 				(m_ArrayLevel[y][x] == 8) || (m_ArrayLevel[y][x] == 'j')||
 				(m_ArrayLevel[y][x] == 'k') || (m_ArrayLevel[y][x] == 'u') ||
