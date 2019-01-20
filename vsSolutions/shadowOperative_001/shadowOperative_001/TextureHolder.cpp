@@ -32,6 +32,10 @@ sf::Texture& TextureHolder::GetTexture(std::string const& filename) {
 		// Yes
 		// Return the texture,
 		// the second part of the kvp, the texture
+		
+		// Apply Anti-Aliasing to the Texture
+		keyValuePair->second.setSmooth(true);
+
 		return keyValuePair->second;
 	}
 	else {

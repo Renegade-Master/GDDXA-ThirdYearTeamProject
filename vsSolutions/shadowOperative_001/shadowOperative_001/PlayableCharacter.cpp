@@ -3,7 +3,7 @@
 *					Owen O'Dea	[K00218956K00218956]
 *					Rory Ryan	[K00218864]
 *	@creationDate	2018/11/01	YYYY/MM/DD
-*	@description	..
+*	@description	...
 */
 
 #include "PlayableCharacter.h"
@@ -21,6 +21,7 @@ void PlayableCharacter::spawn(sf::Vector2i startPosition, float gravity) {
 
 	// Move the sprite in to position
 	this->m_Sprite.setPosition(this->m_Position);
+	this->frameYOffset = 0;
 	
 	// Initialise Movement stats
 	this->m_Speed = 500.0f;
@@ -28,7 +29,6 @@ void PlayableCharacter::spawn(sf::Vector2i startPosition, float gravity) {
 	this->m_Direction = Direction::IDLE;
 	this->m_jumpCounter = 0;
 	this->m_jumpDuration = 0.0f;
-
 }
 
 /**
@@ -85,13 +85,12 @@ sf::Sprite PlayableCharacter::getSprite() {
 *	Stop FALLING when colliding with an Object.
 */
 void PlayableCharacter::stopFalling(float position) {
-	this->m_Position.y = position - this->getPosition().height;
+	//this->m_Position.y = position - this->getPosition().height; 
 	this->m_Sprite.setPosition(this->m_Position);
 	
 	this->m_jumpCounter = 0;
 	this->m_jumpDuration = 0.0f;
 	this->m_Action = Action::IDLE;
-	//this->m_Direction = Direction::IDLE;
 }
 
 /**

@@ -10,23 +10,33 @@
 #ifndef PLAYABLECHARACTER_H
 #define PLAYABLECHARACTER_H
 
+#include <fstream>
 #include <iostream>
-
 #include <SFML/Graphics.hpp>
+#include "laser.h"
 
 class PlayableCharacter {
 public:
-
-	// PlayableCharacter Direction Action
-	enum class Direction { IDLE, RIGHT, LEFT };
+	// PlayableCharacter Direction State
+	enum class Direction { LEFT, RIGHT, IDLE };
 	Direction m_Direction = Direction::IDLE;
 	
-	// PlayableCharacter Action Action
-	enum class Action { IDLE, WALKING, JUMPING, FALLING, CROUCHING };
+	// PlayableCharacter Action State
+	enum class Action { FALLING, JUMPING, RUNNING, CROUCHING, ATTACKING, IDLE };
 	Action m_Action = Action::IDLE;
+
+	// Variables to Store the last action
+	Direction m_LastDirection = Direction::IDLE;
+	Action m_LastAction = Action::IDLE;
+
+	// What is the gravity
+	float m_Gravity;
 
 	// Where is the player
 	sf::FloatRect getPosition();
+	sf::Vector2f m_Position;
+	// Where was the Player
+	sf::Vector2f m_LastPosition;
 
 	// A rectangle representing the position of different parts of the sprite
 	sf::FloatRect getFeet();
@@ -49,7 +59,16 @@ public:
 	void spawn(sf::Vector2i startPosition, float gravity);
 
 protected:
-	// A Sprite Animations
+	// Sprite Animation Variables
+	int frameWidth;
+	int frameHeight;
+	int frameXOffset;
+	int frameYOffset;
+	int m_maxAnimationFrames;
+	float m_timeSinceLastFrame;
+	float frameSwitchTime = 0.167f;
+
+	sf::Image m_animationSheet;
 	sf::Sprite m_Sprite;
 	sf::Sprite m_SpriteRunningRight;
 	sf::Sprite m_SpriteRunningLeft;
@@ -61,12 +80,6 @@ protected:
 	
 	float maxJumpDuration = 0.5f;
 	int	maxJumps = 1;
-
-	// Where is the player
-	sf::Vector2f m_Position;
-
-	// What is the gravity
-	float m_Gravity;
 
 	// Has the player just initialted a jump
 	//bool m_JustJumped = false;
@@ -88,5 +101,8 @@ protected:
 
 	// A texture
 	sf::Texture m_Texture;
+
+	//laserTargeting
+	laser targetingLaser;
 };
 #endif // !PLAYABLECHARACTER_H

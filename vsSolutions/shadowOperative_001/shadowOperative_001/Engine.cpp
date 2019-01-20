@@ -34,7 +34,6 @@ Engine::Engine() {
 	m_BGMiniMap.setRotation(180.f);
 	m_MiniMap.zoom(-30.00);
 
-
 	// Can this graphics card use shaders?
 	if (!sf::Shader::isAvailable())	{
 		// Time to get a new PC

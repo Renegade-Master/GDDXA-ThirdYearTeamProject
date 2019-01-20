@@ -11,6 +11,8 @@
 #define BULLET_H
 
 #include <SFML/Graphics.hpp>
+#include <iostream>
+#include "TextureHolder.h"
 
 class Bullet {
 private:
@@ -19,12 +21,13 @@ private:
 
 	// What each bullet looks like
 	sf::RectangleShape m_BulletShape;
+	sf::Sprite m_BulletSprite;
 
 	// Is this bullet currently whizzing through the air
 	bool m_InFlight = false;
 
 	// How fast does a bullet travel?
-	float m_BulletSpeed = 1000;
+	float m_BulletSpeed = 500;
 	
 	// What fraction of 1 pixel does the bullet travel, 
 	// Horizontally and vertically each frame?
@@ -37,6 +40,9 @@ private:
 	// Some boundaries so the bullet doesn't fly forever
 	sf::Vector2f m_Max;
 	sf::Vector2f m_Min;
+
+	//How much dameage will the bullet do
+	float shotPower = 10;
 
 // Public function prototypes go here
 public:
@@ -57,10 +63,17 @@ public:
 	sf::FloatRect getPosition();
 
 	// Return the actual shape (for drawing)
-	sf::RectangleShape getShape();
+	sf::Sprite getSprite();
 
 	// Update the bullet each frame
 	void update(float elapsedTime);
+
+	//getX,Y
+	sf::Vector2f getCenter();
+
+	//Bullet damage
+	void setShotPower(float power);
+	float getShotPower();
 };
 
 #endif // BULLET_H
