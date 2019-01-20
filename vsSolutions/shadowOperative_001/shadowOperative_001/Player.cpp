@@ -127,7 +127,7 @@ void Player::update(float elapsedTime, int** m_ArrayLevel) {
 				sf::IntRect(
 					this->frameXOffset,						// What type of Animation?
 					this->frameYOffset * this->frameHeight, // What frame of the Animation?
-					-this->frameWidth,						// How wide is the Frame?
+					this->frameWidth,						// How wide is the Frame?
 					this->frameHeight));					// How tall is the Frame?
 			//this->m_Sprite.scale(-1.0f,1.0f);				// Frame reversed
 			this->m_Sprite.setTexture(m_Texture);
