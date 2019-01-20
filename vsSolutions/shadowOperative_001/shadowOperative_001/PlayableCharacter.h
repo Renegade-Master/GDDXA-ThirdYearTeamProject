@@ -29,8 +29,14 @@ public:
 	Direction m_LastDirection = Direction::IDLE;
 	Action m_LastAction = Action::IDLE;
 
+	// What is the gravity
+	float m_Gravity;
+
 	// Where is the player
 	sf::FloatRect getPosition();
+	sf::Vector2f m_Position;
+	// Where was the Player
+	sf::Vector2f m_LastPosition;
 
 	// A rectangle representing the position of different parts of the sprite
 	sf::FloatRect getFeet();
@@ -74,14 +80,6 @@ protected:
 	
 	float maxJumpDuration = 0.5f;
 	int	maxJumps = 1;
-
-	// Where is the player
-	sf::Vector2f m_Position;
-	// Where was the Player
-	sf::Vector2f m_LastPosition;
-
-	// What is the gravity
-	float m_Gravity;
 
 	// Has the player just initialted a jump
 	//bool m_JustJumped = false;

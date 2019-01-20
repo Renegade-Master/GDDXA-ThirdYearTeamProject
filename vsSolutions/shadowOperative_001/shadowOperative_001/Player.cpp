@@ -50,24 +50,18 @@ void Player::update(float elapsedTime, int** m_ArrayLevel) {
 	|	HANDLE ACTIONS	|
 	\***-------------***/
 
+	// Save off some data for this Frame
+	this->m_LastAction = this->m_Action;
+	this->m_LastPosition = this->m_Position;
 
 	if (this->m_Action == Action::FALLING) {
 		/*this->frameWidth = 0;
 		this->frameHeight = 0;*/
-			
-		// Save off some data for this Frame
-		this->m_LastAction = this->m_Action;
-		this->m_LastPosition = this->m_Position;
 		
-		this->m_Position.y += this->m_Gravity * elapsedTime;
-
-		if ((this->m_LastPosition.y - this->m_Position.y)
-			> (this->m_LastPosition.y + (this->m_LastPosition.y * 0.3f))) {
-
-			this->m_Action = Action::IDLE;
-		}
+		this->m_Position.y += this->m_Gravity * 0.0167f;
 	}
-	else if (this->m_Action == Action::JUMPING) {
+
+	if (this->m_Action == Action::JUMPING) {
 		this->frameWidth = 56;
 		this->frameHeight = 70;
 		this->frameXOffset = 86;
@@ -76,7 +70,7 @@ void Player::update(float elapsedTime, int** m_ArrayLevel) {
 		this->m_jumpDuration += elapsedTime;
 
 		// Add the jump time to the timer
-		this->m_Position.y -= this->m_Gravity * 2 * elapsedTime;
+		this->m_Position.y -= this->m_Gravity * 2 * 0.0167f;
 
 		// Character jump has gone on long enough
 		if (this->m_jumpDuration >= this->maxJumpDuration) {
@@ -107,24 +101,7 @@ void Player::update(float elapsedTime, int** m_ArrayLevel) {
 	|	HANDLE DIRECTIONS	|
 	\***-----------------***/
 	
-
-	if (this->m_Direction == Direction::LEFT) {
-		this->m_Position.x -= this->m_Speed * elapsedTime;
-		
-		// Set the Animation Sprite
-		if (this->m_timeSinceLastFrame > frameSwitchTime) {
-			this->m_Texture.loadFromImage(
-				m_animationSheet,
-				sf::IntRect(
-					this->frameXOffset,						// What type of Animation?
-					this->frameYOffset * this->frameHeight, // What frame of the Animation?
-					-this->frameWidth,						// How wide is the Frame?  Frame reversed
-					this->frameHeight));					// How tall is the Frame?
-			this->m_Sprite.setTexture(m_Texture);
-			this->m_timeSinceLastFrame = 0.0f;
-		}
-	}
-	else if (this->m_Direction == Direction::RIGHT) {
+	if (this->m_Direction == Direction::RIGHT) {
 		this->m_Position.x += this->m_Speed * elapsedTime;
 		
 		// Set the Animation Sprite
@@ -134,13 +111,30 @@ void Player::update(float elapsedTime, int** m_ArrayLevel) {
 				sf::IntRect(
 					this->frameXOffset,						// What type of Animation?
 					this->frameYOffset * this->frameHeight, // What frame of the Animation?
-					this->frameWidth,						// How wide is the Frame?  Frame reversed
+					this->frameWidth,						// How wide is the Frame?
 					this->frameHeight));					// How tall is the Frame?
 			this->m_Sprite.setTexture(this->m_Texture);
 			this->m_timeSinceLastFrame = 0.0f;
 		}
 	}
-	else if (m_Direction == Direction::IDLE) {
+	else if (this->m_Direction == Direction::LEFT) {
+		this->m_Position.x -= this->m_Speed * elapsedTime;
+
+		// Set the Animation Sprite
+		if (this->m_timeSinceLastFrame > frameSwitchTime) {
+			this->m_Texture.loadFromImage(
+				m_animationSheet,
+				sf::IntRect(
+					this->frameXOffset,						// What type of Animation?
+					this->frameYOffset * this->frameHeight, // What frame of the Animation?
+					-this->frameWidth,						// How wide is the Frame?
+					this->frameHeight));					// How tall is the Frame?
+			//this->m_Sprite.scale(-1.0f,1.0f);				// Frame reversed
+			this->m_Sprite.setTexture(m_Texture);
+			this->m_timeSinceLastFrame = 0.0f;
+		}
+	}
+	else /*if (m_Direction == Direction::IDLE)*/ {
 		// Look at the Nearest Enemy
 
 
@@ -151,7 +145,7 @@ void Player::update(float elapsedTime, int** m_ArrayLevel) {
 				sf::IntRect(
 					this->frameXOffset,						// What type of Animation?
 					this->frameYOffset * this->frameHeight, // What frame of the Animation?
-					this->frameWidth,						// How wide is the Frame?  Frame reversed
+					this->frameWidth,						// How wide is the Frame?
 					this->frameHeight));					// How tall is the Frame?
 			this->m_Sprite.setTexture(m_Texture);
 			this->m_timeSinceLastFrame = 0.0f;
@@ -178,7 +172,7 @@ void Player::update(float elapsedTime, int** m_ArrayLevel) {
 	this->m_Feet.left = m_Position.x;
 	this->m_Feet.top = m_Position.y + (r.height * 0.9);
 	this->m_Feet.width = r.width;
-	this->m_Feet.height = r.height * 0.1;
+	this->m_Feet.height = r.height * 0.075;
 
 	// Head
 	this->m_Head.left = m_Position.x;
@@ -228,7 +222,7 @@ void Player::handleInput() {
 		this->m_Direction = Direction::RIGHT;
 	}	
 	// If nothing is pressed
-	else {
+	else if (this->m_Action != Action::FALLING) {
 		//this->m_Action = Action::IDLE;
 		this->m_Direction = Direction::IDLE;
 	}	

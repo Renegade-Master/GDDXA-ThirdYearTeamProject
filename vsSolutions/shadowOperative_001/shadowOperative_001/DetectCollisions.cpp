@@ -77,11 +77,19 @@ bool Engine::detectCollisions(PlayableCharacter& character) {
 					character.stopJump();
 				}
 			}
-			/*else if (!character.getFeet().intersects(block)
-				&& character.m_Action != PlayableCharacter::Action::JUMPING){
-				
+
+			// If the Character is not touching any Collision blocks
+			if (!character.getFeet().intersects(block)
+				&& character.m_Action != PlayableCharacter::Action::JUMPING) {
+
 				character.m_Action = PlayableCharacter::Action::FALLING;
-			}*/
+
+				if (((character.m_Position.y - character.m_LastPosition.y)				// if (Y Change since last frame)
+					> (character.m_LastPosition.y += character.m_Gravity * 0.0167f))) {	// less than (last Y + Gravity)
+
+					character.m_Action = PlayableCharacter::Action::IDLE;
+				}
+			}
 
 			/*
 			//// More collision detection here once we have learned about particle effects

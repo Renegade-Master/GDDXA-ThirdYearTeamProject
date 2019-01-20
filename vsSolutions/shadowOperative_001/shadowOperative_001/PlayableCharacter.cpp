@@ -85,7 +85,7 @@ sf::Sprite PlayableCharacter::getSprite() {
 *	Stop FALLING when colliding with an Object.
 */
 void PlayableCharacter::stopFalling(float position) {
-	this->m_Position.y = position - this->getPosition().height;
+	//this->m_Position.y = position - this->getPosition().height; 
 	this->m_Sprite.setPosition(this->m_Position);
 	
 	this->m_jumpCounter = 0;
