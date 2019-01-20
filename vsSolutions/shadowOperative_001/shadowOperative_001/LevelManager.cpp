@@ -7,6 +7,7 @@
 */
 
 #include "LevelManager.h"
+#include "Engine.h"
 
 int** LevelManager::nextLevel(sf::VertexArray& rVaLevel) {
 	m_LevelSize.x = 0;
@@ -137,6 +138,9 @@ int** LevelManager::nextLevel(sf::VertexArray& rVaLevel) {
 			case 'u':
 				arrayLevel[y][x] = 'u';
 				break;
+			case 'r':
+				arrayLevel[y][x] = 'r';
+				break;
 			}
 		}
 
@@ -174,34 +178,34 @@ int** LevelManager::nextLevel(sf::VertexArray& rVaLevel) {
 			verticalOffset = arrayLevel[y][x];
 			switch(arrayLevel[y][x]) {
 			case 'D':
-				verticalOffset = 10;
+				verticalOffset = 10;//Open Door
 				break;
 			case 'd':
-				verticalOffset = 19;
+				verticalOffset = 19;//Yellow Door
 				break;
 			case 'b':
-				verticalOffset = 11;
+				verticalOffset = 11;//Cable
 				break;
 			case 's':
-				verticalOffset = 12;
+				verticalOffset = 12;//Switch
 				break;
 			case 'k':
-				verticalOffset = 13;
+				verticalOffset = 13;//Red Barrel
 				break;
 			case 'j':
-				verticalOffset = 14;
+				verticalOffset = 14;//Green Barrel
 				break;
 			case 'u':
-				verticalOffset = 15;
+				verticalOffset = 15;//Crate
 				break;
 			case 'F':
-				verticalOffset = 16;
+				verticalOffset = 16;//Left Fence
 				break;
 			case 'G':
-				verticalOffset = 17;
+				verticalOffset = 17;//Middle Fence
 				break;
 			case 'H':
-				verticalOffset = 18;
+				verticalOffset = 18;//Right Fence
 				break;
 			case 'E':
 				verticalOffset = 0;  // We want a transparent tile here				
@@ -210,6 +214,9 @@ int** LevelManager::nextLevel(sf::VertexArray& rVaLevel) {
 				verticalOffset = 0;  // We want a transparent tile here
 				break;
 			case 'T':
+				verticalOffset = 0;  // We want a transparent tile here
+				break;
+			case 'r':
 				verticalOffset = 0;  // We want a transparent tile here
 				break;
 			case 'w':

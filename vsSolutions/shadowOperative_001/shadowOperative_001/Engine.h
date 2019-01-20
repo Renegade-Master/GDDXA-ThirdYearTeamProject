@@ -74,7 +74,8 @@ private:
 	// Create a SoundManager
 	SoundManager m_SM;
 
-	int Door = 'd';
+	//The door
+	int door = 'd';
 
 	// The HUD
 	Hud m_Hud;

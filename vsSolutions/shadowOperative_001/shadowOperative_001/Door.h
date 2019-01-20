@@ -16,7 +16,7 @@
 class Door : public Item
 {
 protected:
-	bool door;
+	int door;
 	void DoorState();
 };
 #endif // !DOOR_H

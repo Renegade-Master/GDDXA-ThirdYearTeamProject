@@ -16,12 +16,12 @@
 		if (door == true)
 		{
 			m_DoorSprite = sf::Sprite(TextureHolder::GetTexture(
-				"graphics/opendoor.png"));
+				"graphics/DoorOpen.png"));
 		}
 		else if (door == false)
 		{
 			m_DoorSprite = sf::Sprite(TextureHolder::GetTexture(
-				"graphics/closedoor.png"));
+				"graphics/DoorUnlocked.png"));
 		}
 	}
 
