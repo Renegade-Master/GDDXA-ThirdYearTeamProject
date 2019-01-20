@@ -74,6 +74,8 @@ private:
 	// Create a SoundManager
 	SoundManager m_SM;
 
+	int Door = 'd';
+
 	// The HUD
 	Hud m_Hud;
 	int m_FramesSinceLastHUDUpdate = 0;

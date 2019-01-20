@@ -63,7 +63,7 @@ bool Engine::detectCollisions(PlayableCharacter& character) {
 				(m_ArrayLevel[y][x] == 6) || (m_ArrayLevel[y][x] == 7) ||
 				(m_ArrayLevel[y][x] == 8) || (m_ArrayLevel[y][x] == 'j')||
 				(m_ArrayLevel[y][x] == 'k') || (m_ArrayLevel[y][x] == 'u') ||
-				(m_ArrayLevel[y][x] == 9)) {
+				(m_ArrayLevel[y][x] == 9) || (m_ArrayLevel[y][x] == Door)) {
 
 				if (character.getRight().intersects(block))	{
 					character.stopRight(block.left);
@@ -86,10 +86,10 @@ bool Engine::detectCollisions(PlayableCharacter& character) {
 				if ((m_ArrayLevel[y][x] == 's'))
 				{
 					if (character.getRight().intersects(block)) {
-					   // door = 'd';
+					    Door = 'D';
 					}
 					else if (character.getLeft().intersects(block)) {
-					    //door = 'd';
+					    Door = 'D';
 					}
 				}
 				character.m_Action = PlayableCharacter::Action::FALLING;

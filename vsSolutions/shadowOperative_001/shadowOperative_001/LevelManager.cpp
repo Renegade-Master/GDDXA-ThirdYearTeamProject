@@ -111,7 +111,7 @@ int** LevelManager::nextLevel(sf::VertexArray& rVaLevel) {
 				arrayLevel[y][x] = 'D';
 				break;
 			case 'd':
-				arrayLevel[y][x] = 'D';
+				arrayLevel[y][x] = 'd';
 				break;
 			case 'b':
 				arrayLevel[y][x] = 'b';
