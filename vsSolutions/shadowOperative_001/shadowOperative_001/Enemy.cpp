@@ -229,40 +229,40 @@ bool Enemy::isConcious()
 }
 void Enemy::regen(float elapsedTime)
 {
-	std::cout << "\nCALLING REGEN!!!";
+	//std::cout << "\nCALLING REGEN!!!";
 	if (health < maxHealth)
 	{
 		if (this->isConcious())
 		{
-			std::cout << "\nConcious";
+			//std::cout << "\nConcious";
 			if ((health + (regenRate * elapsedTime)) <= maxHealth)
 			{
-				std::cout << "\nhealth:" << health << " + regenRate " << regenRate
-					<< " * elapsedTime: " << elapsedTime << " = " << health + (regenRate * elapsedTime);
+				/*std::cout << "\nhealth:" << health << " + regenRate " << regenRate
+					<< " * elapsedTime: " << elapsedTime << " = " << health + (regenRate * elapsedTime);*/
 				health += regenRate * elapsedTime;
 			}
 			else
 			{
-				std::cout << "\nHealth at max";
+				//std::cout << "\nHealth at max";
 				health = maxHealth;
 			}
 		}
 		else
 		{
-			std::cout << "\nNot Concious";
+			//std::cout << "\nNot Concious";
 			if ((health + (regenRate / 2)) * elapsedTime <= maxHealth)
 			{
-				std::cout << "\nhealth:" << health << " + (regenRate / 2) " << (regenRate / 2)
-					<< " * elapsedTime: " << elapsedTime << " = " << (health + ((regenRate / 2) * elapsedTime));
+				/*std::cout << "\nhealth:" << health << " + (regenRate / 2) " << (regenRate / 2)
+					<< " * elapsedTime: " << elapsedTime << " = " << (health + ((regenRate / 2) * elapsedTime));*/
 				health += (regenRate / 2) * elapsedTime;
 			}
 			else
 			{
-				std::cout << "\nHealth at max";
+				//std::cout << "\nHealth at max";
 				health = maxHealth;
 			}
 		}
-		std::cout << "\nRegen complete Health is now" << this->health;
+		//std::cout << "\nRegen complete Health is now" << this->health;
 	}
 	if ((health == maxHealth) && (!concious))
 	{

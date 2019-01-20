@@ -106,6 +106,7 @@ void Player::update(float elapsedTime, int** m_ArrayLevel) {
 
 	//charge weapon
 	chargeGun(elapsedTime);
+	//targetingLaser.updateLine(this->m_Position, mousePos);
 }
 
 // A virtual function
@@ -148,6 +149,9 @@ void Player::handleInput() {
 	{
 		shooting = false;
 	}
+	if (sf::Mouse::isButtonPressed(sf::Mouse::Right)){
+		this->toggleTargeting();
+	}
 	
 }
 bool Player::isShooting()
@@ -186,4 +190,21 @@ float Player::getShotCost()
 float Player::getMaxCharge()
 {
 	return maxGunChargeLevel;
+}
+void Player::toggleTargeting(){
+	if (targeting){
+		targeting = false;
+	}
+	else{
+		targeting = true;
+	}
+}
+bool Player::isTargeting(){
+	return targeting;
+}
+void Player::updateTargeting(sf::Vector2f mousePos){
+	targetingLaser.updateLine(this->m_Position, mousePos);
+}
+sf::ConvexShape Player::getlaser(){
+	return targetingLaser.getLine();
 }
