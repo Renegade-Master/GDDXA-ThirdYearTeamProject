@@ -47,6 +47,7 @@ bool Engine::detectCollisions(PlayableCharacter& character) {
 	sf::FloatRect level(0, 0, m_LM.getLevelSize().x * TILE_SIZE, m_LM.getLevelSize().y * TILE_SIZE);
 	if (!character.getPosition().intersects(level))	{
 		// respawn the character
+		std::cout << "YOU DIED!" << std::endl;
 		character.spawn(m_LM.getStartPosition(), GRAVITY);
 	}
 
@@ -73,16 +74,23 @@ bool Engine::detectCollisions(PlayableCharacter& character) {
 				
 				if (character.getFeet().intersects(block)) {
 					character.stopFalling(block.top);
-					//std::cout << "We should have stopped now" << std::endl;
 				}
 				else if (character.getHead().intersects(block))	{
 					character.stopJump();
 				}
 			}
-			else if (!character.getFeet().intersects(block)
-				&& character.m_Action != PlayableCharacter::Action::JUMPING){
-				
+
+			// If the Character is not touching any Collision blocks
+			if (!character.getFeet().intersects(block)
+				&& character.m_Action != PlayableCharacter::Action::JUMPING) {
+
 				character.m_Action = PlayableCharacter::Action::FALLING;
+
+				if (((character.m_Position.y - character.m_LastPosition.y)				// if (Y Change since last frame)
+					> (character.m_LastPosition.y += character.m_Gravity * 0.0167f))) {	// less than (last Y + Gravity)
+
+					character.m_Action = PlayableCharacter::Action::IDLE;
+				}
 			}
 
 			/*
