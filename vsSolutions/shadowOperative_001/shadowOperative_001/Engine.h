@@ -26,6 +26,7 @@
 #include "SoundManager.h"
 #include "TextureHolder.h"
 #include "TutorialManager.h"
+#include "Bullet.h"
 
 class Engine {
 public:
@@ -164,5 +165,15 @@ private:
 	std::list<GUI::Button*> m_pausedButtons;
 	//	Settings
 	std::list<GUI::Button*> m_settingsButtons;
+
+	//Bullets
+	Bullet bullets[5];
+	int currentBullet = 0;
+	sf::Time m_SinceLastShot;
+
+	// Where is the mouse in relation to world coordinates
+	sf::Vector2f mouseWorldPosition;
+	// Where is the mouse in relation to screen coordinates
+	sf::Vector2i mouseScreenPosition;
 };
 #endif // !ENGINE_H

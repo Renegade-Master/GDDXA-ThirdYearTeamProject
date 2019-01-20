@@ -104,6 +104,9 @@ void Player::update(float elapsedTime, int** m_ArrayLevel) {
 	// Move the sprite into position
 	this->m_Sprite.setPosition(this->m_Position);
 
+	//charge weapon
+	chargeGun(elapsedTime);
+	//targetingLaser.updateLine(this->m_Position, mousePos);
 }
 
 // A virtual function
@@ -138,6 +141,70 @@ void Player::handleInput() {
 		//this->m_Action = Action::IDLE;
 		this->m_Direction = Direction::IDLE;
 	}
-
+	if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+	{
+		shooting = true;
+	}
+	else
+	{
+		shooting = false;
+	}
+	if (sf::Mouse::isButtonPressed(sf::Mouse::Right)){
+		this->toggleTargeting();
+	}
 	
+}
+bool Player::isShooting()
+{
+	return shooting;
+}
+void Player::playerShot(bool shot)
+{
+	gunChargeLevel -= shotCost;
+	shooting = false;
+}
+void Player::chargeGun(float dtAsSeconds)
+{
+	if (!shooting)
+	{
+		if (gunChargeLevel + gunChargeRate * dtAsSeconds <= maxGunChargeLevel)
+		{
+			/*std::cout << "\n gunChargeLevel:" << gunChargeLevel << " += gunChargeRate * dtAsSeconds = "
+				<< gunChargeLevel + gunChargeRate * dtAsSeconds;*/
+			gunChargeLevel += gunChargeRate * dtAsSeconds;
+		}
+		else
+		{
+			gunChargeLevel = maxGunChargeLevel;
+		}
+	}
+}
+float Player::getChargeLevel()
+{
+	return gunChargeLevel;
+}
+float Player::getShotCost()
+{
+	return shotCost;
+}
+float Player::getMaxCharge()
+{
+	return maxGunChargeLevel;
+}
+void Player::toggleTargeting(){
+	if (targeting){
+		targeting = false;
+	}
+	else{
+		targeting = true;
+	}
+}
+bool Player::isTargeting(){
+	return targeting;
+}
+void Player::updateTargeting(sf::Vector2f mousePos){
+	targetingLaser.updateLine(this->m_Position, mousePos);
+}
+sf::ConvexShape Player::getlaser(){
+	return targetingLaser.getLine();
 }

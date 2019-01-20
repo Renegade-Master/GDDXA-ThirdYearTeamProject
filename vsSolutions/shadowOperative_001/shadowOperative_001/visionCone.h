@@ -16,10 +16,7 @@
 
 #include <SFML/Graphics.hpp>
 
-struct Line {
-	sf::Vector2f p1;
-	sf::Vector2f p2;
-};
+
 class visionCone {
 private:
 	sf::ConvexShape coneOfDetection;

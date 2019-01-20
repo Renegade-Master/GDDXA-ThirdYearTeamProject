@@ -33,6 +33,12 @@ private:
 	sf::Time lastDetectionEvent;
 	//detection meter
 	sf::RectangleShape detectMeter;
+
+	//Enemy Health
+	float health = 100.0f;
+	const float regenRate = 0.5f;
+	const float maxHealth = 100.0f;
+	bool concious =  true;
 public:
 	void update(float elapsedTIme,int** m_ArrayLevel);
 	void spawn(sf::Vector2i startPosition, float gravity,sf::Time gameStart);
@@ -46,6 +52,10 @@ public:
 	float getlastdetectTime();
 	sf::RectangleShape getDetectMeter();
 	void reduceAwareness(sf::Time gameTimeTotal);
+	//damage and healing
+	void takeDamage(float shotPower);
+	bool isConcious();
+	void regen(float elapsedTime);
 };
 
 #endif // !ENEMY_H
