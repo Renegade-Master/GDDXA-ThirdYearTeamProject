@@ -16,7 +16,6 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "LevelManager.h"
 
 class LevelManager {
 private:
@@ -29,6 +28,7 @@ private:
 	float m_BaseTimeLimit = 0;
 	int m_CurrentLevel = 0;
 	const int NUM_LEVELS = 2;
+
 
 public:
 	const int TILE_SIZE = 50;
@@ -47,5 +47,6 @@ public:
 	sf::Vector2i getLevelSize();
 
 	int getCurrentLevel();
+
 };
 #endif // !LEVELMANAGER_H
