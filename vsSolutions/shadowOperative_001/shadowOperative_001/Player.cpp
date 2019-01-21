@@ -26,8 +26,10 @@ Player::Player() {
 	this->maxJumps = 2;
 
 	this->m_animationSheet.loadFromFile("graphics\\PlayerAnimationSheet_03.png");
+	this->m_fallingAnimation.loadFromFile("graphics\\PlayerAnimationSheet_03.png");
 	this->m_maxAnimationFrames = 10;
 	this->m_Action = Action::FALLING;
+	this->m_Direction = Direction::IDLE;
 }
 
 /**
@@ -135,16 +137,10 @@ void Player::update(float elapsedTime, int** m_ArrayLevel) {
 				sf::IntRect(
 					this->frameXOffset,						// What type of Animation?
 					this->frameYOffset * this->frameHeight, // What frame of the Animation?
-					this->frameWidth,						// How wide is the Frame?
+					-this->frameWidth,						// How wide is the Frame?
 					this->frameHeight));					// How tall is the Frame?
 			this->m_Sprite.setTexture(m_Texture);
 			this->m_timeSinceLastFrame = 0.0f;
-
-			this->m_Sprite.setOrigin(
-				sf::Vector2f(
-					m_Sprite.getTexture()->getSize().x * 0.5,
-					m_Sprite.getTexture()->getSize().y * 0.5));
-			this->m_Sprite.scale(-1.0f,1.0f);				// Frame reversed
 		}
 	}
 
@@ -175,10 +171,31 @@ void Player::update(float elapsedTime, int** m_ArrayLevel) {
 
 	if (this->m_Action == Action::FALLING) {
 		// Set Player Sprite to Falling
+		//this->m_Texture.loadFromImage(
+		//	m_fallingAnimation,
+		//	sf::IntRect(
+		//		this->frameXOffset,							// What type of Animation?
+		//		this->frameYOffset * this->frameHeight,		// What frame of the Animation?
+		//		this->frameWidth,							// How wide is the Frame?
+		//		this->frameHeight));						// How tall is the Frame?
+		//this->m_Sprite.setTexture(m_Texture);
+		//this->m_timeSinceLastFrame = 0.0f;
+
 		this->m_Sprite = sf::Sprite(TextureHolder::GetTexture(
 			"graphics/Glide_000.png"));
 	}
+
+	// Re-Position the Sprite
+	/*this->m_Sprite.setOrigin(
+		sf::Vector2f(
+			m_Sprite.getTexture()->getSize().x * 0.5,
+			m_Sprite.getTexture()->getSize().y * 0.5));*/
 	
+	// Reverse Sprite if moving LEFT
+	//if (this->m_Direction == Direction::LEFT) {
+	//	this->m_Sprite.scale(-1.0f, 1.0f);	// Frame reversed
+	//}
+
 	this->frameYOffset++;
 
 	/***-------------***\
@@ -211,16 +228,6 @@ void Player::update(float elapsedTime, int** m_ArrayLevel) {
 	this->m_Left.top = m_Position.y + (r.height * 0.1);
 	this->m_Left.width = r.width * 0.1;
 	this->m_Left.height = r.height * 0.8;
-
-	// Recentre the Sprite
-	/*this->m_Sprite.setOrigin(frameWidth / 2.0f, frameHeight / 2.0f);*/
-
-	if (this->m_Direction == Direction::LEFT) {
-		//this->m_Sprite.setOrigin(frameWidth / 2.0f, frameHeight / 2.0f);
-		//this->m_Sprite.setOrigin(sf::Vector2f(m_Sprite.getTexture()->getSize().x * 0.5, m_Sprite.getTexture()->getSize().y * 0.5));
-		//sprite.setOrigin(sf::Vector2f(sprite.getTexture()->getSize().x * 0.5, sprite.getTexture()->getSize().y * 0.5));
-		//this->m_Sprite.scale(-1.0f, 1.0f);
-	}
 
 	// Move the sprite into position
 	this->m_Sprite.setPosition(this->m_Position);
