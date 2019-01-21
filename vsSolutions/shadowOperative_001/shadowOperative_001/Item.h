@@ -11,7 +11,7 @@
 #define ITEM_H
 
 #include <SFML/Graphics.hpp>
-
+#include "TextureHolder.h"
 class Item 
 {
 public:
@@ -39,7 +39,7 @@ public:
 
 protected:
 	// A Sprite
-	sf::Sprite m_DoorSprite;
+	sf::Sprite m_ItemSprite;
 
 	// Where is the item
 	sf::Vector2f m_Position;

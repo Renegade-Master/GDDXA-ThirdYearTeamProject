@@ -13,23 +13,20 @@ void Item::spawn(sf::Vector2i startPosition, float gravity) {
 	m_Position.x = startPosition.x;
 	m_Position.y = startPosition.y;
 
-	// Move the sprite in to position
-	m_DoorSprite.setPosition(m_Position);
-
+	m_ItemSprite.setPosition(m_Position);
 }
-
 void Item::update(float elapsedTime, int** m_ArrayLevel) {
 	// Overridden
 }
 
 sf::FloatRect Item::getPosition() {
-	return m_DoorSprite.getGlobalBounds();
+	return m_ItemSprite.getGlobalBounds();
 }
 
 sf::Vector2f Item::getCenter() {
 	return sf::Vector2f(
-		m_Position.x + m_DoorSprite.getGlobalBounds().width / 2,
-		m_Position.y + m_DoorSprite.getGlobalBounds().height / 2
+		m_Position.x + m_ItemSprite.getGlobalBounds().width / 2,
+		m_Position.y + m_ItemSprite.getGlobalBounds().height / 2
 	);
 }
 
@@ -50,7 +47,7 @@ sf::FloatRect Item::getRight() {
 }
 
 sf::Sprite Item::getSprite() {
-	return m_DoorSprite;
+	return m_ItemSprite;
 }
 /*
 void Item::stopRight(float position) {

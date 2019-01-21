@@ -111,6 +111,9 @@
     <ClCompile Include="laser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="gunBattery.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine.h">
@@ -165,6 +168,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="laser.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="gunBattery.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
