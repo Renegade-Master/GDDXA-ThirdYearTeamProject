@@ -68,7 +68,7 @@ protected:
 	int frameYOffset;
 	int m_maxAnimationFrames;
 	float m_timeSinceLastFrame;
-	float frameSwitchTime = 0.167f;
+	float frameSwitchTime = 0.1f;
 
 	sf::Image m_animationSheet;
 	sf::Sprite m_Sprite;
