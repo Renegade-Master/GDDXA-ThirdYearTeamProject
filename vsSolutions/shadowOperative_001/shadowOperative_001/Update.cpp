@@ -57,14 +57,27 @@ void Engine::update(float dtAsSeconds) {
 			//std::cout << "\nvalid shooting";
 			if (m_Player.isShooting())
 			{
-				bullets[currentBullet].shoot(
-					m_Player.getCenter().x + 25, m_Player.getCenter().y - 25,
-					mouseWorldPosition.x, mouseWorldPosition.y);
-					//m_Player.getCenter().x + 25 + 10, m_Player.getCenter().y - 24.9);
-				/*std::cout << "\nm_Player.getCenter().x"<< m_Player.getCenter().x<<
-					"\nm_Player.getCenter().y"<< m_Player.getCenter().y <<
-					"\nm_Player.getCenter().x + 10 " << m_Player.getCenter().x+10 <<
-					"\nm_Player.getCenter().y" << m_Player.getCenter().y +0.0001;*/
+				//Choose bullet spawn dependant on current Animation
+				if (m_Player.getDir() == PlayableCharacter::Direction::IDLE){
+					bullets[currentBullet].shoot(
+						m_Player.getCenter().x - 10, m_Player.getCenter().y - 25,
+						mouseWorldPosition.x, mouseWorldPosition.y);
+				}
+				else if (m_Player.getDir() == PlayableCharacter::Direction::RIGHT){
+					bullets[currentBullet].shoot(
+						m_Player.getCenter().x - 10, m_Player.getCenter().y - 25,
+						mouseWorldPosition.x, mouseWorldPosition.y);
+				}
+				else if (m_Player.getDir() == PlayableCharacter::Direction::LEFT){
+					bullets[currentBullet].shoot(
+						m_Player.getCenter().x - 40, m_Player.getCenter().y - 25,
+						mouseWorldPosition.x, mouseWorldPosition.y);
+				}
+				else{
+					bullets[currentBullet].shoot(
+						m_Player.getCenter().x - 10, m_Player.getCenter().y - 25,
+						mouseWorldPosition.x, mouseWorldPosition.y);
+				}
 				bullets[currentBullet].setShotPower(11);
 				currentBullet++;
 				m_Player.playerShot(false);

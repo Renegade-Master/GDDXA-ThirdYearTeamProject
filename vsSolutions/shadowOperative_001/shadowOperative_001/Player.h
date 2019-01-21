@@ -35,6 +35,7 @@ public:
 	//aiming
 	void toggleTargeting();
 	bool isTargeting();
+	//Conditions which decide targeting laser Origin
 	void updateTargeting(sf::Vector2f mousePos);
 	sf::ConvexShape getlaser();
 private:

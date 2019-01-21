@@ -119,3 +119,10 @@ void PlayableCharacter::stopLeft(float position) {
 void PlayableCharacter::stopJump() {
 	this->m_Action = Action::FALLING;
 }
+/**
+*	Return Directionstate for the purpose of synchronising mechanics with animation
+*/
+PlayableCharacter::Direction PlayableCharacter::getDir()
+{
+	return this->m_Direction;
+}
