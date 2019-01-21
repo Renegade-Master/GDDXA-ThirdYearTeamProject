@@ -295,7 +295,19 @@ bool Player::isTargeting(){
 	return targeting;
 }
 void Player::updateTargeting(sf::Vector2f mousePos){
-	targetingLaser.updateLine(this->m_Position, mousePos);
+	sf::Vector2f directPosition = this->m_Position;
+	if (this->m_Direction == Direction::RIGHT) {
+		directPosition.x += 25;
+		targetingLaser.updateLine(directPosition, mousePos);
+	}
+	else if (this->m_Direction == Direction::LEFT) {
+		directPosition.x -= 25;
+		targetingLaser.updateLine(directPosition, mousePos);
+	}
+	else if (this->m_Direction == Direction::IDLE) {
+		directPosition.x += 25;
+		targetingLaser.updateLine(directPosition, mousePos);
+	}
 }
 sf::ConvexShape Player::getlaser(){
 	return targetingLaser.getLine();

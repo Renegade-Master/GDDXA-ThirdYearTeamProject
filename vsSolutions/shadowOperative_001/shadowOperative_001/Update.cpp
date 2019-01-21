@@ -40,7 +40,6 @@ void Engine::update(float dtAsSeconds) {
 			// Load a Level
 			loadLevel();
 		}
-
 		// Update Player
 		m_Player.update(dtAsSeconds, m_ArrayLevel);
 		
@@ -49,7 +48,6 @@ void Engine::update(float dtAsSeconds) {
 			//std::cout << "\nUpdating targeting";
 			m_Player.updateTargeting(mouseWorldPosition);
 		}
-
 		//Handle-Update bullets
 		//std::cout << "\nGun Charge:" << m_Player.getChargeLevel();
 		if ((m_GameTimeTotal.asMilliseconds()
