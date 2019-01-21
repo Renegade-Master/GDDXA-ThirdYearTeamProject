@@ -58,7 +58,7 @@ void Player::update(float elapsedTime, int** m_ArrayLevel) {
 		this->m_Position.y += this->m_Gravity * 0.0167f;
 	}
 
-	if (this->m_Action == Action::JUMPING) {
+	else if (this->m_Action == Action::JUMPING) {
 		this->frameWidth = 56;
 		this->frameHeight = 70;
 		this->frameXOffset = 86;
@@ -94,9 +94,9 @@ void Player::update(float elapsedTime, int** m_ArrayLevel) {
 		this->frameXOffset = 0;
 	}
 	
-	/***-----------------***\
-	|	HANDLE DIRECTIONS	|
-	\***-----------------***/
+	/***---------------------***\
+	|	HANDLE RIGHT DIRECTION	|
+	\***---------------------***/
 	
 	if (this->m_Direction == Direction::RIGHT) {
 		this->m_Position.x += this->m_Speed * elapsedTime;
@@ -112,12 +112,21 @@ void Player::update(float elapsedTime, int** m_ArrayLevel) {
 					this->frameHeight));					// How tall is the Frame?
 			this->m_Sprite.setTexture(this->m_Texture);
 			this->m_timeSinceLastFrame = 0.0f;
-
-			this->m_LastDirection = this->m_Direction;
 		}
 	}
+
+	/***---------------------***\
+	|	HANDLE LEFT DIRECTION	|
+	\***---------------------***/
+
 	else if (this->m_Direction == Direction::LEFT) {
 		this->m_Position.x -= this->m_Speed * elapsedTime;
+
+		// Look in the right direction
+		/*if (this->frameWidth > 0) {
+
+			this->frameWidth *= -1;
+		}*/
 
 		// Set the Animation Sprite
 		if (this->m_timeSinceLastFrame > frameSwitchTime) {
@@ -128,25 +137,24 @@ void Player::update(float elapsedTime, int** m_ArrayLevel) {
 					this->frameYOffset * this->frameHeight, // What frame of the Animation?
 					this->frameWidth,						// How wide is the Frame?
 					this->frameHeight));					// How tall is the Frame?
-			//this->m_Sprite.scale(-1.0f,1.0f);				// Frame reversed
 			this->m_Sprite.setTexture(m_Texture);
 			this->m_timeSinceLastFrame = 0.0f;
-			
-			this->m_LastDirection = this->m_Direction;
+
+			this->m_Sprite.setOrigin(
+				sf::Vector2f(
+					m_Sprite.getTexture()->getSize().x * 0.5,
+					m_Sprite.getTexture()->getSize().y * 0.5));
+			this->m_Sprite.scale(-1.0f,1.0f);				// Frame reversed
 		}
 	}
-	else /*if (m_Direction == Direction::IDLE)*/ {
+
+	/***-----------------***\
+	|	HANDLE NO DIRECTION	|
+	\***-----------------***/
+
+	else {
 		// Look at the Nearest Enemy
 		
-		int mod = 1;
-		// Look in most recent direction
-		if (this->m_LastDirection == Direction::RIGHT) {
-			mod = 1;
-		}
-		else if (this->m_LastDirection == Direction::LEFT) {
-			mod = -1;
-		}
-
 		// Set the Animation Sprite
 		if (this->m_timeSinceLastFrame > frameSwitchTime) {
 			this->m_Texture.loadFromImage(
@@ -154,13 +162,16 @@ void Player::update(float elapsedTime, int** m_ArrayLevel) {
 				sf::IntRect(
 					this->frameXOffset,							// What type of Animation?
 					this->frameYOffset * this->frameHeight,		// What frame of the Animation?
-					this->frameWidth * mod,						// How wide is the Frame?
+					this->frameWidth,							// How wide is the Frame?
 					this->frameHeight));						// How tall is the Frame?
 			this->m_Sprite.setTexture(m_Texture);
 			this->m_timeSinceLastFrame = 0.0f;
 		}
 	}
 
+	/***---------------------***\
+	|	HANDLE FALLING AGAIN	|
+	\***---------------------***/
 
 	if (this->m_Action == Action::FALLING) {
 		// Set Player Sprite to Falling
@@ -206,9 +217,9 @@ void Player::update(float elapsedTime, int** m_ArrayLevel) {
 
 	if (this->m_Direction == Direction::LEFT) {
 		//this->m_Sprite.setOrigin(frameWidth / 2.0f, frameHeight / 2.0f);
-		this->m_Sprite.setOrigin(sf::Vector2f(m_Sprite.getTexture()->getSize().x * 0.5, m_Sprite.getTexture()->getSize().y * 0.5));
+		//this->m_Sprite.setOrigin(sf::Vector2f(m_Sprite.getTexture()->getSize().x * 0.5, m_Sprite.getTexture()->getSize().y * 0.5));
 		//sprite.setOrigin(sf::Vector2f(sprite.getTexture()->getSize().x * 0.5, sprite.getTexture()->getSize().y * 0.5));
-		this->m_Sprite.scale(-1.0f, 1.0f);
+		//this->m_Sprite.scale(-1.0f, 1.0f);
 	}
 
 	// Move the sprite into position
@@ -236,6 +247,7 @@ void Player::handleInput() {
 	}
 	// If nothing is pressed
 	else {
+		this->m_LastDirection = this->m_Direction;
 		this->m_Direction = Direction::IDLE;
 	}
 
@@ -252,7 +264,15 @@ void Player::handleInput() {
 	\***---------------------***/
 
 	else if (this->m_Action == Action::JUMPING) {
+		//  Double Jump
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
+			// Character not already jumping
+			if (this->m_jumpCounter < this->maxJumps) {
 
+				this->m_Action = Action::JUMPING;
+				this->m_jumpCounter++;
+			}
+		}
 	}
 
 	/***---------------------***\
@@ -260,7 +280,20 @@ void Player::handleInput() {
 	\***---------------------***/
 
 	else if (this->m_Action == Action::RUNNING) {
-		//  Jumping
+		// Continue Running
+		if (this->m_Direction == Direction::LEFT
+			|| this->m_Direction == Direction::RIGHT) {
+			
+			this->m_Action = Action::RUNNING;
+			
+			
+		}
+		// Stop Running
+		else if (this->m_Direction == Direction::IDLE) {
+			this->m_Action == Action::IDLE;
+		}
+		
+		//  Running Jump
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
 			// Character not already jumping
 			if (this->m_jumpCounter < this->maxJumps) {
@@ -299,7 +332,7 @@ void Player::handleInput() {
 	|	HANDLE IDLE STANCE	|
 	\***-----------------***/
 	else if (this->m_Action == Action::IDLE) {
-		//  Jumping
+		//  Start Jumping
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
 			// Character not already jumping
 			if (this->m_jumpCounter < this->maxJumps) {
@@ -307,6 +340,18 @@ void Player::handleInput() {
 				this->m_Action = Action::JUMPING;
 				this->m_jumpCounter++;
 			}
+		}
+
+		// Start Running
+		if (this->m_Direction == Direction::LEFT
+			|| this->m_Direction == Direction::RIGHT) {
+			
+			this->m_Action = Action::RUNNING;
+		}
+
+		// Start Crouching
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
+			
 		}
 	}
 	
@@ -325,59 +370,88 @@ void Player::handleInput() {
 	}
 }
 
+/**
+*
+*/
 int Player::getDetectLevel() {
 	return detectionLevel;
 }
 
-bool Player::isShooting()
-{
+/**
+*
+*/
+bool Player::isShooting() {
 	return shooting;
 }
-void Player::playerShot(bool shot)
-{
+
+/**
+*
+*/
+void Player::playerShot(bool shot) {
 	gunChargeLevel -= shotCost;
 	shooting = false;
 }
-void Player::chargeGun(float dtAsSeconds)
-{
-	if (!shooting)
-	{
-		if (gunChargeLevel + gunChargeRate * dtAsSeconds <= maxGunChargeLevel)
-		{
+
+/**
+*
+*/
+void Player::chargeGun(float dtAsSeconds) {
+	if (!shooting) {
+		if (gunChargeLevel + gunChargeRate * dtAsSeconds <= maxGunChargeLevel) {
 			/*std::cout << "\n gunChargeLevel:" << gunChargeLevel << " += gunChargeRate * dtAsSeconds = "
 				<< gunChargeLevel + gunChargeRate * dtAsSeconds;*/
 			gunChargeLevel += gunChargeRate * dtAsSeconds;
 		}
-		else
-		{
+		else {
 			gunChargeLevel = maxGunChargeLevel;
 		}
 	}
 }
-float Player::getChargeLevel()
-{
+
+/**
+*
+*/
+float Player::getChargeLevel() {
 	return gunChargeLevel;
 }
-float Player::getShotCost()
-{
+
+/**
+*
+*/
+float Player::getShotCost() {
 	return shotCost;
 }
-float Player::getMaxCharge()
-{
+
+/**
+*
+*/
+float Player::getMaxCharge() {
 	return maxGunChargeLevel;
 }
-void Player::toggleTargeting(){
-	if (targeting){
+
+/**
+*
+*/
+void Player::toggleTargeting() {
+	if (targeting) {
 		targeting = false;
 	}
-	else{
+	else {
 		targeting = true;
 	}
 }
-bool Player::isTargeting(){
+
+/**
+*
+*/
+bool Player::isTargeting() {
 	return targeting;
 }
-void Player::updateTargeting(sf::Vector2f mousePos){
+
+/**
+*
+*/
+void Player::updateTargeting(sf::Vector2f mousePos) {
 	sf::Vector2f directPosition = this->m_Position;
 	if (this->m_Direction == Direction::RIGHT) {
 		directPosition.x += 25;
@@ -392,6 +466,10 @@ void Player::updateTargeting(sf::Vector2f mousePos){
 		targetingLaser.updateLine(directPosition, mousePos);
 	}
 }
-sf::ConvexShape Player::getlaser(){
+
+/**
+*
+*/
+sf::ConvexShape Player::getlaser() {
 	return targetingLaser.getLine();
 }
