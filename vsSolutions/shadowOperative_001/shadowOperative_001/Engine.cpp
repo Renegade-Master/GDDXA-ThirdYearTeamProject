@@ -17,7 +17,7 @@ Engine::Engine() {
 
 	m_Window.create(sf::VideoMode(resolution.x, resolution.y),
 		"Shadow Operative",
-		sf::Style::Fullscreen);
+		sf::Style::Default);
 	m_Window.setFramerateLimit(60);
 
 	// Initialize the full screen view

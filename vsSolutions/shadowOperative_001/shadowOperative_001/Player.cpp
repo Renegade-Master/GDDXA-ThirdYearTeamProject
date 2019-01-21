@@ -297,19 +297,44 @@ void Player::toggleTargeting(){
 bool Player::isTargeting(){
 	return targeting;
 }
+/*
+*	Choose Origin Point of Laser dependant on Animation State
+*	and Mouse Position
+*/
 void Player::updateTargeting(sf::Vector2f mousePos){
 	sf::Vector2f directPosition = this->m_Position;
 	if (this->m_Direction == Direction::RIGHT) {
-		directPosition.x += 25;
-		targetingLaser.updateLine(directPosition, mousePos);
+		if (mousePos.x < this->m_Position.x) {
+			directPosition.x -= 35;
+			directPosition.y -= 35;
+			targetingLaser.updateLine(directPosition, mousePos);
+		}
+		else {
+			directPosition.y -= 35;
+			targetingLaser.updateLine(directPosition, mousePos);
+		}
 	}
 	else if (this->m_Direction == Direction::LEFT) {
-		directPosition.x -= 25;
-		targetingLaser.updateLine(directPosition, mousePos);
+		if (mousePos.x < this->m_Position.x) {
+			directPosition.x -= 50;
+			directPosition.y -= 35;
+			targetingLaser.updateLine(directPosition, mousePos);
+		}
+		else{
+			directPosition.y -= 35;
+			targetingLaser.updateLine(directPosition, mousePos);
+		}
 	}
 	else if (this->m_Direction == Direction::IDLE) {
-		directPosition.x += 25;
-		targetingLaser.updateLine(directPosition, mousePos);
+		if (mousePos.x < this->m_Position.x){
+			directPosition.x -= 40;
+			directPosition.y -= 35;
+			targetingLaser.updateLine(directPosition, mousePos);
+		}
+		else{
+			directPosition.y -= 35;
+			targetingLaser.updateLine(directPosition, mousePos);
+		}
 	}
 }
 sf::ConvexShape Player::getlaser(){
