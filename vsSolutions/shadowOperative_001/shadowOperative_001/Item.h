@@ -12,6 +12,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "TextureHolder.h"
+#include <iostream>
 class Item 
 {
 public:
@@ -19,7 +20,7 @@ public:
 	sf::FloatRect getPosition();
 
 	// A rectangle representing the position of different parts of the sprite
-	sf::FloatRect getBottem();
+	sf::FloatRect getBottom();
 	sf::FloatRect getTop();
 	sf::FloatRect getRight();
 	sf::FloatRect getLeft();
@@ -35,7 +36,7 @@ public:
 	// Where is the center of the character
 	sf::Vector2f getCenter();
 
-	void spawn(sf::Vector2i startPosition, float gravity);
+	void spawn(sf::Vector2i startPosition);
 
 	//Default Constructor
 	Item();
@@ -51,7 +52,7 @@ protected:
 	virtual void update(float elapsedTime, int** m_ArrayLevel) = 0;
 
 	// Where are the items sides?
-	sf::FloatRect m_Bottem;
+	sf::FloatRect m_Bottom;
 	sf::FloatRect m_Top;
 	sf::FloatRect m_Right;
 	sf::FloatRect m_Left;

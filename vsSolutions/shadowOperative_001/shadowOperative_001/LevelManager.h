@@ -24,6 +24,7 @@ private:
 	sf::Vector2i m_EndPosition;
 	std::list<sf::Vector2i> m_EnemyPosition;
 	std::list<sf::Vector2i> m_ItemPosition;
+	std::list<char> m_ItemType;
 	float m_TimeModifier = 1;
 	float m_BaseTimeLimit = 0;
 	int m_CurrentLevel = 0;
@@ -31,6 +32,8 @@ private:
 
 
 public:
+
+	LevelManager();
 	const int TILE_SIZE = 50;
 	const int VERTS_IN_QUAD = 4;
 
@@ -47,6 +50,12 @@ public:
 	sf::Vector2i getLevelSize();
 
 	int getCurrentLevel();
+
+	int getNumOfItems();
+
+	char getItemType();
+
+	sf::Vector2i getItemPos();
 
 };
 #endif // !LEVELMANAGER_H

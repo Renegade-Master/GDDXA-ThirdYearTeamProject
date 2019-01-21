@@ -9,6 +9,11 @@
 #include "LevelManager.h"
 #include "Engine.h"
 
+LevelManager::LevelManager(){
+	assert (m_ItemType.size() == 0);
+	assert(m_ItemPosition.size() == 0);
+	m_ItemPosition.clear();
+}
 int** LevelManager::nextLevel(sf::VertexArray& rVaLevel) {
 	m_LevelSize.x = 0;
 	m_LevelSize.y = 0;
@@ -165,9 +170,14 @@ int** LevelManager::nextLevel(sf::VertexArray& rVaLevel) {
 			case 'a':
 				arrayLevel[y][x] = 'a';
 				break;
+			case 'B':
+				temp.x = x;
+				temp.y = y;
+				m_ItemPosition.push_back(temp);
+				m_ItemType.push_back('B');
+				break;
 			}
 		}
-
 		y++;
 	}
 
@@ -316,5 +326,15 @@ int LevelManager::getNumOfEnemies()
 	return m_EnemyPosition.size();
 }
 int LevelManager::getNumOfItems() {
-	return m_ItemPosition.size();
+	return m_ItemType.size();
+}
+char LevelManager::getItemType(){
+	char temp = m_ItemType.back();
+	m_ItemType.pop_back();
+	return temp;
+}
+sf::Vector2i LevelManager::getItemPos(){
+	sf::Vector2i temp = m_ItemPosition.back();
+	m_ItemPosition.pop_back();
+	return temp;
 }

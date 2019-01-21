@@ -5,15 +5,18 @@ gunBattery::gunBattery()
 	m_Capacity = static_cast<Capacity>(rand() % 3);
 	if (this->m_Capacity == Capacity::SMALL) {
 		m_ItemSprite = sf::Sprite(TextureHolder::GetTexture(
-			"graphics/Batteries/BATTERY_SMALL"));
+			"graphics/Batteries/BATTERY_SMALL.png"));
+		std::cout << "\ngraphics/Batteries/BATTERY_SMALL.png";
 	}
 	else if (this->m_Capacity == Capacity::MEDIUM) {
 		m_ItemSprite = sf::Sprite(TextureHolder::GetTexture(
-			"graphics/Batteries/BATTERY_MEDIUM"));
+			"graphics/Batteries/BATTERY_MEDIUM.png"));
+		std::cout << "\ngraphics/Batteries/BATTERY_MEDIUM.png";
 	}
 	else if (this->m_Capacity == Capacity::LARGE) {
 		m_ItemSprite = sf::Sprite(TextureHolder::GetTexture(
-			"graphics/Batteries/BATTERY_LARGE"));
+			"graphics/Batteries/BATTERY_LARGE.png"));
+		std::cout << "\ngraphics/Batteries/BATTERY_LARGE.png";
 	}
 }
 float gunBattery::getCapacity()

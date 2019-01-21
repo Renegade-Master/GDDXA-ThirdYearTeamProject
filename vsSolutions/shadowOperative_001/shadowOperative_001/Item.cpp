@@ -7,14 +7,14 @@
 */
 
 #include "Item.h"
-Item::Item()
-{
+Item::Item(){
 
 }
-void Item::spawn(sf::Vector2i startPosition, float gravity) {
+void Item::spawn(sf::Vector2i startPosition) {
 	// Place the item at the starting point
-	m_Position.x = startPosition.x;
-	m_Position.y = startPosition.y;
+	this->m_Position = (sf::Vector2f)startPosition;
+	m_Position.x = this->getCenter().x * 50;
+	m_Position.y = this->getCenter().y * 50;
 
 	m_ItemSprite.setPosition(m_Position);
 }
@@ -33,8 +33,8 @@ sf::Vector2f Item::getCenter() {
 	);
 }
 
-sf::FloatRect Item::getBottem() {
-	return m_Bottem;
+sf::FloatRect Item::getBottom() {
+	return m_Bottom;
 }
 
 sf::FloatRect Item::getTop() {
