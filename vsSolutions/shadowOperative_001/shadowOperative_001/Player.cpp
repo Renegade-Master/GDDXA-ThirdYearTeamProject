@@ -30,6 +30,9 @@ Player::Player() {
 	this->m_Action = Action::FALLING;
 }
 
+/**
+*	Dev
+*/
 void Player::update(float elapsedTime, int** m_ArrayLevel) {
 	// Set Sprite Animation Frame
 	if (this->frameYOffset >= this->m_maxAnimationFrames) {
@@ -44,8 +47,9 @@ void Player::update(float elapsedTime, int** m_ArrayLevel) {
 	\***-------------***/
 
 	// Save off some data for this Frame
-	this->m_LastAction = this->m_Action;
-	this->m_LastPosition = this->m_Position;
+	/*this->m_LastAction = this->m_Action;
+	this->m_LastDirection = this->m_Direction;
+	this->m_LastPosition = this->m_Position;*/
 
 	if (this->m_Action == Action::FALLING) {
 		/*this->frameWidth = 0;
@@ -85,7 +89,7 @@ void Player::update(float elapsedTime, int** m_ArrayLevel) {
 		this->frameHeight = 0;*/
 	}
 	else if (this->m_Action == Action::IDLE) {
-		this->frameWidth = 35;
+		this->frameWidth = 36;
 		this->frameHeight = 66;
 		this->frameXOffset = 0;
 	}
@@ -108,6 +112,8 @@ void Player::update(float elapsedTime, int** m_ArrayLevel) {
 					this->frameHeight));					// How tall is the Frame?
 			this->m_Sprite.setTexture(this->m_Texture);
 			this->m_timeSinceLastFrame = 0.0f;
+
+			this->m_LastDirection = this->m_Direction;
 		}
 	}
 	else if (this->m_Direction == Direction::LEFT) {
@@ -125,21 +131,31 @@ void Player::update(float elapsedTime, int** m_ArrayLevel) {
 			//this->m_Sprite.scale(-1.0f,1.0f);				// Frame reversed
 			this->m_Sprite.setTexture(m_Texture);
 			this->m_timeSinceLastFrame = 0.0f;
+			
+			this->m_LastDirection = this->m_Direction;
 		}
 	}
 	else /*if (m_Direction == Direction::IDLE)*/ {
 		// Look at the Nearest Enemy
-
+		
+		int mod = 1;
+		// Look in most recent direction
+		if (this->m_LastDirection == Direction::RIGHT) {
+			mod = 1;
+		}
+		else if (this->m_LastDirection == Direction::LEFT) {
+			mod = -1;
+		}
 
 		// Set the Animation Sprite
 		if (this->m_timeSinceLastFrame > frameSwitchTime) {
 			this->m_Texture.loadFromImage(
 				m_animationSheet,
 				sf::IntRect(
-					this->frameXOffset,						// What type of Animation?
-					this->frameYOffset * this->frameHeight, // What frame of the Animation?
-					this->frameWidth,						// How wide is the Frame?
-					this->frameHeight));					// How tall is the Frame?
+					this->frameXOffset,							// What type of Animation?
+					this->frameYOffset * this->frameHeight,		// What frame of the Animation?
+					this->frameWidth * mod,						// How wide is the Frame?
+					this->frameHeight));						// How tall is the Frame?
 			this->m_Sprite.setTexture(m_Texture);
 			this->m_timeSinceLastFrame = 0.0f;
 		}
@@ -205,35 +221,99 @@ void Player::update(float elapsedTime, int** m_ArrayLevel) {
 
 // A virtual function
 void Player::handleInput() {
-	//  Jumping
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
-		// Character not already jumping
-		if (this->m_jumpCounter < this->maxJumps) {
-
-			this->m_Action = Action::JUMPING;
-			this->m_jumpCounter++;
-		}
-	}
+	
+	/***-----------------***\
+	|	HANDLE ALL STANCE	|
+	\***-----------------***/
 
 	//  Moving Left
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
 		this->m_Direction = Direction::LEFT;
-
-		/*if (this->m_Action != Action::FALLING ) {
-			this->m_Action = Action::RUNNING;
-		}*/
 	}
 	//  Moving Right
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
-		//this->m_Action = Action::RUNNING;
 		this->m_Direction = Direction::RIGHT;
-	}	
+	}
 	// If nothing is pressed
-	else /*if (this->m_Action != Action::FALLING)*/ {
-		//this->m_Action = Action::IDLE;
+	else {
 		this->m_Direction = Direction::IDLE;
 	}
+
+	/***---------------------***\
+	|	HANDLE FALLING STANCE	|
+	\***---------------------***/
+
+	if (this->m_Action == Action::FALLING) {
+		
+	}
+
+	/***---------------------***\
+	|	HANDLE JUMPING STANCE	|
+	\***---------------------***/
+
+	else if (this->m_Action == Action::JUMPING) {
+
+	}
+
+	/***---------------------***\
+	|	HANDLE RUNNING STANCE	|
+	\***---------------------***/
+
+	else if (this->m_Action == Action::RUNNING) {
+		//  Jumping
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
+			// Character not already jumping
+			if (this->m_jumpCounter < this->maxJumps) {
+
+				this->m_Action = Action::JUMPING;
+				this->m_jumpCounter++;
+			}
+		}
+	}
+
+	/***---------------------***\
+	|	HANDLE CROUCHING STANCE	|
+	\***---------------------***/
+
+	else if (this->m_Action == Action::CROUCHING) {
+
+	}
+
+	/***---------------------***\
+	|	HANDLE ATTACK STANCE	|
+	\***---------------------***/
+
+	else if (this->m_Action == Action::ATTACKING) {
+		//  Jumping
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
+			// Character not already jumping
+			if (this->m_jumpCounter < this->maxJumps) {
+
+				this->m_Action = Action::JUMPING;
+				this->m_jumpCounter++;
+			}
+		}
+	}
+
+	/***-----------------***\
+	|	HANDLE IDLE STANCE	|
+	\***-----------------***/
+	else if (this->m_Action == Action::IDLE) {
+		//  Jumping
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
+			// Character not already jumping
+			if (this->m_jumpCounter < this->maxJumps) {
+
+				this->m_Action = Action::JUMPING;
+				this->m_jumpCounter++;
+			}
+		}
+	}
 	
+	/***-------------***\
+	|	HANDLE SHOOTING	|
+	\***-------------***/
+
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
 		shooting = true;
 	}
