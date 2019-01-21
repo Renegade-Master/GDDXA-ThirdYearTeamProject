@@ -244,9 +244,24 @@ void Player::handleInput() {
 		this->toggleTargeting();
 	}
 }
-
+/*
+*	Decide what level of Detection is returned based on m_Action State
+*/
 int Player::getDetectLevel() {
-	return detectionLevel;
+	if ((this->m_Action == Action::FALLING)||
+		(this->m_Action == Action::JUMPING)||
+		(this->m_Action == Action::ATTACKING)){
+		return detectionLevel = 3;
+	}
+	else if (this->m_Action == Action::IDLE){
+		return detectionLevel = 2;
+	}
+	else if (this->m_Action == Action::CROUCHING){
+		return detectionLevel = 1;
+	}
+	else {
+		return detectionLevel = 0;
+	}
 }
 
 bool Player::isShooting()
