@@ -58,6 +58,8 @@ public:
 
 	void spawn(sf::Vector2i startPosition, float gravity);
 
+	//return Direction enum state
+	PlayableCharacter::Direction getDir();
 protected:
 	// Sprite Animation Variables
 	int frameWidth;
