@@ -14,6 +14,12 @@
 *							R	Width: 56	Height: 70	XOffset: 86
 *						Attack
 *							R	Width: 69	Height: 75	XOffset: 142
+*						Climb
+*							R	Width: 42	Height: 69	XOffset: 211
+*						Fall
+*							R	Width: 55	Height: 56	XOffset: 253
+*						Die
+*							R	Width: 62	Height: 64	XOffset: 308
 */
 
 #include "Player.h"
@@ -25,7 +31,7 @@
 Player::Player() {
 	this->maxJumps = 2;
 
-	this->m_animationSheet.loadFromFile("graphics\\PlayerAnimationSheet_04.png");
+	this->m_animationSheet.loadFromFile("graphics\\PlayerAnimationSheet_05.png");
 	this->m_maxAnimationFrames = 10;
 	this->m_Action = Action::FALLING;
 	this->m_Direction = Direction::IDLE;
@@ -52,14 +58,7 @@ void Player::update(float elapsedTime, int** m_ArrayLevel) {
 	this->m_LastDirection = this->m_Direction;
 	this->m_LastPosition = this->m_Position;*/
 
-	if (this->m_Action == Action::FALLING) {
-		/*this->frameWidth = 0;
-		this->frameHeight = 0;*/
-		
-		this->m_Position.y += this->m_Gravity * 0.0167f;
-	}
-
-	else if (this->m_Action == Action::JUMPING) {
+	if (this->m_Action == Action::JUMPING) {
 		this->frameWidth = 56;
 		this->frameHeight = 70;
 		this->frameXOffset = 86;
@@ -94,6 +93,13 @@ void Player::update(float elapsedTime, int** m_ArrayLevel) {
 		this->frameHeight = 66;
 		this->frameXOffset = 0;
 	}
+	else if (this->m_Action == Action::FALLING) {
+		this->frameWidth = 55;
+		this->frameHeight = 56;
+		this->frameXOffset = 253;
+
+		this->m_Position.y += this->m_Gravity * 0.0167f;
+	}
 	
 	/***---------------------***\
 	|	HANDLE RIGHT DIRECTION	|
@@ -124,20 +130,16 @@ void Player::update(float elapsedTime, int** m_ArrayLevel) {
 		this->m_Position.x -= this->m_Speed * elapsedTime;
 
 		// Look in the right direction
-		/*if (this->frameWidth > 0) {
-
-			this->frameWidth *= -1;
-		}*/
 
 		// Set the Animation Sprite
 		if (this->m_timeSinceLastFrame > frameSwitchTime) {
 			this->m_Texture.loadFromImage(
 				m_animationSheet,
 				sf::IntRect(
-					this->frameXOffset + (m_animationSheet.getSize().x / 2),						// What type of Animation?
-					this->frameYOffset * this->frameHeight, // What frame of the Animation?
-					this->frameWidth,						// How wide is the Frame?
-					this->frameHeight));					// How tall is the Frame?
+					this->frameXOffset + (m_animationSheet.getSize().x / 2),	// What type of Animation?  Also move to Left half of SpriteSheet
+					this->frameYOffset * this->frameHeight,						// What frame of the Animation?
+					this->frameWidth,											// How wide is the Frame?
+					this->frameHeight));										// How tall is the Frame?
 			this->m_Sprite.setTexture(m_Texture);
 			this->m_timeSinceLastFrame = 0.0f;
 		}
@@ -162,16 +164,6 @@ void Player::update(float elapsedTime, int** m_ArrayLevel) {
 			this->m_Sprite.setTexture(m_Texture);
 			this->m_timeSinceLastFrame = 0.0f;
 		}
-	}
-
-	/***---------------------***\
-	|	HANDLE FALLING AGAIN	|
-	\***---------------------***/
-
-	if (this->m_Action == Action::FALLING) {
-		// Set Player Sprite to Falling
-		this->m_Sprite = sf::Sprite(TextureHolder::GetTexture(
-			"graphics/Glide_000.png"));
 	}
 
 	// Increment Animation Frame
@@ -212,7 +204,7 @@ void Player::update(float elapsedTime, int** m_ArrayLevel) {
 	this->m_Sprite.setPosition(this->m_Position);
 
 	//charge weapon
-	chargeGun(elapsedTime);
+	this->chargeGun(elapsedTime);
 	//targetingLaser.updateLine(this->m_Position, mousePos);
 }
 
