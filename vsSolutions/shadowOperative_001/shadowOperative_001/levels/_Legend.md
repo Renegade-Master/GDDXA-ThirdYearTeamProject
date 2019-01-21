@@ -16,6 +16,7 @@
 - E = Enemy Spawn
 - P = Player Spawn
 - T = Enemy Path
+- B = Battery
 
 ###	a-z
 - d = Door (Open)

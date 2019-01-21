@@ -315,3 +315,6 @@ int LevelManager::getNumOfEnemies()
 {
 	return m_EnemyPosition.size();
 }
+int LevelManager::getNumOfItems() {
+	return m_ItemPosition.size();
+}

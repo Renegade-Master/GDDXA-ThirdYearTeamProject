@@ -28,3 +28,6 @@ float gunBattery::getCapacity()
 		return 50.00;
 	}
 }
+void gunBattery::update(float elapsedTime, int** m_ArrayLevel) {
+	//No update needed
+}

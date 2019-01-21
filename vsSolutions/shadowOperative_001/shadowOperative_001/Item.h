@@ -37,6 +37,9 @@ public:
 
 	void spawn(sf::Vector2i startPosition, float gravity);
 
+	//Default Constructor
+	Item();
+
 protected:
 	// A Sprite
 	sf::Sprite m_ItemSprite;

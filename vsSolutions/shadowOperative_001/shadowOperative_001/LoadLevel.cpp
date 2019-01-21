@@ -32,6 +32,8 @@ void Engine::loadLevel() {
 	// Spawn Player and Bob
 	m_Player.spawn(m_LM.getStartPosition(), GRAVITY);
 	enemySpawn();
+	//Spawn Items
+	ItemSpawn();
 
 	// Make sure this code isn't run again
 	m_NewLevelRequired = false;

@@ -13,5 +13,6 @@ public:
 	gunBattery();
 	//return the capacity to the gun
 	float getCapacity();
+	virtual void update(float elapsedTime, int** m_ArrayLevel);
 };
 #endif 

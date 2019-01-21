@@ -7,7 +7,10 @@
 */
 
 #include "Item.h"
+Item::Item()
+{
 
+}
 void Item::spawn(sf::Vector2i startPosition, float gravity) {
 	// Place the item at the starting point
 	m_Position.x = startPosition.x;
