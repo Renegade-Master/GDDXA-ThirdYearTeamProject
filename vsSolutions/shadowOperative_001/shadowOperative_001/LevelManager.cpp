@@ -3,7 +3,7 @@
 *					Owen O'Dea	[K00218956]
 *					Rory Ryan	[K00218864]
 *	@creationDate	2018/11/01	YYYY/MM/DD
-*	@description
+*	@description	...
 */
 
 #include "LevelManager.h"
@@ -25,20 +25,20 @@ int** LevelManager::nextLevel(sf::VertexArray& rVaLevel) {
 	switch (m_CurrentLevel)	{
 
 	case 1:
-		levelToLoad = "levels/level111.txt";
+		levelToLoad = "levels/level222.txt";
 		m_StartPosition.x = 5;
 		m_StartPosition.y = 5;
 		m_BaseTimeLimit = 30.0f;
 		break;
 
-	case 2:
-		levelToLoad = "levels/level333.txt";
+	/*case 2:
+		levelToLoad = "levels/level222.txt";
 		m_StartPosition.x = 100;
 		m_StartPosition.y = 3600;
 		m_BaseTimeLimit = 100.0f;
-		break;
+		break;*/
 
-	case 3:
+	/*case 3:
 		levelToLoad = "levels/level3.txt";
 		m_StartPosition.x = 1250;
 		m_StartPosition.y = 0;
@@ -50,6 +50,9 @@ int** LevelManager::nextLevel(sf::VertexArray& rVaLevel) {
 		m_StartPosition.x = 50;
 		m_StartPosition.y = 200;
 		m_BaseTimeLimit = 50.0f;
+		break;*/
+	default:
+		std::cout << "Map had a promblem" << std::endl;
 		break;
 	}
 
