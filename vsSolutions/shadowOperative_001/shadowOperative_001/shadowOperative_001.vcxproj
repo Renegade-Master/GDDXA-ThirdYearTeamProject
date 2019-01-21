@@ -214,6 +214,7 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="levels\level222.txt" />
+    <Text Include="levels\level333.txt" />
     <Text Include="levels\_Legend.md" />
     <Text Include="levels\level1.txt" />
     <Text Include="levels\level11.txt" />

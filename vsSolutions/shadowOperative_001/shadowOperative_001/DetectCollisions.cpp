@@ -154,7 +154,7 @@ bool Engine::detectCollisions(PlayableCharacter& character) {
 			*/
 
 			// Has the character reached the goal?
-			if (m_ArrayLevel[y][x] == 4) {
+			if (m_ArrayLevel[y][x] == 'Q') {
 				// Character has reached the goal
 				reachedGoal = true;
 			}
