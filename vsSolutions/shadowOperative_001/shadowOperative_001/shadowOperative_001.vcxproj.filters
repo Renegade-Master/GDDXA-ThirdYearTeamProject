@@ -266,25 +266,19 @@
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="levels\level1.txt">
-      <Filter>Resource Files\levels</Filter>
-    </Text>
     <Text Include="levels\level5.txt">
-      <Filter>Resource Files\levels</Filter>
-    </Text>
-    <Text Include="levels\level11.txt">
-      <Filter>Resource Files\levels</Filter>
-    </Text>
-    <Text Include="levels\level111.txt">
       <Filter>Resource Files\levels</Filter>
     </Text>
     <Text Include="levels\_Legend.md">
       <Filter>Resource Files\levels</Filter>
     </Text>
-    <Text Include="levels\level222.txt">
+    <Text Include="levels\level1.txt">
       <Filter>Resource Files\levels</Filter>
     </Text>
-    <Text Include="levels\level333.txt">
+    <Text Include="levels\level2.txt">
+      <Filter>Resource Files\levels</Filter>
+    </Text>
+    <Text Include="levels\level3.txt">
       <Filter>Resource Files\levels</Filter>
     </Text>
   </ItemGroup>

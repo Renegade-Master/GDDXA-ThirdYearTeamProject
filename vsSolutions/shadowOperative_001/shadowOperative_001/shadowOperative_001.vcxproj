@@ -213,12 +213,10 @@
     <Image Include="graphics\Walk_left.png" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="levels\level222.txt" />
-    <Text Include="levels\level333.txt" />
+    <Text Include="levels\level2.txt" />
+    <Text Include="levels\level3.txt" />
     <Text Include="levels\_Legend.md" />
     <Text Include="levels\level1.txt" />
-    <Text Include="levels\level11.txt" />
-    <Text Include="levels\level111.txt" />
     <Text Include="levels\level5.txt" />
   </ItemGroup>
   <ItemGroup>
