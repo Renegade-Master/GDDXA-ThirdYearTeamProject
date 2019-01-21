@@ -69,7 +69,6 @@ protected:
 	float frameSwitchTime = 0.1f;
 
 	sf::Image m_animationSheet;
-	sf::Image m_fallingAnimation;
 	sf::Sprite m_Sprite;
 	sf::Sprite m_SpriteRunningRight;
 	sf::Sprite m_SpriteRunningLeft;

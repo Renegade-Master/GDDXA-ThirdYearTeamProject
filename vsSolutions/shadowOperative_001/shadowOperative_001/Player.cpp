@@ -25,8 +25,7 @@
 Player::Player() {
 	this->maxJumps = 2;
 
-	this->m_animationSheet.loadFromFile("graphics\\PlayerAnimationSheet_03.png");
-	this->m_fallingAnimation.loadFromFile("graphics\\PlayerAnimationSheet_03.png");
+	this->m_animationSheet.loadFromFile("graphics\\PlayerAnimationSheet_04.png");
 	this->m_maxAnimationFrames = 10;
 	this->m_Action = Action::FALLING;
 	this->m_Direction = Direction::IDLE;
@@ -69,7 +68,7 @@ void Player::update(float elapsedTime, int** m_ArrayLevel) {
 		this->m_jumpDuration += elapsedTime;
 
 		// Add the jump time to the timer
-		this->m_Position.y -= this->m_Gravity * 2 * 0.0167f;
+		this->m_Position.y -= this->m_Gravity * 2 * 0.0167;
 
 		// Character jump has gone on long enough
 		if (this->m_jumpDuration >= this->maxJumpDuration) {
@@ -135,9 +134,9 @@ void Player::update(float elapsedTime, int** m_ArrayLevel) {
 			this->m_Texture.loadFromImage(
 				m_animationSheet,
 				sf::IntRect(
-					this->frameXOffset,						// What type of Animation?
+					this->frameXOffset + (m_animationSheet.getSize().x / 2),						// What type of Animation?
 					this->frameYOffset * this->frameHeight, // What frame of the Animation?
-					-this->frameWidth,						// How wide is the Frame?
+					this->frameWidth,						// How wide is the Frame?
 					this->frameHeight));					// How tall is the Frame?
 			this->m_Sprite.setTexture(m_Texture);
 			this->m_timeSinceLastFrame = 0.0f;
@@ -171,31 +170,11 @@ void Player::update(float elapsedTime, int** m_ArrayLevel) {
 
 	if (this->m_Action == Action::FALLING) {
 		// Set Player Sprite to Falling
-		//this->m_Texture.loadFromImage(
-		//	m_fallingAnimation,
-		//	sf::IntRect(
-		//		this->frameXOffset,							// What type of Animation?
-		//		this->frameYOffset * this->frameHeight,		// What frame of the Animation?
-		//		this->frameWidth,							// How wide is the Frame?
-		//		this->frameHeight));						// How tall is the Frame?
-		//this->m_Sprite.setTexture(m_Texture);
-		//this->m_timeSinceLastFrame = 0.0f;
-
 		this->m_Sprite = sf::Sprite(TextureHolder::GetTexture(
 			"graphics/Glide_000.png"));
 	}
 
-	// Re-Position the Sprite
-	/*this->m_Sprite.setOrigin(
-		sf::Vector2f(
-			m_Sprite.getTexture()->getSize().x * 0.5,
-			m_Sprite.getTexture()->getSize().y * 0.5));*/
-	
-	// Reverse Sprite if moving LEFT
-	//if (this->m_Direction == Direction::LEFT) {
-	//	this->m_Sprite.scale(-1.0f, 1.0f);	// Frame reversed
-	//}
-
+	// Increment Animation Frame
 	this->frameYOffset++;
 
 	/***-------------***\
