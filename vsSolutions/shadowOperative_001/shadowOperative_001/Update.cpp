@@ -60,11 +60,6 @@ void Engine::update(float dtAsSeconds) {
 				bullets[currentBullet].shoot(
 					m_Player.getCenter().x + 25, m_Player.getCenter().y - 25,
 					mouseWorldPosition.x, mouseWorldPosition.y);
-					//m_Player.getCenter().x + 25 + 10, m_Player.getCenter().y - 24.9);
-				/*std::cout << "\nm_Player.getCenter().x"<< m_Player.getCenter().x<<
-					"\nm_Player.getCenter().y"<< m_Player.getCenter().y <<
-					"\nm_Player.getCenter().x + 10 " << m_Player.getCenter().x+10 <<
-					"\nm_Player.getCenter().y" << m_Player.getCenter().y +0.0001;*/
 				bullets[currentBullet].setShotPower(11);
 				currentBullet++;
 				m_Player.playerShot(false);
