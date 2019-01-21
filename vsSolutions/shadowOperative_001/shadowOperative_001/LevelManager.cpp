@@ -25,26 +25,26 @@ int** LevelManager::nextLevel(sf::VertexArray& rVaLevel) {
 	switch (m_CurrentLevel)	{
 
 	case 1:
-		levelToLoad = "levels/level222.txt";
+		levelToLoad = "levels/level1.txt";
 		m_StartPosition.x = 5;
 		m_StartPosition.y = 5;
 		m_BaseTimeLimit = 30.0f;
 		break;
 
-	/*case 2:
-		levelToLoad = "levels/level222.txt";
+	case 2:
+		levelToLoad = "levels/level2.txt";
 		m_StartPosition.x = 100;
 		m_StartPosition.y = 3600;
 		m_BaseTimeLimit = 100.0f;
-		break;*/
+		break;
 
-	/*case 3:
+	case 3:
 		levelToLoad = "levels/level3.txt";
 		m_StartPosition.x = 1250;
 		m_StartPosition.y = 0;
 		m_BaseTimeLimit = 30.0f;
 		break;
-
+		/*
 	case 4:
 		levelToLoad = "levels/level4.txt";
 		m_StartPosition.x = 50;
@@ -165,6 +165,9 @@ int** LevelManager::nextLevel(sf::VertexArray& rVaLevel) {
 			case 'a':
 				arrayLevel[y][x] = 'a';
 				break;
+			case 'Q':
+				arrayLevel[y][x] = 'Q';
+				break;
 			}
 		}
 
@@ -263,6 +266,9 @@ int** LevelManager::nextLevel(sf::VertexArray& rVaLevel) {
 				break;
 			case 'a':
 				verticalOffset = 26;  // We want a transparent tile here
+				break;
+			case 'Q':
+				verticalOffset = 0;  // We want a transparent tile here
 				break;
 			}
 			verticalOffset *= TILE_SIZE;
