@@ -229,7 +229,7 @@ void Player::handleInput() {
 		this->m_Direction = Direction::RIGHT;
 	}	
 	// If nothing is pressed
-	else if (this->m_Action != Action::FALLING) {
+	else /*if (this->m_Action != Action::FALLING)*/ {
 		//this->m_Action = Action::IDLE;
 		this->m_Direction = Direction::IDLE;
 	}
