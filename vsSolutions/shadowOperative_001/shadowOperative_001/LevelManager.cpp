@@ -247,28 +247,28 @@ int** LevelManager::nextLevel(sf::VertexArray& rVaLevel) {
 				verticalOffset = 0;  // We want a transparent tile here
 				break;
 			case 'z':
-				verticalOffset = 20;  // We want a transparent tile here
+				verticalOffset = 20;  //This is a camera looking down.
 				break;
 			case 'n':
-				verticalOffset = 24;  // We want a transparent tile here
+				verticalOffset = 24;  // This is a lazer looking down.
 				break;
 			case 'x':
-				verticalOffset = 21;  // We want a transparent tile here
+				verticalOffset = 21;  // This is a camera looking left
 				break;
 			case 'v':
-				verticalOffset = 23;  // We want a transparent tile here
+				verticalOffset = 23;  // This is a camera looking right.
 				break;
 			case 'm':
-				verticalOffset = 25;  // We want a transparent tile here
+				verticalOffset = 25;  // This is a lazer looking left.
 				break;
 			case 'f':
-				verticalOffset = 27;  // We want a transparent tile here
+				verticalOffset = 27;  // This is a lazer looking right.
 				break;
 			case 'a':
-				verticalOffset = 26;  // We want a transparent tile here
+				verticalOffset = 26;  // This is a lazer looking up.
 				break;
 			case 'Q':
-				verticalOffset = 0;  // We want a transparent tile here
+				verticalOffset = 0;  // End game event.
 				break;
 			}
 			verticalOffset *= TILE_SIZE;
