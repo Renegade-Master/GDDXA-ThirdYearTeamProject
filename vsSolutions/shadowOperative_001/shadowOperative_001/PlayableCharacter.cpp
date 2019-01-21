@@ -3,7 +3,7 @@
 *					Owen O'Dea	[K00218956K00218956]
 *					Rory Ryan	[K00218864]
 *	@creationDate	2018/11/01	YYYY/MM/DD
-*	@description	..
+*	@description	...
 */
 
 #include "PlayableCharacter.h"
@@ -54,7 +54,6 @@ sf::Vector2f PlayableCharacter::getCenter() {
 		this->m_Position.y + this->m_Sprite.getGlobalBounds().height / 2
 	);
 }
-
 /**
 *	Return various hitboxes.
 */

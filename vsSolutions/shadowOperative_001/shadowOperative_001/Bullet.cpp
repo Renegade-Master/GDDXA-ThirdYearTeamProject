@@ -12,7 +12,7 @@
 Bullet::Bullet() {
 	//std::cout << "\nBullet initialised";
 	m_BulletSprite = sf::Sprite(TextureHolder::GetTexture(
-		"graphics/Objects/Bullet_000.png"));
+		"graphics/Purple Spark Bullets/Purple_BULLET_000.png"));
 	m_BulletSprite.setPosition(this->m_Position);
 	//m_BulletShape.setSize(sf::Vector2f(10, 10));
 	m_InFlight = false;

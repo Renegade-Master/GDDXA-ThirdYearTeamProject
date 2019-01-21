@@ -284,6 +284,9 @@
     <Text Include="levels\level222.txt">
       <Filter>Resource Files\levels</Filter>
     </Text>
+    <Text Include="levels\level333.txt">
+      <Filter>Resource Files\levels</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <Media Include="sound\fallinfire.wav">
