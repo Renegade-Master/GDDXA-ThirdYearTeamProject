@@ -40,16 +40,14 @@ void Engine::update(float dtAsSeconds) {
 			// Load a Level
 			loadLevel();
 		}
-
 		// Update Player
 		m_Player.update(dtAsSeconds, m_ArrayLevel);
 		
 		if (m_Player.isTargeting())
 		{
-			std::cout << "\nUpdating targeting";
+			//std::cout << "\nUpdating targeting";
 			m_Player.updateTargeting(mouseWorldPosition);
 		}
-
 		//Handle-Update bullets
 		//std::cout << "\nGun Charge:" << m_Player.getChargeLevel();
 		if ((m_GameTimeTotal.asMilliseconds()
@@ -135,7 +133,7 @@ void Engine::update(float dtAsSeconds) {
 					}
 				}
 			}
-			//check for player
+			//check for player or Dead Enemy
 			if ((*it)->getCone().getLocalBounds().intersects(m_Player.getPosition()))
 			{
 				//check if enemy detection Event happened in the last second
@@ -152,7 +150,7 @@ void Engine::update(float dtAsSeconds) {
 			}
 			else if ((*it)->getAwareness() >= 0)
 			{
-				//check if enemy detection Event happened in the last second
+				//check if enemy detection Event happened in the last half second
 				if (m_GameTimeTotal.asMilliseconds()
 					- (*it)->getlastdetectTime() > 500)
 				{
@@ -160,8 +158,19 @@ void Engine::update(float dtAsSeconds) {
 					(*it)->reduceAwareness(m_GameTimeTotal);
 				}
 			}
+			std::list<Enemy*>::iterator checkDeathIter = m_EnemyList.begin();
+			for (;checkDeathIter != m_EnemyList.end();checkDeathIter++)
+			{
+				if ((*it)->getCone().getLocalBounds().intersects((*checkDeathIter)->getPosition()))
+				{
+					if (!(*checkDeathIter)->isConcious())
+					{
+						//std::cout << "\nEnemy Detecting Ally Death";
+						(*it)->increaseAwarenessLevel((*checkDeathIter)->getCenter(), 1, m_GameTimeTotal);
+					}
+				}
+			}
 		}
-
 		// Detect collisions and see if characters have reached the goal tile
 		// The second part of the if condition is only executed
 		// when thomas is touching the home tile
