@@ -58,7 +58,14 @@ void Player::update(float elapsedTime, int** m_ArrayLevel) {
 	this->m_LastDirection = this->m_Direction;
 	this->m_LastPosition = this->m_Position;*/
 
-	if (this->m_Action == Action::JUMPING) {
+	if (this->m_Action == Action::FALLING) {
+		this->frameWidth = 55;
+		this->frameHeight = 56;
+		this->frameXOffset = 253;
+
+		this->m_Position.y += this->m_Gravity * 0.0167f;
+	}
+	else if (this->m_Action == Action::JUMPING) {
 		this->frameWidth = 56;
 		this->frameHeight = 70;
 		this->frameXOffset = 86;
@@ -66,7 +73,7 @@ void Player::update(float elapsedTime, int** m_ArrayLevel) {
 		// Update how long the jump has been going
 		this->m_jumpDuration += elapsedTime;
 
-		// Add the jump time to the timer
+		// Apply the Jump to the Character
 		this->m_Position.y -= this->m_Gravity * 2 * 0.0167;
 
 		// Character jump has gone on long enough
@@ -92,13 +99,6 @@ void Player::update(float elapsedTime, int** m_ArrayLevel) {
 		this->frameWidth = 36;
 		this->frameHeight = 66;
 		this->frameXOffset = 0;
-	}
-	else if (this->m_Action == Action::FALLING) {
-		this->frameWidth = 55;
-		this->frameHeight = 56;
-		this->frameXOffset = 253;
-
-		this->m_Position.y += this->m_Gravity * 0.0167f;
 	}
 	
 	/***---------------------***\
@@ -136,7 +136,7 @@ void Player::update(float elapsedTime, int** m_ArrayLevel) {
 			this->m_Texture.loadFromImage(
 				m_animationSheet,
 				sf::IntRect(
-					this->frameXOffset + (m_animationSheet.getSize().x / 2),	// What type of Animation?  Also move to Left half of SpriteSheet
+					this->frameXOffset + (m_animationSheet.getSize().x / 2.0f),	// What type of Animation?  Also move to Left half of SpriteSheet
 					this->frameYOffset * this->frameHeight,						// What frame of the Animation?
 					this->frameWidth,											// How wide is the Frame?
 					this->frameHeight));										// How tall is the Frame?
@@ -200,7 +200,7 @@ void Player::update(float elapsedTime, int** m_ArrayLevel) {
 	this->m_Left.width = r.width * 0.1;
 	this->m_Left.height = r.height * 0.8;
 
-	// Move the sprite into position
+	// Move the Sprite into position
 	this->m_Sprite.setPosition(this->m_Position);
 
 	//charge weapon
@@ -234,7 +234,16 @@ void Player::handleInput() {
 	\***---------------------***/
 
 	if (this->m_Action == Action::FALLING) {
-		
+		//  Double Jump		
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
+
+			// Character hasn't jumped too many times
+			if (this->m_jumpCounter < this->maxJumps) {
+				this->m_jumpDuration = 0.0f;
+				this->m_Action = Action::JUMPING;
+				this->m_jumpCounter++;
+			}
+		}
 	}
 
 	/***---------------------***\
@@ -242,15 +251,7 @@ void Player::handleInput() {
 	\***---------------------***/
 
 	else if (this->m_Action == Action::JUMPING) {
-		//  Double Jump
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
-			// Character not already jumping
-			if (this->m_jumpCounter < this->maxJumps) {
 
-				this->m_Action = Action::JUMPING;
-				this->m_jumpCounter++;
-			}
-		}
 	}
 
 	/***---------------------***\
@@ -262,9 +263,7 @@ void Player::handleInput() {
 		if (this->m_Direction == Direction::LEFT
 			|| this->m_Direction == Direction::RIGHT) {
 			
-			this->m_Action = Action::RUNNING;
-			
-			
+			this->m_Action = Action::RUNNING;			
 		}
 		// Stop Running
 		else if (this->m_Direction == Direction::IDLE) {
@@ -352,15 +351,16 @@ void Player::handleInput() {
 *	Decide what level of Detection is returned based on m_Action State
 */
 int Player::getDetectLevel() {
-	if ((this->m_Action == Action::FALLING)||
-		(this->m_Action == Action::JUMPING)||
-		(this->m_Action == Action::ATTACKING)){
+	if ((this->m_Action == Action::FALLING)
+		|| (this->m_Action == Action::JUMPING)
+		|| (this->m_Action == Action::ATTACKING)) {
+
 		return detectionLevel = 3;
 	}
-	else if (this->m_Action == Action::IDLE){
+	else if (this->m_Action == Action::IDLE) {
 		return detectionLevel = 2;
 	}
-	else if (this->m_Action == Action::CROUCHING){
+	else if (this->m_Action == Action::CROUCHING) {
 		return detectionLevel = 1;
 	}
 	else {
