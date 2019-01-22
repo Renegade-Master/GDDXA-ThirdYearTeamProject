@@ -10,6 +10,7 @@
 #include "Engine.h"
 
 LevelManager::LevelManager(){
+	//These keep the game from crashing if the levels have no Items
 	assert (m_ItemType.size() == 0);
 	assert(m_ItemPosition.size() == 0);
 	m_ItemPosition.clear();

@@ -12,7 +12,7 @@ private:
 public:
 	gunBattery(sf::Vector2i startPosition);
 	//return the capacity to the gun
-	float getCapacity();
+	virtual float getCapacity();
 	virtual void update(float elapsedTime, int** m_ArrayLevel);
 };
 #endif 

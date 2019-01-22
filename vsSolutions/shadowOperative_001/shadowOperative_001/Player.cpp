@@ -496,3 +496,12 @@ void Player::updateTargeting(sf::Vector2f mousePos) {
 sf::ConvexShape Player::getlaser() {
 	return targetingLaser.getLine();
 }
+void Player::chargeFromPickup(float charge)
+{
+	if (this->getChargeLevel() + charge >= maxGunChargeLevel) {
+		gunChargeLevel = maxGunChargeLevel;
+	}
+	else {
+		gunChargeLevel += charge;
+	}
+}

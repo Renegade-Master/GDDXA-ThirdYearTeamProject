@@ -40,9 +40,13 @@ public:
 
 	//Default Constructor
 	Item();
+	~Item();
 
 	// We will call this function once every frame
 	virtual void update(float elapsedTime, int** m_ArrayLevel) = 0;
+
+	//return capacity
+	virtual float getCapacity() = 0;
 
 protected:
 	// A Sprite

@@ -16,6 +16,10 @@ void Item::spawn() {
 void Item::update(float elapsedTime, int** m_ArrayLevel) {
 	this->m_ItemSprite.setPosition(this->m_Position);
 }
+float Item::getCapacity() {
+	std::cout << "\nWe should not be here";
+	return 1.0f;
+}
 
 sf::FloatRect Item::getPosition() {
 	return m_ItemSprite.getGlobalBounds();
@@ -58,3 +62,5 @@ void Item::stopLeft(float position) {
 	m_Position.x = position + m_DoorSprite.getGlobalBounds().width;
 	m_Sprite.setPosition(m_Position);
 }*/
+Item::~Item() {
+}
