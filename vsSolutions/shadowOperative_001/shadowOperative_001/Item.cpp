@@ -13,13 +13,14 @@ Item::Item(){
 void Item::spawn(sf::Vector2i startPosition) {
 	// Place the item at the starting point
 	this->m_Position = (sf::Vector2f)startPosition;
-	m_Position.x = this->getCenter().x * 50;
-	m_Position.y = this->getCenter().y * 50;
+	//this->m_Position.x *= 2;
+	//m_Position.x = this->getCenter().x * 50;
+	//m_Position.y = this->getCenter().y * 50;
 
-	m_ItemSprite.setPosition(m_Position);
+	m_ItemSprite.setPosition(this->m_Position);
 }
 void Item::update(float elapsedTime, int** m_ArrayLevel) {
-	// Overridden
+	this->m_ItemSprite.setPosition(this->m_Position);
 }
 
 sf::FloatRect Item::getPosition() {

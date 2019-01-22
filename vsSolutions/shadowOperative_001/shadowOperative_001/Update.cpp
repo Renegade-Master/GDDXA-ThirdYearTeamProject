@@ -40,6 +40,11 @@ void Engine::update(float dtAsSeconds) {
 			// Load a Level
 			loadLevel();
 		}
+		//update Items
+		std::list<Item*>::iterator itemUpdateIter = m_ItemList.begin();
+		for (;itemUpdateIter != m_ItemList.end();itemUpdateIter++) {
+			(*itemUpdateIter)->update(dtAsSeconds,m_ArrayLevel);
+		}
 		// Update Player
 		m_Player.update(dtAsSeconds, m_ArrayLevel);
 		

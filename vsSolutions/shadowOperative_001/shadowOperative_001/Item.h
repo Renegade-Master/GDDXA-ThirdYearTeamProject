@@ -41,6 +41,9 @@ public:
 	//Default Constructor
 	Item();
 
+	// We will call this function once every frame
+	virtual void update(float elapsedTime, int** m_ArrayLevel) = 0;
+
 protected:
 	// A Sprite
 	sf::Sprite m_ItemSprite;
@@ -48,8 +51,6 @@ protected:
 	// Where is the item
 	sf::Vector2f m_Position;
 
-	// We will call this function once every frame
-	virtual void update(float elapsedTime, int** m_ArrayLevel) = 0;
 
 	// Where are the items sides?
 	sf::FloatRect m_Bottom;

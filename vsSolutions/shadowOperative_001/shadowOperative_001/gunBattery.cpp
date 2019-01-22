@@ -1,8 +1,8 @@
 #include "gunBattery.h"
-gunBattery::gunBattery()
-{
+gunBattery::gunBattery(){
 	srand(time(NULL));
 	m_Capacity = static_cast<Capacity>(rand() % 3);
+
 	if (this->m_Capacity == Capacity::SMALL) {
 		m_ItemSprite = sf::Sprite(TextureHolder::GetTexture(
 			"graphics/Batteries/BATTERY_SMALL.png"));
@@ -19,8 +19,7 @@ gunBattery::gunBattery()
 		std::cout << "\ngraphics/Batteries/BATTERY_LARGE.png";
 	}
 }
-float gunBattery::getCapacity()
-{
+float gunBattery::getCapacity(){
 	if (this->m_Capacity == Capacity::SMALL) {
 		return 10.00;
 	}
@@ -32,5 +31,5 @@ float gunBattery::getCapacity()
 	}
 }
 void gunBattery::update(float elapsedTime, int** m_ArrayLevel) {
-	//No update needed
+	this->m_ItemSprite.setPosition(this->m_Position);
 }
