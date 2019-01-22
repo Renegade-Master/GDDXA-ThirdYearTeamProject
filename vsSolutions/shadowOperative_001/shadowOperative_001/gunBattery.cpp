@@ -1,5 +1,10 @@
 #include "gunBattery.h"
-gunBattery::gunBattery(){
+gunBattery::gunBattery(sf::Vector2i startPosition){
+	//Place the item at the starting point
+	this->m_Position = (sf::Vector2f)startPosition;
+	this->m_Position.x = (this->m_Position.x * 50);
+	this->m_Position.y = (this->m_Position.y * 50)+35;
+
 	srand(time(NULL));
 	m_Capacity = static_cast<Capacity>(rand() % 3);
 

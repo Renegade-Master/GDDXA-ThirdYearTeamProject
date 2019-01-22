@@ -10,7 +10,7 @@ private:
 	enum class Capacity { SMALL, MEDIUM, LARGE };
 	Capacity m_Capacity = Capacity::SMALL;
 public:
-	gunBattery();
+	gunBattery(sf::Vector2i startPosition);
 	//return the capacity to the gun
 	float getCapacity();
 	virtual void update(float elapsedTime, int** m_ArrayLevel);

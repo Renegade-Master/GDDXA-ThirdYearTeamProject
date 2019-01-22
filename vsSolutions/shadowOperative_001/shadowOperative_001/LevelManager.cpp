@@ -86,6 +86,7 @@ int** LevelManager::nextLevel(sf::VertexArray& rVaLevel) {
 	// Loop through the file and store all the values in the 2d array
 	std::string row;
 	sf::Vector2i temp;
+	sf::Vector2i itemTemp;
 	int verticalOffset;
 	int y = 0;
 	while (inputFile >> row) {
@@ -104,9 +105,9 @@ int** LevelManager::nextLevel(sf::VertexArray& rVaLevel) {
 				arrayLevel[y][x] = 'T';
 				break;
 			case '3':
-				temp.x = x;
+				/*temp.x = x;
 				temp.y = y;
-				m_ItemPosition.push_back(temp);
+				m_ItemPosition.push_back(temp);*/
 				break;
 			case 'P':
 				m_StartPosition.x = x * TILE_SIZE;
@@ -171,10 +172,13 @@ int** LevelManager::nextLevel(sf::VertexArray& rVaLevel) {
 				arrayLevel[y][x] = 'a';
 				break;
 			case 'B':
-				temp.x = x;
-				temp.y = y;
-				m_ItemPosition.push_back(temp);
+				itemTemp.x = x;
+				itemTemp.y = y;
+				std::cout << "\nRead Temp: x" << itemTemp.x << " Y" << itemTemp.y;
+				m_ItemPosition.push_back(itemTemp);
+				std::cout << "\nRead Back: x" << m_ItemPosition.back().x << " Y" << m_ItemPosition.back().y;
 				m_ItemType.push_back('B');
+				arrayLevel[y][x] = 0;
 				break;
 			}
 		}
@@ -316,7 +320,7 @@ sf::Vector2i LevelManager::getStartPosition() {
 sf::Vector2i LevelManager::getEnemyPosition()
 {
 	sf::Vector2i temp = m_EnemyPosition.back();
-	std::cout << "\nThis Enemy position: x." << temp.x<<" y,"<<temp.y;
+	//std::cout << "\nThis Enemy position: x." << temp.x<<" y,"<<temp.y;
 	m_EnemyPosition.pop_back();
 	return temp;
 }
@@ -330,11 +334,14 @@ int LevelManager::getNumOfItems() {
 }
 char LevelManager::getItemType(){
 	char temp = m_ItemType.back();
+	std::cout << "\nItemType: " << temp;
 	m_ItemType.pop_back();
 	return temp;
 }
 sf::Vector2i LevelManager::getItemPos(){
-	sf::Vector2i temp = m_ItemPosition.back();
+	std::cout << "\nRead Back: x" << m_ItemPosition.back().x << " Y" << m_ItemPosition.back().y;
+	sf::Vector2i itemTemp = m_ItemPosition.back();
+	std::cout << "\ngetItem PosTemp: x" << itemTemp.x << " Y" << itemTemp.y;
 	m_ItemPosition.pop_back();
-	return temp;
+	return itemTemp;
 }

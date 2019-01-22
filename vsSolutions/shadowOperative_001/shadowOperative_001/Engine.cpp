@@ -109,8 +109,7 @@ void Engine::ItemSpawn() {
 		char type = m_LM.getItemType();
 		if (type == 'B') {
 			//std::cout << "\n Should not be here";
-			newItem = new gunBattery();
-			newItem->spawn(m_LM.getItemPos());
+			newItem = new gunBattery(m_LM.getItemPos());
 		}
 		m_ItemList.push_back(newItem);
 	}

@@ -10,17 +10,8 @@
 Item::Item(){
 
 }
-void Item::spawn(sf::Vector2i startPosition) {
-	// Place the item at the starting point
-	//this->m_Position.x *= 2;
-	this->m_Position = (sf::Vector2f)startPosition;
-	this->m_Position.x = this->m_Position.x * 50;
-	this->m_Position.y = this->m_Position.y;
+void Item::spawn() {
 	
-	this->m_ItemSprite.setOrigin(sf::Vector2f(this->getCenter().x, this->getCenter().y));
-	this->m_ItemSprite.scale(2.0f, 2.0f);
-
-	m_ItemSprite.setPosition(this->m_Position);
 }
 void Item::update(float elapsedTime, int** m_ArrayLevel) {
 	this->m_ItemSprite.setPosition(this->m_Position);

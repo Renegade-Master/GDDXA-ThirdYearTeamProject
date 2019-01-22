@@ -36,7 +36,7 @@ public:
 	// Where is the center of the character
 	sf::Vector2f getCenter();
 
-	void spawn(sf::Vector2i startPosition);
+	void spawn();
 
 	//Default Constructor
 	Item();
