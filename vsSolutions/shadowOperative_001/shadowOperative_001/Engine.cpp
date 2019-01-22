@@ -115,6 +115,14 @@ void Engine::ItemSpawn() {
 	}
 	std::cout << "\nItem Spawned";
 }
+//Spawn Doors
+void Engine::doorSpawn() {
+	int numDoors = m_LM.getNumOfDoors();
+	for (int i = 0;i < numDoors;i++) {
+		Door* door = new Door(m_LM.getDoorType(),m_LM.getDoorPos());
+		m_DoorList.push_back(door);
+	}
+}
 
 /**
 *	Is the Player using a controller?

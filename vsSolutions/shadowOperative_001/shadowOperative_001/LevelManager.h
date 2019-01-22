@@ -23,8 +23,13 @@ private:
 	sf::Vector2i m_StartPosition;
 	sf::Vector2i m_EndPosition;
 	std::list<sf::Vector2i> m_EnemyPosition;
+
+	//Item creation Data
 	std::list<sf::Vector2i> m_ItemPosition;
 	std::list<char> m_ItemType;
+	//Door Creation Data
+	std::list<sf::Vector2i> m_DoorPosition;
+	std::list<char> m_DoorType;
 	float m_TimeModifier = 1;
 	float m_BaseTimeLimit = 0;
 	int m_CurrentLevel = 0;
@@ -36,26 +41,23 @@ public:
 	LevelManager();
 	const int TILE_SIZE = 50;
 	const int VERTS_IN_QUAD = 4;
-
 	float getTimeLimit();
 
 	sf::Vector2i getStartPosition();
-
 	sf::Vector2i getEnemyPosition();
-
 	int getNumOfEnemies();
 
 	int** nextLevel(sf::VertexArray& rVaLevel);
-
 	sf::Vector2i getLevelSize();
-
 	int getCurrentLevel();
 
 	int getNumOfItems();
-
 	char getItemType();
-
 	sf::Vector2i getItemPos();
+
+	int getNumOfDoors();
+	sf::Vector2i getDoorPos();
+	char getDoorType();
 
 };
 #endif // !LEVELMANAGER_H

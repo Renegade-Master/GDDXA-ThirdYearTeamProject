@@ -16,6 +16,7 @@
 #include <SFML/Graphics.hpp>
 
 #include "Button.h"
+#include "Door.h"
 #include "Enemy.h"
 #include "EnemyGenerator.h"
 #include "HUD.h"
@@ -69,6 +70,9 @@ private:
 
 	//Item list
 	std::list<Item*> m_ItemList;
+
+	//Door list
+	std::list<Door*> m_DoorList;
 
 	//Level Manager
 	LevelManager m_LM;
@@ -148,6 +152,9 @@ private:
 
 	// Spawn Items
 	void ItemSpawn();
+
+	//Spawn Doors
+	void doorSpawn();
 
 	// Run will call all the private functions
 	bool detectCollisions(PlayableCharacter& character);
