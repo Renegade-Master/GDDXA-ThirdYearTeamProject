@@ -27,6 +27,7 @@
 #include "TextureHolder.h"
 #include "TutorialManager.h"
 #include "Bullet.h"
+#include "gunBattery.h"
 
 class Engine {
 public:
