@@ -35,6 +35,8 @@ Player::Player() {
 *	Dev
 */
 void Player::update(float elapsedTime, int** m_ArrayLevel) {
+	std::cout << "\nPlayer coordinates: X" << this->m_Position.x 
+		<< " Y" << this->m_Position.y;
 	// Set Sprite Animation Frame
 	if (this->frameYOffset >= this->m_maxAnimationFrames) {
 		this->frameYOffset = 0;
