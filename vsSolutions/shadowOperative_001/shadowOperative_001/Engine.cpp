@@ -51,12 +51,27 @@ Engine::Engine() {
 	// Associate the sprite with the texture
 	m_BackgroundSprite.setTexture(m_BackgroundTexture);
 
+	int maxAnimations = 142;
 	//Menu Background
-	m_MenuBackgroundTexture = TextureHolder::GetTexture(
-		"graphics/MenuBackground.png");
+	for (int images_in_animation = 1; images_in_animation < maxAnimations; images_in_animation++) {
+
+		m_MenuBackgroundTexture = TextureHolder::GetTexture(
+			"graphics/Menu_Video/Short_142_FirstVideo/Short_142 0.png");
+	}
 
 	// Associate the sprite with the texture for the Menu
 	m_MenuBackgroundSprite.setTexture(m_MenuBackgroundTexture);
+
+	/*
+	sf::Texture m_myBackground;
+	int maxAnimations = 142;
+
+	for (int images_in_animation = 0; images_in_animation < maxAnimations; images_in_animation++) {
+		m_myBackground.loadFromFile(std::string("graphics/Menu_Video/Short_142_FirstVideo/Short_142 ").append
+		(std::to_string(images_in_animation)).append(".png"));
+		m_MenuBackgroundSprite.setTexture(m_myBackground);
+	}*/
+	
 
 	// Load the texture for the background vertex array
 	m_TextureTiles = TextureHolder::GetTexture(
