@@ -9,8 +9,9 @@
 #include "Door.h"
 
 Door::Door(char state, sf::Vector2i position) {
-	this->m_Position.x = position.x * 50;
-	this->m_Position.y = position.y * 50;
+	this->m_Position = (sf::Vector2f)position;
+	this->m_Position.x = m_Position.x * 50;
+	this->m_Position.y = m_Position.y * 50;
 	if (state == 'D') {
 		m_DoorState = State::OPEN;
 	}
@@ -57,7 +58,7 @@ float Door::getCapacity() {
 }
 sf::Sprite Door::getDoorSprite() {
 	if (m_DoorState == State::STATIC) {
-		return m_ClosedDoorSprite;
+		return m_ItemSprite;
 	}
 	else if(m_DoorState == State::OPEN){
 		return m_OpenDoorSprite;
