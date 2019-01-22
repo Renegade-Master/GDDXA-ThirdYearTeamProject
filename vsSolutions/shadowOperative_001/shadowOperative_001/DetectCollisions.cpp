@@ -50,6 +50,7 @@ bool Engine::detectCollisions(PlayableCharacter& character) {
 		// respawn the character
 		std::cout << "YOU DIED!" << std::endl;
 		character.spawn(m_LM.getStartPosition(), GRAVITY);
+		//this->Engine::GameState = Engine::State::MAIN_MENU;
 	}
 
 	for (int x = startX; x < endX; x++)	{
@@ -157,7 +158,7 @@ bool Engine::detectCollisions(PlayableCharacter& character) {
 			if (m_ArrayLevel[y][x] == 'Q') {
 				// Character has reached the goal
 				reachedGoal = true;
-				this->GameState =Engine::State::MAIN_MENU;
+				this->Engine::GameState = Engine::State::MAIN_MENU;
 			}
 		}
 	}
