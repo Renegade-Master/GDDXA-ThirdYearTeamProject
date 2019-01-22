@@ -46,7 +46,6 @@ int** LevelManager::nextLevel(sf::VertexArray& rVaLevel) {
 		m_StartPosition.y = 3600;
 		m_BaseTimeLimit = 100.0f;
 		break;
-
 	case 3:
 		levelToLoad = "levels/level3.txt";
 		m_StartPosition.x = 1250;

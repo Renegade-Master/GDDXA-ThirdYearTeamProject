@@ -32,6 +32,7 @@ Door::Door(char state, sf::Vector2i position) {
 		"graphics/DoorLocked.png"));
 	m_ClosedDoorSprite.setPosition(this->m_Position);
 }
+//Alter State when triggered
 void Door::DoorState(){
 	if (m_DoorState == State::STATIC) {
 		return;
@@ -43,6 +44,7 @@ void Door::DoorState(){
 		m_DoorState = State::CLOSE;
 	}
 }
+//Update Doors
 void Door::update(float elapsedTime, int** m_ArrayLevel) {
 	if (m_DoorState == State::STATIC) {
 		this->m_ItemSprite.setPosition(this->m_Position);
@@ -52,10 +54,12 @@ void Door::update(float elapsedTime, int** m_ArrayLevel) {
 		this->m_ClosedDoorSprite.setPosition(this->m_Position);
 	}
 }
+//Virtual Function need never be called
 float Door::getCapacity() {
 	std::cout << "\nWe should not be here";
 	return 1.0f;
 }
+//Return Sprite
 sf::Sprite Door::getDoorSprite() {
 	if (m_DoorState == State::STATIC) {
 		return m_ItemSprite;
