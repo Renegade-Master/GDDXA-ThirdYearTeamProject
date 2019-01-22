@@ -25,7 +25,7 @@
 Player::Player() {
 	this->maxJumps = 2;
 
-	this->m_animationSheet.loadFromFile("graphics\\PlayerAnimationSheet_04.png");
+	this->m_animationSheet.loadFromFile("graphics\\PlayerAnimationSheet_06.png");
 	this->m_maxAnimationFrames = 10;
 	this->m_Action = Action::FALLING;
 	this->m_Direction = Direction::IDLE;
