@@ -55,25 +55,27 @@ void Engine::draw() {
 		}
 
 		//Draw Enemies
-		if (!m_EnemyList.empty())
-		{
+		if (!m_EnemyList.empty()){
 			//std::cout << "\nNumber of enemies:" << m_LM.getNumOfEnemies();
-			for (std::list<Enemy*>::iterator it = m_EnemyList.begin(); it != m_EnemyList.end(); it++)
-			{
+			for (std::list<Enemy*>::iterator it = m_EnemyList.begin(); 
+				 it != m_EnemyList.end(); it++){
 				//std::cout << "\nDrawing enemies";
 				m_Window.draw((*it)->getSprite());
 				m_Window.draw((*it)->getDetectMeter());
 			}
 		}
 		//Draw the bullets
-		for (int i = 0;i < 5; i++)
-		{
-			if (bullets[i].isInFlight())
-			{
+		for (int i = 0;i < 5; i++){
+			if (bullets[i].isInFlight()){
 				//std::cout << "\nDrawing bullets" << i;
 				//m_Window.draw(bullets[i].getShape());
 				m_Window.draw(bullets[i].getSprite());
 			}
+		}
+		//Draw Items 
+		for (std::list<Item*>::iterator itemIter = m_ItemList.begin();
+			itemIter != m_ItemList.end();itemIter++) {
+			m_Window.draw((*itemIter)->getSprite());
 		}
 
 		// Draw the particle system

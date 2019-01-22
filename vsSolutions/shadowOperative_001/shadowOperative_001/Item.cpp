@@ -7,34 +7,33 @@
 */
 
 #include "Item.h"
-
-void Item::spawn(sf::Vector2i startPosition, float gravity) {
-	// Place the item at the starting point
-	m_Position.x = startPosition.x;
-	m_Position.y = startPosition.y;
-
-	// Move the sprite in to position
-	m_DoorSprite.setPosition(m_Position);
+Item::Item(){
 
 }
-
+void Item::spawn() {
+	
+}
 void Item::update(float elapsedTime, int** m_ArrayLevel) {
-	// Overridden
+	this->m_ItemSprite.setPosition(this->m_Position);
+}
+float Item::getCapacity() {
+	std::cout << "\nWe should not be here";
+	return 1.0f;
 }
 
 sf::FloatRect Item::getPosition() {
-	return m_DoorSprite.getGlobalBounds();
+	return m_ItemSprite.getGlobalBounds();
 }
 
 sf::Vector2f Item::getCenter() {
 	return sf::Vector2f(
-		m_Position.x + m_DoorSprite.getGlobalBounds().width / 2,
-		m_Position.y + m_DoorSprite.getGlobalBounds().height / 2
+		m_Position.x + m_ItemSprite.getGlobalBounds().width / 2,
+		m_Position.y + m_ItemSprite.getGlobalBounds().height / 2
 	);
 }
 
-sf::FloatRect Item::getBottem() {
-	return m_Bottem;
+sf::FloatRect Item::getBottom() {
+	return m_Bottom;
 }
 
 sf::FloatRect Item::getTop() {
@@ -50,7 +49,7 @@ sf::FloatRect Item::getRight() {
 }
 
 sf::Sprite Item::getSprite() {
-	return m_DoorSprite;
+	return m_ItemSprite;
 }
 /*
 void Item::stopRight(float position) {
@@ -63,3 +62,5 @@ void Item::stopLeft(float position) {
 	m_Position.x = position + m_DoorSprite.getGlobalBounds().width;
 	m_Sprite.setPosition(m_Position);
 }*/
+Item::~Item() {
+}

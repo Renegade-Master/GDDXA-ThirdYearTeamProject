@@ -22,6 +22,7 @@
 - F = Fence Left			(16)
 - G = Fence Middle			(17)
 - H = Fence Right			(18)
+- B = Battery
 
 ###	a-z
 - d = Door (Locked)			(19)
