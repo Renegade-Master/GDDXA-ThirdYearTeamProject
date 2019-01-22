@@ -110,6 +110,11 @@ private:
 	// Declare a sprite and a Texture for the background in the Menu
 	sf::Sprite m_MenuBackgroundSprite;
 	sf::Texture m_MenuBackgroundTexture;
+	
+	// Varaibles for the GIF background
+	sf::Image m_animatedBackgroundImage;
+	int m_animatedBackgroundFrame = 0;
+	int m_animatedBackgroundMaxFrames = 142;
 
 	// Declare a shader for the background
 	sf::Shader m_RippleShader;
