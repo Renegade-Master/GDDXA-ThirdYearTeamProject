@@ -135,7 +135,7 @@ void Engine::update(float dtAsSeconds) {
 				}
 			}
 		}
-
+		
 		
 		//update Enemy
 		for (std::list<Enemy*>::iterator it = m_EnemyList.begin(); it != m_EnemyList.end(); it++)

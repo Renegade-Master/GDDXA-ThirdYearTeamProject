@@ -64,34 +64,38 @@ bool Engine::detectCollisions(PlayableCharacter& character) {
 				|| (m_ArrayLevel[y][x] == 5)	|| (m_ArrayLevel[y][x] == 6)
 				|| (m_ArrayLevel[y][x] == 7)	|| (m_ArrayLevel[y][x] == 8)
 				|| (m_ArrayLevel[y][x] == 9)	|| (m_ArrayLevel[y][x] == 'j')
-				|| (m_ArrayLevel[y][x] == 'k')	|| (m_ArrayLevel[y][x] == 'u')
-				|| (m_ArrayLevel[y][x] == door)) {
+				|| (m_ArrayLevel[y][x] == 'k')	|| (m_ArrayLevel[y][x] == 'u')) {
 
-				if (character.getRight().intersects(block))	{
+				if (character.getRight().intersects(block)) {
 					character.stopRight(block.left);
 				}
-				else if (character.getLeft().intersects(block))	{
+				else if (character.getLeft().intersects(block)) {
 					character.stopLeft(block.left);
 				}
-				
+
 				if (character.getFeet().intersects(block)) {
 					character.stopFalling(block.top);
 				}
-				else if (character.getHead().intersects(block))	{
+				else if (character.getHead().intersects(block)) {
 					character.stopJump();
 				}
-			}
+			//}
 
-			// If the Character is not touching any Collision blocks
-			if (!character.getFeet().intersects(block)
-				&& character.m_Action != PlayableCharacter::Action::JUMPING) {
+				// If the Character is not touching any Collision blocks
+				// and they are not jumping
+				if (!character.getFeet().intersects(block)
+					&& character.m_Action != PlayableCharacter::Action::JUMPING) {
 
-				character.m_Action = PlayableCharacter::Action::FALLING;
+					// Then they should be falling
+					character.m_Action = PlayableCharacter::Action::FALLING;
+				
+					// Unless they're only falling a tiny bit
+					if ((character.m_Position.y)											// if (Y Change since last frame)
+						< (character.m_LastPosition.y + character.m_Gravity * 0.0167f)) {	// less than (last Y + Gravity)
 
-				if (((character.m_Position.y - character.m_LastPosition.y)				// if (Y Change since last frame)
-					> (character.m_LastPosition.y += character.m_Gravity * 0.0167f))) {	// less than (last Y + Gravity)
-
-					character.m_Action = PlayableCharacter::Action::IDLE;
+						// In which case they should probably stop now
+						character.m_Action = PlayableCharacter::Action::IDLE;
+					}
 				}
 			}
 

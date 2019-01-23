@@ -14,6 +14,10 @@
 *							R	Width: 56	Height: 70	XOffset: 86
 *						Attack
 *							R	Width: 69	Height: 75	XOffset: 142
+*						Glide
+*							R	Width: 55	Height: 56	XOffset: 211
+*						Die
+*							R	Width: 62	Height: 64	XOffset: 266
 */
 
 #include "Player.h"
@@ -55,8 +59,9 @@ void Player::update(float elapsedTime, int** m_ArrayLevel) {
 	this->m_LastPosition = this->m_Position;*/
 
 	if (this->m_Action == Action::FALLING) {
-		/*this->frameWidth = 0;
-		this->frameHeight = 0;*/
+		this->frameWidth = 55;
+		this->frameHeight = 56;
+		this->frameXOffset = 211;
 		
 		this->m_Position.y += this->m_Gravity * 0.0167f;
 	}
@@ -114,6 +119,12 @@ void Player::update(float elapsedTime, int** m_ArrayLevel) {
 					this->frameWidth,						// How wide is the Frame?
 					this->frameHeight));					// How tall is the Frame?
 			this->m_Sprite.setTexture(this->m_Texture);
+			this->m_Sprite.setTextureRect(
+				sf::IntRect(
+					0,
+					0,
+					this->frameWidth,							// How wide is the Frame?
+					this->frameHeight));						// How tall is the Frame?);
 			this->m_timeSinceLastFrame = 0.0f;
 		}
 	}
@@ -125,12 +136,6 @@ void Player::update(float elapsedTime, int** m_ArrayLevel) {
 	else if (this->m_Direction == Direction::LEFT) {
 		this->m_Position.x -= this->m_Speed * elapsedTime;
 
-		// Look in the right direction
-		/*if (this->frameWidth > 0) {
-
-			this->frameWidth *= -1;
-		}*/
-
 		// Set the Animation Sprite
 		if (this->m_timeSinceLastFrame > frameSwitchTime) {
 			this->m_Texture.loadFromImage(
@@ -141,6 +146,12 @@ void Player::update(float elapsedTime, int** m_ArrayLevel) {
 					this->frameWidth,						// How wide is the Frame?
 					this->frameHeight));					// How tall is the Frame?
 			this->m_Sprite.setTexture(m_Texture);
+			this->m_Sprite.setTextureRect(
+				sf::IntRect(
+					0,
+					0,
+					this->frameWidth,							// How wide is the Frame?
+					this->frameHeight));						// How tall is the Frame?);
 			this->m_timeSinceLastFrame = 0.0f;
 		}
 	}
@@ -161,6 +172,12 @@ void Player::update(float elapsedTime, int** m_ArrayLevel) {
 					this->frameYOffset * this->frameHeight,		// What frame of the Animation?
 					this->frameWidth,							// How wide is the Frame?
 					this->frameHeight));						// How tall is the Frame?
+			this->m_Sprite.setTextureRect(
+				sf::IntRect(
+					0.0f,
+					0.0f,
+					this->frameWidth,							// How wide is the Frame?
+					this->frameHeight));						// How tall is the Frame?);
 			this->m_Sprite.setTexture(m_Texture);
 			this->m_timeSinceLastFrame = 0.0f;
 		}
@@ -170,11 +187,15 @@ void Player::update(float elapsedTime, int** m_ArrayLevel) {
 	|	HANDLE FALLING AGAIN	|
 	\***---------------------***/
 
-	if (this->m_Action == Action::FALLING) {
-		// Set Player Sprite to Falling
-		this->m_Sprite = sf::Sprite(TextureHolder::GetTexture(
-			"graphics/Glide_000.png"));
-	}
+	//if (this->m_Action == Action::FALLING) {
+	//	// Set Player Sprite to Falling
+	//	this->m_Sprite = sf::Sprite(TextureHolder::GetTexture(
+	//		"graphics/Glide_000.png"));
+	//}
+
+	// Assign the Sprite to the Player
+	/*this->m_Sprite.setTexture(m_Texture);
+	this->m_timeSinceLastFrame = 0.0f;*/
 
 	// Increment Animation Frame
 	this->frameYOffset++;
@@ -187,26 +208,30 @@ void Player::update(float elapsedTime, int** m_ArrayLevel) {
 	sf::FloatRect r = this->getPosition();
 	
 	// Feet
-	this->m_Feet.left = m_Position.x;
-	this->m_Feet.top = m_Position.y + (r.height * 0.9);
+	this->m_Feet.left = r.left;
+	this->m_Feet.top = r.top + (r.height * 0.9f);
 	this->m_Feet.width = r.width;
-	this->m_Feet.height = r.height * 0.075;
+	this->m_Feet.height = r.height * 0.1f;
+	/*this->m_Feet.left = this->getPosition().left;
+	this->m_Feet.top = this->getPosition().top + (r.height * 0.9f);
+	this->m_Feet.width = this->getPosition().width;
+	this->m_Feet.height = this->getPosition().height * 0.2f;*/
 
 	// Head
-	this->m_Head.left = m_Position.x;
-	this->m_Head.top = m_Position.y;
+	this->m_Head.left = r.left;
+	this->m_Head.top = r.top;
 	this->m_Head.width = r.width;
 	this->m_Head.height = r.height * 0.1;
 
 	// Right
-	this->m_Right.left = m_Position.x + (r.width * 0.9);
-	this->m_Right.top = m_Position.y + (r.height * 0.1);
+	this->m_Right.left = r.left + (r.width * 0.9);
+	this->m_Right.top = r.top + (r.height * 0.1);
 	this->m_Right.width = r.width * 0.1;
 	this->m_Right.height = r.height * 0.8;
 
 	// Left
-	this->m_Left.left = m_Position.x;
-	this->m_Left.top = m_Position.y + (r.height * 0.1);
+	this->m_Left.left = r.left;
+	this->m_Left.top = r.top + (r.height * 0.1);
 	this->m_Left.width = r.width * 0.1;
 	this->m_Left.height = r.height * 0.8;
 
@@ -356,7 +381,7 @@ void Player::handleInput() {
 	|	HANDLE SHOOTING	|
 	\***-------------***/
 
-	if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+	/*if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
 		shooting = true;
 	}
 	else {
@@ -364,7 +389,7 @@ void Player::handleInput() {
 	}
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Right)) {
 		this->toggleTargeting();
-	}
+	}*/
 }
 
 /**

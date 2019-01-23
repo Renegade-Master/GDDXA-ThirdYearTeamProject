@@ -3,9 +3,9 @@
 
 ---
 ###	0-9
-- 0 = Empty/Void/Null/Air	(**)
-- 1 = Floor					(**)
-- 2 = Wall_Right			(**)
+- 0 = Empty/Void/Null/Air	(00)
+- 1 = Floor					(01)
+- 2 = Wall_Right			(02)
 - 3 = Wall_Left				(**)
 - 4 = Half-Tile				(**)
 - 5 = Corner_TopLeft		(**)

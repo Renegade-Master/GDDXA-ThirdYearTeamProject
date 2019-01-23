@@ -60,7 +60,7 @@ Engine::Engine() {
 
 	// Load the texture for the background vertex array
 	m_TextureTiles = TextureHolder::GetTexture(
-		"graphics/tileset_006.png");
+		"graphics/tileset_007.png");
 
 	// Initialize the particle system
 	m_PS.init(1000);
