@@ -51,13 +51,6 @@ Engine::Engine() {
 	// Associate the sprite with the texture
 	m_BackgroundSprite.setTexture(m_BackgroundTexture);
 
-	//Menu Background
-	m_MenuBackgroundTexture = TextureHolder::GetTexture(
-		"graphics/MenuBackground.png");
-
-	// Associate the sprite with the texture for the Menu
-	m_MenuBackgroundSprite.setTexture(m_MenuBackgroundTexture);
-
 	// Load the texture for the background vertex array
 	m_TextureTiles = TextureHolder::GetTexture(
 		"graphics/tileset_006.png");
@@ -87,19 +80,33 @@ void Engine::run() {
 		draw();
 	}
 }
-
+/*
+*	Use EnemyGenerator to create Enemies and spawn them on
+*	Stored location variables
+*/
 void Engine::enemySpawn() {
-
 	int numOfEnemies = m_LM.getNumOfEnemies();
 	for (int i = 0;i < numOfEnemies;i++) {
-		m_EnemyList.push_back(createEnemy(m_LM.getEnemyPosition(),GRAVITY,m_GameTimeTotal));
-		//std::cout << "\nlist size" << m_EnemyList.size();
+		m_EnemyList.push_back(createEnemy(m_LM.getEnemyPosition(),
+			GRAVITY,m_GameTimeTotal));
 	}
 }
-
-//Spawns in the items into the game.
+//Spawns Items into the game.
 void Engine::ItemSpawn() {
-		//m_ItemList.push_back(pItemList);
+	//std::cout << "\n start";
+	Item* newItem;
+	int numOfItems = m_LM.getNumOfItems();
+	//std::cout<<"\nThis is how many Items we Have:" << m_LM.getNumOfItems();
+	for (int i = 0;i < numOfItems;i++){
+		//std::cout << "\n Entering For Loop";
+		char type = m_LM.getItemType();
+		if (type == 'B') {
+			//std::cout << "\n Should not be here";
+			newItem = new gunBattery(m_LM.getItemPos());
+		}
+		m_ItemList.push_back(newItem);
+	}
+	std::cout << "\nItem Spawned";
 }
 
 /**

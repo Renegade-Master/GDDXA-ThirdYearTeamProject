@@ -13,6 +13,21 @@ void Engine::update(float dtAsSeconds) {
 	if (GameState == State::MAIN_MENU) {
 		m_MainView.reset(
 			sf::FloatRect(0, 0, resolution.x, resolution.y));
+		
+		// Handle Animated Background
+		if(m_animatedBackgroundFrame >= m_animatedBackgroundMaxFrames) {
+			m_animatedBackgroundFrame = 0;
+		}
+
+		m_animatedBackgroundImage.loadFromFile(
+			std::string("graphics/Menu_Video/Short_142_FirstVideo/Short_142 ")
+			.append(std::to_string(m_animatedBackgroundFrame++))
+			.append(".png"));
+
+		m_MenuBackgroundTexture.loadFromImage(m_animatedBackgroundImage);
+		m_MenuBackgroundSprite.setTexture(m_MenuBackgroundTexture);
+
+		// Handle Buttons
 		int i = 0;
 		for (std::list<GUI::Button>::iterator it = m_mainMenuButtons.begin(); it != m_mainMenuButtons.end(); ++it) {
 			switch (i++) {
@@ -39,6 +54,23 @@ void Engine::update(float dtAsSeconds) {
 			
 			// Load a Level
 			loadLevel();
+		}
+		//update Items
+		std::list<Item*>::iterator itemIter = m_ItemList.begin();
+		for (;itemIter != m_ItemList.end();) {
+			//update Item
+			(*itemIter)->update(dtAsSeconds,m_ArrayLevel);
+			//Pick up Item
+			if (m_Player.getSprite().getGlobalBounds().intersects(
+				(*itemIter)->getSprite().getGlobalBounds())) {
+				m_Player.chargeFromPickup((*itemIter)->getCapacity());
+				delete *itemIter;
+				itemIter = m_ItemList.erase(itemIter++);
+				//(*itemIter)->~Item();
+			}
+			else {
+				itemIter++;
+			}
 		}
 		// Update Player
 		m_Player.update(dtAsSeconds, m_ArrayLevel);
@@ -97,28 +129,22 @@ void Engine::update(float dtAsSeconds) {
 				bullets[i].update(dtAsSeconds);
 				int bulletX = ((int)bullets[i].getCenter().x / TILE_SIZE);
 				int bulletY = ((int)bullets[i].getCenter().y / TILE_SIZE);
-				if (bulletX < 0)
-				{
+				if (bulletX < 0){
 					bulletX = 0;
 				}
-				if (bulletX > m_LM.getLevelSize().x)
-				{
+				if (bulletX > m_LM.getLevelSize().x){
 					bulletX = m_LM.getLevelSize().x;
 				}
-				if (bulletY < 0)
-				{
+				if (bulletY < 0){
 					bulletY = 0;
 				}
-				if (bulletY > m_LM.getLevelSize().y)
-				{
+				if (bulletY > m_LM.getLevelSize().y){
 					bulletY = m_LM.getLevelSize().y;
 				}
-
 				/*std::cout << "\nbulletX:" << bulletX;
 				std::cout << "\nbulletY:" << bulletY;*/
 				if ((m_ArrayLevel[bulletY][bulletX] == 1) || (m_ArrayLevel[bulletY][bulletX] == 2) ||
-					(m_ArrayLevel[bulletY][bulletX] == 3) || (m_ArrayLevel[bulletY][bulletX] == 5))
-				{
+					(m_ArrayLevel[bulletY][bulletX] == 3) || (m_ArrayLevel[bulletY][bulletX] == 5)){
 					//std::cout << "\nBullet hit wall";
 					bullets[i].stop();
 				}

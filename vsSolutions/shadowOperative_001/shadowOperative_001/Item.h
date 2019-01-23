@@ -11,7 +11,8 @@
 #define ITEM_H
 
 #include <SFML/Graphics.hpp>
-
+#include "TextureHolder.h"
+#include <iostream>
 class Item 
 {
 public:
@@ -19,7 +20,7 @@ public:
 	sf::FloatRect getPosition();
 
 	// A rectangle representing the position of different parts of the sprite
-	sf::FloatRect getBottem();
+	sf::FloatRect getBottom();
 	sf::FloatRect getTop();
 	sf::FloatRect getRight();
 	sf::FloatRect getLeft();
@@ -35,20 +36,28 @@ public:
 	// Where is the center of the character
 	sf::Vector2f getCenter();
 
-	void spawn(sf::Vector2i startPosition, float gravity);
+	void spawn();
 
-protected:
-	// A Sprite
-	sf::Sprite m_DoorSprite;
-
-	// Where is the item
-	sf::Vector2f m_Position;
+	//Default Constructor
+	Item();
+	~Item();
 
 	// We will call this function once every frame
 	virtual void update(float elapsedTime, int** m_ArrayLevel) = 0;
 
+	//return capacity
+	virtual float getCapacity() = 0;
+
+protected:
+	// A Sprite
+	sf::Sprite m_ItemSprite;
+
+	// Where is the item
+	sf::Vector2f m_Position;
+
+
 	// Where are the items sides?
-	sf::FloatRect m_Bottem;
+	sf::FloatRect m_Bottom;
 	sf::FloatRect m_Top;
 	sf::FloatRect m_Right;
 	sf::FloatRect m_Left;

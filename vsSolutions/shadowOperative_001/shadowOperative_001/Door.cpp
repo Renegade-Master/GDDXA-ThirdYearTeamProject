@@ -7,7 +7,7 @@
 */
 
 #include "Door.h"
-#include "TextureHolder.h"
+
 
 	void Door::DoorState()
 	{
@@ -15,12 +15,12 @@
 
 		if (door == true)
 		{
-			m_DoorSprite = sf::Sprite(TextureHolder::GetTexture(
+			m_ItemSprite = sf::Sprite(TextureHolder::GetTexture(
 				"graphics/DoorOpen.png"));
 		}
 		else if (door == false)
 		{
-			m_DoorSprite = sf::Sprite(TextureHolder::GetTexture(
+			m_ItemSprite = sf::Sprite(TextureHolder::GetTexture(
 				"graphics/DoorUnlocked.png"));
 		}
 	}

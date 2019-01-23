@@ -32,6 +32,11 @@ void Engine::loadLevel() {
 	// Spawn Player and Bob
 	m_Player.spawn(m_LM.getStartPosition(), GRAVITY);
 	enemySpawn();
+	//Spawn Items
+	if (m_LM.getNumOfItems() >= 1){
+		std::cout << "\nSpawning Items";
+		ItemSpawn();
+	}
 
 	// Make sure this code isn't run again
 	m_NewLevelRequired = false;
