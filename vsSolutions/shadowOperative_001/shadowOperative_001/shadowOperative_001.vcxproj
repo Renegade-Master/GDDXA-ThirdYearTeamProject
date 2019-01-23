@@ -154,6 +154,7 @@
     <ClCompile Include="SoundManager.cpp" />
     <ClCompile Include="TextureHolder.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="ToggleSwitch.cpp" />
     <ClCompile Include="TutorialManager.cpp" />
     <ClCompile Include="Update.cpp" />
     <ClCompile Include="visionCone.cpp" />
@@ -176,6 +177,7 @@
     <ClInclude Include="SoundManager.h" />
     <ClInclude Include="TextureHolder.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="ToggleSwitch.h" />
     <ClInclude Include="TutorialManager.h" />
     <ClInclude Include="visionCone.h" />
   </ItemGroup>

@@ -10,10 +10,15 @@
 #include "Engine.h"
 
 LevelManager::LevelManager(){
-	//These keep the game from crashing if the levels have no Items
+	//These keep the game from crashing if the levels have no Items,Doors or Switches
 	assert (m_ItemType.size() == 0);
 	assert(m_ItemPosition.size() == 0);
 	m_ItemPosition.clear();
+	assert(m_DoorPosition.size() == 0);
+	assert(m_DoorType.size() == 0);
+	m_DoorPosition.clear();
+	assert(m_SwitchPosition.size() == 0);
+	m_SwitchPosition.clear();
 }
 int** LevelManager::nextLevel(sf::VertexArray& rVaLevel) {
 	m_LevelSize.x = 0;
@@ -43,7 +48,6 @@ int** LevelManager::nextLevel(sf::VertexArray& rVaLevel) {
 		m_StartPosition.y = 3600;
 		m_BaseTimeLimit = 100.0f;
 		break;
-
 	case 3:
 		levelToLoad = "levels/level3.txt";
 		m_StartPosition.x = 1250;
@@ -87,7 +91,6 @@ int** LevelManager::nextLevel(sf::VertexArray& rVaLevel) {
 	// Loop through the file and store all the values in the 2d array
 	std::string row;
 	sf::Vector2i temp;
-	sf::Vector2i itemTemp;
 	int verticalOffset;
 	int y = 0;
 	while (inputFile >> row) {
@@ -105,10 +108,13 @@ int** LevelManager::nextLevel(sf::VertexArray& rVaLevel) {
 			case 'T':
 				arrayLevel[y][x] = 'T';
 				break;
-			case '3':
-				/*temp.x = x;
+			case '9':
+				//static Door
+				temp.x = x;
 				temp.y = y;
-				m_ItemPosition.push_back(temp);*/
+				m_DoorPosition.push_back(temp);
+				m_DoorType.push_back('9');
+				arrayLevel[y][x] = '0';
 				break;
 			case 'P':
 				m_StartPosition.x = x * TILE_SIZE;
@@ -119,16 +125,30 @@ int** LevelManager::nextLevel(sf::VertexArray& rVaLevel) {
 				m_EndPosition.y = y;
 				break;
 			case 'D':
-				arrayLevel[y][x] = 'D';
+				//open Door
+				temp.x = x;
+				temp.y = y;
+				m_DoorPosition.push_back(temp);
+				m_DoorType.push_back('D');
+				arrayLevel[y][x] = '0';
 				break;
 			case 'd':
-				arrayLevel[y][x] = 'd';
+				//closed Door
+				temp.x = x;
+				temp.y = y;
+				m_DoorPosition.push_back(temp);
+				m_DoorType.push_back('d');
+				arrayLevel[y][x] = '0';
 				break;
 			case 'b':
 				arrayLevel[y][x] = 'b';
 				break;
 			case 's':
-				arrayLevel[y][x] = 's';
+				//switch
+				temp.x = x;
+				temp.y = y;
+				m_SwitchPosition.push_back(temp);
+				arrayLevel[y][x] = '0';
 				break;
 			case 'k':
 				arrayLevel[y][x] = 'k';
@@ -176,11 +196,9 @@ int** LevelManager::nextLevel(sf::VertexArray& rVaLevel) {
 				arrayLevel[y][x] = 'Q';
 				break;
 			case 'B':
-				itemTemp.x = x;
-				itemTemp.y = y;
-				std::cout << "\nRead Temp: x" << itemTemp.x << " Y" << itemTemp.y;
-				m_ItemPosition.push_back(itemTemp);
-				std::cout << "\nRead Back: x" << m_ItemPosition.back().x << " Y" << m_ItemPosition.back().y;
+				temp.x = x;
+				temp.y = y;
+				m_ItemPosition.push_back(temp);
 				m_ItemType.push_back('B');
 				arrayLevel[y][x] = 0;
 				break;
@@ -324,31 +342,47 @@ sf::Vector2i LevelManager::getStartPosition() {
 	return m_StartPosition;
 }
 
-sf::Vector2i LevelManager::getEnemyPosition()
-{
+sf::Vector2i LevelManager::getEnemyPosition(){
 	sf::Vector2i temp = m_EnemyPosition.back();
-	//std::cout << "\nThis Enemy position: x." << temp.x<<" y,"<<temp.y;
 	m_EnemyPosition.pop_back();
 	return temp;
 }
-
-int LevelManager::getNumOfEnemies()
-{
+int LevelManager::getNumOfEnemies(){
 	return m_EnemyPosition.size();
 }
+
 int LevelManager::getNumOfItems() {
 	return m_ItemType.size();
 }
 char LevelManager::getItemType(){
 	char temp = m_ItemType.back();
-	std::cout << "\nItemType: " << temp;
 	m_ItemType.pop_back();
 	return temp;
 }
 sf::Vector2i LevelManager::getItemPos(){
-	std::cout << "\nRead Back: x" << m_ItemPosition.back().x << " Y" << m_ItemPosition.back().y;
 	sf::Vector2i itemTemp = m_ItemPosition.back();
-	std::cout << "\ngetItem PosTemp: x" << itemTemp.x << " Y" << itemTemp.y;
 	m_ItemPosition.pop_back();
 	return itemTemp;
+}
+
+int LevelManager::getNumOfDoors(){
+	return m_DoorPosition.size();
+}
+sf::Vector2i LevelManager::getDoorPos() {
+	sf::Vector2i doorTemp = m_DoorPosition.back();
+	m_DoorPosition.pop_back();
+	return doorTemp;
+}
+char LevelManager::getDoorType(){
+	char door = m_DoorType.back();
+	m_DoorType.pop_back();
+	return door;
+}
+int LevelManager::getNumSwitches() {
+	return m_SwitchPosition.size();
+}
+sf::Vector2i LevelManager::getSwitchPos() {
+	sf::Vector2i switchTemp = m_SwitchPosition.back();
+	m_SwitchPosition.pop_back();
+	return switchTemp;
 }

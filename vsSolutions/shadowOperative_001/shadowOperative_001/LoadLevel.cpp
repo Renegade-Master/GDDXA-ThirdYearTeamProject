@@ -34,8 +34,14 @@ void Engine::loadLevel() {
 	enemySpawn();
 	//Spawn Items
 	if (m_LM.getNumOfItems() >= 1){
-		std::cout << "\nSpawning Items";
 		ItemSpawn();
+	}
+	//Spawn Doors
+	if (m_LM.getNumOfDoors() >= 1) {
+		doorSpawn();
+	}
+	if (m_LM.getNumSwitches() >= 1) {
+		spawnSwitches();
 	}
 
 	// Make sure this code isn't run again
