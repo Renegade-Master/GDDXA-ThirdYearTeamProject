@@ -13,6 +13,21 @@ void Engine::update(float dtAsSeconds) {
 	if (GameState == State::MAIN_MENU) {
 		m_MainView.reset(
 			sf::FloatRect(0, 0, resolution.x, resolution.y));
+		
+		// Handle Animated Background
+		if(m_animatedBackgroundFrame >= m_animatedBackgroundMaxFrames) {
+			m_animatedBackgroundFrame = 0;
+		}
+
+		m_animatedBackgroundImage.loadFromFile(
+			std::string("graphics/Menu_Video/Short_142_FirstVideo/Short_142 ")
+			.append(std::to_string(m_animatedBackgroundFrame++))
+			.append(".png"));
+
+		m_MenuBackgroundTexture.loadFromImage(m_animatedBackgroundImage);
+		m_MenuBackgroundSprite.setTexture(m_MenuBackgroundTexture);
+
+		// Handle Buttons
 		int i = 0;
 		for (std::list<GUI::Button>::iterator it = m_mainMenuButtons.begin(); it != m_mainMenuButtons.end(); ++it) {
 			switch (i++) {
