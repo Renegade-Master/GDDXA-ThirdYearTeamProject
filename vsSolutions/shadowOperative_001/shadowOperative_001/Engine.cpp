@@ -115,7 +115,22 @@ void Engine::ItemSpawn() {
 	}
 	std::cout << "\nItem Spawned";
 }
+//Spawn Doors
+void Engine::doorSpawn() {
+	int numDoors = m_LM.getNumOfDoors();
+	for (int i = 0;i < numDoors;i++) {
+		Door* door = new Door(m_LM.getDoorType(),m_LM.getDoorPos());
+		m_DoorList.push_back(door);
+	}
+}
 
+void Engine::spawnSwitches() {
+	int numSwitches = m_LM.getNumSwitches();
+	for (int i = 0;i < numSwitches;i++) {
+		ToggleSwitch* togSwitch = new ToggleSwitch(m_GameTimeTotal,m_LM.getSwitchPos());
+		m_SwitchList.push_back(togSwitch);
+	}
+}
 /**
 *	Is the Player using a controller?
 *//*

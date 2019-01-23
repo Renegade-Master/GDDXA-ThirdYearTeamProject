@@ -16,6 +16,7 @@
 #include <SFML/Graphics.hpp>
 
 #include "Button.h"
+#include "Door.h"
 #include "Enemy.h"
 #include "EnemyGenerator.h"
 #include "HUD.h"
@@ -28,6 +29,7 @@
 #include "TutorialManager.h"
 #include "Bullet.h"
 #include "gunBattery.h"
+#include "ToggleSwitch.h"
 
 class Engine {
 public:
@@ -51,7 +53,7 @@ private:
 
 	// Game States
 	enum class State { MAIN_MENU, PLAYING, PAUSED, SETTINGS, LOADING };
-	State GameState = State::PAUSED;
+	State GameState = State::MAIN_MENU;
 
 	// The texture holder
 	TextureHolder th;
@@ -69,6 +71,12 @@ private:
 
 	//Item list
 	std::list<Item*> m_ItemList;
+
+	//Door list
+	std::list<Door*> m_DoorList;
+
+	//switch list
+	std::list<ToggleSwitch*> m_SwitchList;
 
 	//Level Manager
 	LevelManager m_LM;
@@ -148,6 +156,12 @@ private:
 
 	// Spawn Items
 	void ItemSpawn();
+
+	//Spawn Doors
+	void doorSpawn();
+
+	//spawn Switches
+	void spawnSwitches();
 
 	// Run will call all the private functions
 	bool detectCollisions(PlayableCharacter& character);
