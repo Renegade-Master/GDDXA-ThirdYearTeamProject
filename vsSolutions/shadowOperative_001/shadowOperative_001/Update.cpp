@@ -15,7 +15,7 @@ void Engine::update(float dtAsSeconds) {
 			sf::FloatRect(0, 0, resolution.x, resolution.y));
 		
 		// Handle Animated Background
-		if(m_animatedBackgroundFrame > m_animatedBackgroundMaxFrames) {
+		if(m_animatedBackgroundFrame >= m_animatedBackgroundMaxFrames) {
 			m_animatedBackgroundFrame = 0;
 		}
 
