@@ -124,6 +124,13 @@ void Engine::doorSpawn() {
 	}
 }
 
+void Engine::spawnSwitches() {
+	int numSwitches = m_LM.getNumSwitches();
+	for (int i = 0;i < numSwitches;i++) {
+		ToggleSwitch* togSwitch = new ToggleSwitch(m_GameTimeTotal,m_LM.getSwitchPos());
+		m_SwitchList.push_back(togSwitch);
+	}
+}
 /**
 *	Is the Player using a controller?
 *//*

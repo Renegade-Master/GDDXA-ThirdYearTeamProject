@@ -30,6 +30,8 @@ private:
 	//Door Creation Data
 	std::list<sf::Vector2i> m_DoorPosition;
 	std::list<char> m_DoorType;
+	//switch
+	std::list<sf::Vector2i> m_SwitchPosition;
 	float m_TimeModifier = 1;
 	float m_BaseTimeLimit = 0;
 	int m_CurrentLevel = 0;
@@ -59,5 +61,8 @@ public:
 	sf::Vector2i getDoorPos();
 	char getDoorType();
 
+	//switch
+	int getNumSwitches();
+	sf::Vector2i getSwitchPos();
 };
 #endif // !LEVELMANAGER_H

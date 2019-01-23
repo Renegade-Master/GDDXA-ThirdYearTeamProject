@@ -10,13 +10,15 @@
 #include "Engine.h"
 
 LevelManager::LevelManager(){
-	//These keep the game from crashing if the levels have no Items or Doors
+	//These keep the game from crashing if the levels have no Items,Doors or Switches
 	assert (m_ItemType.size() == 0);
 	assert(m_ItemPosition.size() == 0);
 	m_ItemPosition.clear();
 	assert(m_DoorPosition.size() == 0);
 	assert(m_DoorType.size() == 0);
 	m_DoorPosition.clear();
+	assert(m_SwitchPosition.size() == 0);
+	m_SwitchPosition.clear();
 }
 int** LevelManager::nextLevel(sf::VertexArray& rVaLevel) {
 	m_LevelSize.x = 0;
@@ -142,7 +144,11 @@ int** LevelManager::nextLevel(sf::VertexArray& rVaLevel) {
 				arrayLevel[y][x] = 'b';
 				break;
 			case 's':
-				arrayLevel[y][x] = 's';
+				//switch
+				temp.x = x;
+				temp.y = y;
+				m_SwitchPosition.push_back(temp);
+				arrayLevel[y][x] = '0';
 				break;
 			case 'k':
 				arrayLevel[y][x] = 'k';
@@ -371,4 +377,12 @@ char LevelManager::getDoorType(){
 	char door = m_DoorType.back();
 	m_DoorType.pop_back();
 	return door;
+}
+int LevelManager::getNumSwitches() {
+	return m_SwitchPosition.size();
+}
+sf::Vector2i LevelManager::getSwitchPos() {
+	sf::Vector2i switchTemp = m_SwitchPosition.back();
+	m_SwitchPosition.pop_back();
+	return switchTemp;
 }
