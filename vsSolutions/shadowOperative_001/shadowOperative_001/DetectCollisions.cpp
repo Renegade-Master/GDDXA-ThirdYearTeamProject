@@ -89,7 +89,7 @@ bool Engine::detectCollisions(PlayableCharacter& character) {
 				character.m_Action = PlayableCharacter::Action::FALLING;
 			}
 			else if (((character.m_Position.y - character.m_LastPosition.y)				// if (Y Change since last frame)
-					> (character.m_LastPosition.y==(character.m_LastPosition.y += character.m_Gravity * 0.0167f)))) {	// less than (last Y + Gravity)
+					> (character.m_LastPosition.y == (character.m_LastPosition.y += character.m_Gravity * 0.0167f)))) {	// less than (last Y + Gravity)
 
 					character.m_Action = PlayableCharacter::Action::IDLE;
 				}
