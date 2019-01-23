@@ -11,7 +11,7 @@
 Door::Door(char state, sf::Vector2i position) {
 	this->m_Position = (sf::Vector2f)position;
 	this->m_Position.x = m_Position.x * 50;
-	this->m_Position.y = m_Position.y * 50;
+	this->m_Position.y = (m_Position.y * 50)-50 ;
 	if (state == 'D') {
 		m_DoorState = State::OPEN;
 	}
@@ -33,14 +33,17 @@ Door::Door(char state, sf::Vector2i position) {
 	m_ClosedDoorSprite.setPosition(this->m_Position);
 }
 //Alter State when triggered
-void Door::DoorState(){
+void Door::doorState(){
 	if (m_DoorState == State::STATIC) {
+		//std::cout<< "\nStatic";
 		return;
 	}
-	if (m_DoorState == State::OPEN) {
-		m_DoorState = State::CLOSE;
+	if (m_DoorState == State::CLOSE) {
+		//std::cout << "\nWas open now closed";
+		m_DoorState = State::OPEN;
 	}
 	else if (m_DoorState == State::OPEN) {
+		//std::cout << "\nWas closed now open";
 		m_DoorState = State::CLOSE;
 	}
 }
@@ -71,4 +74,11 @@ sf::Sprite Door::getDoorSprite() {
 		return m_ClosedDoorSprite;
 	}
 }
-
+bool Door::getDoorState() {
+	if (m_DoorState == State::STATIC) {
+		return false;
+	}
+	else {
+		return true;
+	}
+}

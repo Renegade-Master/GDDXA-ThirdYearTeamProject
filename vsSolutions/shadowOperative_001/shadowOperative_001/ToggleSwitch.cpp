@@ -55,8 +55,8 @@ sf::Vector2f ToggleSwitch::getCenter() {
 *	Update the switch location
 */
 void ToggleSwitch::update(sf::Time elapsedTime, int** m_ArrayLevel) {
-	if (m_LastToggleEvent.asSeconds() -
-		elapsedTime.asSeconds() > 10)
+	if (elapsedTime.asMilliseconds() -
+		m_LastToggleEvent.asMilliseconds() > 5000)
 	{
 		if (m_ToggleState == ToggleState::TOGGLE_OFF) {
 			this->m_SpriteToggleOff.setPosition(this->m_Position);
@@ -69,15 +69,20 @@ void ToggleSwitch::update(sf::Time elapsedTime, int** m_ArrayLevel) {
 /*
 *	if switch can be toggled, toggle
 */
-void ToggleSwitch::toggle(sf::Time elapsedTime) {
-	if (m_LastToggleEvent.asSeconds() -
-		elapsedTime.asSeconds() > 10) {
+bool ToggleSwitch::toggle(sf::Time elapsedTime) {
+	if (elapsedTime.asMilliseconds() -
+		m_LastToggleEvent.asMilliseconds() > 5000) {
+		m_LastToggleEvent = elapsedTime;
 		if (m_ToggleState == ToggleState::TOGGLE_OFF) {
+			//std::cout << "\nWas closed now open return true";
 			m_ToggleState = ToggleState::TOGGLE_ON;
+			return true;
 		}
 		else {
 			m_ToggleState = ToggleState::TOGGLE_OFF;
+			//std::cout << "\nWas open now closed return true";
+			return true;
 		}
-		m_LastToggleEvent = elapsedTime;
 	}
+	return false;
 }

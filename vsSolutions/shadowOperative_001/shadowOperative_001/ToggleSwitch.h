@@ -4,6 +4,7 @@
 #define TOGGLESWITCH_H
 #include <SFML/Graphics.hpp>
 #include "TextureHolder.h"
+#include<iostream>
 class ToggleSwitch{
 private:
 	enum class ToggleState { TOGGLE_ON, TOGGLE_OFF };
@@ -20,7 +21,7 @@ public:
 	sf::FloatRect getPosition();
 	sf::Vector2f getCenter();
 	void update(sf::Time elapsedTime,int** m_ArrayLevel);
-	void toggle(sf::Time elapsedTime);
+	bool toggle(sf::Time elapsedTime);
 };
 #endif
 

@@ -43,7 +43,12 @@ void Engine::draw() {
 
 		// Draw the Level
 		m_Window.draw(m_VALevel, &m_TextureTiles);
+		//Draw the Switches
 
+		std::list<ToggleSwitch*>::iterator SwitchIt = m_SwitchList.begin();
+		for (;SwitchIt != m_SwitchList.end();SwitchIt++) {
+			m_Window.draw((*SwitchIt)->getSprite());
+		}
 		//Draw the doors
 		std::list<Door*>::iterator doorIt = m_DoorList.begin();
 		for (;doorIt != m_DoorList.end();doorIt++) {

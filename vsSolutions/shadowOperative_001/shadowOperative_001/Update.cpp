@@ -40,6 +40,18 @@ void Engine::update(float dtAsSeconds) {
 			// Load a Level
 			loadLevel();
 		}
+
+		//Update Switches
+		std::list<ToggleSwitch*>::iterator switchIt = m_SwitchList.begin();
+		for (;switchIt != m_SwitchList.end();switchIt++) {
+			(*switchIt)->update(m_GameTimeTotal, m_ArrayLevel);
+			if (m_Player.getSprite().getGlobalBounds().intersects(
+				(*switchIt)->getSprite().getGlobalBounds())) {
+				if ((*switchIt)->toggle(m_GameTimeTotal)) {
+					doorUpdate(dtAsSeconds, (*switchIt));
+				}
+			}
+		}
 		//update Items
 		std::list<Item*>::iterator itemIter = m_ItemList.begin();
 		for (;itemIter != m_ItemList.end();) {
@@ -285,4 +297,30 @@ void Engine::update(float dtAsSeconds) {
 	else if (GameState == State::LOADING) {
 		// Put Loading Screen Update code here
 	}
+}
+void Engine::doorUpdate(float dtAsSeconds, ToggleSwitch *Switch) {
+	//update Doors
+	//std::cout << "\nDoor update";
+	std::list<Door*>::iterator doorIt = m_DoorList.begin();
+	Door* shortest = (*doorIt);
+	double currentShortest = std::numeric_limits<double>::infinity();
+	for (;doorIt != m_DoorList.end();doorIt++) {
+		//std::cout << "\nNext door";
+		if ((calcDistance((*doorIt)->getCenter(), (*Switch).getCenter()) < currentShortest)
+			&& (*doorIt)->getDoorState()) {
+			currentShortest = calcDistance((*doorIt)->getCenter(), (*Switch).getCenter());
+			shortest = (*doorIt);
+			//std::cout << "\nnew Shortest";
+		}
+	}
+	shortest->doorState();
+	shortest->update(dtAsSeconds, m_ArrayLevel);
+	//std::cout << "\nupdating Shortest";
+}
+double Engine::calcDistance(sf::Vector2f posOne, sf::Vector2f posTwo)  {
+	double distance;
+	double distancex = ((posOne.x - posTwo.x) * (posOne.x - posTwo.x));
+	double distancey = ((posOne.y - posTwo.y) * (posOne.y - posTwo.y));
+
+	return distance = sqrt(distancex - distancey);
 }

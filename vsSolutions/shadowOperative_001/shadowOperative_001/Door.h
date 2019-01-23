@@ -22,7 +22,7 @@ private:
 	sf::Sprite m_ClosedDoorSprite;
 protected:
 	int door;
-	void DoorState();
+	
 public:
 	Door(char state,sf::Vector2i position);
 	// We will call this function once every frame
@@ -32,5 +32,8 @@ public:
 	virtual float getCapacity();
 	
 	sf::Sprite getDoorSprite();
+
+	bool getDoorState();
+	void doorState();
 };
 #endif // !DOOR_H

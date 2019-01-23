@@ -193,5 +193,9 @@ private:
 	sf::Vector2f mouseWorldPosition;
 	// Where is the mouse in relation to screen coordinates
 	sf::Vector2i mouseScreenPosition;
+
+	void doorUpdate(float dtAsSeconds, ToggleSwitch *Switch);
+
+	double calcDistance(sf::Vector2f posOne, sf::Vector2f posTwo);
 };
 #endif // !ENGINE_H
