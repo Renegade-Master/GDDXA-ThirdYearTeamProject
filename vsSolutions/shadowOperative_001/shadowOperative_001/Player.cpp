@@ -244,7 +244,16 @@ void Player::handleInput() {
 	\***---------------------***/
 
 	if (this->m_Action == Action::FALLING) {
-		
+		//  Double Jump		
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
+
+			// Character hasn't jumped too many times
+			if (this->m_jumpCounter < this->maxJumps) {
+				this->m_jumpDuration = 0.0f;
+				this->m_Action = Action::JUMPING;
+				this->m_jumpCounter++;
+			}
+		}
 	}
 
 	/***---------------------***\
