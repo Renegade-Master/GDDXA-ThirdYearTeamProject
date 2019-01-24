@@ -85,7 +85,7 @@ private:
 	SoundManager m_SM;
 
 	//The door
-	int door = 'd';
+	bool doorValid;
 
 	// The HUD
 	Hud m_Hud;

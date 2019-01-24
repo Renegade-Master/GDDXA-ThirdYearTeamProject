@@ -52,13 +52,23 @@ bool Engine::detectCollisions(PlayableCharacter& character) {
 		character.spawn(m_LM.getStartPosition(), GRAVITY);
 		//this->Engine::GameState = Engine::State::MAIN_MENU;
 	}
-
+	//if Door is valid pass through
+	doorValid = true;
+	//if not then dont
+	std::list<Door*>::iterator collDetect = m_DoorList.begin();
+	for (;collDetect != m_DoorList.end();collDetect++) {
+		//std::cout << "\nChecking door intersect";
+		if (character.getPosition().intersects((*collDetect)->getPosition())) {
+			std::cout << "\nChecking door validity";
+			doorValid = (*collDetect)->getValidState();
+		}
+	}
 	for (int x = startX; x < endX; x++)	{
 		for (int y = startY; y < endY; y++) {
 			// Initialize the starting position of the current block
 			block.left = x * TILE_SIZE;
 			block.top = y * TILE_SIZE;
-
+			
 			// Is character colliding with a regular block
 			if (   (m_ArrayLevel[y][x] == 1)	|| (m_ArrayLevel[y][x] == 2)
 				|| (m_ArrayLevel[y][x] == 3)	|| (m_ArrayLevel[y][x] == 4)
@@ -66,7 +76,7 @@ bool Engine::detectCollisions(PlayableCharacter& character) {
 				|| (m_ArrayLevel[y][x] == 7)	|| (m_ArrayLevel[y][x] == 8)
 				|| (m_ArrayLevel[y][x] == 9)	|| (m_ArrayLevel[y][x] == 'j')
 				|| (m_ArrayLevel[y][x] == 'k')	|| (m_ArrayLevel[y][x] == 'u')
-				|| (m_ArrayLevel[y][x] == door)) {
+				|| (!doorValid)) {
 
 				if (character.getRight().intersects(block))	{
 					character.stopRight(block.left);
@@ -96,46 +106,7 @@ bool Engine::detectCollisions(PlayableCharacter& character) {
 				}
 			//}
 
-			//This code will check if the player hits a switch and it will open doors.
-			if ((m_ArrayLevel[y][x] == 's'))
-			{
-				if (character.getRight().intersects(block)) {
-					door = 'open';
-					std::cout << "The switch has been used.";
-				}
-				else if (character.getLeft().intersects(block)) {
-					door = 'open';
-					std::cout << "The switch has been used.";
-				}
-				if (character.getFeet().intersects(block)) {
-					door = 'open';
-					std::cout << "The switch has been used.";
-				}
-				else if (character.getHead().intersects(block)) {
-					door = 'open';
-					std::cout << "The switch has been used.";
-				}
-			}
-				//This code will lock all the doors.
-				if ((m_ArrayLevel[y][x] == 'r'))
-				{
-					if (character.getRight().intersects(block)) {
-						door = 'd';
-						std::cout << "R has been hit";
-					}
-					else if (character.getLeft().intersects(block)) {
-						door = 'd';
-						std::cout << "R has been hit";
-					}
-					if (character.getFeet().intersects(block)) {
-						door = 'd';
-						std::cout << "R has been hit";
-					}
-					else if (character.getHead().intersects(block)) {
-						door = 'd';
-						std::cout << "R has been hit";
-					}
-				}		
+			
 
 			/*
 			//// More collision detection here once we have learned about particle effects
