@@ -88,6 +88,7 @@ bool Door::getValidState() {
 	}
 	return false;
 }
+//getSprite bounds dependant on object State
 sf::FloatRect Door::getPosition() {
 	if (m_DoorState == State::STATIC) {
 		return m_ItemSprite.getGlobalBounds();

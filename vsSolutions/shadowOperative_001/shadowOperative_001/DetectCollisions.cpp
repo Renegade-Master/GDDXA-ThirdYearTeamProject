@@ -57,9 +57,7 @@ bool Engine::detectCollisions(PlayableCharacter& character) {
 	//if not then dont
 	std::list<Door*>::iterator collDetect = m_DoorList.begin();
 	for (;collDetect != m_DoorList.end();collDetect++) {
-		//std::cout << "\nChecking door intersect";
 		if (character.getPosition().intersects((*collDetect)->getPosition())) {
-			std::cout << "\nChecking door validity";
 			doorValid = (*collDetect)->getValidState();
 		}
 	}
