@@ -215,6 +215,7 @@ void Engine::update(float dtAsSeconds) {
 					(*it)->reduceAwareness(m_GameTimeTotal);
 				}
 			}
+
 			std::list<Enemy*>::iterator checkDeathIter = m_EnemyList.begin();
 			for (;checkDeathIter != m_EnemyList.end();checkDeathIter++)
 			{

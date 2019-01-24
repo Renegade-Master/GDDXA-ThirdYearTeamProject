@@ -10,18 +10,25 @@ void Camera::spawn(sf::Vector2i startPosition, float gravity, sf::Time gameStart
 	m_Sprite = sf::Sprite(TextureHolder::GetTexture(
 		"graphics/camera.png"));
 	std::cout << "\ndir" << dir;
-	m_Sprite.setPosition(this->m_Position);
 	if (dir == 'z') {
 		std::cout << "\nRotating: z: -90.0f";
 		m_Sprite.setRotation(-90.0f);
+		this->m_Position.y = this->m_Position.y + 20;
+		m_Sprite.setPosition(this->m_Position);
 	}
 	else if (dir == 'c') {
 		std::cout << "\nRotating: c: 90.0f";
 		m_Sprite.setRotation(90.0f);
+		m_Sprite.setPosition(this->m_Position);
 	}
 	else if (dir == 'v') {
-		std::cout << "\nRotating: v: 90.0f";
-		m_Sprite.setRotation(90.0f);
+		std::cout << "\nRotating: v: 180.0f";
+		m_Sprite.setRotation(180.0f);
+		m_Sprite.setPosition(this->m_Position);
+	}
+	else if (dir == 'x') {
+		this->m_Position.x = this->m_Position.x + 25;
+		m_Sprite.setPosition(this->m_Position);
 	}
 
 	awarenessOfPlayer = 0.0;
@@ -35,6 +42,23 @@ float Camera::getRotation() {
 }
 void Camera::update(float elapsedTime, int** m_ArrayLevel) {
 	if (concious) {
-		//update if concious
+		if (forward) {
+			rotation += (this->getRotation() + (float)(m_Speed * elapsedTime));
+			m_Sprite.setRotation(this->getRotation() + (float)(m_Speed * elapsedTime));
+		}
+		else {
+			rotation -= (this->getRotation() - (float)(m_Speed * elapsedTime));
+			m_Sprite.setRotation((this->getRotation() - (float)(m_Speed * elapsedTime)));
+		}
+		if (forward) {
+			if (rotation >= 90.0f) {
+				forward = false;
+			}
+		}
+		else {
+			if (rotation <= 00.0f) {
+				forward = true;
+			}
+		}
 	}
 }
