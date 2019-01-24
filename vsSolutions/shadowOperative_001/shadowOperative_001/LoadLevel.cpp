@@ -43,6 +43,9 @@ void Engine::loadLevel() {
 	if (m_LM.getNumSwitches() >= 1) {
 		spawnSwitches();
 	}
+	if (m_LM.getNumCams() >= 1) {
+		spawnCamera();
+	}
 
 	// Make sure this code isn't run again
 	m_NewLevelRequired = false;

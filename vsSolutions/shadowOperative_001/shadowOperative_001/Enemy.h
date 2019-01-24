@@ -24,8 +24,14 @@ private:
 	patrolDir move = patrolLeft;
 	friend patrolDir& operator++(patrolDir& mv, int incr);
 	int sincePatrolAlter = 0;
-	int sightAngle = 60;
-	int detectionDistance = 300;
+	
+protected:
+	//Enemy Health
+	float health = 100.0f;
+	const float regenRate = 0.5f;
+	const float maxHealth = 100.0f;
+	bool concious = true;
+
 	visionCone cone;
 	float awarenessOfPlayer;
 
@@ -34,11 +40,9 @@ private:
 	//detection meter
 	sf::RectangleShape detectMeter;
 
-	//Enemy Health
-	float health = 100.0f;
-	const float regenRate = 0.5f;
-	const float maxHealth = 100.0f;
-	bool concious =  true;
+	int sightAngle = 60;
+	int detectionDistance = 300;
+
 public:
 	void update(float elapsedTIme,int** m_ArrayLevel);
 	void spawn(sf::Vector2i startPosition, float gravity,sf::Time gameStart);

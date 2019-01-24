@@ -55,6 +55,13 @@ void Engine::draw() {
 			m_Window.draw((*doorIt)->getDoorSprite());
 		}
 
+		//Draw Camera
+		std::list<Camera*>::iterator cameraIt = m_CameraList.begin();
+		for (;cameraIt != m_CameraList.end();cameraIt++) {
+			m_Window.draw((*cameraIt)->getSprite());
+		}
+		
+
 		// Draw Player
 		m_Window.draw(m_Player.getSprite());
 

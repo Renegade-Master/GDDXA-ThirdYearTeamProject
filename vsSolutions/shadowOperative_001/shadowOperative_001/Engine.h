@@ -30,6 +30,7 @@
 #include "Bullet.h"
 #include "gunBattery.h"
 #include "ToggleSwitch.h"
+#include "Camera.h"
 
 class Engine {
 public:
@@ -77,6 +78,9 @@ private:
 
 	//switch list
 	std::list<ToggleSwitch*> m_SwitchList;
+
+	//camera List
+	std::list<Camera*> m_CameraList;
 
 	//Level Manager
 	LevelManager m_LM;
@@ -168,6 +172,8 @@ private:
 	//spawn Switches
 	void spawnSwitches();
 
+	//spawn camera
+	void spawnCamera();
 	// Run will call all the private functions
 	bool detectCollisions(PlayableCharacter& character);
 

@@ -6,6 +6,11 @@ CAMERA_H
 class Camera : public Enemy
 {
 private:
+	float rotation;
 public:
+	void spawn(sf::Vector2i startPosition, float gravity, sf::Time gameStart,char dir);
+	void update(float elapsedTime, int** m_ArrayLevel);
+	Camera();
+	float getRotation();
 };
 #endif //CAMERA_H
