@@ -82,3 +82,21 @@ bool Door::getDoorState() {
 		return true;
 	}
 }
+bool Door::getValidState() {
+	if (m_DoorState == State::OPEN) {
+		return true;
+	}
+	return false;
+}
+//getSprite bounds dependant on object State
+sf::FloatRect Door::getPosition() {
+	if (m_DoorState == State::STATIC) {
+		return m_ItemSprite.getGlobalBounds();
+	}
+	else if (m_DoorState == State::OPEN) {
+		return m_OpenDoorSprite.getGlobalBounds();
+	}
+	else if (m_DoorState == State::CLOSE) {
+		return m_ClosedDoorSprite.getGlobalBounds();
+	}
+}

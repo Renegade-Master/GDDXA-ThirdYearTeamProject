@@ -35,5 +35,8 @@ public:
 
 	bool getDoorState();
 	void doorState();
+	bool getValidState();
+
+	sf::FloatRect getPosition();
 };
 #endif // !DOOR_H
