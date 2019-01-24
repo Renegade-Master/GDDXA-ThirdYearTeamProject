@@ -104,6 +104,7 @@ bool Engine::detectCollisions(PlayableCharacter& character) {
 				}
 			//}
 
+
 			
 
 			/*

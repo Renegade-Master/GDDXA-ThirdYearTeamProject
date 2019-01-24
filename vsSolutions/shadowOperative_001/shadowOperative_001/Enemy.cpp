@@ -19,8 +19,11 @@ void Enemy::spawn(sf::Vector2i startPosition, float gravity, sf::Time gameStart)
 	m_Gravity = gravity;
 	/*m_Sprite = sf::Sprite(TextureHolder::GetTexture(
 		"graphics/enemy2.png"));*/
-	m_Sprite = sf::Sprite(TextureHolder::GetTexture(
-		"graphics/bob.png"));
+	if (conscious == true)
+	{
+		m_Sprite = sf::Sprite(TextureHolder::GetTexture(
+			"graphics/Bob.png"));
+	}
 	m_Sprite.setPosition(this->m_Position);
 	//m_RightPressed = true;
 	//m_LeftPressed = false;
@@ -32,7 +35,7 @@ void Enemy::spawn(sf::Vector2i startPosition, float gravity, sf::Time gameStart)
 }
 
 void Enemy::update(float elapsedTime, int** m_ArrayLevel) {
-	if (concious)
+	if (conscious)
 	{
 		// Make a rect for all his parts
 		patrolValid = false;
@@ -156,30 +159,33 @@ sf::ConvexShape Enemy::getCone()
 }
 void Enemy::increaseAwarenessLevel(sf::Vector2f playPos, int detectionLevel,sf::Time gameTimeTotal)
 {
-	switch (detectionLevel)
+	if (isConscious() == true)
 	{
-	case 1: 
-		std::cout << "\nAwareness 1";
-		if (calcDistance(playPos, this->getCenter()) <= 50){
-			std::cout << "\nDistance: <50";
-			awarenessOfPlayer += 1.0;
+		switch (detectionLevel)
+		{
+		case 1:
+			std::cout << "\nAwareness 1";
+			if (calcDistance(playPos, this->getCenter()) <= 50) {
+				std::cout << "\nDistance: <50";
+				awarenessOfPlayer += 1.0;
+			}
+		case 2:
+			std::cout << "\nAwareness 2";
+			if (calcDistance(playPos, this->getCenter()) > 50) {
+				std::cout << "\nDistance: 50+";
+				awarenessOfPlayer += 1.5;
+			}
+			break;
+		case 3:
+			std::cout << "\nAwareness 3";
+			if (calcDistance(playPos, this->getCenter()) > 100) {
+				std::cout << "\nDistance: 100+";
+				awarenessOfPlayer += 2.0;
+			}
+			break;
 		}
-	case 2:
-		std::cout << "\nAwareness 2";
-		if (calcDistance(playPos, this->getCenter()) > 50){
-			std::cout<<"\nDistance: 50+";
-			awarenessOfPlayer += 1.5;
-		}
-		break;
-	case 3:
-		std::cout << "\nAwareness 3";
-		if (calcDistance(playPos, this->getCenter()) > 100){
-			std::cout << "\nDistance: 100+";
-			awarenessOfPlayer += 2.0;
-		}
-		break;
+		lastDetectionEvent = gameTimeTotal;
 	}
-	lastDetectionEvent = gameTimeTotal;
 }
 float Enemy::getAwareness()
 {
@@ -208,7 +214,7 @@ void Enemy::reduceAwareness(sf::Time gameTimeTotal)
 }
 void Enemy::takeDamage(float shotPower)
 {
-	if (this->isConcious())
+	if (this->isConscious())
 	{
 		health = health - shotPower * 3;
 	}
@@ -218,19 +224,26 @@ void Enemy::takeDamage(float shotPower)
 	}
 	if (health <= 0)
 	{
-		concious = false;
+		conscious = false;
 	}
 }
-bool Enemy::isConcious()
+bool Enemy::isConscious()
 {
-	return concious;
+	return conscious;
 }
+
+void Enemy::EnemyCrate()
+{
+	m_Sprite = sf::Sprite(TextureHolder::GetTexture(
+		"graphics/Crate.png"));
+}
+
 void Enemy::regen(float elapsedTime)
 {
 	//std::cout << "\nCALLING REGEN!!!";
 	if (health < maxHealth)
 	{
-		if (this->isConcious())
+		if (this->isConscious())
 		{
 			//std::cout << "\nConcious";
 			if ((health + (regenRate * elapsedTime)) <= maxHealth)
@@ -262,9 +275,8 @@ void Enemy::regen(float elapsedTime)
 		}
 		//std::cout << "\nRegen complete Health is now" << this->health;
 	}
-	if ((health == maxHealth) && (!concious))
+	if ((health == maxHealth) && (!conscious))
 	{
-		concious = true;
+		conscious = true;
 	}
-	
 }

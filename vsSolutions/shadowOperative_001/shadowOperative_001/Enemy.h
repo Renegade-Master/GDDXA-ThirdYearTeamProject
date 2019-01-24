@@ -38,7 +38,7 @@ private:
 	float health = 100.0f;
 	const float regenRate = 0.5f;
 	const float maxHealth = 100.0f;
-	bool concious =  true;
+	bool conscious =  true;
 public:
 	void update(float elapsedTIme,int** m_ArrayLevel);
 	void spawn(sf::Vector2i startPosition, float gravity,sf::Time gameStart);
@@ -54,8 +54,9 @@ public:
 	void reduceAwareness(sf::Time gameTimeTotal);
 	//damage and healing
 	void takeDamage(float shotPower);
-	bool isConcious();
+	bool isConscious();
 	void regen(float elapsedTime);
+	void EnemyCrate();
 };
 
 #endif // !ENEMY_H

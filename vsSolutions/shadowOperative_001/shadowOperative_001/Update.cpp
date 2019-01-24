@@ -214,7 +214,7 @@ void Engine::update(float dtAsSeconds) {
 			{
 				if ((*it)->getCone().getLocalBounds().intersects((*checkDeathIter)->getPosition()))
 				{
-					if (!(*checkDeathIter)->isConcious())
+					if (!(*checkDeathIter)->isConscious())
 					{
 						//std::cout << "\nEnemy Detecting Ally Death";
 						(*it)->increaseAwarenessLevel((*checkDeathIter)->getCenter(), 1, m_GameTimeTotal);
@@ -302,6 +302,19 @@ void Engine::update(float dtAsSeconds) {
 		// Convert mouse position to world coordinates of mainView
 		mouseWorldPosition = m_Window.mapPixelToCoords(
 			sf::Mouse::getPosition(), m_MainView);
+
+		for (std::list<Enemy*>::iterator it = m_EnemyList.begin(); it != m_EnemyList.end(); it++)
+		{
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::E)) {
+
+				if ((*it)->isConscious()==false)
+				{
+					//if (player touching enemy
+					(*it)->EnemyCrate();
+				}
+
+			}
+		}
 	}
 	else if (GameState == State::PAUSED) {
 		// Put Paused Screen Update code here
