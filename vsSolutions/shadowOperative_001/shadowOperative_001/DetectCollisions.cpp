@@ -66,7 +66,7 @@ bool Engine::detectCollisions(PlayableCharacter& character) {
 				|| (m_ArrayLevel[y][x] == 7)	|| (m_ArrayLevel[y][x] == 8)
 				|| (m_ArrayLevel[y][x] == 9)	|| (m_ArrayLevel[y][x] == 'j')
 				|| (m_ArrayLevel[y][x] == 'k')	|| (m_ArrayLevel[y][x] == 'u')
-				|| (m_ArrayLevel[y][x] == door)) {
+				|| (m_ArrayLevel[y][x] == door)) { // <-- Jesus Code
 
 				if (character.getRight().intersects(block))	{
 					character.stopRight(block.left);
@@ -100,7 +100,7 @@ bool Engine::detectCollisions(PlayableCharacter& character) {
 			if ((m_ArrayLevel[y][x] == 's'))
 			{
 				if (character.getRight().intersects(block)) {
-					door = 'open';
+					door = 'open'; // <-- Jesus Code
 					std::cout << "The switch has been used.";
 				}
 				else if (character.getLeft().intersects(block)) {
@@ -120,7 +120,7 @@ bool Engine::detectCollisions(PlayableCharacter& character) {
 				if ((m_ArrayLevel[y][x] == 'r'))
 				{
 					if (character.getRight().intersects(block)) {
-						door = 'd';
+						door = 'd'; // <-- Jesus Code
 						std::cout << "R has been hit";
 					}
 					else if (character.getLeft().intersects(block)) {

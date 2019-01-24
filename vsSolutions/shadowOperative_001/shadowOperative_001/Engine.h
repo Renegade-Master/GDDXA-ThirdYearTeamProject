@@ -85,7 +85,7 @@ private:
 	SoundManager m_SM;
 
 	//The door
-	int door = 'd';
+	int door = 'd'; // <-- Jesus Code
 
 	// The HUD
 	Hud m_Hud;
