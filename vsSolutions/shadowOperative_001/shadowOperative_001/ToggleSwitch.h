@@ -16,6 +16,8 @@ private:
 	m_Player doesnt toggle in rapid succession*/
 	sf::Time m_LastToggleEvent;
 public:
+
+	int switchTimeDelay = 3000;
 	ToggleSwitch(sf::Time time, sf::Vector2i spawnPos);
 	sf::Sprite getSprite();
 	sf::FloatRect getPosition();
