@@ -26,7 +26,7 @@ void Engine::draw() {
 			m_Window.draw(*it);
 		}
 	}
-	else if (GameState == State::PLAYING) {
+	else if (m_GameState == GameState::PLAYING) {
 		/***---------------------***\
 		|  HANDLE DRAWING WINDOW	|
 		\***---------------------***/

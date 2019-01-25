@@ -90,12 +90,12 @@ void visionCone::updateCamConePos(sf::Vector2f charPos, int charSightRange,
 				//X
 				((charPos.x + charSightRange)
 				* cos(cameraAngle) 
-				+ charPos.y + charSightAngle
+				+ charPos.y
 				* sin(cameraAngle)),
 				//Y
-				(-(charPos.x + charSightRange)
+				((-charPos.x + charSightRange)
 				* sin(cameraAngle)
-				+ charPos.y - charSightAngle
+				+ charPos.y + charSightAngle
 				* cos(cameraAngle))
 			)
 		);
@@ -103,12 +103,12 @@ void visionCone::updateCamConePos(sf::Vector2f charPos, int charSightRange,
 			2,
 			sf::Vector2f(
 				//X
-				((charPos.x - charSightRange)
+				((charPos.x + charSightRange)
 				* cos(cameraAngle)
-				+ charPos.y + charSightAngle
+				+ charPos.y
 				* sin(cameraAngle)),
 				//Y
-				(-(charPos.x - charSightRange)
+				((-charPos.x + charSightRange)
 				* sin(cameraAngle)
 				+ charPos.y - charSightAngle
 				* cos(cameraAngle))
@@ -123,12 +123,12 @@ void visionCone::updateCamConePos(sf::Vector2f charPos, int charSightRange,
 				//X
 				((charPos.x + charSightRange)
 				* cos(cameraAngle)
-				+ charPos.y + charSightAngle
+				+ charPos.y 
 				* sin(cameraAngle)),
 				//Y
 				((charPos.x + charSightRange)
 				* sin(cameraAngle)
-				+ charPos.y - charSightAngle
+				+ charPos.y + charSightAngle
 				* cos(cameraAngle))
 			)
 		);
@@ -136,12 +136,12 @@ void visionCone::updateCamConePos(sf::Vector2f charPos, int charSightRange,
 			2,
 			sf::Vector2f(
 				//X
-				((charPos.x - charSightRange)
+				((charPos.x + charSightRange)
 				* cos(cameraAngle)
-				+ charPos.y + charSightAngle
-				* sin(cameraAngle)) - charSightRange,
+				+ charPos.y 
+				* sin(cameraAngle)),
 				//Y
-				((charPos.x - charSightRange)
+				((charPos.x + charSightRange)
 				* sin(cameraAngle)
 				+ charPos.y - charSightAngle
 				* cos(cameraAngle))
