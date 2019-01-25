@@ -7,6 +7,7 @@
 */
 
 #include "Engine.h"
+#include "PlayableCharacter.h"
 
 void Engine::update(float dtAsSeconds) {
 
@@ -303,15 +304,22 @@ void Engine::update(float dtAsSeconds) {
 		mouseWorldPosition = m_Window.mapPixelToCoords(
 			sf::Mouse::getPosition(), m_MainView);
 
+	
+		//Spawn a crate where the enemy died
 		for (std::list<Enemy*>::iterator it = m_EnemyList.begin(); it != m_EnemyList.end(); it++)
 		{
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::E))
 			{
 				if ((*it)->isConscious()==false)
 				{
+					//this->m_Action = Action::CROUCHING;
 					//if (player touching enemy
 					//Changes the enemy to look like a crate.
-					(*it)->EnemyCrate();
+					//for (int i = 1; i < 2; i++)
+					//{
+						(*it)->EnemyCrate();
+					//}
+					//m_Sprite.update(dtAsSeconds, m_ArrayLevel);
 				}
 			}
 		}

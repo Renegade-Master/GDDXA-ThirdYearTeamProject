@@ -58,6 +58,9 @@ void Engine::draw() {
 		// Draw Player
 		m_Window.draw(m_Player.getSprite());
 
+		// Draw enemyCrate
+		//m_Window.draw(m_SpriteCrate.getSpriteCrate());
+
 		//drawing targeting laser
 		if (m_Player.isTargeting()) {
 			m_Window.draw(m_Player.getlaser());
@@ -71,6 +74,7 @@ void Engine::draw() {
 				//std::cout << "\nDrawing enemies";
 				m_Window.draw((*it)->getSprite());
 				m_Window.draw((*it)->getDetectMeter());
+				m_Window.draw((*it)->getSpriteCrate());
 			}
 		}
 		
@@ -107,11 +111,13 @@ void Engine::draw() {
 		m_Window.setView(m_MiniMap);
 		m_Window.draw(m_VALevel, &m_TextureTiles);
 		m_Window.draw(m_Player.getSprite());
+		//m_Window.draw(m_SpriteCrate.getSpriteCrate());
 		for (std::list<Enemy*>::iterator iter = m_EnemyList.begin();
 			iter != m_EnemyList.end(); iter++)
 		{
 			m_Window.draw((*iter)->getSprite());
 			m_Window.draw((*iter)->getCone());
+			m_Window.draw((*iter)->getSpriteCrate());
 		}
 	}
 	else if (GameState == State::PAUSED) {

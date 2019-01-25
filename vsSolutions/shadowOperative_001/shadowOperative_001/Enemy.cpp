@@ -22,7 +22,7 @@ void Enemy::spawn(sf::Vector2i startPosition, float gravity, sf::Time gameStart)
 	//if (conscious == true)
 	//{
 		m_Sprite = sf::Sprite(TextureHolder::GetTexture(
-			"graphics/Crate.png"));
+			"graphics/Bob.png"));
 //	}
 	m_Sprite.setPosition(this->m_Position);
 	//m_RightPressed = true;
@@ -115,12 +115,37 @@ void Enemy::update(float elapsedTime, int** m_ArrayLevel) {
 			cone.updateConePos(this->m_Position, this->detectionDistance, this->sightAngle, false);
 		}
 	}
-	//When crounching the enemy is put into a crate
-	if (this->m_Action == Action::CROUCHING)
+	else
 	{
-		m_Sprite = sf::Sprite(TextureHolder::GetTexture(
-			"graphics/Crate.png"));
+
+		EnemyCrate();
 	}
+
+	/*
+		//When crounching the enemy is put into a crate
+		if (this->m_Action == Action::FALLING)
+		{
+		}
+		else if (this->m_Action == Action::JUMPING)
+		{
+		}
+		else if (this->m_Action == Action::RUNNING)
+		{
+		}
+		else if (this->m_Action == Action::CROUCHING)
+		{
+				m_SpriteCrate = sf::Sprite(TextureHolder::GetTexture(
+					"graphics/Crate.png"));
+				//m_SpriteCrate.setPosition(this->m_Position);
+				std::cout << "\n Sprite should have changed";
+		}
+		else if (this->m_Action == Action::ATTACKING)
+		{
+		}
+		else if (this->m_Action == Action::IDLE)
+		{
+		}*/
+	
 	//(*it)->Enemy Regen
 	//std::cout << "\nCalling REGEN!!!!!";
 	this->regen(elapsedTime);
@@ -240,9 +265,18 @@ bool Enemy::isConscious()
 
 void Enemy::EnemyCrate()
 {
-	this->m_Action = Action::CROUCHING;
+	//if (isConscious() == false)
+	//{
+		//m_Sprite = sf::Sprite(TextureHolder::GetTexture(
+			//"graphics/Crate.png"));
+	//}
+	m_SpriteCrate = sf::Sprite(TextureHolder::GetTexture(
+		"graphics/Crate.png"));
+	m_SpriteCrate.setPosition(this->m_Position);
+	//std::cout << "\n Sprite should have changed";
+	std::cout << "\nCROUCHING";
+	//this->m_Action = Action::CROUCHING;
 }
-
 void Enemy::regen(float elapsedTime)
 {
 	//std::cout << "\nCALLING REGEN!!!";

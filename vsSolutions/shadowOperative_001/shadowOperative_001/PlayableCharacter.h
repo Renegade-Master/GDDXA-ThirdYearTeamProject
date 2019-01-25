@@ -47,6 +47,9 @@ public:
 	// Send a copy of the sprite to main
 	sf::Sprite getSprite();
 
+	// Send a copy of the spriteCrate to main
+	sf::Sprite getSpriteCrate();
+
 	// Make the character stand firm
 	void stopFalling(float position);
 	void stopRight(float position);
@@ -72,6 +75,7 @@ protected:
 
 	sf::Image m_animationSheet;
 	sf::Sprite m_Sprite;
+	sf::Sprite m_SpriteCrate;
 	sf::Sprite m_SpriteRunningRight;
 	sf::Sprite m_SpriteRunningLeft;
 	sf::Sprite m_SpriteFalling;

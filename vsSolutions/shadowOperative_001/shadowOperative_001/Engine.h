@@ -64,6 +64,8 @@ private:
 	// Player (PlayerCharacters)
 	Player m_Player;
 
+	Enemy m_SpriteCrate;
+
 	//Enemy Generator
 
 	//Enemy list
