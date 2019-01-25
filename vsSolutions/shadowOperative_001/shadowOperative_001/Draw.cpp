@@ -121,11 +121,29 @@ void Engine::draw() {
 
 	}
 	else if (m_GameState == GameState::SETTINGS) {
+		// Switch to m_MainView
+		m_Window.setView(m_MainView);
+
 		// Put Settings Screen draw code here
+		m_Window.draw(m_BackgroundSprite, &m_RippleShader);
+		
+		//	List all Settings Pages
+		if (m_SettingsPage == SettingsPage::LIST) {			
+			for (std::list<GUI::Button>::iterator it = m_settingsButtons.begin(); it != m_settingsButtons.end(); ++it) {
+				m_Window.draw(*it);
+			}			
+		}
+		//	List Graphics Settings
+		else if (m_SettingsPage == SettingsPage::GRAPHICS) {			
+			for (std::list<GUI::Button>::iterator it = m_graphicsSettingsButtons.begin(); it != m_graphicsSettingsButtons.end(); ++it) {
+				m_Window.draw(*it);
+			}			
+		}
 	}
 	else if (m_GameState == GameState::LOADING) {
 		// Put Loading Screen draw code here
 	}
+
 	// Show everything we have just drawn
 	m_Window.display();
 }

@@ -52,12 +52,19 @@ private:
 	//TutorialManager tm;
 
 	// Game States
-	enum class GameState { MAIN_MENU, PLAYING, PAUSED, SETTINGS, LOADING };
+	enum class GameState { MAIN_MENU, PLAYING, PAUSED, LEVEL_SELECT, SETTINGS, LOADING };
 	GameState m_GameState = GameState::MAIN_MENU;
 
 	// Main Menu Pages
 	enum class SettingsPage { LIST, GRAPHICS, AUDIO, GAMEPLAY};
 	SettingsPage m_SettingsPage = SettingsPage::LIST;
+
+	//	Varaibles for tracking Window information
+	sf::Uint32 m_windowedStatus = sf::Style::Default;
+	unsigned int m_frameRate = 60;
+	bool m_vSyncActive = false;
+
+	void refreshWindow();
 
 	// The texture holder
 	TextureHolder th;
@@ -189,15 +196,15 @@ private:
 	//	Main Menu
 	std::list<GUI::Button> m_mainMenuButtons;
 	//	Paused
-	std::list<GUI::Button*> m_pausedButtons;
+	std::list<GUI::Button> m_pausedButtons;
 	//	Settings
-	std::list<GUI::Button*> m_settingsButtons;
+	std::list<GUI::Button> m_settingsButtons;
 	//		Graphics Settings
-	std::list<GUI::Button*> m_graphicsSettingsButtons;
+	std::list<GUI::Button> m_graphicsSettingsButtons;
 	//		Audio Settings
-	std::list<GUI::Button*> m_audioSettingsButtons;
+	std::list<GUI::Button> m_audioSettingsButtons;
 	//		Gameplay Settings
-	std::list<GUI::Button*> m_gameplaySettingsButtons;
+	std::list<GUI::Button> m_gameplaySettingsButtons;
 
 	//Bullets
 	Bullet bullets[5];

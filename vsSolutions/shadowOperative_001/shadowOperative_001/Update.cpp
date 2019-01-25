@@ -27,25 +27,10 @@ void Engine::update(float dtAsSeconds) {
 		m_MenuBackgroundTexture.loadFromImage(m_animatedBackgroundImage);
 		m_MenuBackgroundSprite.setTexture(m_MenuBackgroundTexture);
 
-		// Handle Buttons
-		int i = 0;
-		for (std::list<GUI::Button>::iterator it = m_mainMenuButtons.begin(); it != m_mainMenuButtons.end(); ++it) {
-			switch (i++) {
-			case 0: // Enter Game
-				if (it->getState() == GUI::State::clicked) {
-					m_GameState = GameState::PAUSED;
-				}
-				break;
-			case 1: // Settings
-				if (it->getState() == GUI::State::clicked) {
-					//m_GameState = m_GameState::SETTINGS;
-				}
-				break;
-			case 2: // Quit
-				if (it->getState() == GUI::State::clicked) {
-					m_Window.close();
-				}
-				break;
+		//	Handle Buttons
+		while (m_Window.pollEvent(m_event)) {
+			for (std::list<GUI::Button>::iterator it = m_mainMenuButtons.begin(); it != m_mainMenuButtons.end(); ++it) {
+				it->update(m_event, m_Window);
 			}
 		}
 	}
@@ -308,6 +293,24 @@ void Engine::update(float dtAsSeconds) {
 	}
 	else if (m_GameState == GameState::SETTINGS) {
 		// Put Settings Screen Update code here
+
+		//	Handle Buttons
+		//	List all Settings Pages
+		if (m_SettingsPage == SettingsPage::LIST) {
+			while (m_Window.pollEvent(m_event)) {
+				for (std::list<GUI::Button>::iterator it = m_settingsButtons.begin(); it != m_settingsButtons.end(); ++it) {
+					it->update(m_event, m_Window);
+				}
+			}
+		}
+		else if (m_SettingsPage == SettingsPage::GRAPHICS) {
+			while (m_Window.pollEvent(m_event)) {
+				for (std::list<GUI::Button>::iterator it = m_graphicsSettingsButtons.begin(); it != m_graphicsSettingsButtons.end(); ++it) {
+					it->update(m_event, m_Window);
+				}
+			}
+		}
+		
 	}
 	else if (m_GameState == GameState::LOADING) {
 		// Put Loading Screen Update code here
