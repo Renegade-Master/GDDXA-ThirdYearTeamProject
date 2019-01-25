@@ -30,7 +30,7 @@ void Engine::update(float dtAsSeconds) {
 		//	Handle Buttons
 		while (m_Window.pollEvent(m_event)) {
 			for (std::list<GUI::Button>::iterator it = m_mainMenuButtons.begin(); it != m_mainMenuButtons.end(); ++it) {
-				it->update(m_event, m_Window);
+				it->update(m_event, m_GameTimeTotal, m_Window);
 			}
 		}
 	}
@@ -299,28 +299,28 @@ void Engine::update(float dtAsSeconds) {
 		if (m_SettingsPage == SettingsPage::LIST) {
 			while (m_Window.pollEvent(m_event)) {
 				for (std::list<GUI::Button>::iterator it = m_settingsButtons.begin(); it != m_settingsButtons.end(); ++it) {
-					it->update(m_event, m_Window);
+					it->update(m_event, m_GameTimeTotal, m_Window);
 				}
 			}
 		}
 		else if (m_SettingsPage == SettingsPage::GRAPHICS) {
 			while (m_Window.pollEvent(m_event)) {
 				for (std::list<GUI::Button>::iterator it = m_graphicsSettingsButtons.begin(); it != m_graphicsSettingsButtons.end(); ++it) {
-					it->update(m_event, m_Window);
+					it->update(m_event, m_GameTimeTotal, m_Window);
 				}
 			}
 		}
 		else if (m_SettingsPage == SettingsPage::AUDIO) {
 			while (m_Window.pollEvent(m_event)) {
 				for (std::list<GUI::Button>::iterator it = m_audioSettingsButtons.begin(); it != m_audioSettingsButtons.end(); ++it) {
-					it->update(m_event, m_Window);
+					it->update(m_event, m_GameTimeTotal, m_Window);
 				}
 			}
 		}
 		else if (m_SettingsPage == SettingsPage::GAMEPLAY) {
 			while (m_Window.pollEvent(m_event)) {
 				for (std::list<GUI::Button>::iterator it = m_gameplaySettingsButtons.begin(); it != m_gameplaySettingsButtons.end(); ++it) {
-					it->update(m_event, m_Window);
+					it->update(m_event, m_GameTimeTotal, m_Window);
 				}
 			}
 		}

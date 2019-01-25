@@ -19,18 +19,21 @@ void Engine::input() {
 		for (std::list<GUI::Button>::iterator it = m_mainMenuButtons.begin(); it != m_mainMenuButtons.end(); ++it) {
 			switch (i++) {
 			case 0: // Enter Game
-				if (it->getState() == GUI::State::clicked) {
+				if (it->getState() == GUI::ButtonState::clicked) {
+					m_SM.playButtonClick();
 					m_GameState = GameState::PAUSED;
 				}
 				break;
 			case 1: // Settings
-				if (it->getState() == GUI::State::clicked) {
+				if (it->getState() == GUI::ButtonState::clicked) {
+					m_SM.playButtonClick();
 					m_GameState = GameState::SETTINGS;
 					m_SettingsPage = SettingsPage::LIST;
 				}
 				break;
 			case 2: // Quit
-				if (it->getState() == GUI::State::clicked) {
+				if (it->getState() == GUI::ButtonState::clicked) {
+					m_SM.playButtonClick();
 					m_Window.close();
 				}
 				break;
@@ -89,22 +92,26 @@ void Engine::input() {
 			for (std::list<GUI::Button>::iterator it = m_settingsButtons.begin(); it != m_settingsButtons.end(); ++it) {
 				switch (i++) {
 				case 0: // Graphics Settings
-					if (it->getState() == GUI::State::clicked) {
+					if (it->getState() == GUI::ButtonState::clicked) {
+						m_SM.playButtonClick();
 						m_SettingsPage = SettingsPage::GRAPHICS;
 					}
 					break;
 				case 1: // Audio Settings
-					if (it->getState() == GUI::State::clicked) {
+					if (it->getState() == GUI::ButtonState::clicked) {
+						m_SM.playButtonClick();
 						m_SettingsPage = SettingsPage::AUDIO;
 					}
 					break;
 				case 2: // Gameplay Settings
-					if (it->getState() == GUI::State::clicked) {
+					if (it->getState() == GUI::ButtonState::clicked) {
+						m_SM.playButtonClick();
 						m_SettingsPage = SettingsPage::GAMEPLAY;
 					}
 					break;
 				case 3: // Back
-					if (it->getState() == GUI::State::clicked) {
+					if (it->getState() == GUI::ButtonState::clicked) {
+						m_SM.playButtonClick();
 						m_GameState = GameState::MAIN_MENU;
 					}
 					break;
@@ -117,33 +124,38 @@ void Engine::input() {
 			for (std::list<GUI::Button>::iterator it = m_graphicsSettingsButtons.begin(); it != m_graphicsSettingsButtons.end(); ++it) {
 				switch (i++) {
 				case 0: // Lock to 30 FPS
-					if (it->getState() == GUI::State::clicked) {
+					if (it->getState() == GUI::ButtonState::clicked) {
+						m_SM.playButtonClick();
 						m_frameRate = 30;
 						refreshWindow();
 					}
 					break;
 				case 1: // Lock to 60 FPS
-					if (it->getState() == GUI::State::clicked) {
+					if (it->getState() == GUI::ButtonState::clicked) {
+						m_SM.playButtonClick();
 						m_frameRate = 60;
 						refreshWindow();
 					}
 					break;
 				case 2: // Turn V-Sync ON
-					if (it->getState() == GUI::State::clicked) {
+					if (it->getState() == GUI::ButtonState::clicked) {
+						m_SM.playButtonClick();
 						m_vSyncActive = true;
 						m_frameRate = 0; //	(Framerate Limiting && V-Sync) == Bad Time
 						refreshWindow();
 					}
 					break;
 				case 3: // Turn V-Sync OFF
-					if (it->getState() == GUI::State::clicked) {
+					if (it->getState() == GUI::ButtonState::clicked) {
+						m_SM.playButtonClick();
 						m_vSyncActive = false;
 						m_frameRate = 0;
 						refreshWindow();
 					}
 					break;
 				case 4: // Back
-					if (it->getState() == GUI::State::clicked) {
+					if (it->getState() == GUI::ButtonState::clicked) {
+						m_SM.playButtonClick();
 						m_SettingsPage = SettingsPage::LIST;
 					}
 					break;
@@ -156,7 +168,8 @@ void Engine::input() {
 			for (std::list<GUI::Button>::iterator it = m_audioSettingsButtons.begin(); it != m_audioSettingsButtons.end(); ++it) {
 				switch (i++) {
 				case 0: // Back
-					if (it->getState() == GUI::State::clicked) {
+					if (it->getState() == GUI::ButtonState::clicked) {
+						m_SM.playButtonClick();
 						m_SettingsPage = SettingsPage::LIST;
 					}
 					break;
@@ -169,17 +182,20 @@ void Engine::input() {
 			for (std::list<GUI::Button>::iterator it = m_gameplaySettingsButtons.begin(); it != m_gameplaySettingsButtons.end(); ++it) {
 				switch (i++) {
 				case 0: // Enable Controller
-					if (it->getState() == GUI::State::clicked) {
+					if (it->getState() == GUI::ButtonState::clicked) {
+						m_SM.playButtonClick();
 						std::cout << "THE CONTROLLER IS INFERIOR" << std::endl;
 					}
 					break;
 				case 1: // Force Disable Controller
-					if (it->getState() == GUI::State::clicked) {
+					if (it->getState() == GUI::ButtonState::clicked) {
+						m_SM.playButtonClick();
 						std::cout << "THE CONTROLLER IS INFERIOR" <<std::endl;
 					}
 					break;
 				case 2: // Back
-					if (it->getState() == GUI::State::clicked) {
+					if (it->getState() == GUI::ButtonState::clicked) {
+						m_SM.playButtonClick();
 						m_SettingsPage = SettingsPage::LIST;
 					}
 					break;
