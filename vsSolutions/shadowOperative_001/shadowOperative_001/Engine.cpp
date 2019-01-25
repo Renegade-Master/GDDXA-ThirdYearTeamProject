@@ -15,10 +15,7 @@ Engine::Engine() {
 	resolution.x = 1280;
 	resolution.y = 720;
 
-	m_Window.create(sf::VideoMode(resolution.x, resolution.y),
-		"Shadow Operative",
-		sf::Style::Default);
-	m_Window.setFramerateLimit(60);
+	refreshWindow();
 
 	// Initialize the full screen view
 	m_MainView.setSize(resolution);
@@ -145,4 +142,15 @@ bool Engine::getControls() {
 //bool Engine::getControls() {
 //	return(m_usingController);
 //}
+
+/**
+*
+*/
+void Engine::refreshWindow() {
+	m_Window.create(sf::VideoMode(resolution.x, resolution.y),
+		"Shadow Operative",
+		m_windowedStatus);
+	m_Window.setFramerateLimit(m_frameRate);
+	m_Window.setVerticalSyncEnabled(m_vSyncActive);
+}
 

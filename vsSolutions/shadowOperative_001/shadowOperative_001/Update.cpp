@@ -10,7 +10,7 @@
 
 void Engine::update(float dtAsSeconds) {
 
-	if (GameState == State::MAIN_MENU) {
+	if (m_GameState == GameState::MAIN_MENU) {
 		m_MainView.reset(
 			sf::FloatRect(0, 0, resolution.x, resolution.y));
 		
@@ -27,38 +27,23 @@ void Engine::update(float dtAsSeconds) {
 		m_MenuBackgroundTexture.loadFromImage(m_animatedBackgroundImage);
 		m_MenuBackgroundSprite.setTexture(m_MenuBackgroundTexture);
 
-		// Handle Buttons
-		int i = 0;
-		for (std::list<GUI::Button>::iterator it = m_mainMenuButtons.begin(); it != m_mainMenuButtons.end(); ++it) {
-			switch (i++) {
-			case 0: // Enter Game
-				if (it->getState() == GUI::State::clicked) {
-					GameState = State::PAUSED;
-				}
-				break;
-			case 1: // Settings
-				if (it->getState() == GUI::State::clicked) {
-					//GameState = State::SETTINGS;
-				}
-				break;
-			case 2: // Quit
-				if (it->getState() == GUI::State::clicked) {
-					m_Window.close();
-				}
-				break;
+		//	Handle Buttons
+		while (m_Window.pollEvent(m_event)) {
+			for (std::list<GUI::Button>::iterator it = m_mainMenuButtons.begin(); it != m_mainMenuButtons.end(); ++it) {
+				it->update(m_event, m_GameTimeTotal, m_Window);
 			}
 		}
 	}
-	else if (GameState == State::PLAYING) {
-		if (m_NewLevelRequired) {
-			
+	else if (m_GameState == GameState::PLAYING) {
+		if (m_NewLevelRequired) {			
 			// Load a Level
 			loadLevel();
 		}
 
-		//Update Switches
-		std::list<ToggleSwitch*>::iterator switchIt = m_SwitchList.begin();
-		for (;switchIt != m_SwitchList.end();switchIt++) {
+		//Update Switches		
+		for (std::list<ToggleSwitch*>::iterator switchIt = m_SwitchList.begin(); 
+				switchIt != m_SwitchList.end(); switchIt++) {
+			
 			(*switchIt)->update(m_GameTimeTotal, m_ArrayLevel);
 			if (m_Player.getSprite().getGlobalBounds().intersects(
 				(*switchIt)->getSprite().getGlobalBounds())) {
@@ -68,10 +53,13 @@ void Engine::update(float dtAsSeconds) {
 			}
 		}
 		//update Items
-		std::list<Item*>::iterator itemIter = m_ItemList.begin();
-		for (;itemIter != m_ItemList.end();) {
+		
+		for (std::list<Item*>::iterator itemIter = m_ItemList.begin(); 
+				itemIter != m_ItemList.end();) {
+			
 			//update Item
 			(*itemIter)->update(dtAsSeconds,m_ArrayLevel);
+			
 			//Pick up Item
 			if (m_Player.getSprite().getGlobalBounds().intersects(
 				(*itemIter)->getSprite().getGlobalBounds())) {
@@ -215,9 +203,9 @@ void Engine::update(float dtAsSeconds) {
 					(*it)->reduceAwareness(m_GameTimeTotal);
 				}
 			}
-
-			std::list<Enemy*>::iterator checkDeathIter = m_EnemyList.begin();
-			for (;checkDeathIter != m_EnemyList.end();checkDeathIter++)
+			
+			for (std::list<Enemy*>::iterator checkDeathIter = m_EnemyList.begin(); 
+					checkDeathIter != m_EnemyList.end(); checkDeathIter++)
 			{
 				if ((*it)->getCone().getLocalBounds().intersects((*checkDeathIter)->getPosition()))
 				{
@@ -310,31 +298,66 @@ void Engine::update(float dtAsSeconds) {
 		mouseWorldPosition = m_Window.mapPixelToCoords(
 			sf::Mouse::getPosition(), m_MainView);
 	}
-	else if (GameState == State::PAUSED) {
+	else if (m_GameState == GameState::PAUSED) {
 		// Put Paused Screen Update code here
 	}
-	else if (GameState == State::SETTINGS) {
+	else if (m_GameState == GameState::SETTINGS) {
 		// Put Settings Screen Update code here
+
+		//	Handle Buttons
+		//	List all Settings Pages
+		if (m_SettingsPage == SettingsPage::LIST) {
+			while (m_Window.pollEvent(m_event)) {
+				for (std::list<GUI::Button>::iterator it = m_settingsButtons.begin(); it != m_settingsButtons.end(); ++it) {
+					it->update(m_event, m_GameTimeTotal, m_Window);
+				}
+			}
+		}
+		else if (m_SettingsPage == SettingsPage::GRAPHICS) {
+			while (m_Window.pollEvent(m_event)) {
+				for (std::list<GUI::Button>::iterator it = m_graphicsSettingsButtons.begin(); it != m_graphicsSettingsButtons.end(); ++it) {
+					it->update(m_event, m_GameTimeTotal, m_Window);
+				}
+			}
+		}
+		else if (m_SettingsPage == SettingsPage::AUDIO) {
+			while (m_Window.pollEvent(m_event)) {
+				for (std::list<GUI::Button>::iterator it = m_audioSettingsButtons.begin(); it != m_audioSettingsButtons.end(); ++it) {
+					it->update(m_event, m_GameTimeTotal, m_Window);
+				}
+			}
+		}
+		else if (m_SettingsPage == SettingsPage::GAMEPLAY) {
+			while (m_Window.pollEvent(m_event)) {
+				for (std::list<GUI::Button>::iterator it = m_gameplaySettingsButtons.begin(); it != m_gameplaySettingsButtons.end(); ++it) {
+					it->update(m_event, m_GameTimeTotal, m_Window);
+				}
+			}
+		}
+		
 	}
-	else if (GameState == State::LOADING) {
+	else if (m_GameState == GameState::LOADING) {
 		// Put Loading Screen Update code here
 	}
 }
 void Engine::doorUpdate(float dtAsSeconds, ToggleSwitch *Switch) {
 	//update Doors
-	//std::cout << "\nDoor update";
-	std::list<Door*>::iterator doorIt = m_DoorList.begin();
-	Door* shortest = (*doorIt);
+	//std::cout << "\nDoor update";	
 	double currentShortest = std::numeric_limits<double>::infinity();
-	for (;doorIt != m_DoorList.end();doorIt++) {
+	Door* shortest = NULL;
+
+	for (std::list<Door*>::iterator doorIt = m_DoorList.begin(); 
+			doorIt != m_DoorList.end(); doorIt++) {
 		//std::cout << "\nNext door";
 		if ((calcDistance((*doorIt)->getCenter(), (*Switch).getCenter()) < currentShortest)
 			&& (*doorIt)->getDoorState()) {
+
 			currentShortest = calcDistance((*doorIt)->getCenter(), (*Switch).getCenter());
 			shortest = (*doorIt);
 			//std::cout << "\nnew Shortest";
 		}
 	}
+
 	shortest->doorState();
 	shortest->update(dtAsSeconds, m_ArrayLevel);
 	//std::cout << "\nupdating Shortest";
