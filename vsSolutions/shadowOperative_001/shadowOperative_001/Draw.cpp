@@ -15,7 +15,7 @@ void Engine::draw() {
 	// Rub out the last frame
 	m_Window.clear(sf::Color::Black);
 
-	if (GameState == State::MAIN_MENU) {
+	if (m_GameState == GameState::MAIN_MENU) {
 		// Switch to m_MainView
 		m_Window.setView(m_MainView);
 
@@ -26,7 +26,7 @@ void Engine::draw() {
 			m_Window.draw(*it);
 		}
 	}
-	else if (GameState == State::PLAYING) {
+	else if (m_GameState == GameState::PLAYING) {
 		// Update the shader parameters
 		m_RippleShader.setUniform("uTime", m_GameTimeTotal.asSeconds());
 
@@ -113,17 +113,17 @@ void Engine::draw() {
 			m_Window.draw((*iter)->getCone());
 		}
 	}
-	else if (GameState == State::PAUSED) {
+	else if (m_GameState == GameState::PAUSED) {
 		//Background of paused menu
 		m_Window.draw(m_BackgroundSprite, &m_RippleShader);
 		//Message for the paused Game state
 		m_Window.draw(m_Hud.getMessage());
 
 	}
-	else if (GameState == State::SETTINGS) {
+	else if (m_GameState == GameState::SETTINGS) {
 		// Put Settings Screen draw code here
 	}
-	else if (GameState == State::LOADING) {
+	else if (m_GameState == GameState::LOADING) {
 		// Put Loading Screen draw code here
 	}
 	// Show everything we have just drawn

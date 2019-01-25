@@ -10,7 +10,7 @@
 
 void Engine::update(float dtAsSeconds) {
 
-	if (GameState == State::MAIN_MENU) {
+	if (m_GameState == GameState::MAIN_MENU) {
 		m_MainView.reset(
 			sf::FloatRect(0, 0, resolution.x, resolution.y));
 		
@@ -33,12 +33,12 @@ void Engine::update(float dtAsSeconds) {
 			switch (i++) {
 			case 0: // Enter Game
 				if (it->getState() == GUI::State::clicked) {
-					GameState = State::PAUSED;
+					m_GameState = GameState::PAUSED;
 				}
 				break;
 			case 1: // Settings
 				if (it->getState() == GUI::State::clicked) {
-					//GameState = State::SETTINGS;
+					//m_GameState = m_GameState::SETTINGS;
 				}
 				break;
 			case 2: // Quit
@@ -49,7 +49,7 @@ void Engine::update(float dtAsSeconds) {
 			}
 		}
 	}
-	else if (GameState == State::PLAYING) {
+	else if (m_GameState == GameState::PLAYING) {
 		if (m_NewLevelRequired) {
 			
 			// Load a Level
@@ -303,13 +303,13 @@ void Engine::update(float dtAsSeconds) {
 		mouseWorldPosition = m_Window.mapPixelToCoords(
 			sf::Mouse::getPosition(), m_MainView);
 	}
-	else if (GameState == State::PAUSED) {
+	else if (m_GameState == GameState::PAUSED) {
 		// Put Paused Screen Update code here
 	}
-	else if (GameState == State::SETTINGS) {
+	else if (m_GameState == GameState::SETTINGS) {
 		// Put Settings Screen Update code here
 	}
-	else if (GameState == State::LOADING) {
+	else if (m_GameState == GameState::LOADING) {
 		// Put Loading Screen Update code here
 	}
 }

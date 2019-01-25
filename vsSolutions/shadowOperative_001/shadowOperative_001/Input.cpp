@@ -11,7 +11,7 @@
 void Engine::input() {
 	//sf::Event m_event;
 
-	if (GameState == State::MAIN_MENU) {
+	if (m_GameState == GameState::MAIN_MENU) {
 		m_Window.setMouseCursorVisible(true);
 		
 		while (m_Window.pollEvent(m_event)) {
@@ -20,12 +20,12 @@ void Engine::input() {
 			}
 		}
 	}
-	else if (GameState == State::PLAYING) {
+	else if (m_GameState == GameState::PLAYING) {
 		m_Window.setMouseCursorVisible(false);
 		// Handle input specific to Player
 		m_Player.handleInput();
 	}
-	else if (GameState == State::PAUSED) {
+	else if (m_GameState == GameState::PAUSED) {
 		m_Window.setMouseCursorVisible(true);
 		while (m_Window.pollEvent(m_event)) {
 			// Maybe replace with nested Switch statement?
@@ -40,7 +40,7 @@ void Engine::input() {
 				// Handle the player starting the game
 				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return)) {
 					//m_Playing = true;
-					GameState = State::PLAYING;
+					m_GameState = GameState::PLAYING;
 					m_Hud.setGunChargeBackground(m_Player.getMaxCharge() + 2.0);
 				}
 			}
@@ -57,16 +57,16 @@ void Engine::input() {
 				if (sf::Joystick::isButtonPressed(0, 0)) {
 					//std::cout << "Button 7 is Pressed";
 					//m_Playing = true;
-					GameState = State::PLAYING;
+					m_GameState = GameState::PLAYING;
 				}
 			}
 		}
 	}
-	else if (GameState == State::SETTINGS) {
+	else if (m_GameState == GameState::SETTINGS) {
 		m_Window.setMouseCursorVisible(true);
 		// Put Settings Screen Input code here
 	}
-	else if (GameState == State::LOADING) {
+	else if (m_GameState == GameState::LOADING) {
 		m_Window.setMouseCursorVisible(false);
 		// Put Loading Screen Input code here
 	}

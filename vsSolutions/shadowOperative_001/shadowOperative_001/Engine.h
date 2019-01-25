@@ -52,8 +52,12 @@ private:
 	//TutorialManager tm;
 
 	// Game States
-	enum class State { MAIN_MENU, PLAYING, PAUSED, SETTINGS, LOADING };
-	State GameState = State::MAIN_MENU;
+	enum class GameState { MAIN_MENU, PLAYING, PAUSED, SETTINGS, LOADING };
+	GameState m_GameState = GameState::MAIN_MENU;
+
+	// Main Menu Pages
+	enum class SettingsPage { LIST, GRAPHICS, AUDIO, GAMEPLAY};
+	SettingsPage m_SettingsPage = SettingsPage::LIST;
 
 	// The texture holder
 	TextureHolder th;
@@ -188,6 +192,12 @@ private:
 	std::list<GUI::Button*> m_pausedButtons;
 	//	Settings
 	std::list<GUI::Button*> m_settingsButtons;
+	//		Graphics Settings
+	std::list<GUI::Button*> m_graphicsSettingsButtons;
+	//		Audio Settings
+	std::list<GUI::Button*> m_audioSettingsButtons;
+	//		Gameplay Settings
+	std::list<GUI::Button*> m_gameplaySettingsButtons;
 
 	//Bullets
 	Bullet bullets[5];
