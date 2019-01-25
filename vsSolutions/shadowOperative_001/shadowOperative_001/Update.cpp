@@ -35,15 +35,15 @@ void Engine::update(float dtAsSeconds) {
 		}
 	}
 	else if (m_GameState == GameState::PLAYING) {
-		if (m_NewLevelRequired) {
-			
+		if (m_NewLevelRequired) {			
 			// Load a Level
 			loadLevel();
 		}
 
-		//Update Switches
-		std::list<ToggleSwitch*>::iterator switchIt = m_SwitchList.begin();
-		for (;switchIt != m_SwitchList.end();switchIt++) {
+		//Update Switches		
+		for (std::list<ToggleSwitch*>::iterator switchIt = m_SwitchList.begin(); 
+				switchIt != m_SwitchList.end(); switchIt++) {
+			
 			(*switchIt)->update(m_GameTimeTotal, m_ArrayLevel);
 			if (m_Player.getSprite().getGlobalBounds().intersects(
 				(*switchIt)->getSprite().getGlobalBounds())) {
@@ -53,10 +53,13 @@ void Engine::update(float dtAsSeconds) {
 			}
 		}
 		//update Items
-		std::list<Item*>::iterator itemIter = m_ItemList.begin();
-		for (;itemIter != m_ItemList.end();) {
+		
+		for (std::list<Item*>::iterator itemIter = m_ItemList.begin(); 
+				itemIter != m_ItemList.end();) {
+			
 			//update Item
 			(*itemIter)->update(dtAsSeconds,m_ArrayLevel);
+			
 			//Pick up Item
 			if (m_Player.getSprite().getGlobalBounds().intersects(
 				(*itemIter)->getSprite().getGlobalBounds())) {
@@ -194,8 +197,9 @@ void Engine::update(float dtAsSeconds) {
 					(*it)->reduceAwareness(m_GameTimeTotal);
 				}
 			}
-			std::list<Enemy*>::iterator checkDeathIter = m_EnemyList.begin();
-			for (;checkDeathIter != m_EnemyList.end();checkDeathIter++)
+			
+			for (std::list<Enemy*>::iterator checkDeathIter = m_EnemyList.begin(); 
+					checkDeathIter != m_EnemyList.end(); checkDeathIter++)
 			{
 				if ((*it)->getCone().getLocalBounds().intersects((*checkDeathIter)->getPosition()))
 				{
@@ -332,19 +336,22 @@ void Engine::update(float dtAsSeconds) {
 }
 void Engine::doorUpdate(float dtAsSeconds, ToggleSwitch *Switch) {
 	//update Doors
-	//std::cout << "\nDoor update";
-	std::list<Door*>::iterator doorIt = m_DoorList.begin();
-	Door* shortest = (*doorIt);
+	//std::cout << "\nDoor update";	
 	double currentShortest = std::numeric_limits<double>::infinity();
-	for (;doorIt != m_DoorList.end();doorIt++) {
+	Door* shortest = NULL;
+
+	for (std::list<Door*>::iterator doorIt = m_DoorList.begin(); 
+			doorIt != m_DoorList.end(); doorIt++) {
 		//std::cout << "\nNext door";
 		if ((calcDistance((*doorIt)->getCenter(), (*Switch).getCenter()) < currentShortest)
 			&& (*doorIt)->getDoorState()) {
+
 			currentShortest = calcDistance((*doorIt)->getCenter(), (*Switch).getCenter());
 			shortest = (*doorIt);
 			//std::cout << "\nnew Shortest";
 		}
 	}
+
 	shortest->doorState();
 	shortest->update(dtAsSeconds, m_ArrayLevel);
 	//std::cout << "\nupdating Shortest";
