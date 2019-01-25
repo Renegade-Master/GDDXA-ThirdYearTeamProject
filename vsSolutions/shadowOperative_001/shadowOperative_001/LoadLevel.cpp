@@ -10,7 +10,7 @@
 
 void Engine::loadLevel() {
 	//m_Playing = false;
-	GameState = State::LOADING;
+	m_GameState = GameState::LOADING;
 
 	// Delete the previously allocated memory
 	for (int i = 0; i < m_LM.getLevelSize().y; ++i)	{
@@ -46,5 +46,5 @@ void Engine::loadLevel() {
 
 	// Make sure this code isn't run again
 	m_NewLevelRequired = false;
-	GameState = State::PLAYING;
+	m_GameState = GameState::PLAYING;
 }

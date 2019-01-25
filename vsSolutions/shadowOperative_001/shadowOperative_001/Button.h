@@ -14,8 +14,10 @@
 
 #include <SFML\Graphics.hpp>
 
+#include "SoundManager.h"
+
 namespace GUI {
-	namespace Style {
+	namespace ButtonStyle {
 		enum {
 			none = 0,
 			save = 1,
@@ -24,7 +26,7 @@ namespace GUI {
 		};
 	};
 
-	namespace State {
+	namespace ButtonState {
 		enum {
 			normal = 0,
 			hovered = 1,
@@ -59,7 +61,7 @@ namespace GUI {
 		sf::Vector2f getDimensions() { return sf::Vector2f(m_button.getGlobalBounds().width, m_button.getGlobalBounds().height); };
 		sf::Uint32 getState() { return m_btnstate; };
 
-		void update(sf::Event& e, sf::RenderWindow& window);
+		void update(sf::Event& e, sf::Time t, sf::RenderWindow& window);
 
 		GUI::Button* getPointer();
 
@@ -88,6 +90,8 @@ namespace GUI {
 		unsigned int m_fontSize;
 		sf::Text m_text;
 		sf::Text m_shadow;
+
+		sf::Time m_sinceLastClick;
 	};
 };
 
