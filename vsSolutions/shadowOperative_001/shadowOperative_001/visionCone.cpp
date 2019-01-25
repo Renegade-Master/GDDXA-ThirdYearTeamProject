@@ -88,30 +88,30 @@ void visionCone::updateCamConePos(sf::Vector2f charPos, int charSightRange,
 			1,
 			sf::Vector2f(
 				//X
-				((charPos.x) 
+				((charPos.x + charSightRange)
 				* cos(cameraAngle) 
-				+ charPos.y 
-				* sin(cameraAngle)) + charSightRange,
+				+ charPos.y + charSightAngle
+				* sin(cameraAngle)),
 				//Y
-				(-(charPos.x)
+				(-(charPos.x + charSightRange)
 				* sin(cameraAngle)
-				+ charPos.y 
-				* cos(cameraAngle)) - charSightRange
+				+ charPos.y - charSightAngle
+				* cos(cameraAngle))
 			)
 		);
 		this->coneOfDetection.setPoint(
 			2,
 			sf::Vector2f(
 				//X
-				((charPos.x)
+				((charPos.x - charSightRange)
 				* cos(cameraAngle)
-				+ charPos.y
-				* sin(cameraAngle)) + charSightRange,
+				+ charPos.y + charSightAngle
+				* sin(cameraAngle)),
 				//Y
-				(-(charPos.x)
+				(-(charPos.x - charSightRange)
 				* sin(cameraAngle)
-				+ charPos.y
-				* cos(cameraAngle)) - charSightRange
+				+ charPos.y - charSightAngle
+				* cos(cameraAngle))
 			)
 		);
 	}
@@ -121,30 +121,30 @@ void visionCone::updateCamConePos(sf::Vector2f charPos, int charSightRange,
 			1,
 			sf::Vector2f(
 				//X
-				((charPos.x)
+				((charPos.x + charSightRange)
 				* cos(cameraAngle)
-				+ charPos.y
-				* sin(cameraAngle))+charSightRange,
+				+ charPos.y + charSightAngle
+				* sin(cameraAngle)),
 				//Y
-				((charPos.x)
+				((charPos.x + charSightRange)
 				* sin(cameraAngle)
-				+ charPos.y
-				* cos(cameraAngle)) - charSightRange
+				+ charPos.y - charSightAngle
+				* cos(cameraAngle))
 			)
 		);
 		this->coneOfDetection.setPoint(
 			2,
 			sf::Vector2f(
 				//X
-				((charPos.x)
+				((charPos.x - charSightRange)
 				* cos(cameraAngle)
-				+ charPos.y
+				+ charPos.y + charSightAngle
 				* sin(cameraAngle)) - charSightRange,
 				//Y
-				((charPos.x)
+				((charPos.x - charSightRange)
 				* sin(cameraAngle)
-				+ charPos.y
-				* cos(cameraAngle))+charSightRange
+				+ charPos.y - charSightAngle
+				* cos(cameraAngle))
 			)
 		);
 		//int angleRadians = ((cameraAngle * PIE) / 180);

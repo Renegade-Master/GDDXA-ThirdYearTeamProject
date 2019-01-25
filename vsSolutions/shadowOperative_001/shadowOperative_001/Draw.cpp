@@ -53,8 +53,8 @@ void Engine::draw() {
 			m_Window.draw((*SwitchIt)->getSprite());
 		}
 		//Draw the doors
-		std::list<Door*>::iterator doorIt = m_DoorList.begin();
-		for (;doorIt != m_DoorList.end();doorIt++) {
+		for (std::list<Door*>::iterator doorIt = m_DoorList.begin();
+			doorIt != m_DoorList.end();doorIt++) {
 			m_Window.draw((*doorIt)->getDoorSprite());
 		}
 
@@ -120,6 +120,12 @@ void Engine::draw() {
 		m_Window.setView(m_MiniMap);
 		m_Window.draw(m_VALevel, &m_TextureTiles);
 		m_Window.draw(m_Player.getSprite());
+		//Draw the doors
+		for (std::list<Door*>::iterator doorIt = m_DoorList.begin();
+			doorIt != m_DoorList.end();doorIt++) {
+			m_Window.draw((*doorIt)->getDoorSprite());
+		}
+
 		for (std::list<Enemy*>::iterator iter = m_EnemyList.begin();
 			iter != m_EnemyList.end(); iter++)
 		{
