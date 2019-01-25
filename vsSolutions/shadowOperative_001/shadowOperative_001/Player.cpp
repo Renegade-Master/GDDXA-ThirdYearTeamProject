@@ -51,6 +51,11 @@ void Player::update(float elapsedTime, int** m_ArrayLevel) {
 	this->frameXOffset = 0;
 	this->m_timeSinceLastFrame += elapsedTime;
 	
+	/*if (m_Sprite(m_Position)== Enemy(m_Position))
+	{
+
+	}*/
+
 	/***-------------***\
 	|	HANDLE ACTIONS	|
 	\***-------------***/

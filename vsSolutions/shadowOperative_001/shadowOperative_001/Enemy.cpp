@@ -119,7 +119,10 @@ void Enemy::update(float elapsedTime, int** m_ArrayLevel) {
 	{
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::E))
 		{
-			EnemyCrate();
+			if (EnemyContact == true)
+			{
+				EnemyCrate();
+			}
 		}
 	}
 
@@ -267,18 +270,23 @@ bool Enemy::isConscious()
 
 void Enemy::EnemyCrate()
 {
-	//if (isConscious() == false)
-	//{
-		//m_Sprite = sf::Sprite(TextureHolder::GetTexture(
-			//"graphics/Crate.png"));
-	//}
 	m_SpriteCrate = sf::Sprite(TextureHolder::GetTexture(
 		"graphics/Crate.png"));
 	m_SpriteCrate.setPosition(this->m_Position);
-	//std::cout << "\n Sprite should have changed";
 	std::cout << "\nCROUCHING";
-	//this->m_Action = Action::CROUCHING;
 }
+
+bool Enemy::enemyPosition()
+{
+	bool EnemyContact = true;
+	return EnemyContact;
+}
+/*
+int Enemy::enemyPositionY()
+{
+	int y = m_Position.y;
+	return y;
+}*/
 void Enemy::regen(float elapsedTime)
 {
 	//std::cout << "\nCALLING REGEN!!!";
