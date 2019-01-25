@@ -117,8 +117,10 @@ void Enemy::update(float elapsedTime, int** m_ArrayLevel) {
 	}
 	else
 	{
-
-		EnemyCrate();
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::E))
+		{
+			EnemyCrate();
+		}
 	}
 
 	/*

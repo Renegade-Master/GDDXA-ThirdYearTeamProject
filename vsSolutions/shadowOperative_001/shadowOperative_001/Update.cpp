@@ -304,7 +304,7 @@ void Engine::update(float dtAsSeconds) {
 		mouseWorldPosition = m_Window.mapPixelToCoords(
 			sf::Mouse::getPosition(), m_MainView);
 
-	
+	/*
 		//Spawn a crate where the enemy died
 		for (std::list<Enemy*>::iterator it = m_EnemyList.begin(); it != m_EnemyList.end(); it++)
 		{
@@ -322,7 +322,7 @@ void Engine::update(float dtAsSeconds) {
 					//m_Sprite.update(dtAsSeconds, m_ArrayLevel);
 				}
 			}
-		}
+		}*/
 	}
 	else if (GameState == State::PAUSED) {
 		// Put Paused Screen Update code here
