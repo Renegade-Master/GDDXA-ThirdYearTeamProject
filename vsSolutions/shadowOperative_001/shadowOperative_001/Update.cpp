@@ -305,14 +305,14 @@ void Engine::update(float dtAsSeconds) {
 
 		for (std::list<Enemy*>::iterator it = m_EnemyList.begin(); it != m_EnemyList.end(); it++)
 		{
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::E)) {
-
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::E))
+			{
 				if ((*it)->isConscious()==false)
 				{
 					//if (player touching enemy
+					//Changes the enemy to look like a crate.
 					(*it)->EnemyCrate();
 				}
-
 			}
 		}
 	}

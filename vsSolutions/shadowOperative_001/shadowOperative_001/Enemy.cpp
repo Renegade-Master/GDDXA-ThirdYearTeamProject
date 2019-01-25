@@ -19,11 +19,11 @@ void Enemy::spawn(sf::Vector2i startPosition, float gravity, sf::Time gameStart)
 	m_Gravity = gravity;
 	/*m_Sprite = sf::Sprite(TextureHolder::GetTexture(
 		"graphics/enemy2.png"));*/
-	if (conscious == true)
-	{
+	//if (conscious == true)
+	//{
 		m_Sprite = sf::Sprite(TextureHolder::GetTexture(
-			"graphics/Bob.png"));
-	}
+			"graphics/Crate.png"));
+//	}
 	m_Sprite.setPosition(this->m_Position);
 	//m_RightPressed = true;
 	//m_LeftPressed = false;
@@ -114,6 +114,12 @@ void Enemy::update(float elapsedTime, int** m_ArrayLevel) {
 		{
 			cone.updateConePos(this->m_Position, this->detectionDistance, this->sightAngle, false);
 		}
+	}
+	//When crounching the enemy is put into a crate
+	if (this->m_Action == Action::CROUCHING)
+	{
+		m_Sprite = sf::Sprite(TextureHolder::GetTexture(
+			"graphics/Crate.png"));
 	}
 	//(*it)->Enemy Regen
 	//std::cout << "\nCalling REGEN!!!!!";
@@ -234,8 +240,7 @@ bool Enemy::isConscious()
 
 void Enemy::EnemyCrate()
 {
-	m_Sprite = sf::Sprite(TextureHolder::GetTexture(
-		"graphics/Crate.png"));
+	this->m_Action = Action::CROUCHING;
 }
 
 void Enemy::regen(float elapsedTime)

@@ -73,6 +73,7 @@ void Engine::draw() {
 				m_Window.draw((*it)->getDetectMeter());
 			}
 		}
+		
 		//Draw the bullets
 		for (int i = 0;i < 5; i++){
 			if (bullets[i].isInFlight()){
