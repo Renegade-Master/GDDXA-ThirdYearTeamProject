@@ -27,9 +27,6 @@ void Engine::draw() {
 		}
 	}
 	else if (GameState == State::PLAYING) {
-		/***---------------------***\
-		|  HANDLE DRAWING WINDOW	|
-		\***---------------------***/
 		// Update the shader parameters
 		m_RippleShader.setUniform("uTime", m_GameTimeTotal.asSeconds());
 
@@ -112,9 +109,7 @@ void Engine::draw() {
 		m_Window.draw(m_Hud.getGunBackground());
 		m_Window.draw(m_Hud.getGunCharge());
 
-		/***---------------------***\
-		|  HANDLE DRAWING MINI_MAP	|
-		\***---------------------***/
+
 		m_Window.setView(m_BGMiniMap);
 		m_Window.draw(m_BackgroundSprite);
 		m_Window.setView(m_MiniMap);
