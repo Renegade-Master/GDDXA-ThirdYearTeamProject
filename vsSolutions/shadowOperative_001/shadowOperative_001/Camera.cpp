@@ -63,27 +63,26 @@ void Camera::update(float elapsedTime, int** m_ArrayLevel) {
 		if (forward) {
 			rotation += 0.5f;
 			m_Sprite.setRotation(rotation);
-			std::cout << "\nRotating Forward";
+			//std::cout << "\nRotating Forward";
 		}
 		else {
 			rotation -= 0.5f;
 			m_Sprite.setRotation(rotation);
-			std::cout << "\nRotating Back";
+			//std::cout << "\nRotating Back";
 		}
 		if (forward) {
 			if (rotation >= rotationStartPoint+20.0f) {
 				forward = false;
-				std::cout << "\nForward = false";
+				//std::cout << "\nForward = false";
 			}
 		}
 		else {
 			if (rotation <= rotationStartPoint-20.0f) {
 				forward = true;
-				std::cout << "\nForward = true";
+				//std::cout << "\nForward = true";
 			}
 		}
+		cone.updateCamConePos(this->m_Position, this->detectionDistance,
+			this->sightAngle, this->rotation, this->forward);
 	}
-
-	cone.updateCamConePos(this->m_Position, this->detectionDistance,
-		this->sightAngle, this->rotation, this->forward);
 }

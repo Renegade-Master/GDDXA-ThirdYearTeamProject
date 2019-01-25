@@ -45,75 +45,141 @@ sf::ConvexShape visionCone::getCone() {
 
 void visionCone::updateCamConePos(sf::Vector2f charPos, int charSightRange,
 	int charSightAngle, float cameraAngle, bool forward) {
-	
+	int angleRadians = ((cameraAngle * PIE) / 180);
 		//atan(cameraAngle);
 	//std::cout <<"\nCamera angle "<< cameraAngle << "\nAngleRadians: " << angleRadians;
 	if (forward) {
-		int angleRadians = ((-cameraAngle * PIE) / 180);
-		this->coneOfDetection.setPoint(0, charPos);
-		this->coneOfDetection.setPoint(
-			1, 
-			sf::Vector2f(
-				cos(angleRadians) 
-					* ((charPos.x + charSightRange) - charPos.x)
-					- sin(angleRadians) 
-					* ((charPos.y + charSightRange) - charPos.y)
-					+ charPos.x,
-
-				-sin(angleRadians) 
-					* ((charPos.x + charSightRange) - charPos.x)
-					+ cos(angleRadians)
-					* ((charPos.y + charSightRange) - charPos.y) 
-					+ charPos.y)
-		);
-		this->coneOfDetection.setPoint(
-			2,
-			sf::Vector2f(
-				cos(angleRadians) 
-					* ((charPos.x + charSightRange) - charPos.x) 
-					- sin(angleRadians)
-					* ((charPos.y + charSightRange) - charPos.y)
-					+ charPos.x,
-	
-				-sin(angleRadians) 
-					* ((charPos.x - charSightRange) - charPos.x) 
-					+ cos(angleRadians) 
-					* ((charPos.y - charSightRange) - charPos.y) 
-					+ charPos.y)
-		);
-	}
-	else {
-		int angleRadians = ((cameraAngle * PIE) / 180);
+		
+		//this->coneOfDetection.setPoint(0, charPos);
+		//this->coneOfDetection.setPoint(
+		//	1, 
+		//	sf::Vector2f(
+		//		//X
+		//		cos(angleRadians) 
+		//			* ((charPos.x + charSightRange) - charPos.x)
+		//			- sin(angleRadians) 
+		//			* ((charPos.y + charSightRange) - charPos.y)
+		//			+ charPos.x,
+		//		//Y
+		//		-sin(angleRadians) 
+		//			* ((charPos.x + charSightRange) - charPos.x)
+		//			+ cos(angleRadians)
+		//			* ((charPos.y + charSightRange) - charPos.y) 
+		//			+ charPos.y)
+		//);
+		//this->coneOfDetection.setPoint(
+		//	2,
+		//	sf::Vector2f(
+		//		//X
+		//		cos(angleRadians) 
+		//			* ((charPos.x + charSightRange) - charPos.x) 
+		//			- sin(angleRadians)
+		//			* ((charPos.y + charSightRange) - charPos.y)
+		//			+ charPos.x,
+		//		//Y
+		//		-sin(angleRadians) 
+		//			* ((charPos.x - charSightRange) - charPos.x) 
+		//			+ cos(angleRadians) 
+		//			* ((charPos.y - charSightRange) - charPos.y) 
+		//			+ charPos.y)
+		//);
 		this->coneOfDetection.setPoint(0, charPos);
 		this->coneOfDetection.setPoint(
 			1,
 			sf::Vector2f(
-				cos(angleRadians)
-				* ((charPos.x + charSightRange) - charPos.x)
-				- sin(angleRadians)
-				* ((charPos.y + charSightRange) - charPos.y)
-				+ charPos.x,
-
-				sin(angleRadians)
-				* ((charPos.x + charSightRange) - charPos.x)
-				+ cos(angleRadians)
-				* ((charPos.y + charSightRange) - charPos.y)
-				+ charPos.y)
+				//X
+				((charPos.x) 
+				* cos(cameraAngle) 
+				+ charPos.y 
+				* sin(cameraAngle)) + charSightRange,
+				//Y
+				(-(charPos.x)
+				* sin(cameraAngle)
+				+ charPos.y 
+				* cos(cameraAngle)) - charSightRange
+			)
 		);
 		this->coneOfDetection.setPoint(
 			2,
 			sf::Vector2f(
-				cos(angleRadians)
-				* ((charPos.x + charSightRange) - charPos.x)
-				- sin(angleRadians)
-				* ((charPos.y + charSightRange) - charPos.y)
-				+ charPos.x,
-
-				sin(angleRadians)
-				* ((charPos.x - charSightRange) - charPos.x)
-				+ cos(angleRadians)
-				* ((charPos.y - charSightRange) - charPos.y)
-				+ charPos.y)
+				//X
+				((charPos.x)
+				* cos(cameraAngle)
+				+ charPos.y
+				* sin(cameraAngle)) + charSightRange,
+				//Y
+				(-(charPos.x)
+				* sin(cameraAngle)
+				+ charPos.y
+				* cos(cameraAngle)) - charSightRange
+			)
 		);
+	}
+	else {
+		this->coneOfDetection.setPoint(0, charPos);
+		this->coneOfDetection.setPoint(
+			1,
+			sf::Vector2f(
+				//X
+				((charPos.x)
+				* cos(cameraAngle)
+				+ charPos.y
+				* sin(cameraAngle))+charSightRange,
+				//Y
+				((charPos.x)
+				* sin(cameraAngle)
+				+ charPos.y
+				* cos(cameraAngle)) - charSightRange
+			)
+		);
+		this->coneOfDetection.setPoint(
+			2,
+			sf::Vector2f(
+				//X
+				((charPos.x)
+				* cos(cameraAngle)
+				+ charPos.y
+				* sin(cameraAngle)) - charSightRange,
+				//Y
+				((charPos.x)
+				* sin(cameraAngle)
+				+ charPos.y
+				* cos(cameraAngle))+charSightRange
+			)
+		);
+		//int angleRadians = ((cameraAngle * PIE) / 180);
+		//this->coneOfDetection.setPoint(0, charPos);
+		//this->coneOfDetection.setPoint(
+		//	1,
+		//	sf::Vector2f(
+		//		//X
+		//		cos(angleRadians)
+		//		* ((charPos.x + charSightRange) - charPos.x)
+		//		- sin(angleRadians)
+		//		* ((charPos.y + charSightRange) - charPos.y)
+		//		+ charPos.x,
+		//		//Y
+		//		sin(angleRadians)
+		//		* ((charPos.x + charSightRange) - charPos.x)
+		//		+ cos(angleRadians)
+		//		* ((charPos.y + charSightRange) - charPos.y)
+		//		+ charPos.y)
+		//);
+		//this->coneOfDetection.setPoint(
+		//	2,
+		//	sf::Vector2f(
+		//		//X
+		//		cos(angleRadians)
+		//		* ((charPos.x + charSightRange) - charPos.x)
+		//		- sin(angleRadians)
+		//		* ((charPos.y + charSightRange) - charPos.y)
+		//		+ charPos.x,
+		//		//Y
+		//		sin(angleRadians)
+		//		* ((charPos.x - charSightRange) - charPos.x)
+		//		+ cos(angleRadians)
+		//		* ((charPos.y - charSightRange) - charPos.y)
+		//		+ charPos.y)
+		//);
 	}
 }
