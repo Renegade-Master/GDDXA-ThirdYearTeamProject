@@ -95,12 +95,12 @@ void Engine::input() {
 					break;
 				case 1: // Audio Settings
 					if (it->getState() == GUI::State::clicked) {
-						//m_SettingsPage = SettingsPage::AUDIO;
+						m_SettingsPage = SettingsPage::AUDIO;
 					}
 					break;
 				case 2: // Gameplay Settings
 					if (it->getState() == GUI::State::clicked) {
-						//m_SettingsPage = SettingsPage::GAMEPLAY;
+						m_SettingsPage = SettingsPage::GAMEPLAY;
 					}
 					break;
 				case 3: // Back
@@ -152,11 +152,39 @@ void Engine::input() {
 		}
 		// List Audio options
 		else if (m_SettingsPage == SettingsPage::AUDIO) {
-			
+			int i = 0;
+			for (std::list<GUI::Button>::iterator it = m_audioSettingsButtons.begin(); it != m_audioSettingsButtons.end(); ++it) {
+				switch (i++) {
+				case 0: // Back
+					if (it->getState() == GUI::State::clicked) {
+						m_SettingsPage = SettingsPage::LIST;
+					}
+					break;
+				}
+			}
 		}
 		// List Gameplay options
 		else if (m_SettingsPage == SettingsPage::GAMEPLAY) {
-
+			int i = 0;
+			for (std::list<GUI::Button>::iterator it = m_gameplaySettingsButtons.begin(); it != m_gameplaySettingsButtons.end(); ++it) {
+				switch (i++) {
+				case 0: // Enable Controller
+					if (it->getState() == GUI::State::clicked) {
+						std::cout << "THE CONTROLLER IS INFERIOR" << std::endl;
+					}
+					break;
+				case 1: // Force Disable Controller
+					if (it->getState() == GUI::State::clicked) {
+						std::cout << "THE CONTROLLER IS INFERIOR" <<std::endl;
+					}
+					break;
+				case 2: // Back
+					if (it->getState() == GUI::State::clicked) {
+						m_SettingsPage = SettingsPage::LIST;
+					}
+					break;
+				}
+			}
 		}
 	}
 	else if (m_GameState == GameState::LOADING) {

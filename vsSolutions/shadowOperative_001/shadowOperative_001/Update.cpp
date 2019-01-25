@@ -310,6 +310,20 @@ void Engine::update(float dtAsSeconds) {
 				}
 			}
 		}
+		else if (m_SettingsPage == SettingsPage::AUDIO) {
+			while (m_Window.pollEvent(m_event)) {
+				for (std::list<GUI::Button>::iterator it = m_audioSettingsButtons.begin(); it != m_audioSettingsButtons.end(); ++it) {
+					it->update(m_event, m_Window);
+				}
+			}
+		}
+		else if (m_SettingsPage == SettingsPage::GAMEPLAY) {
+			while (m_Window.pollEvent(m_event)) {
+				for (std::list<GUI::Button>::iterator it = m_gameplaySettingsButtons.begin(); it != m_gameplaySettingsButtons.end(); ++it) {
+					it->update(m_event, m_Window);
+				}
+			}
+		}
 		
 	}
 	else if (m_GameState == GameState::LOADING) {

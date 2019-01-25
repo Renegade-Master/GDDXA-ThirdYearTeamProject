@@ -139,6 +139,18 @@ void Engine::draw() {
 				m_Window.draw(*it);
 			}			
 		}
+		//	List Audio Settings
+		else if (m_SettingsPage == SettingsPage::AUDIO) {
+			for (std::list<GUI::Button>::iterator it = m_audioSettingsButtons.begin(); it != m_audioSettingsButtons.end(); ++it) {
+				m_Window.draw(*it);
+			}
+		}
+		//	List Gameplay Settings
+		else if (m_SettingsPage == SettingsPage::GAMEPLAY) {
+			for (std::list<GUI::Button>::iterator it = m_gameplaySettingsButtons.begin(); it != m_gameplaySettingsButtons.end(); ++it) {
+				m_Window.draw(*it);
+			}
+		}
 	}
 	else if (m_GameState == GameState::LOADING) {
 		// Put Loading Screen draw code here
