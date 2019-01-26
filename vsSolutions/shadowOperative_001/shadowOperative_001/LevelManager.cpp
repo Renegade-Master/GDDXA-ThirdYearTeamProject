@@ -203,6 +203,15 @@ int** LevelManager::nextLevel(sf::VertexArray& rVaLevel) {
 				m_ItemType.push_back('B');
 				arrayLevel[y][x] = 0;
 				break;
+			case 'i':
+				arrayLevel[y][x] = 'i';
+				break;
+			case 'o':
+				arrayLevel[y][x] = 'o';
+				break;
+			case 'l':
+				arrayLevel[y][x] = 'l';
+				break;
 			}
 		}
 		y++;
@@ -277,9 +286,6 @@ int** LevelManager::nextLevel(sf::VertexArray& rVaLevel) {
 			case 'T':
 				verticalOffset = 0;  // We want a transparent tile here
 				break;
-			case 'r':
-				verticalOffset = 0;  // We want a transparent tile here
-				break;
 			case 'z':
 				verticalOffset = 20;  //This is a camera looking down.
 				break;
@@ -303,6 +309,18 @@ int** LevelManager::nextLevel(sf::VertexArray& rVaLevel) {
 				break;
 			case 'Q':
 				verticalOffset = 0;  // End game event.
+				break;
+			case 'i':
+				verticalOffset = 28;  // End game event.
+				break;
+			case 'o':
+				verticalOffset = 29;  // End game event.
+				break;
+			case 'r':
+				verticalOffset = 30;  // End game event.
+				break;
+			case 'l':
+				verticalOffset = 31;  // End game event.
 				break;
 			}
 			verticalOffset *= TILE_SIZE;
