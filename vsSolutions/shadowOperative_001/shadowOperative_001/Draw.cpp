@@ -6,8 +6,6 @@
 *	@description
 */
 
-#include <iostream>
-
 #include "Engine.h"
 
 
@@ -47,7 +45,8 @@ void Engine::draw() {
 		m_Window.draw(m_Hud.getMessage());
 
 	}
-	else if (m_GameState == GameState::PLAYING) {
+	else if (m_GameState == GameState::PLAYING
+				|| m_GameState == GameState::PAUSED) {
 		// Update the shader parameters
 		m_RippleShader.setUniform("uTime", m_GameTimeTotal.asSeconds());
 
@@ -133,6 +132,7 @@ void Engine::draw() {
 		m_Window.setView(m_MiniMap);
 		m_Window.draw(m_VALevel, &m_TextureTiles);
 		m_Window.draw(m_Player.getSprite());
+		
 		for (std::list<Enemy*>::iterator iter = m_EnemyList.begin();
 			iter != m_EnemyList.end(); iter++) {
 
@@ -142,7 +142,7 @@ void Engine::draw() {
 		}
 	}
 	else if (m_GameState == GameState::PAUSED) {
-
+		
 	}
 	else if (m_GameState == GameState::SETTINGS) {
 		// Switch to m_MainView

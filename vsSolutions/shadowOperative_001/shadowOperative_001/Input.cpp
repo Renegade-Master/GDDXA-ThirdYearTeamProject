@@ -106,10 +106,23 @@ void Engine::input() {
 		m_Window.setMouseCursorVisible(false);
 		// Handle input specific to Player
 		m_Player.handleInput();
+
+		//	Handle Pausing the Game
+		while (m_Window.pollEvent(m_event)) {
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
+				m_GameState = GameState::PAUSED;
+			}
+		}
 	}
 	else if (m_GameState == GameState::PAUSED) {
-		m_Window.setMouseCursorVisible(false);
+		m_Window.setMouseCursorVisible(true);
 
+		//	Handle Resuming the Game
+		while (m_Window.pollEvent(m_event)) {
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return)) {
+				m_GameState = GameState::PLAYING;
+			}
+		}
 	}
 	else if (m_GameState == GameState::SETTINGS) {
 		m_Window.setMouseCursorVisible(true);
