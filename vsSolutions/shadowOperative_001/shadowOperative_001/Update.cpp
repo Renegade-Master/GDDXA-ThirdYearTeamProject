@@ -221,11 +221,11 @@ void Engine::update(float dtAsSeconds) {
 						(*it)->increaseAwarenessLevel((*checkDeathIter)->getCenter(), 1, m_GameTimeTotal);
 					}
 				}
-				if (m_Player.getHead().intersects
+			/*if (m_Player.getHead().intersects
 				((*checkDeathIter)->getSprite().getGlobalBounds()))
 				{
 					(*checkDeathIter)->enemyPosition();
-				}
+				}/*
 
 			/*	if ((*checkDeathIter)->getPosition().intersects(m_Player.getPosition()))
 				{

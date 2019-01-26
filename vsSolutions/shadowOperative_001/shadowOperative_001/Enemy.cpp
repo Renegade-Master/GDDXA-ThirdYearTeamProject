@@ -119,7 +119,7 @@ void Enemy::update(float elapsedTime, int** m_ArrayLevel) {
 	{
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::E))
 		{
-			if (EnemyContact == true)
+			if (detectPlayer(sf::Vector2f playPos) == true)
 			{
 				EnemyCrate();
 			}
@@ -187,8 +187,27 @@ sf::FloatRect Enemy::getPosition() {
 }
 bool Enemy::detectPlayer(sf::Vector2f playPos)
 {
-	return false;
+	return true;
 }
+
+void Enemy::EnemyCrate()
+{
+	m_SpriteCrate = sf::Sprite(TextureHolder::GetTexture(
+		"graphics/Crate.png"));
+	m_SpriteCrate.setPosition(this->m_Position);
+	std::cout << "\nCROUCHING";
+}
+
+bool Enemy::enemyPosition()
+{
+	if ()
+	{
+
+	}
+	bool EnemyContact = true;
+	return EnemyContact;
+}
+
 sf::ConvexShape Enemy::getCone()
 {
 	return cone.getCone();
@@ -268,19 +287,7 @@ bool Enemy::isConscious()
 	return conscious;
 }
 
-void Enemy::EnemyCrate()
-{
-	m_SpriteCrate = sf::Sprite(TextureHolder::GetTexture(
-		"graphics/Crate.png"));
-	m_SpriteCrate.setPosition(this->m_Position);
-	std::cout << "\nCROUCHING";
-}
 
-bool Enemy::enemyPosition()
-{
-	bool EnemyContact = true;
-	return EnemyContact;
-}
 /*
 int Enemy::enemyPositionY()
 {
