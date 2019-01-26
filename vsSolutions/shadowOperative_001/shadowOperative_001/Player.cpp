@@ -169,6 +169,9 @@ void Player::update(float elapsedTime, int** m_ArrayLevel) {
 
 	// Increment Animation Frame
 	this->frameYOffset++;
+	
+	// Apply Anti-Aliasing to the Texture
+	this->m_Texture.setSmooth(true);
 
 	/***-------------***\
 	|	RESIZE HITBOX	|

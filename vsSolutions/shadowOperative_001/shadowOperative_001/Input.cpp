@@ -91,7 +91,7 @@ void Engine::input() {
 				m_usingController = false;
 				// Handle the player quitting
 				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
-					m_Window.close();
+					m_GameState = GameState::PLAYING;
 				}
 
 				// Handle the player starting the game
@@ -116,11 +116,36 @@ void Engine::input() {
 	}
 	else if (m_GameState == GameState::PAUSED) {
 		m_Window.setMouseCursorVisible(true);
+		
+		//	Handle Pause Screen Buttons
+		int i = 0;
+		for (std::list<GUI::Button>::iterator it = m_pausedButtons.begin(); it != m_pausedButtons.end(); ++it) {
+			switch (i++) {
+			case 0: // Resume Play
+				if (it->getState() == GUI::ButtonState::clicked) {
+					m_SM.playButtonClick();
+					m_GameState = GameState::PLAYING;
+				}
+				break;
+			case 1: // Quit
+				if (it->getState() == GUI::ButtonState::clicked) {
+					m_SM.playButtonClick();
+					m_GameState = GameState::MAIN_MENU;
+				}
+				break;
+			}
+		}
 
-		//	Handle Resuming the Game
+		//	Keyboard controls while Paused
 		while (m_Window.pollEvent(m_event)) {
+			//	Handle Resuming the Game
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return)) {
 				m_GameState = GameState::PLAYING;
+			}
+
+			// Handle the player quitting
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
+				m_GameState = GameState::MAIN_MENU;
 			}
 		}
 	}

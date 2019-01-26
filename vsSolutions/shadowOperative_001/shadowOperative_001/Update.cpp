@@ -167,19 +167,16 @@ void Engine::update(float dtAsSeconds) {
 			}
 		}
 
-
 		//update Enemy
-		for (std::list<Enemy*>::iterator it = m_EnemyList.begin(); it != m_EnemyList.end(); it++)
-		{
+		for (std::list<Enemy*>::iterator it = m_EnemyList.begin(); it != m_EnemyList.end(); it++) {
 			(*it)->update(dtAsSeconds, m_ArrayLevel);
 			//check for bulletCollision
-			for (int i = 0; i < 5; i++)
-			{
+			for (int i = 0; i < 5; i++) {
 				if (bullets[i].isInFlight())
 				{
 					if (bullets[i].getSprite().getGlobalBounds().intersects
-					((*it)->getSprite().getGlobalBounds()))
-					{
+						((*it)->getSprite().getGlobalBounds())) {
+
 						std::cout << "\n Taking damage!!!!!!";
 						bullets[i].stop();
 						//(*it)->//LosesHealthDies
@@ -188,39 +185,36 @@ void Engine::update(float dtAsSeconds) {
 					}
 				}
 			}
+
 			//check for player or Dead Enemy
-			if ((*it)->getCone().getLocalBounds().intersects(m_Player.getPosition()))
-			{
+			if ((*it)->getCone().getLocalBounds().intersects(m_Player.getPosition())) {
 				//check if enemy detection Event happened in the last second
-				if (m_GameTimeTotal.asMilliseconds()
-					- (*it)->getlastdetectTime() > 500)
-				{
+				if (m_GameTimeTotal.asMilliseconds() 
+					- (*it)->getlastdetectTime() > 500) {
+
 					(*it)->increaseAwarenessLevel(m_Player.getCenter(), m_Player.getDetectLevel(), m_GameTimeTotal);
-					if ((*it)->getAwareness() <= 100.0)
-					{
+					
+					if ((*it)->getAwareness() <= 100.0) {
 						std::cout << "\nDetected";
 					}
 					std::cout << "\n" << (*it)->getAwareness();
 				}
 			}
-			else if ((*it)->getAwareness() >= 0)
-			{
+			else if ((*it)->getAwareness() >= 0) {
 				//check if enemy detection Event happened in the last half second
 				if (m_GameTimeTotal.asMilliseconds()
-					- (*it)->getlastdetectTime() > 500)
-				{
+					- (*it)->getlastdetectTime() > 500) {
+					
 					//reduce Enemies detectionLevel
 					(*it)->reduceAwareness(m_GameTimeTotal);
 				}
 			}
 
 			for (std::list<Enemy*>::iterator checkDeathIter = m_EnemyList.begin();
-				checkDeathIter != m_EnemyList.end(); checkDeathIter++)
-			{
-				if ((*it)->getCone().getLocalBounds().intersects((*checkDeathIter)->getPosition()))
-				{
-					if (!(*checkDeathIter)->isConscious())
-					{
+				checkDeathIter != m_EnemyList.end(); checkDeathIter++) {
+
+				if ((*it)->getCone().getLocalBounds().intersects((*checkDeathIter)->getPosition())) {
+					if (!(*checkDeathIter)->isConscious()) {
 						//std::cout << "\nEnemy Detecting Ally Death";
 						(*it)->increaseAwarenessLevel((*checkDeathIter)->getCenter(), 1, m_GameTimeTotal);
 					}
@@ -308,6 +302,12 @@ void Engine::update(float dtAsSeconds) {
 	else if (m_GameState == GameState::PAUSED) {
 		// Put Loading Screen Update code here
 
+		//	Update all Paused Buttons
+		while (m_Window.pollEvent(m_event)) {
+			for (std::list<GUI::Button>::iterator it = m_pausedButtons.begin(); it != m_pausedButtons.end(); ++it) {
+				it->update(m_event, m_GameTimeTotal, m_Window);
+			}
+		}
 	}
 	else if (m_GameState == GameState::SETTINGS) {
 		// Put Settings Screen Update code here

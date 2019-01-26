@@ -28,14 +28,14 @@ void Engine::initButtons() {
 
 	// Make the Paused Buttons
 	m_pausedButtons.push_back(GUI::Button(
-		"Play",
+		"Resume",
 		m_buttonFont,
-		sf::Vector2f(resolution.x * 0.2f, resolution.y * 0.95f),
+		sf::Vector2f(resolution.x * 0.4f, resolution.y * 0.95f),
 		GUI::ButtonStyle::save));
 	m_pausedButtons.push_back(GUI::Button(
-		"Back",
+		"Quit",
 		m_buttonFont,
-		sf::Vector2f(resolution.x * 0.5f, resolution.y * 0.95f),
+		sf::Vector2f(resolution.x * 0.6f, resolution.y * 0.95f),
 		GUI::ButtonStyle::cancel));
 
 	// Make the Level Select Buttons

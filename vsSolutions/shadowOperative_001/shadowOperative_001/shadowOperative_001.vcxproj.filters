@@ -282,6 +282,42 @@
     <Image Include="graphics\PlayerAnimationSheet_02.png">
       <Filter>Resource Files\graphics</Filter>
     </Image>
+    <Image Include="graphics\Crate.png">
+      <Filter>Resource Files\graphics</Filter>
+    </Image>
+    <Image Include="graphics\DoorLocked.png">
+      <Filter>Resource Files\graphics</Filter>
+    </Image>
+    <Image Include="graphics\DoorOpen.png">
+      <Filter>Resource Files\graphics</Filter>
+    </Image>
+    <Image Include="graphics\DoorStatic.png">
+      <Filter>Resource Files\graphics</Filter>
+    </Image>
+    <Image Include="graphics\enemy2.png">
+      <Filter>Resource Files\graphics</Filter>
+    </Image>
+    <Image Include="graphics\index1.PNG">
+      <Filter>Resource Files\graphics</Filter>
+    </Image>
+    <Image Include="graphics\PlayerAnimationSheet_04.png">
+      <Filter>Resource Files\graphics</Filter>
+    </Image>
+    <Image Include="graphics\PlayerAnimationSheet_05.png">
+      <Filter>Resource Files\graphics</Filter>
+    </Image>
+    <Image Include="graphics\PlayerAnimationSheet_06.png">
+      <Filter>Resource Files\graphics</Filter>
+    </Image>
+    <Image Include="graphics\Switch_ToggleOn.png">
+      <Filter>Resource Files\graphics</Filter>
+    </Image>
+    <Image Include="graphics\tileset_005.png">
+      <Filter>Resource Files\graphics</Filter>
+    </Image>
+    <Image Include="graphics\tileset_006.png">
+      <Filter>Resource Files\graphics</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Text Include="levels\level5.txt">

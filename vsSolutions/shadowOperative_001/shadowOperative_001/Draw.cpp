@@ -45,15 +45,12 @@ void Engine::draw() {
 		m_Window.draw(m_Hud.getMessage());
 
 	}
-	else if (m_GameState == GameState::PLAYING
-				|| m_GameState == GameState::PAUSED) {
+	else if (m_GameState == GameState::PLAYING) {
 		// Update the shader parameters
 		m_RippleShader.setUniform("uTime", m_GameTimeTotal.asSeconds());
 
 		// Switch to background view
 		m_Window.setView(m_BGMainView);
-		// Draw the background
-		//m_Window.draw(m_BackgroundSprite);
 
 		// Draw the background, complete with shader effect
 		m_Window.draw(m_BackgroundSprite, &m_RippleShader);
@@ -63,16 +60,15 @@ void Engine::draw() {
 
 		// Draw the Level
 		m_Window.draw(m_VALevel, &m_TextureTiles);
+
 		//Draw the Switches
-
-
 		for (std::list<ToggleSwitch*>::iterator SwitchIt = m_SwitchList.begin();
 			SwitchIt != m_SwitchList.end(); SwitchIt++) {
 
 			m_Window.draw((*SwitchIt)->getSprite());
 		}
-		//Draw the doors
 
+		//Draw the doors
 		for (std::list<Door*>::iterator doorIt = m_DoorList.begin();
 			doorIt != m_DoorList.end(); doorIt++) {
 
@@ -107,6 +103,7 @@ void Engine::draw() {
 				m_Window.draw(bullets[i].getSprite());
 			}
 		}
+
 		//Draw Items 
 		for (std::list<Item*>::iterator itemIter = m_ItemList.begin();
 			itemIter != m_ItemList.end(); itemIter++) {
@@ -122,11 +119,10 @@ void Engine::draw() {
 		// Switch to m_HudView
 		m_Window.setView(m_HudView);
 		m_Window.draw(m_Hud.getHidden());
-		//m_Window.draw(m_Hud.getTime());
 		m_Window.draw(m_Hud.getGunBackground());
 		m_Window.draw(m_Hud.getGunCharge());
 
-
+		// Draw the MiniMap
 		m_Window.setView(m_BGMiniMap);
 		m_Window.draw(m_BackgroundSprite);
 		m_Window.setView(m_MiniMap);
@@ -142,7 +138,71 @@ void Engine::draw() {
 		}
 	}
 	else if (m_GameState == GameState::PAUSED) {
+		// Update the shader parameters
+		m_RippleShader.setUniform("uTime", m_GameTimeTotal.asSeconds());
+
+		// Switch to background view
+		m_Window.setView(m_BGMainView);
+
+		// Draw the background, complete with shader effect
+		m_Window.draw(m_BackgroundSprite, &m_RippleShader);
+
+		// Switch to m_MainView
+		m_Window.setView(m_MainView);
+
+		// Draw the Level
+		m_Window.draw(m_VALevel, &m_TextureTiles);
 		
+		//Draw the Switches
+		for (std::list<ToggleSwitch*>::iterator SwitchIt = m_SwitchList.begin();
+			SwitchIt != m_SwitchList.end(); SwitchIt++) {
+
+			m_Window.draw((*SwitchIt)->getSprite());
+		}
+
+		//Draw the doors
+		for (std::list<Door*>::iterator doorIt = m_DoorList.begin();
+			doorIt != m_DoorList.end(); doorIt++) {
+
+			m_Window.draw((*doorIt)->getDoorSprite());
+		}
+
+		// Draw Player
+		m_Window.draw(m_Player.getSprite());
+
+		//Draw Enemies
+		if (!m_EnemyList.empty()) {
+			//std::cout << "\nNumber of enemies:" << m_LM.getNumOfEnemies();
+			for (std::list<Enemy*>::iterator it = m_EnemyList.begin();
+				it != m_EnemyList.end(); it++) {
+				//std::cout << "\nDrawing enemies";
+				m_Window.draw((*it)->getSprite());
+				m_Window.draw((*it)->getDetectMeter());
+				m_Window.draw((*it)->getSpriteCrate());
+			}
+		}
+
+		//Draw the bullets
+		for (int i = 0; i < 5; i++) {
+			if (bullets[i].isInFlight()) {
+				//std::cout << "\nDrawing bullets" << i;
+				//m_Window.draw(bullets[i].getShape());
+				m_Window.draw(bullets[i].getSprite());
+			}
+		}
+		//Draw Items 
+		for (std::list<Item*>::iterator itemIter = m_ItemList.begin();
+			itemIter != m_ItemList.end(); itemIter++) {
+			m_Window.draw((*itemIter)->getSprite());
+		}
+		
+		//// Switch to m_MainView
+		//m_Window.setView(m_HudView);
+
+		////	Draw the Paused Buttons on-top of everything else
+		//for (std::list<GUI::Button>::iterator it = m_pausedButtons.begin(); it != m_pausedButtons.end(); ++it) {
+		//	m_Window.draw(*it);
+		//}
 	}
 	else if (m_GameState == GameState::SETTINGS) {
 		// Switch to m_MainView
