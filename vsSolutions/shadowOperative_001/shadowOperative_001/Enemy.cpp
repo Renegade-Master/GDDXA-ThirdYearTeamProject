@@ -67,7 +67,7 @@ void Enemy::update(float elapsedTime, int** m_ArrayLevel) {
 					// Initialize the starting position of the current block
 					block.left = x * TILE_SIZE;
 					block.top = y * TILE_SIZE;
-					if (m_ArrayLevel[y][x] == 'T' || m_ArrayLevel[y - 1][x] == 'T') {	{
+					if (m_ArrayLevel[y][x] == 'T' || m_ArrayLevel[y - 1][x] == 'T') {
 						//std::cout << "\nChecking patrol loop";
 						if (getFeet().intersects(block)) {
 							//std::cout << "\\nNot intersect block";
