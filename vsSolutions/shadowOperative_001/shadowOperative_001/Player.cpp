@@ -41,8 +41,18 @@ Player::Player() {
 *	Dev
 */
 void Player::update(float elapsedTime, int** m_ArrayLevel) {
-	//std::cout << "\nPlayer coordinates: X" << this->m_Position.x
-		//<< " Y" << this->m_Position.y;
+	//	Print Player display data
+	std::cout << "Time: " << elapsedTime << std::endl
+		<< "Animation: " << int(this->m_Action) << std::endl
+		<< "Sprite Bounds: " << std::endl
+		<< "\tTop:" << this->m_Sprite.getGlobalBounds().top << std::endl
+		<< "\tLeft:" << this->m_Sprite.getGlobalBounds().left << std::endl
+		<< "\tHeight:" << this->m_Sprite.getGlobalBounds().height << std::endl
+		<< "\tWidth:" << this->m_Sprite.getGlobalBounds().width << std::endl << std::endl
+		<< "Texture Bounds: " << std::endl
+		<< "\tHeight:" << this->m_Texture.getSize().y << std::endl
+		<< "\tWidth:" << this->m_Texture.getSize().x << std::endl << std::endl << std::endl;
+
 	// Set Sprite Animation Frame
 	if (this->frameYOffset >= this->m_maxAnimationFrames) {
 		this->frameYOffset = 0;
@@ -65,6 +75,12 @@ void Player::update(float elapsedTime, int** m_ArrayLevel) {
 		this->frameHeight = 56;
 		this->frameXOffset = 253;
 
+		/*this->m_Sprite.setTextureRect(
+			sf::IntRect(
+				this->frameXOffset, this->frameYOffset,
+				this->frameWidth, this->frameHeight)
+		);*/
+
 		this->m_Position.y += this->m_Gravity * 0.0167f;
 	}
 	else if (this->m_Action == Action::JUMPING) {
@@ -72,11 +88,17 @@ void Player::update(float elapsedTime, int** m_ArrayLevel) {
 		this->frameHeight = 70;
 		this->frameXOffset = 86;
 
+		/*this->m_Sprite.setTextureRect(
+			sf::IntRect(
+				this->frameXOffset, this->frameYOffset,
+				this->frameWidth, this->frameHeight)
+		);*/
+
 		// Update how long the jump has been going
 		this->m_jumpDuration += elapsedTime;
 
 		// Apply the Jump to the Character
-		this->m_Position.y -= this->m_Gravity * 2 * 0.0167;
+		this->m_Position.y -= this->m_Gravity * 2 * 0.0167f;
 
 		// Character jump has gone on long enough
 		if (this->m_jumpDuration >= this->maxJumpDuration) {
@@ -87,11 +109,23 @@ void Player::update(float elapsedTime, int** m_ArrayLevel) {
 		this->frameWidth = 51;
 		this->frameHeight = 70;
 		this->frameXOffset = 35;
+
+		/*this->m_Sprite.setTextureRect(
+			sf::IntRect(
+				this->frameXOffset, this->frameYOffset,
+				this->frameWidth, this->frameHeight)
+		);*/
 	}
 	else if (this->m_Action == Action::ATTACKING) {
 		this->frameWidth = 69;
 		this->frameHeight = 75;
 		this->frameXOffset = 142;
+
+		/*this->m_Sprite.setTextureRect(
+			sf::IntRect(
+				this->frameXOffset, this->frameYOffset,
+				this->frameWidth, this->frameHeight)
+		);*/
 	}
 	else if (this->m_Action == Action::CROUCHING) {
 		/*this->frameWidth = 0;
@@ -101,6 +135,12 @@ void Player::update(float elapsedTime, int** m_ArrayLevel) {
 		this->frameWidth = 36;
 		this->frameHeight = 66;
 		this->frameXOffset = 0;
+
+		/*this->m_Sprite.setTextureRect(
+			sf::IntRect(
+				this->frameXOffset, this->frameYOffset,
+				this->frameWidth, this->frameHeight)
+		);*/
 	}
 	
 	/***---------------------***\
@@ -152,7 +192,10 @@ void Player::update(float elapsedTime, int** m_ArrayLevel) {
 	\***-----------------***/
 
 	else {
-		// Look at the Nearest Enemy
+		//	Face a random direction
+		/*bool randDirection = int(std::rand() % 2);
+		if (randDirection)
+			frameXOffset += (m_animationSheet.getSize().x / 2.0f);*/
 		
 		// Set the Animation Sprite
 		if (this->m_timeSinceLastFrame > frameSwitchTime) {
