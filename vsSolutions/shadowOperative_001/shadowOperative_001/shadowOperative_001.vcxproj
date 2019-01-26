@@ -138,6 +138,7 @@
     <ClCompile Include="Draw.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Engine.cpp" />
+    <ClCompile Include="FileManager.cpp" />
     <ClCompile Include="gunBattery.cpp" />
     <ClCompile Include="HUD.cpp" />
     <ClCompile Include="InitButtons.cpp" />
@@ -166,6 +167,7 @@
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="EnemyGenerator.h" />
     <ClInclude Include="Engine.h" />
+    <ClInclude Include="FileManager.h" />
     <ClInclude Include="gunBattery.h" />
     <ClInclude Include="HUD.h" />
     <ClInclude Include="Item.h" />

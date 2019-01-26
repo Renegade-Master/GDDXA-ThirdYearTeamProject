@@ -21,12 +21,12 @@ bool Engine::detectCollisions(PlayableCharacter& character) {
 	block.height = TILE_SIZE;
 
 	// Build a zone around thomas to detect collisions
-	int startX = (int)(detectionZone.left / TILE_SIZE) - 1;
-	int startY = (int)(detectionZone.top / TILE_SIZE) - 1;
-	int endX = (int)(detectionZone.left / TILE_SIZE) + 2;
+	int startX = int(detectionZone.left / TILE_SIZE) - 1;
+	int startY = int(detectionZone.top / TILE_SIZE) - 1;
+	int endX = int(detectionZone.left / TILE_SIZE) + 2;
 
 	// Player is quite tall so check a few tiles vertically
-	int endY = (int)(detectionZone.top / TILE_SIZE) + 3;
+	int endY = int(detectionZone.top / TILE_SIZE) + 3;
 
 	// Make sure we don't test positions lower than zero
 	// Or higher than the end of the array

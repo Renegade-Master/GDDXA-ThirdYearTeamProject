@@ -38,6 +38,7 @@ void Engine::update(float dtAsSeconds) {
 	else if (m_GameState == GameState::PLAYING) {
 		if (m_NewLevelRequired) {			
 			// Load a Level
+			m_GameState = GameState::LOADING;
 			loadLevel();
 		}
 
@@ -292,6 +293,14 @@ void Engine::update(float dtAsSeconds) {
 	}
 	else if (m_GameState == GameState::PAUSED) {
 		// Put Paused Screen Update code here
+	}
+	else if (m_GameState == GameState::LEVEL_SELECT) {
+		//	Handle Buttons
+		while (m_Window.pollEvent(m_event)) {
+			for (std::list<GUI::Button>::iterator it = m_levelSelectButtons.begin(); it != m_levelSelectButtons.end(); ++it) {
+				it->update(m_event, m_GameTimeTotal, m_Window);
+			}
+		}
 	}
 	else if (m_GameState == GameState::SETTINGS) {
 		// Put Settings Screen Update code here

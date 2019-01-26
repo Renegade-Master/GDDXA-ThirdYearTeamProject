@@ -25,14 +25,15 @@ int** LevelManager::nextLevel(sf::VertexArray& rVaLevel) {
 	m_LevelSize.y = 0;
 
 	// Get the next level
-	m_CurrentLevel++;
+	/*m_CurrentLevel++;
 	if (m_CurrentLevel > NUM_LEVELS) {
 		m_CurrentLevel = 1;
 		m_TimeModifier -= .1f;
-	}
+	}*/
 
 	// Load the appropriate level from a text file
 	std::string levelToLoad;
+
 	switch (m_CurrentLevel)	{
 
 	case 1:

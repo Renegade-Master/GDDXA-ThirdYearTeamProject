@@ -127,6 +127,17 @@ void Engine::draw() {
 		m_Window.draw(m_Hud.getMessage());
 
 	}
+	else if (m_GameState == GameState::LEVEL_SELECT) {
+		// Switch to m_MainView
+		m_Window.setView(m_MainView);
+
+		m_Window.draw(m_BackgroundSprite, &m_RippleShader);
+
+		for (std::list<GUI::Button>::iterator it = m_levelSelectButtons.begin(); it != m_levelSelectButtons.end(); ++it) {
+			m_Window.draw(*it);
+		}
+
+	}
 	else if (m_GameState == GameState::SETTINGS) {
 		// Switch to m_MainView
 		m_Window.setView(m_MainView);

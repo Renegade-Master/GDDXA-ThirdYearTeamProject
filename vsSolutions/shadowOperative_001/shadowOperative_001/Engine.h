@@ -199,6 +199,8 @@ private:
 	std::list<GUI::Button> m_mainMenuButtons;
 	//	Paused
 	std::list<GUI::Button> m_pausedButtons;
+	//	Level Select
+	std::list<GUI::Button> m_levelSelectButtons;
 	//	Settings
 	std::list<GUI::Button> m_settingsButtons;
 	//		Graphics Settings
