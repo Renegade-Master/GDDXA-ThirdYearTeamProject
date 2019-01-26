@@ -46,6 +46,6 @@ void Engine::loadLevel() {
 		m_NewLevelRequired = false;
 
 		std::cout << "Loading...DONE!" << std::endl;
-		m_GameState = GameState::PAUSED;
+		m_GameState = GameState::READYUP;
 	}
 }

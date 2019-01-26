@@ -26,6 +26,27 @@ void Engine::draw() {
 			m_Window.draw(*it);
 		}
 	}
+	else if (m_GameState == GameState::LEVEL_SELECT) {
+		// Switch to m_MainView
+		m_Window.setView(m_MainView);
+
+		m_Window.draw(m_BackgroundSprite, &m_RippleShader);
+
+		for (std::list<GUI::Button>::iterator it = m_levelSelectButtons.begin(); it != m_levelSelectButtons.end(); ++it) {
+			m_Window.draw(*it);
+		}
+
+	}
+	else if (m_GameState == GameState::LOADING) {
+		// Put Loading Screen draw code here
+	}
+	else if (m_GameState == GameState::READYUP) {
+		//Background of paused menu
+		m_Window.draw(m_BackgroundSprite, &m_RippleShader);
+		//Message for the paused Game state
+		m_Window.draw(m_Hud.getMessage());
+
+	}
 	else if (m_GameState == GameState::PLAYING) {
 		// Update the shader parameters
 		m_RippleShader.setUniform("uTime", m_GameTimeTotal.asSeconds());
@@ -45,17 +66,17 @@ void Engine::draw() {
 		m_Window.draw(m_VALevel, &m_TextureTiles);
 		//Draw the Switches
 
-		
+
 		for (std::list<ToggleSwitch*>::iterator SwitchIt = m_SwitchList.begin();
-				SwitchIt != m_SwitchList.end(); SwitchIt++) {
-			
+			SwitchIt != m_SwitchList.end(); SwitchIt++) {
+
 			m_Window.draw((*SwitchIt)->getSprite());
 		}
 		//Draw the doors
-		
-		for (std::list<Door*>::iterator doorIt = m_DoorList.begin(); 
-				doorIt != m_DoorList.end(); doorIt++) {
-			
+
+		for (std::list<Door*>::iterator doorIt = m_DoorList.begin();
+			doorIt != m_DoorList.end(); doorIt++) {
+
 			m_Window.draw((*doorIt)->getDoorSprite());
 		}
 
@@ -68,20 +89,20 @@ void Engine::draw() {
 		}
 
 		//Draw Enemies
-		if (!m_EnemyList.empty()){
+		if (!m_EnemyList.empty()) {
 			//std::cout << "\nNumber of enemies:" << m_LM.getNumOfEnemies();
-			for (std::list<Enemy*>::iterator it = m_EnemyList.begin(); 
-				 it != m_EnemyList.end(); it++){
+			for (std::list<Enemy*>::iterator it = m_EnemyList.begin();
+				it != m_EnemyList.end(); it++) {
 				//std::cout << "\nDrawing enemies";
 				m_Window.draw((*it)->getSprite());
 				m_Window.draw((*it)->getDetectMeter());
 				m_Window.draw((*it)->getSpriteCrate());
 			}
 		}
-		
+
 		//Draw the bullets
-		for (int i = 0;i < 5; i++){
-			if (bullets[i].isInFlight()){
+		for (int i = 0; i < 5; i++) {
+			if (bullets[i].isInFlight()) {
 				//std::cout << "\nDrawing bullets" << i;
 				//m_Window.draw(bullets[i].getShape());
 				m_Window.draw(bullets[i].getSprite());
@@ -89,7 +110,7 @@ void Engine::draw() {
 		}
 		//Draw Items 
 		for (std::list<Item*>::iterator itemIter = m_ItemList.begin();
-			itemIter != m_ItemList.end();itemIter++) {
+			itemIter != m_ItemList.end(); itemIter++) {
 			m_Window.draw((*itemIter)->getSprite());
 		}
 
@@ -113,29 +134,14 @@ void Engine::draw() {
 		m_Window.draw(m_VALevel, &m_TextureTiles);
 		m_Window.draw(m_Player.getSprite());
 		for (std::list<Enemy*>::iterator iter = m_EnemyList.begin();
-			iter != m_EnemyList.end(); iter++)
-		{
+			iter != m_EnemyList.end(); iter++) {
+
 			m_Window.draw((*iter)->getSprite());
 			m_Window.draw((*iter)->getCone());
 			m_Window.draw((*iter)->getSpriteCrate());
 		}
 	}
 	else if (m_GameState == GameState::PAUSED) {
-		//Background of paused menu
-		m_Window.draw(m_BackgroundSprite, &m_RippleShader);
-		//Message for the paused Game state
-		m_Window.draw(m_Hud.getMessage());
-
-	}
-	else if (m_GameState == GameState::LEVEL_SELECT) {
-		// Switch to m_MainView
-		m_Window.setView(m_MainView);
-
-		m_Window.draw(m_BackgroundSprite, &m_RippleShader);
-
-		for (std::list<GUI::Button>::iterator it = m_levelSelectButtons.begin(); it != m_levelSelectButtons.end(); ++it) {
-			m_Window.draw(*it);
-		}
 
 	}
 	else if (m_GameState == GameState::SETTINGS) {
@@ -169,9 +175,6 @@ void Engine::draw() {
 				m_Window.draw(*it);
 			}
 		}
-	}
-	else if (m_GameState == GameState::LOADING) {
-		// Put Loading Screen draw code here
 	}
 
 	// Show everything we have just drawn
