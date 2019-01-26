@@ -210,36 +210,7 @@ void Engine::update(float dtAsSeconds) {
 						(*it)->increaseAwarenessLevel((*checkDeathIter)->getCenter(), 1, m_GameTimeTotal);
 					}
 				}
-			/*if (m_Player.getHead().intersects
-				((*checkDeathIter)->getSprite().getGlobalBounds()))
-				{
-					(*checkDeathIter)->enemyPosition();
-				}/*
-
-			/*	if ((*checkDeathIter)->getPosition().intersects(m_Player.getPosition()))
-				{
-					(*checkDeathIter)->enemyPosition();
-				}**/
 			}
-
-		/*	std::list<Enemy*>::iterator checkDeathIter = m_EnemyList.begin();
-			for (; checkDeathIter != m_EnemyList.end(); checkDeathIter++)
-			{
-				if ((*checkDeathIter)->getPosition().intersects(m_Player.getPosition())
-				{
-					
-				}
-			}*/
-			
-	/*		std::list<Enemy*>::iterator checkDeathIter = m_EnemyList.begin();
-			for (; checkDeathIter != m_EnemyList.end(); checkDeathIter++)
-			{
-				if (m_Player.getHead().intersects
-				((*checkDeathIter)->getSprite().getGlobalBounds()))
-				{
-					(*checkDeathIter)->enemyPosition();
-				}
-			}*/
 		}
 		// Detect collisions and see if characters have reached the goal tile
 		// The second part of the if condition is only executed
@@ -318,26 +289,6 @@ void Engine::update(float dtAsSeconds) {
 		// Convert mouse position to world coordinates of mainView
 		mouseWorldPosition = m_Window.mapPixelToCoords(
 			sf::Mouse::getPosition(), m_MainView);
-
-	/*
-		//Spawn a crate where the enemy died
-		for (std::list<Enemy*>::iterator it = m_EnemyList.begin(); it != m_EnemyList.end(); it++)
-		{
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::E))
-			{
-				if ((*it)->isConscious()==false)
-				{
-					//this->m_Action = Action::CROUCHING;
-					//if (player touching enemy
-					//Changes the enemy to look like a crate.
-					//for (int i = 1; i < 2; i++)
-					//{
-						(*it)->EnemyCrate();
-					//}
-					//m_Sprite.update(dtAsSeconds, m_ArrayLevel);
-				}
-			}
-		}*/
 	}
 	else if (m_GameState == GameState::PAUSED) {
 		// Put Paused Screen Update code here

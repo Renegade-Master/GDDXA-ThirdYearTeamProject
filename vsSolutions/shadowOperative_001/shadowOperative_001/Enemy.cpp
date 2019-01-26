@@ -17,19 +17,10 @@ void Enemy::spawn(sf::Vector2i startPosition, float gravity, sf::Time gameStart)
 	this->m_Position = (sf::Vector2f)m_SpawnPosition;
 	m_Position.x = m_Position.x * 50;
 	m_Position.y = m_Position.y * 50;
-	//m_Position.x = m_SpawnPosition.x;
-	//m_Position.y = m_SpawnPosition.y;
 	m_Gravity = gravity;
-	/*m_Sprite = sf::Sprite(TextureHolder::GetTexture(
-		"graphics/enemy2.png"));*/
-	//if (conscious == true)
-	//{
-		m_Sprite = sf::Sprite(TextureHolder::GetTexture(
-			"graphics/Bob.png"));
-//	}
+	m_Sprite = sf::Sprite(TextureHolder::GetTexture(
+		"graphics/Bob.png"));
 	m_Sprite.setPosition(this->m_Position);
-	//m_RightPressed = true;
-	//m_LeftPressed = false;
 	awarenessOfPlayer = 0.0;
 	lastDetectionEvent = gameStart;
 	detectMeter.setSize(sf::Vector2f(10, this->getAwareness()));
@@ -112,51 +103,6 @@ void Enemy::update(float elapsedTime, int** m_ArrayLevel/*, sf::Vector2f playPos
 			cone.updateConePos(this->m_Position, this->detectionDistance, this->sightAngle, false);
 		}
 	}
-	else
-	{
-		//if (m_SpriteCrate.getPosition() == playPos)
-		{
-			bool EnemyContact = true;
-			std::cout << "\The player is touchine the enemy";
-		}
-
-
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::E))
-		{
-			if (EnemyContact == true)
-			{
-				EnemyCrate();
-			}
-		}
-	}
-
-	/*
-		//When crounching the enemy is put into a crate
-		if (this->m_Action == Action::FALLING)
-		{
-		}
-		else if (this->m_Action == Action::JUMPING)
-		{
-		}
-		else if (this->m_Action == Action::RUNNING)
-		{
-		}
-		else if (this->m_Action == Action::CROUCHING)
-		{
-				m_SpriteCrate = sf::Sprite(TextureHolder::GetTexture(
-					"graphics/Crate.png"));
-				//m_SpriteCrate.setPosition(this->m_Position);
-				std::cout << "\n Sprite should have changed";
-		}
-		else if (this->m_Action == Action::ATTACKING)
-		{
-		}
-		else if (this->m_Action == Action::IDLE)
-		{
-		}*/
-	
-	//(*it)->Enemy Regen
-	//std::cout << "\nCalling REGEN!!!!!";
 	this->regen(elapsedTime);
 }
 
@@ -203,21 +149,7 @@ sf::FloatRect Enemy::getPosition() {
 	return m_Sprite.getGlobalBounds();
 }
 
-/**
-*
-*/
-/*
-bool Enemy::detectPlayer(sf::Vector2f playPos) {
-
-	if (m_Sprite.getPosition() == playPos)
-	{
-		bool EnemyContact = true;
-		std::cout << "\The player is touchine the enemy";
-	}
-	std::cout << "\The player is touchine the enemy";
-	return EnemyContact;
-}*/
-
+//Changes the enmey into a crate.
 void Enemy::EnemyCrate()
 {
 	m_SpriteCrate = sf::Sprite(TextureHolder::GetTexture(
@@ -225,17 +157,6 @@ void Enemy::EnemyCrate()
 	m_SpriteCrate.setPosition(this->m_Position);
 	std::cout << "\nCROUCHING";
 }
-
-/*bool Enemy::enemyPosition()
-{
-	if (this->m_Position == detectPlayer())
-	{
-
-	}
-	bool EnemyContact = true;
-	return EnemyContact;
-}*/
-
 
 /**
 *

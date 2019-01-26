@@ -49,11 +49,6 @@ void Player::update(float elapsedTime, int** m_ArrayLevel) {
 	
 	this->frameXOffset = 0;
 	this->m_timeSinceLastFrame += elapsedTime;
-	
-	/*if (m_Sprite.getHead()(this->m_Position).intersects.Enemy(this->m_Position))
-	{
-
-	}*/
 
 	/***-------------***\
 	|	HANDLE ACTIONS	|
@@ -220,18 +215,6 @@ void Player::handleInput() {
 	/***-----------------***\
 	|	HANDLE NON-MOVEMENT	|
 	\***-----------------***/
-
-	/*if (sf::Keyboard::isKeyPressed(sf::Keyboard::E)) {
-		for (std::list<Enemy*>::iterator e = m_enemyList.begin();
-			collDetect != m_DoorList.end(); collDetect++) {
-			
-			if () {
-				if (this->getPosition.intersects()) {
-
-				}
-			}
-		}
-	}*/
 	
 	/***-----------------***\
 	|	HANDLE ALL STANCE	|
