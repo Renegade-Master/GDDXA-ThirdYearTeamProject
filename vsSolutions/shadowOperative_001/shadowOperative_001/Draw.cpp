@@ -15,7 +15,7 @@ void Engine::draw() {
 	// Rub out the last frame
 	m_Window.clear(sf::Color::Black);
 
-	if (GameState == State::MAIN_MENU) {
+	if (m_GameState == GameState::MAIN_MENU) {
 		// Switch to m_MainView
 		m_Window.setView(m_MainView);
 
@@ -26,7 +26,7 @@ void Engine::draw() {
 			m_Window.draw(*it);
 		}
 	}
-	else if (GameState == State::PLAYING) {
+	else if (m_GameState == GameState::PLAYING) {
 		// Update the shader parameters
 		m_RippleShader.setUniform("uTime", m_GameTimeTotal.asSeconds());
 
@@ -45,13 +45,17 @@ void Engine::draw() {
 		m_Window.draw(m_VALevel, &m_TextureTiles);
 		//Draw the Switches
 
-		std::list<ToggleSwitch*>::iterator SwitchIt = m_SwitchList.begin();
-		for (;SwitchIt != m_SwitchList.end();SwitchIt++) {
+		
+		for (std::list<ToggleSwitch*>::iterator SwitchIt = m_SwitchList.begin();
+				SwitchIt != m_SwitchList.end(); SwitchIt++) {
+			
 			m_Window.draw((*SwitchIt)->getSprite());
 		}
 		//Draw the doors
-		std::list<Door*>::iterator doorIt = m_DoorList.begin();
-		for (;doorIt != m_DoorList.end();doorIt++) {
+		
+		for (std::list<Door*>::iterator doorIt = m_DoorList.begin(); 
+				doorIt != m_DoorList.end(); doorIt++) {
+			
 			m_Window.draw((*doorIt)->getDoorSprite());
 		}
 
@@ -120,19 +124,49 @@ void Engine::draw() {
 			m_Window.draw((*iter)->getSpriteCrate());
 		}
 	}
-	else if (GameState == State::PAUSED) {
+	else if (m_GameState == GameState::PAUSED) {
 		//Background of paused menu
 		m_Window.draw(m_BackgroundSprite, &m_RippleShader);
 		//Message for the paused Game state
 		m_Window.draw(m_Hud.getMessage());
 
 	}
-	else if (GameState == State::SETTINGS) {
+	else if (m_GameState == GameState::SETTINGS) {
+		// Switch to m_MainView
+		m_Window.setView(m_MainView);
+
 		// Put Settings Screen draw code here
+		m_Window.draw(m_BackgroundSprite, &m_RippleShader);
+		
+		//	List all Settings Pages
+		if (m_SettingsPage == SettingsPage::LIST) {			
+			for (std::list<GUI::Button>::iterator it = m_settingsButtons.begin(); it != m_settingsButtons.end(); ++it) {
+				m_Window.draw(*it);
+			}			
+		}
+		//	List Graphics Settings
+		else if (m_SettingsPage == SettingsPage::GRAPHICS) {			
+			for (std::list<GUI::Button>::iterator it = m_graphicsSettingsButtons.begin(); it != m_graphicsSettingsButtons.end(); ++it) {
+				m_Window.draw(*it);
+			}			
+		}
+		//	List Audio Settings
+		else if (m_SettingsPage == SettingsPage::AUDIO) {
+			for (std::list<GUI::Button>::iterator it = m_audioSettingsButtons.begin(); it != m_audioSettingsButtons.end(); ++it) {
+				m_Window.draw(*it);
+			}
+		}
+		//	List Gameplay Settings
+		else if (m_SettingsPage == SettingsPage::GAMEPLAY) {
+			for (std::list<GUI::Button>::iterator it = m_gameplaySettingsButtons.begin(); it != m_gameplaySettingsButtons.end(); ++it) {
+				m_Window.draw(*it);
+			}
+		}
 	}
-	else if (GameState == State::LOADING) {
+	else if (m_GameState == GameState::LOADING) {
 		// Put Loading Screen draw code here
 	}
+
 	// Show everything we have just drawn
 	m_Window.display();
 }
