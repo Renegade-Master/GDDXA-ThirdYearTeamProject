@@ -42,7 +42,7 @@ void Camera::spawn(sf::Vector2i startPosition, float gravity, sf::Time gameStart
 		rotation = 0.0f;
 		rotationStartPoint = 0.0f;
 	}
-
+	direction = dir;
 	awarenessOfPlayer = 0.0;
 	lastDetectionEvent = gameStart;
 	detectMeter.setSize(sf::Vector2f(10, this->getAwareness()));
@@ -84,6 +84,6 @@ void Camera::update(float elapsedTime, int** m_ArrayLevel) {
 		}
 		
 		cone.updateCamConePos(this->m_Position, this->detectionDistance,
-			this->sightAngle, this->rotation, this->forward);
+			this->sightAngle, this->rotation, this->forward, this->direction);
 	}
 }

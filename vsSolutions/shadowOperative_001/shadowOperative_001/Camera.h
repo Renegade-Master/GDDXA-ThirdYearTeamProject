@@ -8,6 +8,7 @@ private:
 	float rotation;
 	bool forward = true;
 	float rotationStartPoint;
+	char direction;
 public:
 	void spawn(sf::Vector2i startPosition, float gravity, sf::Time gameStart,char dir);
 	void update(float elapsedTime, int** m_ArrayLevel);

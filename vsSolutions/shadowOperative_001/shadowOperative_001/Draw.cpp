@@ -64,6 +64,7 @@ void Engine::draw() {
 		std::list<Camera*>::iterator cameraIt = m_CameraList.begin();
 		for (;cameraIt != m_CameraList.end();cameraIt++) {
 			m_Window.draw((*cameraIt)->getSprite());
+			m_Window.draw((*cameraIt)->getCone());
 		}
 		
 
