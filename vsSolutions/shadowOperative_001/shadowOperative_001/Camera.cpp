@@ -82,6 +82,7 @@ void Camera::update(float elapsedTime, int** m_ArrayLevel) {
 				//std::cout << "\nForward = true";
 			}
 		}
+		
 		cone.updateCamConePos(this->m_Position, this->detectionDistance,
 			this->sightAngle, this->rotation, this->forward);
 	}

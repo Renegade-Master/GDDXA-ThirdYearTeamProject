@@ -74,9 +74,14 @@ void Engine::update(float dtAsSeconds) {
 		}
 
 		//update Cameras
+		int i = 0;
 		std::list<Camera*>::iterator cameraIt = m_CameraList.begin();
 		for (;cameraIt != m_CameraList.end();cameraIt++) {
+			std::cout << "\nUpdating Camera " << i++;
 			(*cameraIt)->update(dtAsSeconds,m_ArrayLevel);
+			if (cameraIt == m_CameraList.end()) {
+				i = 0;
+			}
 		}
 		// Update Player
 		m_Player.update(dtAsSeconds, m_ArrayLevel);
