@@ -253,9 +253,10 @@ void GUI::Button::update(sf::Event& e, sf::Time t, sf::RenderWindow& window) {
 		break;
 	}
 
-	//perform updates for user mouse interactions
+	// Get the current mouse position in the active window
 	sf::Vector2i m_mousePosition = sf::Mouse::getPosition(window);
 
+	// Is the mouse hovering over the Button?
 	bool mouseInButton = m_mousePosition.x >= this->m_button.getPosition().x - this->m_button.getGlobalBounds().width / 2
 		&& m_mousePosition.x <= this->m_button.getPosition().x + this->m_button.getGlobalBounds().width / 2
 		&& m_mousePosition.y >= this->m_button.getPosition().y - this->m_button.getGlobalBounds().height / 2
@@ -271,11 +272,12 @@ void GUI::Button::update(sf::Event& e, sf::Time t, sf::RenderWindow& window) {
 	}
 
 	if (e.type == sf::Event::MouseButtonPressed) {
-		if ((t.asMilliseconds() - m_sinceLastClick.asMilliseconds()) > 500.0f) {
+		if ((t.asMilliseconds() - this->m_sinceLastClick.asMilliseconds()) > 500.0f) {
 			switch (e.mouseButton.button) {
 			case sf::Mouse::Left:
 				if (mouseInButton) {
 					this->m_btnstate = GUI::ButtonState::clicked;
+					this->m_sinceLastClick = t;
 				}
 				else {
 					this->m_btnstate = GUI::ButtonState::normal;
