@@ -17,16 +17,10 @@ void Enemy::spawn(sf::Vector2i startPosition, float gravity, sf::Time gameStart)
 	this->m_Position = (sf::Vector2f)m_SpawnPosition;
 	m_Position.x = m_Position.x * 50;
 	m_Position.y = m_Position.y * 50;
-	//m_Position.x = m_SpawnPosition.x;
-	//m_Position.y = m_SpawnPosition.y;
 	m_Gravity = gravity;
-	/*m_Sprite = sf::Sprite(TextureHolder::GetTexture(
-		"graphics/enemy2.png"));*/
 	m_Sprite = sf::Sprite(TextureHolder::GetTexture(
-		"graphics/bob.png"));
+		"graphics/Bob.png"));
 	m_Sprite.setPosition(this->m_Position);
-	//m_RightPressed = true;
-	//m_LeftPressed = false;
 	awarenessOfPlayer = 0.0;
 	lastDetectionEvent = gameStart;
 	detectMeter.setSize(sf::Vector2f(10, this->getAwareness()));
@@ -37,8 +31,8 @@ void Enemy::spawn(sf::Vector2i startPosition, float gravity, sf::Time gameStart)
 /**
 *
 */
-void Enemy::update(float elapsedTime, int** m_ArrayLevel) {
-	if (concious) {
+void Enemy::update(float elapsedTime, int** m_ArrayLevel/*, sf::Vector2f playPos*/) {
+	if (conscious) {
 		// Make a rect for all his parts
 		patrolValid = false;
 		sf::FloatRect detectionZone = getPosition();
@@ -109,8 +103,6 @@ void Enemy::update(float elapsedTime, int** m_ArrayLevel) {
 			cone.updateConePos(this->m_Position, this->detectionDistance, this->sightAngle, false);
 		}
 	}
-	//(*it)->Enemy Regen
-	//std::cout << "\nCalling REGEN!!!!!";
 	this->regen(elapsedTime);
 }
 
@@ -157,11 +149,13 @@ sf::FloatRect Enemy::getPosition() {
 	return m_Sprite.getGlobalBounds();
 }
 
-/**
-*
-*/
-bool Enemy::detectPlayer(sf::Vector2f playPos) {
-	return false;
+//Changes the enmey into a crate.
+void Enemy::EnemyCrate()
+{
+	m_SpriteCrate = sf::Sprite(TextureHolder::GetTexture(
+		"graphics/Crate.png"));
+	m_SpriteCrate.setPosition(this->m_Position);
+	std::cout << "\nCROUCHING";
 }
 
 /**
@@ -244,22 +238,22 @@ void Enemy::reduceAwareness(sf::Time gameTimeTotal) {
 *
 */
 void Enemy::takeDamage(float shotPower) {
-	if (this->isConcious())	{
+	if (this->isConscious())	{
 		health = health - shotPower * 3;
 	}
 	else {
 		health = 0;
 	}
 	if (health <= 0) {
-		concious = false;
+		conscious = false;
 	}
 }
 
 /**
 *
 */
-bool Enemy::isConcious() {
-	return concious;
+bool Enemy::isConscious() {
+	return conscious;
 }
 
 /**
@@ -268,8 +262,8 @@ bool Enemy::isConcious() {
 void Enemy::regen(float elapsedTime) {
 	//std::cout << "\nCALLING REGEN!!!";
 	if (health < maxHealth)	{
-		if (this->isConcious())	{
-			//std::cout << "\nConcious";
+		if (this->isConscious())	{
+			//std::cout << "\nconscious";
 			if ((health + (regenRate * elapsedTime)) <= maxHealth) {
 				/*std::cout << "\nhealth:" << health << " + regenRate " << regenRate
 					<< " * elapsedTime: " << elapsedTime << " = " << health + (regenRate * elapsedTime);*/
@@ -281,7 +275,7 @@ void Enemy::regen(float elapsedTime) {
 			}
 		}
 		else {
-			//std::cout << "\nNot Concious";
+			//std::cout << "\nNot conscious";
 			if ((health + (regenRate / 2)) * elapsedTime <= maxHealth) {
 				/*std::cout << "\nhealth:" << health << " + (regenRate / 2) " << (regenRate / 2)
 					<< " * elapsedTime: " << elapsedTime << " = " << (health + ((regenRate / 2) * elapsedTime));*/
@@ -294,7 +288,14 @@ void Enemy::regen(float elapsedTime) {
 		}
 		//std::cout << "\nRegen complete Health is now" << this->health;
 	}
-	if ((health == maxHealth) && (!concious)) {
-		concious = true;
+	if ((health == maxHealth) && (!conscious)) {
+		conscious = true;
 	}	
+}
+
+/**
+*
+*/
+sf::String Enemy::getClassName() {
+	return(sf::String("Enemy"));
 }

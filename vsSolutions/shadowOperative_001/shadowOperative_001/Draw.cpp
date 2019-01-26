@@ -75,8 +75,10 @@ void Engine::draw() {
 				//std::cout << "\nDrawing enemies";
 				m_Window.draw((*it)->getSprite());
 				m_Window.draw((*it)->getDetectMeter());
+				m_Window.draw((*it)->getSpriteCrate());
 			}
 		}
+		
 		//Draw the bullets
 		for (int i = 0;i < 5; i++){
 			if (bullets[i].isInFlight()){
@@ -115,6 +117,7 @@ void Engine::draw() {
 		{
 			m_Window.draw((*iter)->getSprite());
 			m_Window.draw((*iter)->getCone());
+			m_Window.draw((*iter)->getSpriteCrate());
 		}
 	}
 	else if (m_GameState == GameState::PAUSED) {

@@ -3,7 +3,7 @@
 *					Owen O'Dea	[K00218956]
 *					Rory Ryan	[K00218864]
 *	@creationDate	2018/11/01	YYYY/MM/DD
-*	@description	..
+*	@description	...
 *
 *	@notes	1.		Measurements for Player Sprite
 *						Idle
@@ -23,7 +23,6 @@
 */
 
 #include "Player.h"
-#include "TextureHolder.h"
 
 /**
 *	Default constructor.
@@ -50,7 +49,7 @@ void Player::update(float elapsedTime, int** m_ArrayLevel) {
 	
 	this->frameXOffset = 0;
 	this->m_timeSinceLastFrame += elapsedTime;
-	
+
 	/***-------------***\
 	|	HANDLE ACTIONS	|
 	\***-------------***/
@@ -212,6 +211,10 @@ void Player::update(float elapsedTime, int** m_ArrayLevel) {
 
 // A virtual function
 void Player::handleInput() {
+
+	/***-----------------***\
+	|	HANDLE NON-MOVEMENT	|
+	\***-----------------***/
 	
 	/***-----------------***\
 	|	HANDLE ALL STANCE	|
@@ -488,12 +491,22 @@ void Player::updateTargeting(sf::Vector2f mousePos) {
 sf::ConvexShape Player::getlaser() {
 	return targetingLaser.getLine();
 }
-void Player::chargeFromPickup(float charge)
-{
+
+/**
+*
+*/
+void Player::chargeFromPickup(float charge) {
 	if (this->getChargeLevel() + charge >= maxGunChargeLevel) {
 		gunChargeLevel = maxGunChargeLevel;
 	}
 	else {
 		gunChargeLevel += charge;
 	}
+}
+
+/**
+*
+*/
+sf::String Player::getClassName() {
+	return(sf::String("Player"));
 }

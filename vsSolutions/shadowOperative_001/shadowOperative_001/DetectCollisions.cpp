@@ -52,15 +52,32 @@ bool Engine::detectCollisions(PlayableCharacter& character) {
 		character.spawn(m_LM.getStartPosition(), GRAVITY);
 		//this->Engine::m_GameState = Engine::m_GameState::MAIN_MENU;
 	}
+	
 	//if Door is valid pass through
 	doorValid = true;
-	//if not then dont
-	std::list<Door*>::iterator collDetect = m_DoorList.begin();
-	for (;collDetect != m_DoorList.end();collDetect++) {
+	//if not then dont	
+	for (std::list<Door*>::iterator collDetect = m_DoorList.begin();
+			collDetect != m_DoorList.end();collDetect++) {
+
 		if (character.getPosition().intersects((*collDetect)->getPosition())) {
 			doorValid = (*collDetect)->getValidState();
 		}
 	}
+
+	//	Is the Player capable of Hiding an Enemy?
+	if (character.getClassName() == sf::String("Player")) {
+		for (std::list<Enemy*>::iterator enem = m_EnemyList.begin();
+			enem != m_EnemyList.end(); enem++) {
+
+			if (!(*enem)->isConscious()) {
+				if (character.getPosition().intersects((*enem)->getPosition())) {
+					(*enem)->EnemyCrate();
+				}
+			}
+
+		}
+	}
+
 	for (int x = startX; x < endX; x++)	{
 		for (int y = startY; y < endY; y++) {
 			// Initialize the starting position of the current block
@@ -103,6 +120,7 @@ bool Engine::detectCollisions(PlayableCharacter& character) {
 					character.m_Action = PlayableCharacter::Action::IDLE;
 				}
 			//}
+
 
 			
 

@@ -75,6 +75,8 @@ private:
 	// Player (PlayerCharacters)
 	Player m_Player;
 
+	Enemy m_SpriteCrate;
+
 	//Enemy Generator
 
 	//Enemy list
@@ -219,5 +221,6 @@ private:
 	void doorUpdate(float dtAsSeconds, ToggleSwitch *Switch);
 
 	double calcDistance(sf::Vector2f posOne, sf::Vector2f posTwo);
+
 };
 #endif // !ENGINE_H

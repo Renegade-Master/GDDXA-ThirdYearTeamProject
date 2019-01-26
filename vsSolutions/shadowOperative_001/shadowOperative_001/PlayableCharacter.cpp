@@ -80,6 +80,10 @@ sf::Sprite PlayableCharacter::getSprite() {
 	return this->m_Sprite;
 }
 
+sf::Sprite PlayableCharacter::getSpriteCrate() {
+	return this->m_SpriteCrate;
+}
+
 /**
 *	Stop FALLING when colliding with an Object.
 */

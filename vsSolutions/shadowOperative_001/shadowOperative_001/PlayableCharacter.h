@@ -14,6 +14,7 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include "laser.h"
+#include "TextureHolder.h"
 
 class PlayableCharacter {
 public:
@@ -47,6 +48,9 @@ public:
 	// Send a copy of the sprite to main
 	sf::Sprite getSprite();
 
+	// Send a copy of the spriteCrate to main
+	sf::Sprite getSpriteCrate();
+
 	// Make the character stand firm
 	void stopFalling(float position);
 	void stopRight(float position);
@@ -60,6 +64,9 @@ public:
 
 	//return Direction enum state
 	PlayableCharacter::Direction getDir();
+
+	virtual sf::String getClassName() = 0;
+
 protected:
 	// Sprite Animation Variables
 	int frameWidth;
@@ -72,6 +79,7 @@ protected:
 
 	sf::Image m_animationSheet;
 	sf::Sprite m_Sprite;
+	sf::Sprite m_SpriteCrate;
 	sf::Sprite m_SpriteRunningRight;
 	sf::Sprite m_SpriteRunningLeft;
 	sf::Sprite m_SpriteFalling;

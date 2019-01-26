@@ -7,6 +7,7 @@
 */
 
 #include "Engine.h"
+#include "PlayableCharacter.h"
 
 void Engine::update(float dtAsSeconds) {
 
@@ -155,20 +156,20 @@ void Engine::update(float dtAsSeconds) {
 		//update Enemy
 		for (std::list<Enemy*>::iterator it = m_EnemyList.begin(); it != m_EnemyList.end(); it++)
 		{
-			(*it)->update(dtAsSeconds,m_ArrayLevel);
+			(*it)->update(dtAsSeconds, m_ArrayLevel);
 			//check for bulletCollision
-			for (int i = 0;i < 5;i++)
+			for (int i = 0; i < 5; i++)
 			{
 				if (bullets[i].isInFlight())
 				{
 					if (bullets[i].getSprite().getGlobalBounds().intersects
-						((*it)->getSprite().getGlobalBounds()))
+					((*it)->getSprite().getGlobalBounds()))
 					{
 						std::cout << "\n Taking damage!!!!!!";
 						bullets[i].stop();
 						//(*it)->//LosesHealthDies
 						(*it)->takeDamage(bullets[i].getShotPower());
-						//(*it)->//is Enemy knoicked unconcious?
+						//(*it)->//is Enemy knoicked unconscious?
 					}
 				}
 			}
@@ -179,7 +180,7 @@ void Engine::update(float dtAsSeconds) {
 				if (m_GameTimeTotal.asMilliseconds()
 					- (*it)->getlastdetectTime() > 500)
 				{
-					(*it)->increaseAwarenessLevel(m_Player.getCenter(), m_Player.getDetectLevel(),m_GameTimeTotal);
+					(*it)->increaseAwarenessLevel(m_Player.getCenter(), m_Player.getDetectLevel(), m_GameTimeTotal);
 					if ((*it)->getAwareness() <= 100.0)
 					{
 						std::cout << "\nDetected";
@@ -203,7 +204,7 @@ void Engine::update(float dtAsSeconds) {
 			{
 				if ((*it)->getCone().getLocalBounds().intersects((*checkDeathIter)->getPosition()))
 				{
-					if (!(*checkDeathIter)->isConcious())
+					if (!(*checkDeathIter)->isConscious())
 					{
 						//std::cout << "\nEnemy Detecting Ally Death";
 						(*it)->increaseAwarenessLevel((*checkDeathIter)->getCenter(), 1, m_GameTimeTotal);
@@ -213,7 +214,7 @@ void Engine::update(float dtAsSeconds) {
 		}
 		// Detect collisions and see if characters have reached the goal tile
 		// The second part of the if condition is only executed
-		// when thomas is touching the home tile
+		// when player is touching the home tile
 		if (detectCollisions(m_Player)) {
 			// New level required
 			m_NewLevelRequired = true;
@@ -251,12 +252,9 @@ void Engine::update(float dtAsSeconds) {
 			}
 		}
 
-		// Centre full screen around appropriate character
-		if (m_Character1)
-		{
-			m_MainView.setCenter(m_Player.getCenter());
-			m_MiniMap.setCenter(m_Player.getCenter());
-		}
+		// Centre full screen around character
+		m_MainView.setCenter(m_Player.getCenter());
+		m_MiniMap.setCenter(m_Player.getCenter());
 
 		// Time to update the HUD?
 		// Increment the number of frames since the last HUD calculation
