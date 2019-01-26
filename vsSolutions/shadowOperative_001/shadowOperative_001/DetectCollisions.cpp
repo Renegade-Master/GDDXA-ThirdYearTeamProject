@@ -10,7 +10,7 @@
 #include "LevelManager.h"
 
 bool Engine::detectCollisions(PlayableCharacter& character) {
-	bool reachedGoal = false;
+	//bool reachedGoal = false;
 	// Make a rect for all his parts
 	sf::FloatRect detectionZone = character.getPosition();
 
@@ -144,12 +144,16 @@ bool Engine::detectCollisions(PlayableCharacter& character) {
 			// Has the character reached the goal?
 			if (m_ArrayLevel[y][x] == 'Q') {
 				// Character has reached the goal
-				reachedGoal = true;
-				this->Engine::m_GameState = Engine::GameState::MAIN_MENU;
+				//reachedGoal = true;
+				//m_CurrentLevel = 1;
+				m_LM.m_CurrentLevel++;
+				//this->Engine::m_GameState = Engine::GameState::LEVEL_SELECT;
+				//m_GameState = GameState::LOADING;
+				//loadLevel();
 			}
 		}
 	}
 
 	// All done, return, whether or not a new level might be required
-	return reachedGoal;
+	return false;
 }

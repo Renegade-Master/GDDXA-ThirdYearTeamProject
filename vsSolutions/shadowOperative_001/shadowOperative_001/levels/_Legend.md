@@ -39,3 +39,7 @@
 - m = Laser (Left)			(25)
 - a = Laser (Up)			(26)
 - f = Laser (Right)			(27)
+- i = Crane Box				(28)
+- o = End Crane				(29)
+- r = Crane Weight			(30)
+- l = Crane line			(31)

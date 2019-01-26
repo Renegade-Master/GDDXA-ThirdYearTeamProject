@@ -55,13 +55,6 @@ int** LevelManager::nextLevel(sf::VertexArray& rVaLevel) {
 		m_StartPosition.y = 0;
 		m_BaseTimeLimit = 30.0f;
 		break;
-		/*
-	case 4:
-		levelToLoad = "levels/level4.txt";
-		m_StartPosition.x = 50;
-		m_StartPosition.y = 200;
-		m_BaseTimeLimit = 50.0f;
-		break;*/
 	default:
 		std::cout << "Map had a promblem" << std::endl;
 		break;
