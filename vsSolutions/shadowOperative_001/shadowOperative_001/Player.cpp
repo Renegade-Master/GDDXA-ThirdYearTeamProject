@@ -23,7 +23,6 @@
 */
 
 #include "Player.h"
-#include "TextureHolder.h"
 
 /**
 *	Default constructor.
@@ -217,6 +216,22 @@ void Player::update(float elapsedTime, int** m_ArrayLevel) {
 
 // A virtual function
 void Player::handleInput() {
+
+	/***-----------------***\
+	|	HANDLE NON-MOVEMENT	|
+	\***-----------------***/
+
+	/*if (sf::Keyboard::isKeyPressed(sf::Keyboard::E)) {
+		for (std::list<Enemy*>::iterator e = m_enemyList.begin();
+			collDetect != m_DoorList.end(); collDetect++) {
+			
+			if () {
+				if (this->getPosition.intersects()) {
+
+				}
+			}
+		}
+	}*/
 	
 	/***-----------------***\
 	|	HANDLE ALL STANCE	|
@@ -493,12 +508,22 @@ void Player::updateTargeting(sf::Vector2f mousePos) {
 sf::ConvexShape Player::getlaser() {
 	return targetingLaser.getLine();
 }
-void Player::chargeFromPickup(float charge)
-{
+
+/**
+*
+*/
+void Player::chargeFromPickup(float charge) {
 	if (this->getChargeLevel() + charge >= maxGunChargeLevel) {
 		gunChargeLevel = maxGunChargeLevel;
 	}
 	else {
 		gunChargeLevel += charge;
 	}
+}
+
+/**
+*
+*/
+sf::String Player::getClassName() {
+	return(sf::String("Player"));
 }

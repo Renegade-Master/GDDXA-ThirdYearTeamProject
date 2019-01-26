@@ -281,12 +281,9 @@ void Engine::update(float dtAsSeconds) {
 			}
 		}
 
-		// Centre full screen around appropriate character
-		if (m_Character1)
-		{
-			m_MainView.setCenter(m_Player.getCenter());
-			m_MiniMap.setCenter(m_Player.getCenter());
-		}
+		// Centre full screen around character
+		m_MainView.setCenter(m_Player.getCenter());
+		m_MiniMap.setCenter(m_Player.getCenter());
 
 		// Time to update the HUD?
 		// Increment the number of frames since the last HUD calculation

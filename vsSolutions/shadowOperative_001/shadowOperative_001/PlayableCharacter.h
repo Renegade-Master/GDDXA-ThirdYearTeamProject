@@ -14,6 +14,7 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include "laser.h"
+#include "TextureHolder.h"
 
 class PlayableCharacter {
 public:
@@ -63,6 +64,9 @@ public:
 
 	//return Direction enum state
 	PlayableCharacter::Direction getDir();
+
+	virtual sf::String getClassName() = 0;
+
 protected:
 	// Sprite Animation Variables
 	int frameWidth;

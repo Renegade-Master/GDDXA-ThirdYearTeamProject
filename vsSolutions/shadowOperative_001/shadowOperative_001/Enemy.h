@@ -41,6 +41,8 @@ private:
 	bool conscious =  true;
 	bool EnemyContact = false;
 
+	sf::String getClassName();
+
 public:
 	void update(float elapsedTIme,int** m_ArrayLevel/*, sf::Vector2f playPos*/);
 	void spawn(sf::Vector2i startPosition, float gravity,sf::Time gameStart);

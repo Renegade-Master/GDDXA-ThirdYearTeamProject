@@ -371,3 +371,10 @@ void Enemy::regen(float elapsedTime) {
 		conscious = true;
 	}	
 }
+
+/**
+*
+*/
+sf::String Enemy::getClassName() {
+	return(sf::String("Enemy"));
+}
