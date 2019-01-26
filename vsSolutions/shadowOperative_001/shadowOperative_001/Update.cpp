@@ -35,17 +35,31 @@ void Engine::update(float dtAsSeconds) {
 			}
 		}
 	}
+	else if (m_GameState == GameState::LEVEL_SELECT) {
+		//	Handle Buttons
+		while (m_Window.pollEvent(m_event)) {
+			for (std::list<GUI::Button>::iterator it = m_levelSelectButtons.begin(); it != m_levelSelectButtons.end(); ++it) {
+				it->update(m_event, m_GameTimeTotal, m_Window);
+			}
+		}
+	}
+	else if (m_GameState == GameState::LOADING) {
+		// Put Loading Screen Update code here
+	}
+	else if (m_GameState == GameState::READYUP) {
+		// Put Paused Screen Update code here
+	}
 	else if (m_GameState == GameState::PLAYING) {
-		if (m_NewLevelRequired) {			
+		if (m_NewLevelRequired) {
 			// Load a Level
 			m_GameState = GameState::LOADING;
 			loadLevel();
 		}
 
 		//Update Switches		
-		for (std::list<ToggleSwitch*>::iterator switchIt = m_SwitchList.begin(); 
-				switchIt != m_SwitchList.end(); switchIt++) {
-			
+		for (std::list<ToggleSwitch*>::iterator switchIt = m_SwitchList.begin();
+			switchIt != m_SwitchList.end(); switchIt++) {
+
 			(*switchIt)->update(m_GameTimeTotal, m_ArrayLevel);
 			if (m_Player.getSprite().getGlobalBounds().intersects(
 				(*switchIt)->getSprite().getGlobalBounds())) {
@@ -55,18 +69,18 @@ void Engine::update(float dtAsSeconds) {
 			}
 		}
 		//update Items
-		
-		for (std::list<Item*>::iterator itemIter = m_ItemList.begin(); 
-				itemIter != m_ItemList.end();) {
-			
+
+		for (std::list<Item*>::iterator itemIter = m_ItemList.begin();
+			itemIter != m_ItemList.end();) {
+
 			//update Item
-			(*itemIter)->update(dtAsSeconds,m_ArrayLevel);
-			
+			(*itemIter)->update(dtAsSeconds, m_ArrayLevel);
+
 			//Pick up Item
 			if (m_Player.getSprite().getGlobalBounds().intersects(
 				(*itemIter)->getSprite().getGlobalBounds())) {
 				m_Player.chargeFromPickup((*itemIter)->getCapacity());
-				delete *itemIter;
+				delete* itemIter;
 				itemIter = m_ItemList.erase(itemIter++);
 				//(*itemIter)->~Item();
 			}
@@ -76,7 +90,7 @@ void Engine::update(float dtAsSeconds) {
 		}
 		// Update Player
 		m_Player.update(dtAsSeconds, m_ArrayLevel);
-		
+
 		if (m_Player.isTargeting())
 		{
 			//std::cout << "\nUpdating targeting";
@@ -92,22 +106,22 @@ void Engine::update(float dtAsSeconds) {
 			if (m_Player.isShooting())
 			{
 				//Choose bullet spawn dependant on current Animation
-				if (m_Player.getDir() == PlayableCharacter::Direction::IDLE){
+				if (m_Player.getDir() == PlayableCharacter::Direction::IDLE) {
 					bullets[currentBullet].shoot(
 						m_Player.getCenter().x - 10, m_Player.getCenter().y - 25,
 						mouseWorldPosition.x, mouseWorldPosition.y);
 				}
-				else if (m_Player.getDir() == PlayableCharacter::Direction::RIGHT){
+				else if (m_Player.getDir() == PlayableCharacter::Direction::RIGHT) {
 					bullets[currentBullet].shoot(
 						m_Player.getCenter().x - 10, m_Player.getCenter().y - 25,
 						mouseWorldPosition.x, mouseWorldPosition.y);
 				}
-				else if (m_Player.getDir() == PlayableCharacter::Direction::LEFT){
+				else if (m_Player.getDir() == PlayableCharacter::Direction::LEFT) {
 					bullets[currentBullet].shoot(
 						m_Player.getCenter().x - 40, m_Player.getCenter().y - 25,
 						mouseWorldPosition.x, mouseWorldPosition.y);
 				}
-				else{
+				else {
 					bullets[currentBullet].shoot(
 						m_Player.getCenter().x - 10, m_Player.getCenter().y - 25,
 						mouseWorldPosition.x, mouseWorldPosition.y);
@@ -123,7 +137,7 @@ void Engine::update(float dtAsSeconds) {
 			}
 		}
 		m_Hud.setGunCharge(m_Player.getChargeLevel());
-		for (int i = 0;i < 5;i++)
+		for (int i = 0; i < 5; i++)
 		{
 			if (bullets[i].isInFlight())
 			{
@@ -131,29 +145,29 @@ void Engine::update(float dtAsSeconds) {
 				bullets[i].update(dtAsSeconds);
 				int bulletX = ((int)bullets[i].getCenter().x / TILE_SIZE);
 				int bulletY = ((int)bullets[i].getCenter().y / TILE_SIZE);
-				if (bulletX < 0){
+				if (bulletX < 0) {
 					bulletX = 0;
 				}
-				if (bulletX > m_LM.getLevelSize().x){
+				if (bulletX > m_LM.getLevelSize().x) {
 					bulletX = m_LM.getLevelSize().x;
 				}
-				if (bulletY < 0){
+				if (bulletY < 0) {
 					bulletY = 0;
 				}
-				if (bulletY > m_LM.getLevelSize().y){
+				if (bulletY > m_LM.getLevelSize().y) {
 					bulletY = m_LM.getLevelSize().y;
 				}
 				/*std::cout << "\nbulletX:" << bulletX;
 				std::cout << "\nbulletY:" << bulletY;*/
 				if ((m_ArrayLevel[bulletY][bulletX] == 1) || (m_ArrayLevel[bulletY][bulletX] == 2) ||
-					(m_ArrayLevel[bulletY][bulletX] == 3) || (m_ArrayLevel[bulletY][bulletX] == 5)){
+					(m_ArrayLevel[bulletY][bulletX] == 3) || (m_ArrayLevel[bulletY][bulletX] == 5)) {
 					//std::cout << "\nBullet hit wall";
 					bullets[i].stop();
 				}
 			}
 		}
 
-		
+
 		//update Enemy
 		for (std::list<Enemy*>::iterator it = m_EnemyList.begin(); it != m_EnemyList.end(); it++)
 		{
@@ -199,9 +213,9 @@ void Engine::update(float dtAsSeconds) {
 					(*it)->reduceAwareness(m_GameTimeTotal);
 				}
 			}
-			
-			for (std::list<Enemy*>::iterator checkDeathIter = m_EnemyList.begin(); 
-					checkDeathIter != m_EnemyList.end(); checkDeathIter++)
+
+			for (std::list<Enemy*>::iterator checkDeathIter = m_EnemyList.begin();
+				checkDeathIter != m_EnemyList.end(); checkDeathIter++)
 			{
 				if ((*it)->getCone().getLocalBounds().intersects((*checkDeathIter)->getPosition()))
 				{
@@ -292,15 +306,8 @@ void Engine::update(float dtAsSeconds) {
 			sf::Mouse::getPosition(), m_MainView);
 	}
 	else if (m_GameState == GameState::PAUSED) {
-		// Put Paused Screen Update code here
-	}
-	else if (m_GameState == GameState::LEVEL_SELECT) {
-		//	Handle Buttons
-		while (m_Window.pollEvent(m_event)) {
-			for (std::list<GUI::Button>::iterator it = m_levelSelectButtons.begin(); it != m_levelSelectButtons.end(); ++it) {
-				it->update(m_event, m_GameTimeTotal, m_Window);
-			}
-		}
+		// Put Loading Screen Update code here
+
 	}
 	else if (m_GameState == GameState::SETTINGS) {
 		// Put Settings Screen Update code here
@@ -334,13 +341,13 @@ void Engine::update(float dtAsSeconds) {
 					it->update(m_event, m_GameTimeTotal, m_Window);
 				}
 			}
-		}
-		
-	}
-	else if (m_GameState == GameState::LOADING) {
-		// Put Loading Screen Update code here
+		}	
 	}
 }
+
+/**
+*
+*/
 void Engine::doorUpdate(float dtAsSeconds, ToggleSwitch *Switch) {
 	//update Doors
 	//std::cout << "\nDoor update";	
@@ -363,6 +370,10 @@ void Engine::doorUpdate(float dtAsSeconds, ToggleSwitch *Switch) {
 	shortest->update(dtAsSeconds, m_ArrayLevel);
 	//std::cout << "\nupdating Shortest";
 }
+
+/**
+*
+*/
 double Engine::calcDistance(sf::Vector2f posOne, sf::Vector2f posTwo)  {
 	double distance;
 	double distancex = ((posOne.x - posTwo.x) * (posOne.x - posTwo.x));

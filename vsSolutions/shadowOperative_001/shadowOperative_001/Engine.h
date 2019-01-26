@@ -52,7 +52,7 @@ private:
 	//TutorialManager tm;
 
 	// Game States
-	enum class GameState { MAIN_MENU, PLAYING, PAUSED, LEVEL_SELECT, SETTINGS, LOADING };
+	enum class GameState { MAIN_MENU, LEVEL_SELECT, LOADING, READYUP, PLAYING, PAUSED, SETTINGS };
 	GameState m_GameState = GameState::MAIN_MENU;
 
 	// Main Menu Pages

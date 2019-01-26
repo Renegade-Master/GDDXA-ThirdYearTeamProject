@@ -41,12 +41,48 @@ void Engine::input() {
 			}
 		}
 	}
-	else if (m_GameState == GameState::PLAYING) {
-		m_Window.setMouseCursorVisible(false);
-		// Handle input specific to Player
-		m_Player.handleInput();
+	else if (m_GameState == GameState::LEVEL_SELECT) {
+		m_Window.setMouseCursorVisible(true);
+
+		// Handle Level Select Buttons
+		int i = 0;
+		for (std::list<GUI::Button>::iterator it = m_levelSelectButtons.begin(); it != m_levelSelectButtons.end(); ++it) {
+			switch (i++) {
+			case 0: // Level 1
+				if (it->getState() == GUI::ButtonState::clicked) {
+					m_SM.playButtonClick();
+					m_LM.m_CurrentLevel = 1;
+					m_GameState = GameState::READYUP;
+				}
+				break;
+			case 1: // Level 2
+				if (it->getState() == GUI::ButtonState::clicked) {
+					m_SM.playButtonClick();
+					m_LM.m_CurrentLevel = 2;
+					m_GameState = GameState::READYUP;
+				}
+				break;
+			case 2: // Level 3
+				if (it->getState() == GUI::ButtonState::clicked) {
+					m_SM.playButtonClick();
+					m_LM.m_CurrentLevel = 3;
+					m_GameState = GameState::READYUP;
+				}
+				break;
+			case 3: // Quit
+				if (it->getState() == GUI::ButtonState::clicked) {
+					m_SM.playButtonClick();
+					m_GameState = GameState::MAIN_MENU;
+				}
+				break;
+			}
+		}
 	}
-	else if (m_GameState == GameState::PAUSED) {
+	else if (m_GameState == GameState::LOADING) {
+		m_Window.setMouseCursorVisible(false);
+		// Put Loading Screen Input code here
+	}
+	else if (m_GameState == GameState::READYUP) {
 		m_Window.setMouseCursorVisible(true);
 		while (m_Window.pollEvent(m_event)) {
 			// Maybe replace with nested Switch statement?
@@ -66,42 +102,14 @@ void Engine::input() {
 			}
 		}
 	}
-	else if (m_GameState == GameState::LEVEL_SELECT) {
-		m_Window.setMouseCursorVisible(true);
+	else if (m_GameState == GameState::PLAYING) {
+		m_Window.setMouseCursorVisible(false);
+		// Handle input specific to Player
+		m_Player.handleInput();
+	}
+	else if (m_GameState == GameState::PAUSED) {
+		m_Window.setMouseCursorVisible(false);
 
-		// Handle Level Select Buttons
-		int i = 0;
-		for (std::list<GUI::Button>::iterator it = m_levelSelectButtons.begin(); it != m_levelSelectButtons.end(); ++it) {
-			switch (i++) {
-			case 0: // Level 1
-				if (it->getState() == GUI::ButtonState::clicked) {
-					m_SM.playButtonClick();
-					m_LM.m_CurrentLevel = 1;
-					m_GameState = GameState::PAUSED;
-				}
-				break;
-			case 1: // Level 2
-				if (it->getState() == GUI::ButtonState::clicked) {
-					m_SM.playButtonClick();
-					m_LM.m_CurrentLevel = 2;
-					m_GameState = GameState::PAUSED;
-				}
-				break;
-			case 2: // Level 3
-				if (it->getState() == GUI::ButtonState::clicked) {
-					m_SM.playButtonClick();
-					m_LM.m_CurrentLevel = 3;
-					m_GameState = GameState::PAUSED;
-				}
-				break;
-			case 3: // Quit
-				if (it->getState() == GUI::ButtonState::clicked) {
-					m_SM.playButtonClick();
-					m_GameState = GameState::MAIN_MENU;
-				}
-				break;
-			}
-		}
 	}
 	else if (m_GameState == GameState::SETTINGS) {
 		m_Window.setMouseCursorVisible(true);
@@ -223,9 +231,5 @@ void Engine::input() {
 				}
 			}
 		}
-	}
-	else if (m_GameState == GameState::LOADING) {
-		m_Window.setMouseCursorVisible(false);
-		// Put Loading Screen Input code here
 	}
 }
