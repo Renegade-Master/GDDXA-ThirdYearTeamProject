@@ -21,7 +21,8 @@ void Engine::input() {
 			case 0: // Enter Game
 				if (it->getState() == GUI::ButtonState::clicked) {
 					m_SM.playButtonClick();
-					m_GameState = GameState::PAUSED;
+					//m_GameState = GameState::PAUSED;
+					m_GameState = GameState::LEVEL_SELECT;
 				}
 				break;
 			case 1: // Settings
@@ -59,26 +60,40 @@ void Engine::input() {
 
 				// Handle the player starting the game
 				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return)) {
-					//m_Playing = true;
 					m_GameState = GameState::PLAYING;
 					m_Hud.setGunChargeBackground(m_Player.getMaxCharge() + 2.0);
 				}
 			}
-			//  GamePad Controls
-			else if (m_event.type == sf::Event::JoystickButtonPressed) {
-				m_usingController = true;
-				// Handle the player quitting
-				if (sf::Joystick::isButtonPressed(0, 7)) {
-					//std::cout << "Button 0 is Pressed";
-					m_Window.close();
-				}
+		}
+	}
+	else if (m_GameState == GameState::LEVEL_SELECT) {
+		m_Window.setMouseCursorVisible(true);
 
-				// Handle the player starting the game
-				if (sf::Joystick::isButtonPressed(0, 0)) {
-					//std::cout << "Button 7 is Pressed";
-					//m_Playing = true;
-					m_GameState = GameState::PLAYING;
+		// Handle Level Select Buttons
+		int i = 0;
+		for (std::list<GUI::Button>::iterator it = m_levelSelectButtons.begin(); it != m_levelSelectButtons.end(); ++it) {
+			switch (i++) {
+			case 0: // Level 1
+				if (it->getState() == GUI::ButtonState::clicked) {
+					m_SM.playButtonClick();
 				}
+				break;
+			case 1: // Level 2
+				if (it->getState() == GUI::ButtonState::clicked) {
+					m_SM.playButtonClick();
+				}
+				break;
+			case 2: // Level 3
+				if (it->getState() == GUI::ButtonState::clicked) {
+					m_SM.playButtonClick();
+				}
+				break;
+			case 3: // Quit
+				if (it->getState() == GUI::ButtonState::clicked) {
+					m_SM.playButtonClick();
+					m_GameState = GameState::MAIN_MENU;
+				}
+				break;
 			}
 		}
 	}

@@ -38,6 +38,28 @@ void Engine::initButtons() {
 		sf::Vector2f(resolution.x * 0.5f, resolution.y * 0.95f),
 		GUI::ButtonStyle::cancel));
 
+	// Make the Level Select Buttons
+	m_levelSelectButtons.push_back(GUI::Button(
+		"Level 1",
+		m_buttonFont,
+		sf::Vector2f(resolution.x* 0.2f, resolution.y* 0.2f),
+		GUI::ButtonStyle::save));
+	m_levelSelectButtons.push_back(GUI::Button(
+		"Level 2",
+		m_buttonFont,
+		sf::Vector2f(resolution.x* 0.2f, resolution.y* 0.4f),
+		GUI::ButtonStyle::save));
+	m_levelSelectButtons.push_back(GUI::Button(
+		"Level 3",
+		m_buttonFont,
+		sf::Vector2f(resolution.x* 0.2f, resolution.y* 0.6f),
+		GUI::ButtonStyle::save));
+	m_levelSelectButtons.push_back(GUI::Button(
+		"Back",
+		m_buttonFont,
+		sf::Vector2f(resolution.x* 0.5f, resolution.y* 0.95f),
+		GUI::ButtonStyle::cancel));
+
 	//	Make the Settings Buttons
 	//		All Settings
 	m_settingsButtons.push_back(GUI::Button(
