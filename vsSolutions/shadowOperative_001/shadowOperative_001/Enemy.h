@@ -42,7 +42,7 @@ private:
 	bool EnemyContact = false;
 
 public:
-	void update(float elapsedTIme,int** m_ArrayLevel);
+	void update(float elapsedTIme,int** m_ArrayLevel/*, sf::Vector2f playPos*/);
 	void spawn(sf::Vector2i startPosition, float gravity,sf::Time gameStart);
 	void alterPatrol(bool patrol);
 	sf::FloatRect getPosition();

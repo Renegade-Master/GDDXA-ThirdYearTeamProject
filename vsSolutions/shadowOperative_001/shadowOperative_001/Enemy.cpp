@@ -40,7 +40,7 @@ void Enemy::spawn(sf::Vector2i startPosition, float gravity, sf::Time gameStart)
 /**
 *
 */
-void Enemy::update(float elapsedTime, int** m_ArrayLevel) {
+void Enemy::update(float elapsedTime, int** m_ArrayLevel/*, sf::Vector2f playPos*/) {
 	if (conscious) {
 		// Make a rect for all his parts
 		patrolValid = false;
@@ -114,12 +114,19 @@ void Enemy::update(float elapsedTime, int** m_ArrayLevel) {
 	}
 	else
 	{
+		//if (m_SpriteCrate.getPosition() == playPos)
+		{
+			bool EnemyContact = true;
+			std::cout << "\The player is touchine the enemy";
+		}
+
+
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::E))
 		{
-			//if (detectPlayer(sf::Vector2f playPos) == true)
-			//{
+			if (EnemyContact == true)
+			{
 				EnemyCrate();
-			//}
+			}
 		}
 	}
 
@@ -199,9 +206,17 @@ sf::FloatRect Enemy::getPosition() {
 /**
 *
 */
+/*
 bool Enemy::detectPlayer(sf::Vector2f playPos) {
-	return false;
-}
+
+	if (m_Sprite.getPosition() == playPos)
+	{
+		bool EnemyContact = true;
+		std::cout << "\The player is touchine the enemy";
+	}
+	std::cout << "\The player is touchine the enemy";
+	return EnemyContact;
+}*/
 
 void Enemy::EnemyCrate()
 {
@@ -211,15 +226,15 @@ void Enemy::EnemyCrate()
 	std::cout << "\nCROUCHING";
 }
 
-bool Enemy::enemyPosition()
+/*bool Enemy::enemyPosition()
 {
-	//if ()
-	//{
+	if (this->m_Position == detectPlayer())
+	{
 
-	//}
+	}
 	bool EnemyContact = true;
 	return EnemyContact;
-}
+}*/
 
 
 /**
