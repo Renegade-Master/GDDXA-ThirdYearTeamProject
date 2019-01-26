@@ -34,16 +34,18 @@ private:
 	std::list<sf::Vector2i> m_SwitchPosition;
 	float m_TimeModifier = 1;
 	float m_BaseTimeLimit = 0;
-	int m_CurrentLevel = 0;
 	const int NUM_LEVELS = 2;
 
 
 public:
-
 	LevelManager();
+	//~LevelManager();
+
 	const int TILE_SIZE = 50;
 	const int VERTS_IN_QUAD = 4;
 	float getTimeLimit();
+
+	int m_CurrentLevel = 1;
 
 	sf::Vector2i getStartPosition();
 	sf::Vector2i getEnemyPosition();

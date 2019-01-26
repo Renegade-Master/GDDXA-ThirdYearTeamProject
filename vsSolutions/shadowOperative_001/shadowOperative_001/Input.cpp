@@ -76,16 +76,22 @@ void Engine::input() {
 			case 0: // Level 1
 				if (it->getState() == GUI::ButtonState::clicked) {
 					m_SM.playButtonClick();
+					m_LM.m_CurrentLevel = 1;
+					m_GameState = GameState::PAUSED;
 				}
 				break;
 			case 1: // Level 2
 				if (it->getState() == GUI::ButtonState::clicked) {
 					m_SM.playButtonClick();
+					m_LM.m_CurrentLevel = 2;
+					m_GameState = GameState::PAUSED;
 				}
 				break;
 			case 2: // Level 3
 				if (it->getState() == GUI::ButtonState::clicked) {
 					m_SM.playButtonClick();
+					m_LM.m_CurrentLevel = 3;
+					m_GameState = GameState::PAUSED;
 				}
 				break;
 			case 3: // Quit
