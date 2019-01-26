@@ -60,6 +60,9 @@ float Camera::getRotation() {
 }
 void Camera::update(float elapsedTime, int** m_ArrayLevel) {
 	if (concious) {
+
+		detectMeter.setSize(sf::Vector2f(10, this->getAwareness()));
+		detectMeter.setPosition(this->getCenter().x - 5, this->getCenter().y - 30);
 		if (forward) {
 			rotation += 0.5f;
 			m_Sprite.setRotation(rotation);

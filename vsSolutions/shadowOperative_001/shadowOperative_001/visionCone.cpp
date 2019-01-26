@@ -64,6 +64,7 @@ void visionCone::updateCamConePos(sf::Vector2f charPos, int charSightRange,
 
 	//Calculate exact origin using camera direction
 	//Calculate the bounds of the visionCone
+	
 	calculatedOrigin = charPos;
 	if (direction == 'v') {
 		calculatedOrigin.x += 30;

@@ -73,16 +73,6 @@ void Engine::update(float dtAsSeconds) {
 			}
 		}
 
-		//update Cameras
-		int i = 0;
-		std::list<Camera*>::iterator cameraIt = m_CameraList.begin();
-		for (;cameraIt != m_CameraList.end();cameraIt++) {
-			std::cout << "\nUpdating Camera " << i++;
-			(*cameraIt)->update(dtAsSeconds,m_ArrayLevel);
-			if (cameraIt == m_CameraList.end()) {
-				i = 0;
-			}
-		}
 		// Update Player
 		m_Player.update(dtAsSeconds, m_ArrayLevel);
 		
@@ -91,6 +81,7 @@ void Engine::update(float dtAsSeconds) {
 			//std::cout << "\nUpdating targeting";
 			m_Player.updateTargeting(mouseWorldPosition);
 		}
+
 		//Handle-Update bullets
 		//std::cout << "\nGun Charge:" << m_Player.getChargeLevel();
 		if ((m_GameTimeTotal.asMilliseconds()
@@ -162,7 +153,6 @@ void Engine::update(float dtAsSeconds) {
 			}
 		}
 
-		
 		//update Enemy
 		for (std::list<Enemy*>::iterator it = m_EnemyList.begin(); it != m_EnemyList.end(); it++)
 		{
@@ -190,7 +180,8 @@ void Engine::update(float dtAsSeconds) {
 				if (m_GameTimeTotal.asMilliseconds()
 					- (*it)->getlastdetectTime() > 500)
 				{
-					(*it)->increaseAwarenessLevel(m_Player.getCenter(), m_Player.getDetectLevel(),m_GameTimeTotal);
+					(*it)->increaseAwarenessLevel(m_Player.getCenter(),
+						m_Player.getDetectLevel(),m_GameTimeTotal);
 					if ((*it)->getAwareness() <= 100.0)
 					{
 						std::cout << "\nDetected";
@@ -222,6 +213,47 @@ void Engine::update(float dtAsSeconds) {
 				}
 			}
 		}
+
+		//update Cameras
+		for (std::list<Camera*>::iterator cameraIt = m_CameraList.begin();
+			cameraIt != m_CameraList.end();cameraIt++) {
+			(*cameraIt)->update(dtAsSeconds, m_ArrayLevel);
+			//check for player
+			if ((*cameraIt)->getCone().getGlobalBounds().
+				intersects(m_Player.getPosition())) {
+				if (m_GameTimeTotal.asMilliseconds() - (*cameraIt)->getlastdetectTime() > 500) {
+
+					(*cameraIt)->increaseAwarenessLevel(m_Player.getCenter(),
+					m_Player.getDetectLevel(), m_GameTimeTotal);
+
+					if ((*cameraIt)->getAwareness() <= 100) {
+						std::cout << "\nDetetced";
+					}
+					std::cout << "\n" << (*cameraIt)->getAwareness();
+				}
+			}
+			//Decrease awareness Level
+			else if ((*cameraIt)->getAwareness() >= 0) {
+				if (m_GameTimeTotal.asMilliseconds()
+					- (*cameraIt)->getlastdetectTime() > 500) {
+					(*cameraIt)->reduceAwareness(m_GameTimeTotal);
+				}
+			}
+			//check for Dead Ally
+			for (std::list<Enemy*>::iterator checkDeathOnCamIter = m_EnemyList.begin();
+				checkDeathOnCamIter != m_EnemyList.end();checkDeathOnCamIter++) {
+
+				if((*checkDeathOnCamIter)->getCone().getLocalBounds().
+					intersects((*checkDeathOnCamIter)->getPosition())) {
+
+					if (!(*checkDeathOnCamIter)->isConcious()) {
+						(*checkDeathOnCamIter)->increaseAwarenessLevel(
+						(*checkDeathOnCamIter)->getCenter(), 1, m_GameTimeTotal);
+					}
+				}
+			}
+		}
+
 		// Detect collisions and see if characters have reached the goal tile
 		// The second part of the if condition is only executed
 		// when thomas is touching the home tile
