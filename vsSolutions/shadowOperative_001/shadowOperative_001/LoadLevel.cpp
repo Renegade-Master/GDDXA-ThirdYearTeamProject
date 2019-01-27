@@ -51,4 +51,18 @@ void Engine::loadLevel() {
 		std::cout << "Loading...DONE!" << std::endl;
 		m_GameState = GameState::READYUP;
 	}
+	//Spawn Doors
+	if (m_LM.getNumOfDoors() >= 1) {
+		doorSpawn();
+	}
+	if (m_LM.getNumSwitches() >= 1) {
+		spawnSwitches();
+	}
+	if (m_LM.getNumCams() >= 1) {
+		spawnCamera();
+	}
+
+	// Make sure this code isn't run again
+	m_NewLevelRequired = false;
+	m_GameState = GameState::PLAYING;
 }

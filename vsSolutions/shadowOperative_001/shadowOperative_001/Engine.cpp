@@ -137,6 +137,22 @@ void Engine::spawnSwitches() {
 	}
 }
 
+void Engine::spawnCamera() {
+	int numCams = m_LM.getNumCams();
+	for (int i = 0;i < numCams;i++) {
+		Camera* camera = new Camera();
+		camera->spawn(m_LM.getCamPos(), GRAVITY, m_GameTimeTotal, m_LM.getCamDir());
+		m_CameraList.push_back(camera);
+	}
+}
+/**
+*	Is the Player using a controller?
+*//*
+bool Engine::getControls() {
+	return(m_usingController);
+}
+*/
+
 /**
 *	Recreate the Window with new values
 */

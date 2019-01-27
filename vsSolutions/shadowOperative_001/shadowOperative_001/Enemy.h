@@ -14,6 +14,8 @@
 #include "TextureHolder.h"
 #include "visionCone.h"
 
+
+
 class Enemy : public PlayableCharacter {
 private:
 	sf::Vector2i m_SpawnPosition;
@@ -24,8 +26,14 @@ private:
 	patrolDir move = patrolLeft;
 	friend patrolDir& operator++(patrolDir& mv, int incr);
 	int sincePatrolAlter = 0;
-	int sightAngle = 60;
-	int detectionDistance = 300;
+	
+protected:
+	//Enemy Health
+	float health = 100.0f;
+	const float regenRate = 0.5f;
+	const float maxHealth = 100.0f;
+	bool concious = true;
+
 	visionCone cone;
 	float awarenessOfPlayer = 0.0f;
 
