@@ -27,12 +27,16 @@ private:
 	friend patrolDir& operator++(patrolDir& mv, int incr);
 	int sincePatrolAlter = 0;
 	
+	
 protected:
 	//Enemy Health
 	float health = 100.0f;
 	const float regenRate = 0.5f;
 	const float maxHealth = 100.0f;
 	bool concious = true;
+	//Enemy Sight
+	int sightAngle = 60;
+	int detectionDistance = 300;
 
 	visionCone cone;
 	float awarenessOfPlayer = 0.0f;

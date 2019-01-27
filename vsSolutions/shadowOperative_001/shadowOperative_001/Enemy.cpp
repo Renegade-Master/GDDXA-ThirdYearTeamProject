@@ -97,7 +97,7 @@ void Enemy::update(float elapsedTime, int** m_ArrayLevel/*, sf::Vector2f playPos
 		m_Sprite.setPosition(this->m_Position);
 		
 		if (move == patrolLeft) {
-			cone.updateConePos(this->m_Position, this->, this->sightAngle, true);
+			cone.updateConePos(this->m_Position, this->detectionDistance, this->sightAngle, true);
 		}
 		else {
 			cone.updateConePos(this->m_Position, this->detectionDistance, this->sightAngle, false);
