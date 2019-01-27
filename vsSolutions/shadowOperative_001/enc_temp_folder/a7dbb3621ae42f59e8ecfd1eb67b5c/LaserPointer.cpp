@@ -19,8 +19,7 @@ void LaserPointer::spawn(sf::Vector2i startPosition, float gravity, sf::Time gam
 		this->getCenter().y - this->getCenter().y + 1);
 
 
-	/*Orient the Object to the appropriate position
-		and calculate the bounds of the connected laser object*/
+	//Orient the Object to the appropriate position
 	if (dir == 'a') {//UP
 		this->m_Position.y += 75;
 		m_Sprite.setPosition(this->m_Position);
