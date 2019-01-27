@@ -143,6 +143,7 @@
     <ClCompile Include="HUD.cpp" />
     <ClCompile Include="InitButtons.cpp" />
     <ClCompile Include="Input.cpp" />
+    <ClCompile Include="InputHandler.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="laser.cpp" />
     <ClCompile Include="LevelManager.cpp" />
@@ -163,6 +164,7 @@
   <ItemGroup>
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="Button.h" />
+    <ClInclude Include="Command.h" />
     <ClInclude Include="Door.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="EnemyGenerator.h" />
@@ -170,6 +172,7 @@
     <ClInclude Include="FileManager.h" />
     <ClInclude Include="gunBattery.h" />
     <ClInclude Include="HUD.h" />
+    <ClInclude Include="InputHandler.h" />
     <ClInclude Include="Item.h" />
     <ClInclude Include="laser.h" />
     <ClInclude Include="LevelManager.h" />

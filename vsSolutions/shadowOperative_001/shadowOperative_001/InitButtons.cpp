@@ -147,7 +147,7 @@ void Engine::initButtons() {
 		GUI::ButtonStyle::none));
 	
 	m_gameplaySettingsButtons.push_back(GUI::Button(
-		"Force Disable Controller",
+		"Disable Controller",
 		m_buttonFont,
 		sf::Vector2f(resolution.x* 0.7f, resolution.y* 0.3f),
 		GUI::ButtonStyle::none));

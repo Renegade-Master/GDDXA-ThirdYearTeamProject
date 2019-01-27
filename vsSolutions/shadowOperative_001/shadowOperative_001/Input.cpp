@@ -91,7 +91,6 @@ void Engine::input() {
 			// Maybe replace with nested Switch statement?
 			//  Keyboard Controls
 			if (m_event.type == sf::Event::KeyPressed) {
-				m_usingController = false;
 				// Handle the player quitting
 				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
 					m_Window.close();
@@ -107,8 +106,15 @@ void Engine::input() {
 	}
 	else if (m_GameState == GameState::PLAYING) {
 		m_Window.setMouseCursorVisible(false);
-		// Handle input specific to Player
-		m_Player.handleInput();
+
+		//m_Player.handleInput();
+
+		//	Get User input
+		Command* cmd = m_InputHandler.handleInput();
+
+		if (cmd) {
+			cmd->execute(m_Player);
+		}
 	}
 	else if (m_GameState == GameState::PAUSED) {
 		m_Window.setMouseCursorVisible(false);
@@ -217,12 +223,14 @@ void Engine::input() {
 					if (it->getState() == GUI::ButtonState::clicked) {
 						m_SM.playButtonClick();
 						std::cout << "THE CONTROLLER IS INFERIOR" << std::endl;
+						m_InputHandler.m_isControllerN00b = true;
 					}
 					break;
-				case 1: // Force Disable Controller
+				case 1: // Disable Controller
 					if (it->getState() == GUI::ButtonState::clicked) {
 						m_SM.playButtonClick();
-						std::cout << "THE CONTROLLER IS INFERIOR" <<std::endl;
+						std::cout << "THE KEYBAORD IS SUPERIOR" <<std::endl;
+						m_InputHandler.m_isControllerN00b = false;
 					}
 					break;
 				case 2: // Back

@@ -22,6 +22,7 @@
 #include "EnemyGenerator.h"
 #include "gunBattery.h"
 #include "HUD.h"
+#include "InputHandler.h"
 #include "Item.h"
 #include "LevelManager.h"
 #include "ParticleSystem.h"
@@ -41,9 +42,6 @@ public:
 private:
 	// Get the screen resolution and create an SFML window and View
 	sf::Vector2f resolution;
-
-	//  Is the Player using a controller?
-	bool m_usingController = true;
 
 	// Handle events
 	sf::Event m_event;
@@ -90,6 +88,9 @@ private:
 
 	//switch list
 	std::list<ToggleSwitch*> m_SwitchList;
+
+	//	Input Handler
+	InputHandler m_InputHandler;
 
 	//Level Manager
 	LevelManager m_LM;
@@ -140,9 +141,6 @@ private:
 
 	// Declare a shader for the background
 	sf::Shader m_RippleShader;
-
-	// Is character 1 or 2 the current focus?
-	bool m_Character1 = true;
 
 	// How much time is left in the current level
 	float m_TimeRemaining;

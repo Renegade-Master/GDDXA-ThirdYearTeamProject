@@ -19,7 +19,7 @@ private:
 	sf::Vector2i m_SpawnPosition;
 	bool patrolValid = false;
 	// This is a pure virtual function
-	virtual void handleInput();
+	virtual void PlayableCharacter::handleInput();
 	enum patrolDir { patrolLeft, patrolRight };
 	patrolDir move = patrolLeft;
 	friend patrolDir& operator++(patrolDir& mv, int incr);
