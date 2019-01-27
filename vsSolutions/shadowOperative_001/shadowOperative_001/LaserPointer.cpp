@@ -17,7 +17,7 @@ LaserPointer::LaserPointer() {
 /*
 *	initialises the variables of the LaserPointer object
 */
-void LaserPointer::spawn(sf::Vector2i startPosition, float gravity, sf::Time gameStart, char dir) {
+void LaserPointer::spawn(sf::Vector2i startPosition, float gravity, sf::Time gameStart, char dir,int** m_ArrayLevel) {
 	this->m_Position = sf::Vector2f(startPosition);
 	this->m_Position.x = this->m_Position.x * 50;
 	this->m_Position.y = this->m_Position.y * 50;
@@ -28,6 +28,7 @@ void LaserPointer::spawn(sf::Vector2i startPosition, float gravity, sf::Time gam
 	lastToggleEvent = gameStart;
 	active = true;
 	maxLaserRange = laserRange;
+	laserRange = reCalculateMaxRange(dir,m_ArrayLevel);
 	/*Orient the Object to the appropriate position
 		and calculate the bounds of the connected laser object*/
 	if (dir == 'a') {//UP
@@ -70,6 +71,7 @@ void LaserPointer::spawn(sf::Vector2i startPosition, float gravity, sf::Time gam
 		this->laserDest.y = this->m_Position.y - 6;
 		securityLaser.updateLine(this->laserOrig, this->laserDest);
 	}
+	maxLaserRange = reCalculateMaxRange(dir, m_ArrayLevel);
 }
 /*
 *	Updates the LaserPointer object for current frame
@@ -80,7 +82,7 @@ void LaserPointer::update(sf::Time m_GameTimeTotal) {
 			lastToggleEvent.asMilliseconds() > 15000) {
 			laserRange = 0;
 			active = false;
-			std::cout << "\nLaser off!!";
+			//std::cout << "\nLaser off!!";
 			lastToggleEvent = m_GameTimeTotal;
 		}
 	}
@@ -89,7 +91,7 @@ void LaserPointer::update(sf::Time m_GameTimeTotal) {
 			lastToggleEvent.asMilliseconds() > 5000) {
 			laserRange = maxLaserRange;
 			active = true;
-			std::cout << "\nLaser on!!";
+			//std::cout << "\nLaser on!!";
 			lastToggleEvent = m_GameTimeTotal;
 		}
 	}
@@ -106,3 +108,53 @@ sf::ConvexShape LaserPointer::getLaser() {
 bool LaserPointer::isActive() {
 	return active;
 }
+/*
+*	Find if Laser goes through wall
+*/
+double LaserPointer::reCalculateMaxRange(char dir, int** m_ArrayLevel) {
+	int x = this->m_Position.x/50;
+	int y = this->m_Position.y / 50;
+	double calculatedrange = 75;
+	if (dir == 'a') {//UP
+		for (int i = 1;i < (laserRange / 50);++i) {
+			if (m_ArrayLevel[y-i][x] == 0) {
+				calculatedrange += 50;
+			}
+			else {
+				break;
+			}
+		}
+	}
+	else if (dir == 'n') {//DOWN
+		for (int i = 1;i < (laserRange / 50);++i) {
+			if (m_ArrayLevel[y+i][x] == 0) {
+				calculatedrange += 50;
+			}
+			else {
+				break;
+			}
+		}
+	}
+	else if (dir == 'm') {//LEFT
+		for (int i = 1;i < (laserRange / 50);++i) {
+			if (m_ArrayLevel[y][x - i] == 0) {
+				calculatedrange += 50;
+			}
+			else {
+				break;
+			}
+		}
+	}
+	else if (dir == 'f') {//RIGHT
+		for (int i = 1;i < (laserRange / 50);++i) {
+			if (m_ArrayLevel[y][x + i] == 0) {
+				calculatedrange += 50;
+			}
+			else {
+				break;
+			}
+		}
+	}
+	return calculatedrange;
+}
+

@@ -31,10 +31,11 @@ private:
 	sf::Time lastToggleEvent;
 public:
 	LaserPointer();
-	void spawn(sf::Vector2i startPosition, float gravity, sf::Time gameStart, char dir);
+	void spawn(sf::Vector2i startPosition, float gravity, sf::Time gameStart, char dir,int** m_ArrayLevel);
 	void update(sf::Time m_GameTimeTotal);
 	sf::ConvexShape getLaser();
 	bool isActive();
+	double reCalculateMaxRange(char dir,int** m_ArrayLevel);
 };
 #endif // !LASERPOINTER_H
 
