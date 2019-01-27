@@ -9,6 +9,9 @@
 #include "LevelManager.h"
 #include "Engine.h"
 
+/**
+*	Default Constructor
+*/
 LevelManager::LevelManager(){
 	//These keep the game from crashing if the levels have no Items,Doors or Switches
 	assert (m_ItemType.size() == 0);
@@ -20,6 +23,10 @@ LevelManager::LevelManager(){
 	assert(m_SwitchPosition.size() == 0);
 	m_SwitchPosition.clear();
 }
+
+/**
+*	...
+*/
 int** LevelManager::nextLevel(sf::VertexArray& rVaLevel) {
 	m_LevelSize.x = 0;
 	m_LevelSize.y = 0;
@@ -335,64 +342,113 @@ int** LevelManager::nextLevel(sf::VertexArray& rVaLevel) {
 			currentVertex = currentVertex + VERTS_IN_QUAD;
 		}
 	}
-
 	return arrayLevel;
 }
 
+/**
+*	...
+*/
 sf::Vector2i LevelManager::getLevelSize() {
 	return m_LevelSize;
 }
 
+/**
+*	...
+*/
 int LevelManager::getCurrentLevel() {
 	return m_CurrentLevel;
 }
 
+/**
+*	...
+*/
 float LevelManager::getTimeLimit() {
 	return m_BaseTimeLimit * m_TimeModifier;
 }
+
+/**
+*	...
+*/
 sf::Vector2i LevelManager::getStartPosition() {
 	return m_StartPosition;
 }
 
+/**
+*	...
+*/
 sf::Vector2i LevelManager::getEnemyPosition(){
 	sf::Vector2i temp = m_EnemyPosition.back();
 	m_EnemyPosition.pop_back();
 	return temp;
 }
+
+/**
+*	...
+*/
 int LevelManager::getNumOfEnemies(){
 	return m_EnemyPosition.size();
 }
 
+/**
+*	...
+*/
 int LevelManager::getNumOfItems() {
 	return m_ItemType.size();
 }
+
+/**
+*	...
+*/
 char LevelManager::getItemType(){
 	char temp = m_ItemType.back();
 	m_ItemType.pop_back();
 	return temp;
 }
+
+/**
+*	...
+*/
 sf::Vector2i LevelManager::getItemPos(){
 	sf::Vector2i itemTemp = m_ItemPosition.back();
 	m_ItemPosition.pop_back();
 	return itemTemp;
 }
 
+/**
+*	...
+*/
 int LevelManager::getNumOfDoors(){
 	return m_DoorPosition.size();
 }
+
+/**
+*	...
+*/
 sf::Vector2i LevelManager::getDoorPos() {
 	sf::Vector2i doorTemp = m_DoorPosition.back();
 	m_DoorPosition.pop_back();
 	return doorTemp;
 }
+
+/**
+*	...
+*/
 char LevelManager::getDoorType(){
 	char door = m_DoorType.back();
 	m_DoorType.pop_back();
 	return door;
 }
+
+/**
+*	...
+*/
 int LevelManager::getNumSwitches() {
 	return m_SwitchPosition.size();
 }
+
+/**
+*	...
+*/
 sf::Vector2i LevelManager::getSwitchPos() {
 	sf::Vector2i switchTemp = m_SwitchPosition.back();
 	m_SwitchPosition.pop_back();

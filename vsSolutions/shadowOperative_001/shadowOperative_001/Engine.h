@@ -156,7 +156,7 @@ private:
 
 	// The 2d array with the map for the level
 	// A pointer to a pointer
-	int** m_ArrayLevel = NULL;
+	int** m_ArrayLevel = nullptr;
 
 	// Texture for the background and the level tiles
 	sf::Texture m_TextureTiles;

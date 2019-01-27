@@ -21,7 +21,7 @@ void Enemy::spawn(sf::Vector2i startPosition, float gravity, sf::Time gameStart)
 	m_Sprite = sf::Sprite(TextureHolder::GetTexture(
 		"graphics/Bob.png"));
 	m_Sprite.setPosition(this->m_Position);
-	awarenessOfPlayer = 0.0;
+	awarenessOfPlayer = 0.0f;
 	lastDetectionEvent = gameStart;
 	detectMeter.setSize(sf::Vector2f(10, this->getAwareness()));
 	detectMeter.setFillColor(sf::Color::Red);

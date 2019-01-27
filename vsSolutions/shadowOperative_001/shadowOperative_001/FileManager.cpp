@@ -11,6 +11,6 @@
 /**
 *	Default Constructor
 */
-FileManager::FileManager() {
+FileManager::FileManager() noexcept{
 
 }

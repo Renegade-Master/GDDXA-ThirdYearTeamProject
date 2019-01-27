@@ -8,6 +8,9 @@
 
 #include "ParticleSystem.h"
 
+/**
+*	...
+*/
 void ParticleSystem::init(int numParticles) {
 	m_Vertices.setPrimitiveType(sf::Points);
 	m_Vertices.resize(numParticles);

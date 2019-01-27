@@ -96,7 +96,7 @@ void Engine::enemySpawn() {
 */
 void Engine::ItemSpawn() {
 	//std::cout << "\n start";
-	Item* newItem;
+	Item* newItem = nullptr;
 	int numOfItems = m_LM.getNumOfItems();
 	//std::cout<<"\nThis is how many Items we Have:" << m_LM.getNumOfItems();
 	for (int i = 0;i < numOfItems;i++){

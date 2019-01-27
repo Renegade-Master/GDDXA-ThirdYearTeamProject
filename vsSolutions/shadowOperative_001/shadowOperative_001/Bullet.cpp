@@ -34,7 +34,7 @@ void Bullet::shoot(float startX, float startY,
 	}
 
 	// Calculate the ratio between x and t
-	float ratioXY = m_BulletSpeed / (1 + gradient);
+	const float ratioXY = m_BulletSpeed / (1 + gradient);
 
 	// Set the "speed" horizontally and vertically
 	m_BulletDistance.y = ratioXY;
@@ -55,7 +55,7 @@ void Bullet::shoot(float startX, float startY,
 	m_Target.y = targetY;
 
 	// Set a max range of 1000 pixels
-	float range = 1000;
+	const float range = 1000;
 	m_Min.x = startX - range;
 	m_Max.x = startX + range;
 	m_Min.y = startY - range;
