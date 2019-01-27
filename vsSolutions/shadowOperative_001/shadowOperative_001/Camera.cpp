@@ -95,7 +95,7 @@ void Camera::update(float elapsedTime, int** m_ArrayLevel) {
 *	Camera takes Damage from bullet Collision
 */
 void Camera::takeDamage() {
-	if (this->isConcious()) {
+	if (this->isConscious()) {
 		concious = false;
 		this->health = 0;
 	}

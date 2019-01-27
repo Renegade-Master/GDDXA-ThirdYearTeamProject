@@ -200,19 +200,11 @@ private:
 	// A vector of Vector2f for the fire emiiter locations
 	std::vector <sf::Vector2f> m_FireEmitters;
 
-	//Bullets
-	Bullet bullets[5];
-	int currentBullet = 0;
-	sf::Time m_SinceLastShot;
 
 	// Where is the mouse in relation to world coordinates
 	sf::Vector2f mouseWorldPosition;
 	// Where is the mouse in relation to screen coordinates
 	sf::Vector2i mouseScreenPosition;
-
-	void doorUpdate(float dtAsSeconds, ToggleSwitch *Switch);
-
-	double calcDistance(sf::Vector2f posOne, sf::Vector2f posTwo);
 
 	// Button Lists
 	void initButtons();
@@ -237,11 +229,6 @@ private:
 	Bullet bullets[5];
 	int currentBullet = 0;
 	sf::Time m_SinceLastShot;
-
-	// Where is the mouse in relation to world coordinates
-	sf::Vector2f mouseWorldPosition;
-	// Where is the mouse in relation to screen coordinates
-	sf::Vector2i mouseScreenPosition;
 
 	//update door states
 	void doorUpdate(float dtAsSeconds, ToggleSwitch *Switch);

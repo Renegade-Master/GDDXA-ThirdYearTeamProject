@@ -281,7 +281,7 @@ void Engine::update(float dtAsSeconds) {
 				if((*checkDeathOnCamIter)->getCone().getLocalBounds().
 					intersects((*checkDeathOnCamIter)->getPosition())) {
 					//if Enemy is unconcious..... "CONCERN!!!!"
-					if (!(*checkDeathOnCamIter)->isConcious()) {
+					if (!(*checkDeathOnCamIter)->isConscious()) {
 						(*checkDeathOnCamIter)->increaseAwarenessLevel(
 						(*checkDeathOnCamIter)->getCenter(), 1, m_GameTimeTotal);
 					}

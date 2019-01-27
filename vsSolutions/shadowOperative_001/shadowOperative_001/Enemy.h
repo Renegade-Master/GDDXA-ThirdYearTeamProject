@@ -42,12 +42,6 @@ protected:
 	//detection meter
 	sf::RectangleShape detectMeter;
 
-	//Enemy Health
-	float health = 100.0f;
-	const float regenRate = 0.5f;
-	const float maxHealth = 100.0f;
-	bool conscious =  true;
-
 	sf::String getClassName();
 
 public:
@@ -55,7 +49,7 @@ public:
 	void spawn(sf::Vector2i startPosition, float gravity,sf::Time gameStart);
 	void alterPatrol(bool patrol);
 	sf::FloatRect getPosition();
-	bool detectPlayer(sf::Vector2f playPos);
+	//bool detectPlayer(sf::Vector2f playPos);
 	sf::ConvexShape getCone();
 	void increaseAwarenessLevel(sf::Vector2f playPos,int detectionLevel,sf::Time gameTimeTotal);
 	float getAwareness();

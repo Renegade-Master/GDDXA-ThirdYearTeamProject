@@ -32,7 +32,7 @@ void Enemy::spawn(sf::Vector2i startPosition, float gravity, sf::Time gameStart)
 *
 */
 void Enemy::update(float elapsedTime, int** m_ArrayLevel/*, sf::Vector2f playPos*/) {
-	if (conscious) {
+	if (concious) {
 		// Make a rect for all his parts
 		patrolValid = false;
 		sf::FloatRect detectionZone = getPosition();
@@ -97,7 +97,7 @@ void Enemy::update(float elapsedTime, int** m_ArrayLevel/*, sf::Vector2f playPos
 		m_Sprite.setPosition(this->m_Position);
 		
 		if (move == patrolLeft) {
-			cone.updateConePos(this->m_Position, this->detectionDistance, this->sightAngle, true);
+			cone.updateConePos(this->m_Position, this->, this->sightAngle, true);
 		}
 		else {
 			cone.updateConePos(this->m_Position, this->detectionDistance, this->sightAngle, false);
@@ -245,7 +245,7 @@ void Enemy::takeDamage(float shotPower) {
 		health = 0;
 	}
 	if (health <= 0) {
-		conscious = false;
+		concious = false;
 	}
 }
 
@@ -253,7 +253,7 @@ void Enemy::takeDamage(float shotPower) {
 *
 */
 bool Enemy::isConscious() {
-	return conscious;
+	return concious;
 }
 
 /**
