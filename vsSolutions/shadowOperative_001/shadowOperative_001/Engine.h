@@ -30,6 +30,10 @@
 #include "TextureHolder.h"
 #include "ToggleSwitch.h"
 #include "TutorialManager.h"
+#include "Bullet.h"
+#include "gunBattery.h"
+#include "ToggleSwitch.h"
+#include "Camera.h"
 
 class Engine {
 public:
@@ -90,6 +94,9 @@ private:
 
 	//switch list
 	std::list<ToggleSwitch*> m_SwitchList;
+
+	//camera List
+	std::list<Camera*> m_CameraList;
 
 	//Level Manager
 	LevelManager m_LM;
@@ -181,6 +188,8 @@ private:
 	//spawn Switches
 	void spawnSwitches();
 
+	//spawn camera
+	void spawnCamera();
 	// Run will call all the private functions
 	bool detectCollisions(PlayableCharacter& character);
 
@@ -191,19 +200,11 @@ private:
 	// A vector of Vector2f for the fire emiiter locations
 	std::vector <sf::Vector2f> m_FireEmitters;
 
-	//Bullets
-	Bullet bullets[5];
-	int currentBullet = 0;
-	sf::Time m_SinceLastShot;
 
 	// Where is the mouse in relation to world coordinates
 	sf::Vector2f mouseWorldPosition;
 	// Where is the mouse in relation to screen coordinates
 	sf::Vector2i mouseScreenPosition;
-
-	void doorUpdate(float dtAsSeconds, ToggleSwitch *Switch);
-
-	double calcDistance(sf::Vector2f posOne, sf::Vector2f posTwo);
 
 	// Button Lists
 	void initButtons();
@@ -223,5 +224,17 @@ private:
 	std::list<GUI::Button> m_audioSettingsButtons;
 	//		Gameplay Settings
 	std::list<GUI::Button> m_gameplaySettingsButtons;
+
+	//Bullets
+	Bullet bullets[5];
+	int currentBullet = 0;
+	sf::Time m_SinceLastShot;
+
+	//update door states
+	void doorUpdate(float dtAsSeconds, ToggleSwitch *Switch);
+	//calculate distance from enemy to player
+	double calcDistance(sf::Vector2f posOne, sf::Vector2f posTwo);
+
+	
 };
 #endif // !ENGINE_H

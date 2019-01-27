@@ -22,6 +22,9 @@ LevelManager::LevelManager(){
 	m_DoorPosition.clear();
 	assert(m_SwitchPosition.size() == 0);
 	m_SwitchPosition.clear();
+	assert(m_CameraPosition.size() == 0);
+	assert(m_CameraType.size() == 0);
+	m_CameraPosition.clear();
 }
 
 /**
@@ -173,16 +176,35 @@ int** LevelManager::nextLevel(sf::VertexArray& rVaLevel) {
 				arrayLevel[y][x] = 'r';
 				break;
 			case 'z':
-				arrayLevel[y][x] = 'z';
+				temp.x = x;
+				temp.y = y;
+				m_CameraPosition.push_back(temp);
+				m_CameraType.push_back('z');
+				arrayLevel[y][x] = '0';
 				break;
 			case 'n':
 				arrayLevel[y][x] = 'n';
 				break;
 			case 'x':
-				arrayLevel[y][x] = 'x';
+				temp.x = x;
+				temp.y = y;
+				m_CameraPosition.push_back(temp);
+				m_CameraType.push_back('x');
+				arrayLevel[y][x] = '0';
+				break;
+			case 'c':
+				temp.x = x;
+				temp.y = y;
+				m_CameraPosition.push_back(temp);
+				m_CameraType.push_back('c');
+				arrayLevel[y][x] = '0';
 				break;
 			case 'v':
-				arrayLevel[y][x] = 'v';
+				temp.x = x;
+				temp.y = y;
+				m_CameraPosition.push_back(temp);
+				m_CameraType.push_back('v');
+				arrayLevel[y][x] = '0';
 				break;
 			case 'm':
 				arrayLevel[y][x] = 'm';
@@ -453,4 +475,18 @@ sf::Vector2i LevelManager::getSwitchPos() {
 	sf::Vector2i switchTemp = m_SwitchPosition.back();
 	m_SwitchPosition.pop_back();
 	return switchTemp;
+}
+
+int LevelManager::getNumCams() {
+	return m_CameraPosition.size();
+}
+sf::Vector2i LevelManager::getCamPos() {
+	sf::Vector2i camTemp = m_CameraPosition.back();
+	m_CameraPosition.pop_back();
+	return camTemp;
+}
+char LevelManager::getCamDir() {
+	char cam = m_CameraType.back();
+	m_CameraType.pop_back();
+	return cam;
 }

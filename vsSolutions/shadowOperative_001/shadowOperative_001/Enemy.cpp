@@ -32,7 +32,7 @@ void Enemy::spawn(sf::Vector2i startPosition, float gravity, sf::Time gameStart)
 *
 */
 void Enemy::update(float elapsedTime, int** m_ArrayLevel/*, sf::Vector2f playPos*/) {
-	if (conscious) {
+	if (concious) {
 		// Make a rect for all his parts
 		patrolValid = false;
 		sf::FloatRect detectionZone = getPosition();
@@ -245,7 +245,7 @@ void Enemy::takeDamage(float shotPower) {
 		health = 0;
 	}
 	if (health <= 0) {
-		conscious = false;
+		concious = false;
 	}
 }
 
@@ -253,7 +253,7 @@ void Enemy::takeDamage(float shotPower) {
 *
 */
 bool Enemy::isConscious() {
-	return conscious;
+	return concious;
 }
 
 /**
@@ -279,7 +279,7 @@ void Enemy::regen(float elapsedTime) {
 			if ((health + (regenRate / 2)) * elapsedTime <= maxHealth) {
 				/*std::cout << "\nhealth:" << health << " + (regenRate / 2) " << (regenRate / 2)
 					<< " * elapsedTime: " << elapsedTime << " = " << (health + ((regenRate / 2) * elapsedTime));*/
-				health += (regenRate / 2) * elapsedTime;
+				health += ((regenRate / 2) * elapsedTime);
 			}
 			else {
 				//std::cout << "\nHealth at max";
@@ -288,9 +288,12 @@ void Enemy::regen(float elapsedTime) {
 		}
 		//std::cout << "\nRegen complete Health is now" << this->health;
 	}
-	if ((health == maxHealth) && (!conscious)) {
-		conscious = true;
-	}	
+	if ((health >= maxHealth) && (!concious))
+	{
+		std::cout << "\nConcious";
+		concious = true;
+	}
+	
 }
 
 /**

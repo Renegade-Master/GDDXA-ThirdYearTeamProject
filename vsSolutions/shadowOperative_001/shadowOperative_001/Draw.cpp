@@ -48,6 +48,9 @@ void Engine::draw() {
 
 	}
 	else if (m_GameState == GameState::PLAYING) {
+		/***---------------------***\
+		|  HANDLE DRAWING WINDOW	|
+		\***---------------------***/
 		// Update the shader parameters
 		m_RippleShader.setUniform("uTime", m_GameTimeTotal.asSeconds());
 
@@ -73,12 +76,18 @@ void Engine::draw() {
 			m_Window.draw((*SwitchIt)->getSprite());
 		}
 		//Draw the doors
-
 		for (std::list<Door*>::iterator doorIt = m_DoorList.begin();
-			doorIt != m_DoorList.end(); doorIt++) {
-
+			doorIt != m_DoorList.end();doorIt++) {
 			m_Window.draw((*doorIt)->getDoorSprite());
 		}
+
+		//Draw Camera
+		std::list<Camera*>::iterator cameraIt = m_CameraList.begin();
+		for (;cameraIt != m_CameraList.end();cameraIt++) {
+			m_Window.draw((*cameraIt)->getSprite());
+			m_Window.draw((*cameraIt)->getDetectMeter());
+		}
+		
 
 		// Draw Player
 		m_Window.draw(m_Player.getSprite());
@@ -119,7 +128,9 @@ void Engine::draw() {
 			m_Window.draw(m_PS);
 		}
 
-		// Draw the HUD
+		/***---------------------***\
+		|	  HANDLE DRAWING HUD	|
+		\***---------------------***/
 		// Switch to m_HudView
 		m_Window.setView(m_HudView);
 		m_Window.draw(m_Hud.getHidden());
@@ -127,18 +138,31 @@ void Engine::draw() {
 		m_Window.draw(m_Hud.getGunBackground());
 		m_Window.draw(m_Hud.getGunCharge());
 
-
+		/***---------------------***\
+		|  HANDLE DRAWING MINI_MAP	|
+		\***---------------------***/
 		m_Window.setView(m_BGMiniMap);
 		m_Window.draw(m_BackgroundSprite);
 		m_Window.setView(m_MiniMap);
 		m_Window.draw(m_VALevel, &m_TextureTiles);
 		m_Window.draw(m_Player.getSprite());
+		//Draw the doors
+		for (std::list<Door*>::iterator doorIt = m_DoorList.begin();
+			doorIt != m_DoorList.end();doorIt++) {
+			m_Window.draw((*doorIt)->getDoorSprite());
+		}
+
 		for (std::list<Enemy*>::iterator iter = m_EnemyList.begin();
 			iter != m_EnemyList.end(); iter++) {
 
 			m_Window.draw((*iter)->getSprite());
 			m_Window.draw((*iter)->getCone());
 			m_Window.draw((*iter)->getSpriteCrate());
+		}
+		std::list<Camera*>::iterator camIt = m_CameraList.begin();
+		for (;camIt != m_CameraList.end();camIt++) {
+			m_Window.draw((*camIt)->getSprite());
+			m_Window.draw((*camIt)->getCone());
 		}
 	}
 	else if (m_GameState == GameState::PAUSED) {
