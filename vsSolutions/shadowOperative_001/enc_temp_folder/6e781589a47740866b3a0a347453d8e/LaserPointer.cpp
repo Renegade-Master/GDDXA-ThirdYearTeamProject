@@ -18,7 +18,6 @@ void LaserPointer::spawn(sf::Vector2i startPosition, float gravity, sf::Time gam
 	this->m_Sprite.setOrigin(this->getCenter().x - this->getCenter().x + 50,
 		this->getCenter().y - this->getCenter().y + 1);
 
-	//Orient the Object to the appropriate position
 	if (dir == 'a') {
 		this->m_Position.y += 75;
 		m_Sprite.setPosition(this->m_Position);
