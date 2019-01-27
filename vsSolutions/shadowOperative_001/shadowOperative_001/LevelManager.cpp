@@ -183,7 +183,11 @@ int** LevelManager::nextLevel(sf::VertexArray& rVaLevel) {
 				arrayLevel[y][x] = '0';
 				break;
 			case 'n':
-				arrayLevel[y][x] = 'n';
+				temp.x = x;
+				temp.y = y;
+				m_LaserPointerPos.push_back(temp);
+				m_LaserDir.push_back('n');
+				arrayLevel[y][x] = '0';
 				break;
 			case 'x':
 				temp.x = x;
@@ -207,13 +211,25 @@ int** LevelManager::nextLevel(sf::VertexArray& rVaLevel) {
 				arrayLevel[y][x] = '0';
 				break;
 			case 'm':
-				arrayLevel[y][x] = 'm';
+				temp.x = x;
+				temp.y = y;
+				m_LaserPointerPos.push_back(temp);
+				m_LaserDir.push_back('m');
+				arrayLevel[y][x] = '0';
 				break;
 			case 'f':
-				arrayLevel[y][x] = 'f';
+				temp.x = x;
+				temp.y = y;
+				m_LaserPointerPos.push_back(temp);
+				m_LaserDir.push_back('f');
+				arrayLevel[y][x] = '0';
 				break;
 			case 'a':
-				arrayLevel[y][x] = 'a';
+				temp.x = x;
+				temp.y = y;
+				m_LaserPointerPos.push_back(temp);
+				m_LaserDir.push_back('a');
+				arrayLevel[y][x] = '0';
 				break;
 			case 'Q':
 				arrayLevel[y][x] = 'Q';

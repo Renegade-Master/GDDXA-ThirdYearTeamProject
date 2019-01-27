@@ -10,7 +10,7 @@ LaserPointer::LaserPointer(){
 /*
 *	initialises the variables of the LaserPointer object
 */
-void LaserPointer::Spawn(sf::Vector2i startPosition, float gravity, sf::Time gameStart, char dir) {
+void LaserPointer::spawn(sf::Vector2i startPosition, float gravity, sf::Time gameStart, char dir) {
 	this->m_Position = sf::Vector2f(startPosition);
 	this->m_Position.x = this->m_Position.x * 50;
 	this->m_Position.y = this->m_Position.y * 50;

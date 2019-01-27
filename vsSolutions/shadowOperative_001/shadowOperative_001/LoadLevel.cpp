@@ -41,8 +41,13 @@ void Engine::loadLevel() {
 		if (m_LM.getNumOfDoors() >= 1) {
 			doorSpawn();
 		}
+		//Spawn switches
 		if (m_LM.getNumSwitches() >= 1) {
 			spawnSwitches();
+		}
+		//Spawn LaserPointer
+		if(m_LM.getNumLaserPointers()>=1){
+			spawnLasers();
 		}
 
 		// Make sure this code isn't run again
