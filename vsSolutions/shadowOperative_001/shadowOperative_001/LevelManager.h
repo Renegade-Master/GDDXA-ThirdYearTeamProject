@@ -37,6 +37,10 @@ private:
 	std::list<sf::Vector2i> m_CameraPosition;
 	std::list<char> m_CameraType;
 
+	//LaserPointer
+	std::list<sf::Vector2i> m_LaserPointerPos;
+	std::list<char> m_LaserDir;
+
 	float m_TimeModifier = 1;
 	float m_BaseTimeLimit = 0;
 	const int NUM_LEVELS = 2;
@@ -76,5 +80,9 @@ public:
 	int getNumCams();
 	sf::Vector2i getCamPos();
 	char getCamDir();
+	//Laserpointer
+	int getNumLaserPointers();
+	sf::Vector2i getLaserPos();
+	char getLaserDir();
 };
 #endif // !LEVELMANAGER_H

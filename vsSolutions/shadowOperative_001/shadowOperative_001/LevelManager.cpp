@@ -183,7 +183,11 @@ int** LevelManager::nextLevel(sf::VertexArray& rVaLevel) {
 				arrayLevel[y][x] = '0';
 				break;
 			case 'n':
-				arrayLevel[y][x] = 'n';
+				temp.x = x;
+				temp.y = y;
+				m_LaserPointerPos.push_back(temp);
+				m_LaserDir.push_back('n');
+				arrayLevel[y][x] = '0';
 				break;
 			case 'x':
 				temp.x = x;
@@ -207,13 +211,25 @@ int** LevelManager::nextLevel(sf::VertexArray& rVaLevel) {
 				arrayLevel[y][x] = '0';
 				break;
 			case 'm':
-				arrayLevel[y][x] = 'm';
+				temp.x = x;
+				temp.y = y;
+				m_LaserPointerPos.push_back(temp);
+				m_LaserDir.push_back('m');
+				arrayLevel[y][x] = '0';
 				break;
 			case 'f':
-				arrayLevel[y][x] = 'f';
+				temp.x = x;
+				temp.y = y;
+				m_LaserPointerPos.push_back(temp);
+				m_LaserDir.push_back('f');
+				arrayLevel[y][x] = '0';
 				break;
 			case 'a':
-				arrayLevel[y][x] = 'a';
+				temp.x = x;
+				temp.y = y;
+				m_LaserPointerPos.push_back(temp);
+				m_LaserDir.push_back('a');
+				arrayLevel[y][x] = '0';
 				break;
 			case 'Q':
 				arrayLevel[y][x] = 'Q';
@@ -367,36 +383,34 @@ int** LevelManager::nextLevel(sf::VertexArray& rVaLevel) {
 	return arrayLevel;
 }
 
-/**
-*	...
+/*
+*	Get X*Y size of current Level
 */
 sf::Vector2i LevelManager::getLevelSize() {
 	return m_LevelSize;
 }
 
-/**
-*	...
+/*
+*	Get Current Level e.g Level 1,Level 2...
 */
 int LevelManager::getCurrentLevel() {
 	return m_CurrentLevel;
 }
-
-/**
-*	...
+/*
+*	Get Time Limit for Level
 */
 float LevelManager::getTimeLimit() {
 	return m_BaseTimeLimit * m_TimeModifier;
 }
-
-/**
-*	...
+/*
+*	Get Starting Position of Player character for this level
 */
 sf::Vector2i LevelManager::getStartPosition() {
 	return m_StartPosition;
 }
 
-/**
-*	...
+/*
+*	Get the spawn coordinates of Enemies by popping them off the back of the queue
 */
 sf::Vector2i LevelManager::getEnemyPosition(){
 	sf::Vector2i temp = m_EnemyPosition.back();
@@ -404,56 +418,51 @@ sf::Vector2i LevelManager::getEnemyPosition(){
 	return temp;
 }
 
-/**
-*	...
+/*
+*	Get size of List of Enemy coordinates
 */
 int LevelManager::getNumOfEnemies(){
 	return m_EnemyPosition.size();
 }
 
-/**
-*	...
+/*
+*	Get size of List of Items coordinates
 */
 int LevelManager::getNumOfItems() {
 	return m_ItemType.size();
 }
-
-/**
-*	...
+/*
+*	Get Item type by popping the identifier off the back of the queue
 */
 char LevelManager::getItemType(){
 	char temp = m_ItemType.back();
 	m_ItemType.pop_back();
 	return temp;
 }
-
-/**
-*	...
+/*
+*	Get the spawn coordinates of Items by popping them off the back of the queue
 */
 sf::Vector2i LevelManager::getItemPos(){
 	sf::Vector2i itemTemp = m_ItemPosition.back();
 	m_ItemPosition.pop_back();
 	return itemTemp;
 }
-
-/**
-*	...
+/*
+*	Get size of List of Doors coordinates
 */
 int LevelManager::getNumOfDoors(){
 	return m_DoorPosition.size();
 }
-
-/**
-*	...
+/*
+*	Get the spawn coordinates of Doors by popping them off the back of the queue
 */
 sf::Vector2i LevelManager::getDoorPos() {
 	sf::Vector2i doorTemp = m_DoorPosition.back();
 	m_DoorPosition.pop_back();
 	return doorTemp;
 }
-
-/**
-*	...
+/*
+*	Get Door type by popping the identifier off the back of the queue
 */
 char LevelManager::getDoorType(){
 	char door = m_DoorType.back();
@@ -462,31 +471,61 @@ char LevelManager::getDoorType(){
 }
 
 /**
-*	...
+*	Get size of List of Switches coordinates
 */
 int LevelManager::getNumSwitches() {
 	return m_SwitchPosition.size();
 }
-
-/**
-*	...
+/*
+*	Get the spawn coordinates of Switches by popping them off the back of the queue
 */
 sf::Vector2i LevelManager::getSwitchPos() {
 	sf::Vector2i switchTemp = m_SwitchPosition.back();
 	m_SwitchPosition.pop_back();
 	return switchTemp;
 }
-
+/**
+*	Get size of List of Cameras coordinates
+*/
 int LevelManager::getNumCams() {
 	return m_CameraPosition.size();
 }
+/*
+*	Get the spawn coordinates of Camera's by popping them off the back of the queue
+*/
 sf::Vector2i LevelManager::getCamPos() {
 	sf::Vector2i camTemp = m_CameraPosition.back();
 	m_CameraPosition.pop_back();
 	return camTemp;
 }
+/*
+*	Get Camera type by popping the identifier off the back of the queue
+*/
 char LevelManager::getCamDir() {
 	char cam = m_CameraType.back();
 	m_CameraType.pop_back();
 	return cam;
+}
+
+/**
+*	Get size of List of Laserpointer's coordinates
+*/
+int LevelManager::getNumLaserPointers() {
+	return m_LaserPointerPos.size();
+}
+/*
+*	Get the spawn coordinates of LaserPointer by popping them off the back of the queue
+*/
+sf::Vector2i LevelManager::getLaserPos() {
+	sf::Vector2i lasTemp = m_LaserPointerPos.back();
+	m_LaserPointerPos.pop_back();
+	return lasTemp;
+}
+/*
+*	Get Laserpointer direction by popping the identifier off the back of the queue
+*/
+char LevelManager::getLaserDir() {
+	char lasType = m_LaserDir.back();
+	m_LaserDir.pop_back();
+	return lasType;
 }
