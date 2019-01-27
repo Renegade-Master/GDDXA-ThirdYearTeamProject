@@ -28,7 +28,9 @@ public:
 */
 class cmd_RunLeft : public Command {
 public:
-	virtual void execute(PlayableCharacter& pc) { pc.m_Direction = PlayableCharacter::Direction::LEFT; }
+	virtual void execute(PlayableCharacter& pc) { 
+		pc.m_Direction = PlayableCharacter::Direction::LEFT; 
+	}
 };
 
 /**
@@ -36,7 +38,9 @@ public:
 */
 class cmd_RunRight : public Command {
 public:
-	virtual void execute(PlayableCharacter& pc) { pc.m_Direction = PlayableCharacter::Direction::RIGHT; }
+	virtual void execute(PlayableCharacter& pc) {
+		pc.m_Direction = PlayableCharacter::Direction::RIGHT; 
+	}
 };
 
 /**
@@ -44,7 +48,15 @@ public:
 */
 class cmd_Jump : public Command {
 public:
-	virtual void execute(PlayableCharacter& pc) { pc.m_Action = PlayableCharacter::Action::JUMPING; }
+	virtual void execute(PlayableCharacter& pc) { 
+		//pc.m_Action = PlayableCharacter::Action::JUMPING;
+		// Character hasn't jumped too many times
+		if (pc.m_jumpCounter < pc.maxJumps) {
+			pc.m_jumpDuration = 0.0f;
+			pc.m_Action = PlayableCharacter::Action::JUMPING;
+			pc.m_jumpCounter++;
+		}
+	}
 };
 
 /**
