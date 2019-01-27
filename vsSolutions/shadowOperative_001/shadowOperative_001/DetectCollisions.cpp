@@ -146,9 +146,9 @@ bool Engine::detectCollisions(PlayableCharacter& character) {
 				// Character has reached the goal
 				//reachedGoal = true;
 				//m_CurrentLevel = 1;
-				m_LM.m_CurrentLevel++;
+				//m_LM.m_CurrentLevel++;
 				//this->Engine::m_GameState = Engine::GameState::LEVEL_SELECT;
-				//m_GameState = GameState::LOADING;
+				m_GameState = GameState::LEVEL_SELECT;
 				//loadLevel();
 			}
 		}
