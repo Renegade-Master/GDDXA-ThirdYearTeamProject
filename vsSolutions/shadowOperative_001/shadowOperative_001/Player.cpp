@@ -222,19 +222,19 @@ void Player::handleInput() {
 	|	HANDLE ALL STANCE	|
 	\***-----------------***/
 
-	//  Moving Left
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
-		this->m_Direction = Direction::LEFT;
-	}
-	//  Moving Right
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
-		this->m_Direction = Direction::RIGHT;
-	}
-	// If nothing is pressed
-	else {
-		this->m_LastDirection = this->m_Direction;
-		this->m_Direction = Direction::IDLE;
-	}
+	////  Moving Left
+	//if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
+	//	this->m_Direction = Direction::LEFT;
+	//}
+	////  Moving Right
+	//else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
+	//	this->m_Direction = Direction::RIGHT;
+	//}
+	//// If nothing is pressed
+	//else {
+	//	this->m_LastDirection = this->m_Direction;
+	//	this->m_Direction = Direction::IDLE;
+	//}
 
 	/***---------------------***\
 	|	HANDLE FALLING STANCE	|

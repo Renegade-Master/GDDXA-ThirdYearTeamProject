@@ -11,24 +11,28 @@
 /**
 *	Convert User input into Game Commands
 */
-Command* InputHandler::handleInput() {
-	if (!m_isControllerN00b) {
+Command* InputHandler::handleInput(sf::Time t) {
+	m_sinceLastInput += t;
+	
+	if (m_sinceLastInput > m_inputBlocker) {
+		
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
 			return(key_A);
 		}
-		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
 			return(key_D);
 		}
-		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
 			return(key_SPACE);
 		}
-	}
-	else if (m_isControllerN00b) {
-		if (sf::Joystick::getAxisPosition(0,sf::Joystick::X) < -10.0f) {
+		if (sf::Joystick::getAxisPosition(0, sf::Joystick::X) < -10.0f) {
 			return(cont_LEFT_STICK_LEFT);
 		}
-		else if (sf::Joystick::getAxisPosition(0, sf::Joystick::X) > 10.0f) {
-
+		if (sf::Joystick::getAxisPosition(0, sf::Joystick::X) > 10.0f) {
+			return(cont_LEFT_STICK_RIGHT);
+		}
+		if (sf::Joystick::isButtonPressed(0, 0)) {
+			return(cont_CROSS);
 		}
 	}
 

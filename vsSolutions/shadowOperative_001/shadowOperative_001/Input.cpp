@@ -110,10 +110,13 @@ void Engine::input() {
 		//m_Player.handleInput();
 
 		//	Get User input
-		Command* cmd = m_InputHandler.handleInput();
+		Command* cmd = m_InputHandler.handleInput(dt);
 
 		if (cmd) {
 			cmd->execute(m_Player);
+
+			//	Delete the command once it is no longer useful
+			//cmd->~Command();
 		}
 	}
 	else if (m_GameState == GameState::PAUSED) {
@@ -223,14 +226,14 @@ void Engine::input() {
 					if (it->getState() == GUI::ButtonState::clicked) {
 						m_SM.playButtonClick();
 						std::cout << "THE CONTROLLER IS INFERIOR" << std::endl;
-						m_InputHandler.m_isControllerN00b = true;
+						//m_InputHandler.m_isControllerN00b = true;
 					}
 					break;
 				case 1: // Disable Controller
 					if (it->getState() == GUI::ButtonState::clicked) {
 						m_SM.playButtonClick();
 						std::cout << "THE KEYBAORD IS SUPERIOR" <<std::endl;
-						m_InputHandler.m_isControllerN00b = false;
+						//m_InputHandler.m_isControllerN00b = false;
 					}
 					break;
 				case 2: // Back

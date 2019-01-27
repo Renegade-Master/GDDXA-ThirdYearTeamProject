@@ -10,16 +10,16 @@
 #ifndef COMMAND_H
 #define COMMAND_H
 
-//#include "PlayableCharacter.h"
-#include "Player.h"
-#include "Enemy.h"
+#include "PlayableCharacter.h"
+//#include "Player.h"
+//#include "Enemy.h"
 
 /**
 *	Parent/Superclass
 */
 class Command {
 public:
-	virtual ~Command() {}
+	virtual ~Command() { /*delete this;*/ }
 	virtual void execute(PlayableCharacter& pc) = 0;
 };
 

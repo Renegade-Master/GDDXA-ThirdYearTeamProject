@@ -14,31 +14,34 @@
 
 class InputHandler {
 public:
-	Command* handleInput();
+	Command* handleInput(sf::Time t);
 
 	//  Is the Player using a controller?
-	bool m_isControllerN00b = false;
+	//bool m_isControllerN00b = true;
+	unsigned int m_controllerIndex = 0;
+	sf::Time m_inputBlocker = sf::milliseconds(500);
+	sf::Time m_sinceLastInput = sf::Time::Zero;
 
 private:
 	//	Keyboard Keys we want to use
 	Command* key_W;
-	Command* key_A;
+	Command* key_A = new cmd_RunLeft();
 	Command* key_S;
-	Command* key_D;
-	Command* key_SPACE;
+	Command* key_D = new cmd_RunRight();
+	Command* key_SPACE = new cmd_Jump();
 
 	//	Mouse Buttons we want to use
 	Command* mouse_LMB;
 	Command* mouse_RMB;
 
 	//	Gamepad Buttons we want to use
-	Command* cont_CROSS;
+	Command* cont_CROSS = new cmd_Jump();
 	Command* cont_SQUARE;
 	Command* cont_TRIANGLE;
 	Command* cont_CIRCLE;
 
-	Command* cont_LEFT_STICK_LEFT;
-	Command* cont_LEFT_STICK_RIGHT;
+	Command* cont_LEFT_STICK_LEFT = new cmd_RunLeft();
+	Command* cont_LEFT_STICK_RIGHT = new cmd_RunRight();
 	Command* cont_LEFT_STICK_UP;
 	Command* cont_LEFT_STICK_DOWN;
 

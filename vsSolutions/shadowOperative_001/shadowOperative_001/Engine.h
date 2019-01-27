@@ -145,6 +145,8 @@ private:
 	// How much time is left in the current level
 	float m_TimeRemaining;
 	sf::Time m_GameTimeTotal;
+	sf::Time dt;
+	float dtAsSeconds;
 
 	// Is it time for a new/first level?
 	bool m_NewLevelRequired = true;
