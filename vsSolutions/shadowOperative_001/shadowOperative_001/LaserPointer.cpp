@@ -108,53 +108,5 @@ sf::ConvexShape LaserPointer::getLaser() {
 bool LaserPointer::isActive() {
 	return active;
 }
-/*
-*	Find if Laser goes through wall
-*/
-double LaserPointer::reCalculateMaxRange(char dir, int** m_ArrayLevel) {
-	int x = this->m_Position.x/50;
-	int y = this->m_Position.y / 50;
-	double calculatedrange = 75;
-	if (dir == 'a') {//UP
-		for (int i = 1;i < (laserRange / 50);++i) {
-			if (m_ArrayLevel[y-i][x] == 0) {
-				calculatedrange += 50;
-			}
-			else {
-				break;
-			}
-		}
-	}
-	else if (dir == 'n') {//DOWN
-		for (int i = 1;i < (laserRange / 50);++i) {
-			if (m_ArrayLevel[y+i][x] == 0) {
-				calculatedrange += 50;
-			}
-			else {
-				break;
-			}
-		}
-	}
-	else if (dir == 'm') {//LEFT
-		for (int i = 1;i < (laserRange / 50);++i) {
-			if (m_ArrayLevel[y][x - i] == 0) {
-				calculatedrange += 50;
-			}
-			else {
-				break;
-			}
-		}
-	}
-	else if (dir == 'f') {//RIGHT
-		for (int i = 1;i < (laserRange / 50);++i) {
-			if (m_ArrayLevel[y][x + i] == 0) {
-				calculatedrange += 50;
-			}
-			else {
-				break;
-			}
-		}
-	}
-	return calculatedrange;
-}
+
 

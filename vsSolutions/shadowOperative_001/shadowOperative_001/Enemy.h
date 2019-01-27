@@ -48,6 +48,12 @@ protected:
 
 	sf::String getClassName();
 
+	//what is the maximum distance of the laser
+	double maxLaserRange;
+	//what is the current maximum distance of the laser
+	double laserRange = 500;
+
+
 public:
 	void update(float elapsedTIme,int** m_ArrayLevel/*, sf::Vector2f playPos*/);
 	void spawn(sf::Vector2i startPosition, float gravity,sf::Time gameStart);
@@ -67,6 +73,11 @@ public:
 	bool isConscious();
 	void regen(float elapsedTime);
 	void EnemyCrate();
+
+	//Calculate Max field of vision
+	double reCalculateMaxRange(char dir, int** m_ArrayLevel);
+
+
 };
 
 #endif // !ENEMY_H

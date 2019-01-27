@@ -302,3 +302,60 @@ void Enemy::regen(float elapsedTime) {
 sf::String Enemy::getClassName() {
 	return(sf::String("Enemy"));
 }
+/*
+*	Find if Laser goes through wall
+*/
+double Enemy::reCalculateMaxRange(char dir, int** m_ArrayLevel) {
+	int x = (this->m_Position.x / 50);
+	std::cout << "\nX = " << x;
+	int y = (this->m_Position.y / 50);
+	double calculatedrange = 75;
+	if (dir == 'a') {//UP
+		std::cout << "\nChecking UP";
+		for (int i = 1;i < (laserRange / 50);++i) {
+			std::cout << "\nX = " << x;
+			std::cout << "\nY = " << y;
+			std::cout << "\nY-i = " << y - i;
+			if (m_ArrayLevel[y - i][x] == 0) {
+				calculatedrange += 50;
+			}
+			else {
+				break;
+			}
+		}
+	}
+	else if (dir == 'n') {//DOWN
+		std::cout << "\nChecking Down";
+		for (int i = 1;i < (laserRange / 50);++i) {
+			if (m_ArrayLevel[y + i][x] == 0) {
+				calculatedrange += 50;
+			}
+			else {
+				break;
+			}
+		}
+	}
+	else if (dir == 'm') {//LEFT
+		std::cout << "\nChecking LEFT";
+		for (int i = 1;i < (laserRange / 50);++i) {
+			if (m_ArrayLevel[y][x - i] == 0) {
+				calculatedrange += 50;
+			}
+			else {
+				break;
+			}
+		}
+	}
+	else if (dir == 'f') {//RIGHT
+		std::cout << "\nChecking RIGHT";
+		for (int i = 1;i < (laserRange / 50);++i) {
+			if (m_ArrayLevel[y][x + i] == 0) {
+				calculatedrange += 50;
+			}
+			else {
+				break;
+			}
+		}
+	}
+	return calculatedrange;
+}
