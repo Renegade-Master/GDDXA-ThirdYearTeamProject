@@ -10,7 +10,7 @@
 /*
 *	Default constructor for LaserPointer
 */
-LaserPointer::LaserPointer(){
+LaserPointer::LaserPointer() {
 	m_Sprite = sf::Sprite(TextureHolder::GetTexture(
 		"graphics/LaserPointer.png"));
 }
@@ -37,8 +37,8 @@ void LaserPointer::spawn(sf::Vector2i startPosition, float gravity, sf::Time gam
 		this->laserOrig.x = this->m_Position.x - 30;
 		this->laserOrig.y = this->m_Position.y - 70;
 		this->laserDest.x = this->m_Position.x - 4;
-		this->laserDest.y = this->m_Position.y -laserRange;
-		securityLaser.updateLine(this->laserOrig,this->laserDest);
+		this->laserDest.y = this->m_Position.y - laserRange;
+		securityLaser.updateLine(this->laserOrig, this->laserDest);
 	}
 	else if (dir == 'n') {//DOWN
 		this->m_Position.y -= 25;
@@ -56,7 +56,7 @@ void LaserPointer::spawn(sf::Vector2i startPosition, float gravity, sf::Time gam
 		this->laserOrig.x = this->m_Position.x - 70;
 		this->laserOrig.y = this->m_Position.y - 20;
 		this->laserDest.x = this->m_Position.x - laserRange;
-		this->laserDest.y = this->m_Position.y ;
+		this->laserDest.y = this->m_Position.y;
 		securityLaser.updateLine(this->laserOrig, this->laserDest);
 	}
 	else if (dir == 'f') {//RIGHT
