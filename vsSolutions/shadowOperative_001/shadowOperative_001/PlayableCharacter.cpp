@@ -61,14 +61,23 @@ sf::FloatRect PlayableCharacter::getFeet() {
 	return this->m_Feet;
 }
 
+/**
+*	...
+*/
 sf::FloatRect PlayableCharacter::getHead() {
 	return this->m_Head;
 }
 
+/**
+*	...
+*/
 sf::FloatRect PlayableCharacter::getLeft() {
 	return this->m_Left;
 }
 
+/**
+*	...
+*/
 sf::FloatRect PlayableCharacter::getRight() {
 	return this->m_Right;
 }
@@ -80,6 +89,9 @@ sf::Sprite PlayableCharacter::getSprite() {
 	return this->m_Sprite;
 }
 
+/**
+*	...
+*/
 sf::Sprite PlayableCharacter::getSpriteCrate() {
 	return this->m_SpriteCrate;
 }
@@ -126,7 +138,6 @@ void PlayableCharacter::stopJump() {
 /**
 *	Return Directionstate for the purpose of synchronising mechanics with animation
 */
-PlayableCharacter::Direction PlayableCharacter::getDir()
-{
+PlayableCharacter::Direction PlayableCharacter::getDir() {
 	return this->m_Direction;
 }

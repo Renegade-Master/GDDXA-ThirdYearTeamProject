@@ -8,6 +8,9 @@
 
 #include "SoundManager.h"
 
+/**
+*	Default Constructor
+*/
 SoundManager::SoundManager() {
 	// Load the sound in to the buffers
 	m_ButtonClickBuffer.loadFromFile("sound/ButtonClick.wav");
@@ -35,6 +38,9 @@ SoundManager::SoundManager() {
 	//m_Fire1Sound.setLoop(true);
 }
 
+/**
+*
+*/
 void SoundManager::playFire(sf::Vector2f emitterLocation, sf::Vector2f listenerLocation) {
 	//// Where is the listener? Player.
 	//sf::Listener::setPosition(listenerLocation.x, listenerLocation.y, 0.0f);

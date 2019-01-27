@@ -8,6 +8,9 @@
 
 #include "Engine.h"
 
+/**
+*	Default Constructor
+*/
 Engine::Engine() {
 	resolution.x = 1280;
 	resolution.y = 720;
@@ -61,6 +64,10 @@ Engine::Engine() {
 	
 }
 
+
+/**
+*	EExecute the main game loop.
+*/
 void Engine::run() {
 	// Timing 	
 	sf::Clock clock;
@@ -129,19 +136,6 @@ void Engine::spawnSwitches() {
 		m_SwitchList.push_back(togSwitch);
 	}
 }
-
-/**
-*	Is the Player using a controller?
-*//*
-bool Engine::getControls() {
-	return(m_usingController);
-}
-*/
-
-
-//bool Engine::getControls() {
-//	return(m_usingController);
-//}
 
 /**
 *	Recreate the Window with new values

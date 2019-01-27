@@ -8,6 +8,9 @@
 
 #include "Engine.h"
 
+/**
+*	Draw all sprites to the screen.
+*/
 void Engine::draw() {
 	//	Fill the Window to clear the last frame
 	m_Window.clear(sf::Color::Black);

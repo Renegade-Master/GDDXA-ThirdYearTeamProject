@@ -8,6 +8,9 @@
 
 #include "Engine.h"
 
+/**
+*	Initialise all buttons required by the game.
+*/
 void Engine::initButtons() {
 	// Make the Main Menu Buttons
 	m_mainMenuButtons.push_back(GUI::Button(

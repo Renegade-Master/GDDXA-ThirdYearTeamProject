@@ -9,6 +9,9 @@
 #include "Engine.h"
 #include "LevelManager.h"
 
+/**
+*	Detect collisions between entities in the Game.
+*/
 bool Engine::detectCollisions(PlayableCharacter& character) {
 	//bool reachedGoal = false;
 	// Make a rect for all his parts
