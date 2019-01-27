@@ -23,6 +23,9 @@ public:
 	sf::Time m_sinceLastInput = sf::Time::Zero;
 
 private:
+	//	Null command
+	Command* noInput = new cmd_Null();
+
 	//	Keyboard Keys we want to use
 	Command* key_W;
 	Command* key_A = new cmd_RunLeft();

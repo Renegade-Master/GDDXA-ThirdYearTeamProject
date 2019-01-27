@@ -26,10 +26,27 @@ public:
 /**
 *
 */
+class cmd_Null : public Command {
+public:
+	virtual void execute(PlayableCharacter& pc) {
+		pc.m_Direction = PlayableCharacter::Direction::IDLE;
+	}
+};
+
+/**
+*
+*/
 class cmd_RunLeft : public Command {
 public:
 	virtual void execute(PlayableCharacter& pc) { 
-		pc.m_Direction = PlayableCharacter::Direction::LEFT; 
+		pc.m_Direction = PlayableCharacter::Direction::LEFT;
+
+		if (pc.m_Action != PlayableCharacter::Action::FALLING
+			&& pc.m_Action != PlayableCharacter::Action::JUMPING) {
+
+			pc.m_Action = PlayableCharacter::Action::RUNNING;
+
+		}
 	}
 };
 
@@ -39,7 +56,14 @@ public:
 class cmd_RunRight : public Command {
 public:
 	virtual void execute(PlayableCharacter& pc) {
-		pc.m_Direction = PlayableCharacter::Direction::RIGHT; 
+		pc.m_Direction = PlayableCharacter::Direction::RIGHT;
+
+		if (pc.m_Action != PlayableCharacter::Action::FALLING
+			&& pc.m_Action != PlayableCharacter::Action::JUMPING) {
+
+			pc.m_Action = PlayableCharacter::Action::RUNNING;
+
+		}
 	}
 };
 
