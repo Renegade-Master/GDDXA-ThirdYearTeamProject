@@ -150,13 +150,15 @@ bool Engine::detectCollisions(PlayableCharacter& character) {
 				//reachedGoal = true;
 				//m_CurrentLevel = 1;
 				//m_LM.m_CurrentLevel++;
-				//this->Engine::m_GameState = Engine::GameState::LEVEL_SELECT;
-				m_GameState = GameState::LEVEL_SELECT;
+			//	this->Engine::m_GameState = Engine::GameState::LEVEL_SELECT;
+				this-> m_GameState = GameState::LEVEL_SELECT;
+				//void refreshWindow();
+				std::cout << "You should br in level select. " << std::endl;
 				//loadLevel();
+	
 			}
 		}
 	}
-
 	// All done, return, whether or not a new level might be required
 	return false;
 }

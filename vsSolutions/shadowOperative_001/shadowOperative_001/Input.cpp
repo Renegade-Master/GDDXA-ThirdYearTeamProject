@@ -45,6 +45,7 @@ void Engine::input() {
 		}
 	}
 	else if (m_GameState == GameState::LEVEL_SELECT) {
+		void refreshWindow();
 		m_Window.setMouseCursorVisible(true);
 
 		// Handle Level Select Buttons

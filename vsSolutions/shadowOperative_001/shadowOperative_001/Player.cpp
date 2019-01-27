@@ -196,7 +196,7 @@ void Player::update(float elapsedTime, int** m_ArrayLevel) {
 	this->m_Right.height = r.height * 0.8;
 
 	// Left
-	this->m_Left.left = m_Position.x;
+	this->m_Left.left = m_Position.x -(r.width * 0.1);
 	this->m_Left.top = m_Position.y + (r.height * 0.1);
 	this->m_Left.width = r.width * 0.1;
 	this->m_Left.height = r.height * 0.8;
