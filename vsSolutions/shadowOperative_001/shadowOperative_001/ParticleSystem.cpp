@@ -8,6 +8,9 @@
 
 #include "ParticleSystem.h"
 
+/**
+*	...
+*/
 void ParticleSystem::init(int numParticles) {
 	m_Vertices.setPrimitiveType(sf::Points);
 	m_Vertices.resize(numParticles);
@@ -30,6 +33,9 @@ void ParticleSystem::init(int numParticles) {
 
 }
 
+/**
+*	...
+*/
 void ParticleSystem::update(float dt) {
 	m_Duration -= dt;
 	int currentVertex = 0;
@@ -51,6 +57,9 @@ void ParticleSystem::update(float dt) {
 
 }
 
+/**
+*	...
+*/
 void ParticleSystem::emitParticles(sf::Vector2f startPosition) {
 	m_IsRunning = true;
 	m_Duration = 2;
@@ -67,11 +76,17 @@ void ParticleSystem::emitParticles(sf::Vector2f startPosition) {
 
 }
 
+/**
+*	...
+*/
 void ParticleSystem::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 
 	target.draw(m_Vertices, states);
 }
 
+/**
+*	...
+*/
 bool ParticleSystem::running() {
 	return m_IsRunning;
 }

@@ -8,6 +8,9 @@
 
 #include "Engine.h"
 
+/**
+*	Create a new enemy.
+*/
 Enemy* createEnemy(sf::Vector2i position,float Gravity,sf::Time gameStart) {
 	Enemy* enemy = new Enemy();
 	enemy->spawn(position, Gravity,gameStart);

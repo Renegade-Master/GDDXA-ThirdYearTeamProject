@@ -8,8 +8,10 @@
 
 #include "Hud.h"
 
-Hud::Hud()
-{
+/**
+*	Default Constructor
+*/
+Hud::Hud() {
 	sf::Vector2u resolution;
 	//resolution.x = sf::VideoMode::getDesktopMode().width;
 	//resolution.y = sf::VideoMode::getDesktopMode().height;
@@ -58,46 +60,82 @@ Hud::Hud()
 	m_GunCharge.setFillColor(sf::Color::Yellow);
 }
 
+
+/**
+*	...
+*/
 sf::Text Hud::getMessage() {
 	return m_StartText;
 }
 
+
+/**
+*	...
+*/
 sf::Text Hud::getLevel() {
 	return m_LevelText;
 }
 
+/**
+*	...
+*/
 sf::Text Hud::getTime() {
 	return m_TimeText;
 }
-sf::Text Hud::getHidden()
-{
+
+/**
+*	...
+*/
+sf::Text Hud::getHidden() {
 	m_isHidden.setString("Hidden(temp)");
 	return m_isHidden;
 }
+
+/**
+*	...
+*/
 void Hud::setLevel(sf::String text) {
 	m_LevelText.setString(text);
 }
+
+/**
+*	...
+*/
 void Hud::setHidden(sf::Text text)
 {
 	m_isHidden = text;
 }
 
+/**
+*	...
+*/
 void Hud::setTime(sf::String text) {
 	m_TimeText.setString(text);
 }
-void Hud::setGunCharge(float charge)
-{
+
+/**
+*	...
+*/
+void Hud::setGunCharge(float charge) {
 	m_GunCharge.setSize(sf::Vector2f(charge, 30));
 }
-sf::RectangleShape Hud::getGunCharge()
-{
+
+/**
+*	...
+*/
+sf::RectangleShape Hud::getGunCharge() {
 	return m_GunCharge;
 }
-void Hud::setGunChargeBackground(float maxCharge)
-{
+
+/**
+*	...
+*/
+void Hud::setGunChargeBackground(float maxCharge) {
 	m_GunChargeBackground.setSize(sf::Vector2f(maxCharge, 30));
 }
-sf::RectangleShape Hud::getGunBackground()
-{
+
+/**
+*	...
+*/sf::RectangleShape Hud::getGunBackground() {
 	return m_GunChargeBackground;
 }

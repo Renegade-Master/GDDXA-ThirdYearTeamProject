@@ -7,24 +7,52 @@
 */
 
 #include "Item.h"
+
+/**
+*	Default Constructor
+*/
 Item::Item(){
 
 }
+
+/**
+*	Destructor
+*/
+Item::~Item() {
+}
+
+/**
+*	...
+*/
 void Item::spawn() {
 	
 }
+
+/**
+*	...
+*/
 void Item::update(float elapsedTime, int** m_ArrayLevel) {
 	this->m_ItemSprite.setPosition(this->m_Position);
 }
+
+/**
+*	...
+*/
 float Item::getCapacity() {
 	std::cout << "\nWe should not be here";
 	return 1.0f;
 }
 
+/**
+*	...
+*/
 sf::FloatRect Item::getPosition() {
 	return m_ItemSprite.getGlobalBounds();
 }
 
+/**
+*	...
+*/
 sf::Vector2f Item::getCenter() {
 	return sf::Vector2f(
 		m_Position.x + m_ItemSprite.getGlobalBounds().width / 2,
@@ -32,10 +60,16 @@ sf::Vector2f Item::getCenter() {
 	);
 }
 
+/**
+*	...
+*/
 sf::FloatRect Item::getBottom() {
 	return m_Bottom;
 }
 
+/**
+*	...
+*/
 sf::FloatRect Item::getTop() {
 	return m_Top;
 }
@@ -44,15 +78,24 @@ sf::FloatRect Item::getLeft() {
 	return m_Left;
 }
 
+/**
+*	...
+*/
 sf::FloatRect Item::getRight() {
 	return m_Right;
 }
 
+/**
+*	...
+*/
 sf::Sprite Item::getSprite() {
 	return m_ItemSprite;
 }
-/*
-void Item::stopRight(float position) {
+
+/**
+*	...
+*/
+/*void Item::stopRight(float position) {
 
 	m_Position.x = position - m_DoorSprite.getGlobalBounds().width;
 	m_Sprite.setPosition(m_Position);
@@ -62,5 +105,3 @@ void Item::stopLeft(float position) {
 	m_Position.x = position + m_DoorSprite.getGlobalBounds().width;
 	m_Sprite.setPosition(m_Position);
 }*/
-Item::~Item() {
-}

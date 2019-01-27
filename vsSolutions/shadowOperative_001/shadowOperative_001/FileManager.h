@@ -12,7 +12,7 @@
 
 class FileManager {
 public:
-	FileManager();
+	FileManager() noexcept;
 	~FileManager();
 
 

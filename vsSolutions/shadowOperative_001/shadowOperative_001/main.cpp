@@ -8,6 +8,9 @@
 
 #include "Engine.h"
 
+/**
+*	The main function.  Called when the '.exe' is executed.
+*/
 int main() {
 	// Declare an instance of Engine
 	Engine engine;

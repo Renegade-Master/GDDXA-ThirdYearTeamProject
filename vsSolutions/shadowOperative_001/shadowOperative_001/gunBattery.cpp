@@ -1,4 +1,16 @@
+/**
+*	@author			Ciaran Bent [K00221230]
+*					Owen O'Dea	[K00218956]
+*					Rory Ryan	[K00218864]
+*	@creationDate	2019/01/26	YYYY/MM/DD
+*	@description	...
+*/
+
 #include "gunBattery.h"
+
+/**
+*	Default Constructor
+*/
 gunBattery::gunBattery(sf::Vector2i startPosition){
 	//Place the item at the starting point
 	this->m_Position = (sf::Vector2f)startPosition;
@@ -24,6 +36,10 @@ gunBattery::gunBattery(sf::Vector2i startPosition){
 		std::cout << "\ngraphics/Batteries/BATTERY_LARGE.png";
 	}
 }
+
+/**
+*	...
+*/
 float gunBattery::getCapacity(){
 	if (this->m_Capacity == Capacity::SMALL) {
 		return 10.00;
@@ -35,6 +51,10 @@ float gunBattery::getCapacity(){
 		return 50.00;
 	}
 }
+
+/**
+*	...
+*/
 void gunBattery::update(float elapsedTime, int** m_ArrayLevel) {
 	this->m_ItemSprite.setPosition(this->m_Position);
 }

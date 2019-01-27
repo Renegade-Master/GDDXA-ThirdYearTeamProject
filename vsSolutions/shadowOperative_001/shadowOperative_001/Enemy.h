@@ -17,7 +17,7 @@
 class Enemy : public PlayableCharacter {
 private:
 	sf::Vector2i m_SpawnPosition;
-	bool patrolValid;
+	bool patrolValid = false;
 	// This is a pure virtual function
 	virtual void handleInput();
 	enum patrolDir { patrolLeft, patrolRight };
@@ -27,7 +27,7 @@ private:
 	int sightAngle = 60;
 	int detectionDistance = 300;
 	visionCone cone;
-	float awarenessOfPlayer;
+	float awarenessOfPlayer = 0.0f;
 
 	//detection Event recorder used to slow execution of detection events to reasonable pace
 	sf::Time lastDetectionEvent;
@@ -55,6 +55,7 @@ public:
 	float getlastdetectTime();
 	sf::RectangleShape getDetectMeter();
 	void reduceAwareness(sf::Time gameTimeTotal);
+	
 	//damage and healing
 	void takeDamage(float shotPower);
 	bool isConscious();
