@@ -25,6 +25,13 @@ Command* InputHandler::handleInput(sf::Time t) {
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
 			return(key_SPACE);
 		}
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+			return(mouse_LMB);
+		}
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Right)) {
+			return(mouse_RMB);
+		}
+
 		if (sf::Joystick::getAxisPosition(0, sf::Joystick::X) < -10.0f) {
 			return(cont_LEFT_STICK_LEFT);
 		}
@@ -33,6 +40,15 @@ Command* InputHandler::handleInput(sf::Time t) {
 		}
 		if (sf::Joystick::isButtonPressed(0, 0)) {
 			return(cont_CROSS);
+		}
+		if (sf::Joystick::isButtonPressed(0, 1)) {
+			return(cont_CIRCLE);
+		}
+		if (sf::Joystick::isButtonPressed(0, 2)) {
+			return(cont_SQUARE);
+		}
+		if (sf::Joystick::isButtonPressed(0, 3)) {
+			return(cont_TRIANGLE);
 		}
 	}
 

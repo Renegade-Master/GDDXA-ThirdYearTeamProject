@@ -343,15 +343,12 @@ void Player::handleInput() {
 	|	HANDLE SHOOTING	|
 	\***-------------***/
 
-	if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-		shooting = true;
+	if (!sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+		this->shooting = false;
 	}
-	else {
-		shooting = false;
-	}
-	if (sf::Mouse::isButtonPressed(sf::Mouse::Right)) {
+	/*if (sf::Mouse::isButtonPressed(sf::Mouse::Right)) {
 		this->toggleTargeting();
-	}
+	}*/
 }
 
 /**

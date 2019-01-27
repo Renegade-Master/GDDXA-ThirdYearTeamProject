@@ -15,6 +15,27 @@
 #include "visionCone.h"
 
 class Enemy : public PlayableCharacter {
+public:
+	void update(float elapsedTIme, int** m_ArrayLevel/*, sf::Vector2f playPos*/);
+	void spawn(sf::Vector2i startPosition, float gravity, sf::Time gameStart);
+	void alterPatrol(bool patrol);
+	sf::FloatRect getPosition();
+	bool detectPlayer(sf::Vector2f playPos);
+	sf::ConvexShape getCone();
+	void increaseAwarenessLevel(sf::Vector2f playPos, int detectionLevel, sf::Time gameTimeTotal);
+	float getAwareness();
+	double calcDistance(sf::Vector2f playPos, sf::Vector2f thisPos);
+	void toggleTargeting();
+	float getlastdetectTime();
+	sf::RectangleShape getDetectMeter();
+	void reduceAwareness(sf::Time gameTimeTotal);
+
+	//damage and healing
+	void takeDamage(float shotPower);
+	bool isConscious();
+	void regen(float elapsedTime);
+	void EnemyCrate();
+
 private:
 	sf::Vector2i m_SpawnPosition;
 	bool patrolValid = false;
@@ -41,26 +62,6 @@ private:
 	bool conscious =  true;
 
 	sf::String getClassName();
-
-public:
-	void update(float elapsedTIme,int** m_ArrayLevel/*, sf::Vector2f playPos*/);
-	void spawn(sf::Vector2i startPosition, float gravity,sf::Time gameStart);
-	void alterPatrol(bool patrol);
-	sf::FloatRect getPosition();
-	bool detectPlayer(sf::Vector2f playPos);
-	sf::ConvexShape getCone();
-	void increaseAwarenessLevel(sf::Vector2f playPos,int detectionLevel,sf::Time gameTimeTotal);
-	float getAwareness();
-	double calcDistance(sf::Vector2f playPos,sf::Vector2f thisPos);
-	float getlastdetectTime();
-	sf::RectangleShape getDetectMeter();
-	void reduceAwareness(sf::Time gameTimeTotal);
-	
-	//damage and healing
-	void takeDamage(float shotPower);
-	bool isConscious();
-	void regen(float elapsedTime);
-	void EnemyCrate();
 };
 
 #endif // !ENEMY_H

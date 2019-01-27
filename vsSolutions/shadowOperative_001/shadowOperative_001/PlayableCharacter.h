@@ -74,6 +74,9 @@ public:
 	//return Direction enum state
 	PlayableCharacter::Direction getDir();
 
+	virtual void toggleTargeting() = 0;
+	bool shooting = false;
+
 	virtual sf::String getClassName() = 0;
 
 protected:

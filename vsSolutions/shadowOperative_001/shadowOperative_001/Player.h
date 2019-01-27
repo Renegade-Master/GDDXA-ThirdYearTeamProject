@@ -33,16 +33,17 @@ public:
 	float getChargeLevel();
 	float getShotCost();
 	float getMaxCharge();
+	
 	//aiming
-	void toggleTargeting();
+	virtual void toggleTargeting();
 	bool isTargeting();
+	
 	//Conditions which decide targeting laser Origin
 	void updateTargeting(sf::Vector2f mousePos);
 	sf::ConvexShape getlaser();
 
 	sf::String getClassName();
 private:
-	bool shooting;
 	int detectionLevel;
 	float gunChargeLevel = 100.0f;
 	float gunChargeRate = 2.0f;

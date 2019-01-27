@@ -11,8 +11,8 @@
 #define COMMAND_H
 
 #include "PlayableCharacter.h"
-//#include "Player.h"
 //#include "Enemy.h"
+//#include "Player.h"
 
 /**
 *	Parent/Superclass
@@ -64,7 +64,10 @@ public:
 */
 class cmd_Shoot : public Command {
 public:
-	virtual void execute(PlayableCharacter& pc) { pc.m_Action = PlayableCharacter::Action::ATTACKING; }
+	virtual void execute(PlayableCharacter& pc) {
+		pc.m_Action = PlayableCharacter::Action::ATTACKING;
+		pc.shooting = true;
+	}
 };
 
 /**
@@ -72,7 +75,9 @@ public:
 */
 class cmd_ToggleAim : public Command {
 public:
-	virtual void execute(PlayableCharacter& pc) { /*	NOT SURE WHAT TO DO HERE	*/; }
+	virtual void execute(PlayableCharacter& pc) {
+		pc.toggleTargeting();
+	}
 };
 
 #endif // !COMMAND_H

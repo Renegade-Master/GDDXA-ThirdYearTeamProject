@@ -31,14 +31,14 @@ private:
 	Command* key_SPACE = new cmd_Jump();
 
 	//	Mouse Buttons we want to use
-	Command* mouse_LMB;
-	Command* mouse_RMB;
+	Command* mouse_LMB = new cmd_Shoot();
+	Command* mouse_RMB = new cmd_ToggleAim();
 
 	//	Gamepad Buttons we want to use
 	Command* cont_CROSS = new cmd_Jump();
-	Command* cont_SQUARE;
+	Command* cont_SQUARE = new cmd_Shoot();
 	Command* cont_TRIANGLE;
-	Command* cont_CIRCLE;
+	Command* cont_CIRCLE = new cmd_ToggleAim();
 
 	Command* cont_LEFT_STICK_LEFT = new cmd_RunLeft();
 	Command* cont_LEFT_STICK_RIGHT = new cmd_RunRight();
