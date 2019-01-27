@@ -217,15 +217,34 @@ void Engine::update(float dtAsSeconds) {
 		//update Cameras
 		for (std::list<Camera*>::iterator cameraIt = m_CameraList.begin();
 			cameraIt != m_CameraList.end();cameraIt++) {
+			//double distance  = (*cameraIt)->detectCollsions((*cameraIt)->getCone(),m_ArrayLevel,TILE_SIZE);
 			(*cameraIt)->update(dtAsSeconds, m_ArrayLevel);
+
+			//check for bulletCollision
+			for (int i = 0;i < 5;i++)
+			{
+				if (bullets[i].isInFlight())
+				{
+					if (bullets[i].getSprite().getGlobalBounds().intersects
+					((*cameraIt)->getSprite().getGlobalBounds()))
+					{
+						std::cout << "\n Taking damage!!!!!!";
+						bullets[i].stop();
+						//(*it)->//LosesHealthDies
+						(*cameraIt)->takeDamage();
+						//(*it)->//is Enemy knoicked unconcious?
+					}
+				}
+			}
+
 			//check for player
 			if ((*cameraIt)->getCone().getGlobalBounds().
 				intersects(m_Player.getPosition())) {
 				if (m_GameTimeTotal.asMilliseconds() - (*cameraIt)->getlastdetectTime() > 500) {
-
+					//increase awareness
 					(*cameraIt)->increaseAwarenessLevel(m_Player.getCenter(),
 					m_Player.getDetectLevel(), m_GameTimeTotal);
-
+					//is player detetced
 					if ((*cameraIt)->getAwareness() <= 100) {
 						std::cout << "\nDetetced";
 					}
@@ -242,10 +261,10 @@ void Engine::update(float dtAsSeconds) {
 			//check for Dead Ally
 			for (std::list<Enemy*>::iterator checkDeathOnCamIter = m_EnemyList.begin();
 				checkDeathOnCamIter != m_EnemyList.end();checkDeathOnCamIter++) {
-
+				//is camera visionCone intersecting Enemy sprite
 				if((*checkDeathOnCamIter)->getCone().getLocalBounds().
 					intersects((*checkDeathOnCamIter)->getPosition())) {
-
+					//if Enemy is unconcious..... "CONCERN!!!!"
 					if (!(*checkDeathOnCamIter)->isConcious()) {
 						(*checkDeathOnCamIter)->increaseAwarenessLevel(
 						(*checkDeathOnCamIter)->getCenter(), 1, m_GameTimeTotal);

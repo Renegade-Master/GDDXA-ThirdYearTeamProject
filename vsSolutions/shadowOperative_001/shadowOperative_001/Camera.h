@@ -14,5 +14,6 @@ public:
 	void update(float elapsedTime, int** m_ArrayLevel);
 	Camera();
 	float getRotation();
+	void takeDamage();
 };
 #endif //CAMERA_H

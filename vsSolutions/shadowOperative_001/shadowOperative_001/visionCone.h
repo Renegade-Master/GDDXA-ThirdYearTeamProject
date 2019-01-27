@@ -26,7 +26,7 @@ private:
 public:
 	void updateConePos(sf::Vector2f charPos,int charSightRange, int charSightAngle,bool faceRight);
 	void updateCamConePos(sf::Vector2f charPos, int charSightRange, int charSightAngle,
-	float cameraAngle, bool forward, char direction);
+		float cameraAngle, bool forward, char direction);
 	sf::ConvexShape getCone();
 	visionCone();
 };

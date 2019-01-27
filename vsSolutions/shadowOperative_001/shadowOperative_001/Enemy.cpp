@@ -252,7 +252,7 @@ void Enemy::regen(float elapsedTime)
 			{
 				/*std::cout << "\nhealth:" << health << " + (regenRate / 2) " << (regenRate / 2)
 					<< " * elapsedTime: " << elapsedTime << " = " << (health + ((regenRate / 2) * elapsedTime));*/
-				health += (regenRate / 2) * elapsedTime;
+				health += ((regenRate / 2) * elapsedTime);
 			}
 			else
 			{
@@ -262,9 +262,90 @@ void Enemy::regen(float elapsedTime)
 		}
 		//std::cout << "\nRegen complete Health is now" << this->health;
 	}
-	if ((health == maxHealth) && (!concious))
+	if ((health >= maxHealth) && (!concious))
 	{
+		std::cout << "\nConcious";
 		concious = true;
 	}
 	
 }
+
+/*
+*	Check for vision Cone collision with wall
+*/
+//double Enemy::detectCollsions(sf::ConvexShape visionCone, int** m_ArrayLevel,int TILE_SIZE) {
+//
+//	// Make a FloatRect to test each block
+//	sf::FloatRect block;
+//
+//	block.width = TILE_SIZE;
+//	block.height = TILE_SIZE;
+//	int startX= 999999999;
+//	int startY= 999999999;
+//	int endX = 0;
+//	int endY = 0;
+//	// Build a zone around visionCone to detect collisions
+//	for (int i = 0;i < visionCone.getPointCount();i++) {
+//		std::cout << "\nVision Cone Point " << i;
+//		if (visionCone.getPoint(i).x < startX) {
+//			startX = visionCone.getPoint(i).x;
+//			if (startX > endX) {
+//				endX = startX;
+//			}
+//		}
+//		if (visionCone.getPoint(i).y < startY) {
+//			startY = visionCone.getPoint(i).y;
+//			if (startY > endY) {
+//				endY = startY;
+//			}
+//		}
+//		std::cout<<"\nstartX,endX" << startX << " " << endX << ", StartY,endY" << startY << " " << endY;
+//	}
+//
+//	//int startX = (int)(visionCone.getGlobalBounds().width / TILE_SIZE)-1;
+//	//std::cout << "\n(int)(visionCone.getGlobalBounds().width / TILE_SIZE) " << (int)(visionCone.getGlobalBounds().width / TILE_SIZE);
+//	//int startY = (int)(visionCone.getGlobalBounds().height / TILE_SIZE)-1;
+//	//std::cout << "\n(int)(visionCone.getGlobalBounds().height / TILE_SIZE) " << (int)(visionCone.getGlobalBounds().height / TILE_SIZE);
+//	//int endX = (int)(visionCone.getGlobalBounds().left / TILE_SIZE);
+//	//std::cout << "\n(int)(visionCone.getGlobalBounds().left / TILE_SIZE) " << (int)(visionCone.getGlobalBounds().left / TILE_SIZE);
+//	//int endY = (int)(visionCone.getGlobalBounds().top / TILE_SIZE);
+//	//std::cout << "\n(int)(visionCone.getGlobalBounds().top / TILE_SIZE)" << (int)(visionCone.getGlobalBounds().top / TILE_SIZE);
+//
+//	if (startX < 0) {
+//		startX = 0;
+//	}
+//	if (startY < 0) {
+//		startY = 0;
+//	}
+//	if (endX >= 1000) {
+//		endX = 1000;
+//	}
+//	if (endY >=1000) {
+//		endY =1000;
+//	}
+//	double distance = 99999999;
+//	std::cout << "\nEntering for loop startX,endX"<<startX<<" "<<endX<<", StartY,endY"<<startY<<" "<<endY;
+//	for (int x = startX; x < endX; x++) {
+//		for (int y = startY; y < endY; y++) {
+//			// Initialize the starting position of the current block
+//			block.left = x * TILE_SIZE;
+//			block.top = y * TILE_SIZE;
+//			std::cout << "\n Are we colliding with anything?";
+//			// Is character colliding with a regular block
+//			if ((m_ArrayLevel[y][x] == 1) || (m_ArrayLevel[y][x] == 2)
+//				|| (m_ArrayLevel[y][x] == 3) || (m_ArrayLevel[y][x] == 4)
+//				|| (m_ArrayLevel[y][x] == 5) || (m_ArrayLevel[y][x] == 6)
+//				|| (m_ArrayLevel[y][x] == 7) || (m_ArrayLevel[y][x] == 8)
+//				|| (m_ArrayLevel[y][x] == 9) || (m_ArrayLevel[y][x] == 'j')
+//				|| (m_ArrayLevel[y][x] == 'k') || (m_ArrayLevel[y][x] == 'u')) {
+//				std::cout << "\n\n\n\nHIT!!!!!!\n if(calcDistance(sf::Vector2f(x, y), visionCone.getPoint(0))) = " << calcDistance(sf::Vector2f(x, y), visionCone.getPoint(0)) << " <\n Distance" << distance;
+//				if (calcDistance(sf::Vector2f(x, y), sf::Vector2f(visionCone.getPoint(0).x, visionCone.getPoint(0).y)) < distance) {
+//					std::cout << "\nNew Shortest Distance";
+//					distance = calcDistance(sf::Vector2f(x, y), sf::Vector2f(visionCone.getPoint(0).x, visionCone.getPoint(0).y));
+//				}
+//			}
+//		}
+//	}
+//	std::cout << "\nReturing charSightRange of " << distance;
+//	return distance;
+//}

@@ -89,4 +89,17 @@ void Camera::update(float elapsedTime, int** m_ArrayLevel) {
 		cone.updateCamConePos(this->m_Position, this->detectionDistance,
 			this->sightAngle, this->rotation, this->forward, this->direction);
 	}
+	this->regen(elapsedTime);
+}
+/*
+*	Camera takes Damage from bullet Collision
+*/
+void Camera::takeDamage() {
+	if (this->isConcious()) {
+		concious = false;
+		this->health = 0;
+	}
+	else {
+		health = 0;
+	}
 }

@@ -14,6 +14,8 @@
 #include "TextureHolder.h"
 #include "visionCone.h"
 
+
+
 class Enemy : public PlayableCharacter {
 private:
 	sf::Vector2i m_SpawnPosition;
@@ -42,6 +44,7 @@ protected:
 
 	int sightAngle = 60;
 	int detectionDistance = 300;
+	
 
 public:
 	void update(float elapsedTIme,int** m_ArrayLevel);
@@ -60,6 +63,7 @@ public:
 	void takeDamage(float shotPower);
 	bool isConcious();
 	void regen(float elapsedTime);
+	double detectCollsions(sf::ConvexShape visionCone, int** m_ArrayLevel, int TILE_SIZE);
 };
 
 #endif // !ENEMY_H

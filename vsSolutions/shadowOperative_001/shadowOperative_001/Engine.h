@@ -222,8 +222,11 @@ private:
 	// Where is the mouse in relation to screen coordinates
 	sf::Vector2i mouseScreenPosition;
 
+	//update door states
 	void doorUpdate(float dtAsSeconds, ToggleSwitch *Switch);
-
+	//calculate distance from enemy to player
 	double calcDistance(sf::Vector2f posOne, sf::Vector2f posTwo);
+
+	
 };
 #endif // !ENGINE_H
