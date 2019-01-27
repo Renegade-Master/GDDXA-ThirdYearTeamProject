@@ -8,6 +8,9 @@
 
 #include "Door.h"
 
+/**
+*	Paramaterised Constructor
+*/
 Door::Door(char state, sf::Vector2i position) {
 	this->m_Position = (sf::Vector2f)position;
 	this->m_Position.x = m_Position.x * 50;
@@ -32,7 +35,10 @@ Door::Door(char state, sf::Vector2i position) {
 		"graphics/DoorLocked.png"));
 	m_ClosedDoorSprite.setPosition(this->m_Position);
 }
-//Alter State when triggered
+
+/**
+*	Alter State when triggered
+*/
 void Door::doorState(){
 	if (m_DoorState == State::STATIC) {
 		//std::cout<< "\nStatic";
@@ -47,7 +53,10 @@ void Door::doorState(){
 		m_DoorState = State::CLOSE;
 	}
 }
-//Update Doors
+
+/**
+*	Update Doors
+*/
 void Door::update(float elapsedTime, int** m_ArrayLevel) {
 	if (m_DoorState == State::STATIC) {
 		this->m_ItemSprite.setPosition(this->m_Position);
@@ -57,12 +66,18 @@ void Door::update(float elapsedTime, int** m_ArrayLevel) {
 		this->m_ClosedDoorSprite.setPosition(this->m_Position);
 	}
 }
-//Virtual Function need never be called
+
+/**
+*	Virtual Function need never be called
+*/
 float Door::getCapacity() {
 	std::cout << "\nWe should not be here";
 	return 1.0f;
 }
-//Return Sprite
+
+/**
+*	Return Sprite
+*/
 sf::Sprite Door::getDoorSprite() {
 	if (m_DoorState == State::STATIC) {
 		return m_ItemSprite;
@@ -74,6 +89,10 @@ sf::Sprite Door::getDoorSprite() {
 		return m_ClosedDoorSprite;
 	}
 }
+
+/**
+*	...
+*/
 bool Door::getDoorState() {
 	if (m_DoorState == State::STATIC) {
 		return false;
@@ -82,13 +101,20 @@ bool Door::getDoorState() {
 		return true;
 	}
 }
+
+/**
+*	...
+*/
 bool Door::getValidState() {
 	if (m_DoorState == State::OPEN) {
 		return true;
 	}
 	return false;
 }
-//getSprite bounds dependant on object State
+
+/**
+*	getSprite bounds dependant on object State
+*/
 sf::FloatRect Door::getPosition() {
 	if (m_DoorState == State::STATIC) {
 		return m_ItemSprite.getGlobalBounds();

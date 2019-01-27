@@ -12,7 +12,9 @@
 
 #include <fstream>
 #include <iostream>
+
 #include <SFML/Graphics.hpp>
+
 #include "laser.h"
 #include "TextureHolder.h"
 
@@ -69,12 +71,12 @@ public:
 
 protected:
 	// Sprite Animation Variables
-	int frameWidth;
-	int frameHeight;
-	int frameXOffset;
-	int frameYOffset;
-	int m_maxAnimationFrames;
-	float m_timeSinceLastFrame;
+	int frameWidth = 0;
+	int frameHeight = 0;
+	int frameXOffset = 0;
+	int frameYOffset = 0;
+	int m_maxAnimationFrames = 0;
+	float m_timeSinceLastFrame = 0.0f;
 	float frameSwitchTime = 0.1f;
 
 	sf::Image m_animationSheet;
@@ -85,8 +87,8 @@ protected:
 	sf::Sprite m_SpriteFalling;
 
 	// Jump Controls
-	float m_jumpDuration;
-	int m_jumpCounter;
+	float m_jumpDuration = 0.0f;
+	int m_jumpCounter = 0;
 	
 	float maxJumpDuration = 0.5f;
 	int	maxJumps = 1;
@@ -115,4 +117,5 @@ protected:
 	//laserTargeting
 	laser targetingLaser;
 };
+
 #endif // !PLAYABLECHARACTER_H

@@ -8,6 +8,9 @@
 
 #include "Engine.h"
 
+/**
+*
+*/
 void Engine::populateEmitters(std::vector <sf::Vector2f>& vSoundEmitters, int** arrayLevel) {
 	// Make sure the vector is empty
 	vSoundEmitters.empty();

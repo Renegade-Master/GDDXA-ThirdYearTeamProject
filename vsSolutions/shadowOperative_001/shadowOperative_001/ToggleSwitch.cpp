@@ -1,5 +1,16 @@
+/**
+*	@author			Ciaran Bent [K00221230]
+*					Owen O'Dea	[K00218956]
+*					Rory Ryan	[K00218864]
+*	@creationDate	2018/12/11	YYYY/MM/DD
+*	@description
+*/
+
 #include "ToggleSwitch.h"
 
+/**
+*	Default Constructor
+*/
 ToggleSwitch::ToggleSwitch(sf::Time time, sf::Vector2i spawnPos) {
 	this->m_Position = (sf::Vector2f)spawnPos;
 	m_Position.x = m_Position.x * 50;
@@ -12,7 +23,8 @@ ToggleSwitch::ToggleSwitch(sf::Time time, sf::Vector2i spawnPos) {
 	m_SpriteToggleOff.setPosition(this->m_Position);
 	m_SpriteToggleOn.setPosition(this->m_Position);
 }
-/*
+
+/**
 *	Choose whcih Sprite to return dependant on State
 */
 sf::Sprite ToggleSwitch::getSprite(){
@@ -23,6 +35,7 @@ sf::Sprite ToggleSwitch::getSprite(){
 		return m_SpriteToggleOn;
 	}
 }
+
 /*
 *	Decide which sprite to getPosition of
 */
@@ -34,6 +47,7 @@ sf::FloatRect ToggleSwitch::getPosition() {
 		return m_SpriteToggleOn.getGlobalBounds();
 	}
 }
+
 /*
 *	Decide which sprie to get Center of and return coordinates
 */
@@ -51,6 +65,7 @@ sf::Vector2f ToggleSwitch::getCenter() {
 		);
 	}
 }
+
 /*
 *	Update the switch location
 */
@@ -66,6 +81,7 @@ void ToggleSwitch::update(sf::Time elapsedTime, int** m_ArrayLevel) {
 		}
 	}
 }
+
 /*
 *	if switch can be toggled, toggle
 */

@@ -8,6 +8,9 @@
 
 #include "Engine.h"
 
+/**
+*	...
+*/
 void Engine::loadLevel() {
 	if (m_GameState == GameState::LOADING) {
 		// Delete the previously allocated memory

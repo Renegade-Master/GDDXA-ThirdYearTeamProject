@@ -18,7 +18,7 @@ class ParticleSystem : public sf::Drawable {
 private:
 	std::vector<Particle> m_Particles;
 	sf::VertexArray m_Vertices;
-	float m_Duration;
+	float m_Duration = 0.0f;
 	bool m_IsRunning = false;
 
 

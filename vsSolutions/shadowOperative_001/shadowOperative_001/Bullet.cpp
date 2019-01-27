@@ -8,16 +8,20 @@
 
 #include "Bullet.h"
 
-// The constructor
+/**
+*	Default Constructor
+*/
 Bullet::Bullet() {
 	//std::cout << "\nBullet initialised";
 	m_BulletSprite = sf::Sprite(TextureHolder::GetTexture(
 		"graphics/Purple Spark Bullets/Purple_BULLET_000.png"));
 	m_BulletSprite.setPosition(this->m_Position);
-	//m_BulletShape.setSize(sf::Vector2f(10, 10));
 	m_InFlight = false;
 }
 
+/**
+*	...
+*/
 void Bullet::shoot(float startX, float startY,
 	float targetX, float targetY) {
 	// Keep track of the bullet
@@ -34,7 +38,7 @@ void Bullet::shoot(float startX, float startY,
 	}
 
 	// Calculate the ratio between x and t
-	float ratioXY = m_BulletSpeed / (1 + gradient);
+	const float ratioXY = m_BulletSpeed / (1 + gradient);
 
 	// Set the "speed" horizontally and vertically
 	m_BulletDistance.y = ratioXY;
@@ -55,7 +59,7 @@ void Bullet::shoot(float startX, float startY,
 	m_Target.y = targetY;
 
 	// Set a max range of 1000 pixels
-	float range = 1000;
+	const float range = 1000;
 	m_Min.x = startX - range;
 	m_Max.x = startX + range;
 	m_Min.y = startY - range;
@@ -66,22 +70,37 @@ void Bullet::shoot(float startX, float startY,
 	m_BulletShape.setPosition(startX, startY);
 }
 
+/**
+*	...
+*/
 void Bullet::stop() {
 	m_InFlight = false;
 }
 
+/**
+*	...
+*/
 bool Bullet::isInFlight() {
 	return m_InFlight;
 }
 
+/**
+*	...
+*/
 sf::FloatRect Bullet::getPosition() {
 	return m_BulletSprite.getGlobalBounds();
 }
 
+/**
+*	...
+*/
 sf::Sprite Bullet::getSprite() {
 	return m_BulletSprite;
 }
 
+/**
+*	...
+*/
 void Bullet::update(float elapsedTime) {
 	// Update the bullet position variables
 	m_Position.x += m_BulletDistance.x * elapsedTime;
@@ -97,14 +116,26 @@ void Bullet::update(float elapsedTime) {
 		m_InFlight = false;
 	}
 }
+
+/**
+*	...
+*/
 sf::Vector2f Bullet::getCenter()
 {
 	return m_Position;
 }
+
+/**
+*	...
+*/
 void Bullet::setShotPower(float power)
 {
 	this->shotPower = power;
 }
+
+/**
+*	...
+*/
 float Bullet::getShotPower()
 {
 	return shotPower;

@@ -15,10 +15,12 @@
 
 #include <SFML/Graphics.hpp>
 
+#include "Bullet.h"
 #include "Button.h"
 #include "Door.h"
 #include "Enemy.h"
 #include "EnemyGenerator.h"
+#include "gunBattery.h"
 #include "HUD.h"
 #include "Item.h"
 #include "LevelManager.h"
@@ -26,17 +28,15 @@
 #include "Player.h"
 #include "SoundManager.h"
 #include "TextureHolder.h"
-#include "TutorialManager.h"
-#include "Bullet.h"
-#include "gunBattery.h"
 #include "ToggleSwitch.h"
+#include "TutorialManager.h"
 
 class Engine {
 public:
-	// The Engine constructor
+	// Default constructor
 	Engine();
 
-	// Run will call all the private functions
+	// Run the game loop
 	void run();
 private:
 	// Get the screen resolution and create an SFML window and View
@@ -156,7 +156,7 @@ private:
 
 	// The 2d array with the map for the level
 	// A pointer to a pointer
-	int** m_ArrayLevel = NULL;
+	int** m_ArrayLevel = nullptr;
 
 	// Texture for the background and the level tiles
 	sf::Texture m_TextureTiles;
@@ -191,6 +191,20 @@ private:
 	// A vector of Vector2f for the fire emiiter locations
 	std::vector <sf::Vector2f> m_FireEmitters;
 
+	//Bullets
+	Bullet bullets[5];
+	int currentBullet = 0;
+	sf::Time m_SinceLastShot;
+
+	// Where is the mouse in relation to world coordinates
+	sf::Vector2f mouseWorldPosition;
+	// Where is the mouse in relation to screen coordinates
+	sf::Vector2i mouseScreenPosition;
+
+	void doorUpdate(float dtAsSeconds, ToggleSwitch *Switch);
+
+	double calcDistance(sf::Vector2f posOne, sf::Vector2f posTwo);
+
 	// Button Lists
 	void initButtons();
 	sf::Font m_buttonFont;
@@ -209,20 +223,5 @@ private:
 	std::list<GUI::Button> m_audioSettingsButtons;
 	//		Gameplay Settings
 	std::list<GUI::Button> m_gameplaySettingsButtons;
-
-	//Bullets
-	Bullet bullets[5];
-	int currentBullet = 0;
-	sf::Time m_SinceLastShot;
-
-	// Where is the mouse in relation to world coordinates
-	sf::Vector2f mouseWorldPosition;
-	// Where is the mouse in relation to screen coordinates
-	sf::Vector2i mouseScreenPosition;
-
-	void doorUpdate(float dtAsSeconds, ToggleSwitch *Switch);
-
-	double calcDistance(sf::Vector2f posOne, sf::Vector2f posTwo);
-
 };
 #endif // !ENGINE_H

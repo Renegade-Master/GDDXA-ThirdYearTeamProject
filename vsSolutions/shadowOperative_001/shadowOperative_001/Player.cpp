@@ -37,7 +37,7 @@ Player::Player() {
 }
 
 /**
-*	Dev
+*	Update the Player based on input from User
 */
 void Player::update(float elapsedTime, int** m_ArrayLevel) {
 	//std::cout << "\nPlayer coordinates: X" << this->m_Position.x
@@ -209,7 +209,9 @@ void Player::update(float elapsedTime, int** m_ArrayLevel) {
 	//targetingLaser.updateLine(this->m_Position, mousePos);
 }
 
-// A virtual function
+/**
+*	A virtual function
+*/
 void Player::handleInput() {
 
 	/***-----------------***\
