@@ -6,13 +6,10 @@
 *	@description
 */
 
-#include <iostream>
-
 #include "Engine.h"
 
-
 void Engine::draw() {
-	// Rub out the last frame
+	//	Fill the Window to clear the last frame
 	m_Window.clear(sf::Color::Black);
 
 	if (m_GameState == GameState::MAIN_MENU) {

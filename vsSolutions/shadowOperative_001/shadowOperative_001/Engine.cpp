@@ -9,15 +9,13 @@
 #include "Engine.h"
 
 Engine::Engine() {
-	//resolution.x = sf::VideoMode::getDesktopMode().width;
-	//resolution.y = sf::VideoMode::getDesktopMode().height;
-	
 	resolution.x = 1280;
 	resolution.y = 720;
 
+	//	Initialise the Window with Default values
 	refreshWindow();
 
-	// Initialize the full screen view
+	// Initialize the Main View
 	m_MainView.setSize(resolution);
 	m_HudView.reset(
 		sf::FloatRect(0, 0, resolution.x, resolution.y));
@@ -45,7 +43,7 @@ Engine::Engine() {
 	m_BackgroundTexture = TextureHolder::GetTexture(
 		"graphics/background1-720.png");
 
-	// Associate the sprite with the texture
+	// Associate the Background Sprite with a Texture
 	m_BackgroundSprite.setTexture(m_BackgroundTexture);
 
 	// Load the texture for the background vertex array
@@ -57,6 +55,8 @@ Engine::Engine() {
 
 	// Initialise all the Buttons
 	m_buttonFont.loadFromFile("fonts/Roboto-Light.ttf");
+	
+	//	Load up UI Buttons
 	initButtons();
 	
 }
@@ -72,11 +72,13 @@ void Engine::run() {
 		// Make a decimal fraction from the delta time
 		float dtAsSeconds = dt.asSeconds();
 
+		//	Main game cycle
 		input();
 		update(dtAsSeconds);
 		draw();
 	}
 }
+
 /*
 *	Use EnemyGenerator to create Enemies and spawn them on
 *	Stored location variables
@@ -89,7 +91,9 @@ void Engine::enemySpawn() {
 	}
 }
 
-//Spawns Items into the game.
+/**
+*	Spawns Items into the game
+*/
 void Engine::ItemSpawn() {
 	//std::cout << "\n start";
 	Item* newItem;
@@ -106,7 +110,10 @@ void Engine::ItemSpawn() {
 	}
 	std::cout << "\nItem Spawned";
 }
-//Spawn Doors
+
+/**
+*	Spawn Doors
+*/
 void Engine::doorSpawn() {
 	int numDoors = m_LM.getNumOfDoors();
 	for (int i = 0;i < numDoors;i++) {
@@ -122,6 +129,7 @@ void Engine::spawnSwitches() {
 		m_SwitchList.push_back(togSwitch);
 	}
 }
+
 /**
 *	Is the Player using a controller?
 *//*
@@ -136,7 +144,7 @@ bool Engine::getControls() {
 //}
 
 /**
-*
+*	Recreate the Window with new values
 */
 void Engine::refreshWindow() {
 	m_Window.create(sf::VideoMode(resolution.x, resolution.y),
