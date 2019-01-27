@@ -19,7 +19,7 @@ laser::laser(){
 }
 
 /**
-*	...
+*	Updates the points of the Convex Shape the Laser is built of
 */
 void laser::updateLine(sf::Vector2f playPos, sf::Vector2f mousePos){
 	this->laserLine.setPoint(0, sf::Vector2f(playPos.x+0.001+25,playPos.y+0.001+25));
@@ -29,7 +29,7 @@ void laser::updateLine(sf::Vector2f playPos, sf::Vector2f mousePos){
 }
 
 /**
-*	...
+*	Return the ConvexShape of the Laser object
 */
 sf::ConvexShape laser::getLine(){
 	return laserLine;

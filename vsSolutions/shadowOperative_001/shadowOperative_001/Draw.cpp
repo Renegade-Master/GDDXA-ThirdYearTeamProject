@@ -87,6 +87,14 @@ void Engine::draw() {
 			m_Window.draw((*cameraIt)->getSprite());
 			m_Window.draw((*cameraIt)->getDetectMeter());
 		}
+		//Draw Laserpointer
+		for (std::list<LaserPointer*>::iterator LaserPointeriter = m_LaserPointerList.begin();
+			LaserPointeriter != m_LaserPointerList.end();LaserPointeriter++) {
+			m_Window.draw((*LaserPointeriter)->getSprite());
+			if ((*LaserPointeriter)->isActive()){
+				m_Window.draw((*LaserPointeriter)->getLaser());
+			}
+		}
 		
 
 		// Draw Player

@@ -34,6 +34,7 @@
 #include "gunBattery.h"
 #include "ToggleSwitch.h"
 #include "Camera.h"
+#include "LaserPointer.h"
 
 class Engine {
 public:
@@ -97,6 +98,9 @@ private:
 
 	//camera List
 	std::list<Camera*> m_CameraList;
+
+	//Laserpointer list
+	std::list<LaserPointer*> m_LaserPointerList;
 
 	//Level Manager
 	LevelManager m_LM;
@@ -190,6 +194,9 @@ private:
 
 	//spawn camera
 	void spawnCamera();
+
+	//Spawn Laserpointer 
+	void spawnLasers();
 	// Run will call all the private functions
 	bool detectCollisions(PlayableCharacter& character);
 

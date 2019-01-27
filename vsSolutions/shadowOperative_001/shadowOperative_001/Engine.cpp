@@ -128,7 +128,9 @@ void Engine::doorSpawn() {
 		m_DoorList.push_back(door);
 	}
 }
-
+/**
+*	Spawn Switches
+*/
 void Engine::spawnSwitches() {
 	int numSwitches = m_LM.getNumSwitches();
 	for (int i = 0;i < numSwitches;i++) {
@@ -136,13 +138,26 @@ void Engine::spawnSwitches() {
 		m_SwitchList.push_back(togSwitch);
 	}
 }
-
+/**
+*	Spawn Cameras
+*/
 void Engine::spawnCamera() {
 	int numCams = m_LM.getNumCams();
 	for (int i = 0;i < numCams;i++) {
 		Camera* camera = new Camera();
 		camera->spawn(m_LM.getCamPos(), GRAVITY, m_GameTimeTotal, m_LM.getCamDir());
 		m_CameraList.push_back(camera);
+	}
+}
+/**
+*	Spawn Laserpointers
+*/
+void Engine::spawnLasers() {
+	int numLas = m_LM.getNumLaserPointers();
+	for (int i = 0; i < numLas;i++) {
+		LaserPointer* laser = new LaserPointer();
+		laser->spawn(m_LM.getLaserPos(),GRAVITY,m_GameTimeTotal,m_LM.getLaserDir());
+		m_LaserPointerList.push_back(laser);
 	}
 }
 /**
