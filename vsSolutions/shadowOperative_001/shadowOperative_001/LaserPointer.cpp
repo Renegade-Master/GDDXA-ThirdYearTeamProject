@@ -1,3 +1,10 @@
+/**
+*	@author			Ciaran Bent [K00221230]
+*					Owen O'Dea	[K00218956K00218956]
+*					Rory Ryan	[K00218864]
+*	@creationDate	2018/11/01	YYYY/MM/DD
+*	@description
+*/
 #include "LaserPointer.h"
 
 /*
@@ -17,8 +24,10 @@ void LaserPointer::spawn(sf::Vector2i startPosition, float gravity, sf::Time gam
 
 	this->m_Sprite.setOrigin(this->getCenter().x - this->getCenter().x + 50,
 		this->getCenter().y - this->getCenter().y + 1);
-
-
+	//Start ToggleEvent Timer
+	lastToggleEvent = gameStart;
+	active = true;
+	maxLaserRange = laserRange;
 	/*Orient the Object to the appropriate position
 		and calculate the bounds of the connected laser object*/
 	if (dir == 'a') {//UP
@@ -61,15 +70,39 @@ void LaserPointer::spawn(sf::Vector2i startPosition, float gravity, sf::Time gam
 		this->laserDest.y = this->m_Position.y - 6;
 		securityLaser.updateLine(this->laserOrig, this->laserDest);
 	}
-	
 }
 /*
 *	Updates the LaserPointer object for current frame
 */
-void LaserPointer::update() {
-	//to be continued
+void LaserPointer::update(sf::Time m_GameTimeTotal) {
+	if (active) {
+		if (m_GameTimeTotal.asMilliseconds() -
+			lastToggleEvent.asMilliseconds() > 15000) {
+			laserRange = 0;
+			active = false;
+			std::cout << "\nLaser off!!";
+			lastToggleEvent = m_GameTimeTotal;
+		}
+	}
+	else {
+		if (m_GameTimeTotal.asMilliseconds() -
+			lastToggleEvent.asMilliseconds() > 5000) {
+			laserRange = maxLaserRange;
+			active = true;
+			std::cout << "\nLaser on!!";
+			lastToggleEvent = m_GameTimeTotal;
+		}
+	}
 }
-
+/*
+*	Return the ConvexShape that is the laser of the LaserPointer
+*/
 sf::ConvexShape LaserPointer::getLaser() {
 	return securityLaser.getLine();
+}
+/*
+*	Return Whether or not the laser is currently active
+*/
+bool LaserPointer::isActive() {
+	return active;
 }

@@ -91,7 +91,9 @@ void Engine::draw() {
 		for (std::list<LaserPointer*>::iterator LaserPointeriter = m_LaserPointerList.begin();
 			LaserPointeriter != m_LaserPointerList.end();LaserPointeriter++) {
 			m_Window.draw((*LaserPointeriter)->getSprite());
-			m_Window.draw((*LaserPointeriter)->getLaser());
+			if ((*LaserPointeriter)->isActive()){
+				m_Window.draw((*LaserPointeriter)->getLaser());
+			}
 		}
 		
 

@@ -89,6 +89,19 @@ void Engine::update(float dtAsSeconds) {
 			}
 		}
 
+		//Update Lasers
+		for (std::list<LaserPointer*>::iterator lasIt = m_LaserPointerList.begin();
+			lasIt != m_LaserPointerList.end();lasIt++) {
+			(*lasIt)->update(m_GameTimeTotal);
+			//is the laser Active
+			if ((*lasIt)->isActive()) {
+				//If so is the player touching it
+				if ((*lasIt)->getLaser().getGlobalBounds().intersects(m_Player.getPosition())) {
+					std::cout << "\nDetected";
+				}
+			}
+		}
+
 		// Update Player
 		m_Player.update(dtAsSeconds, m_ArrayLevel);
 
@@ -408,7 +421,8 @@ void Engine::update(float dtAsSeconds) {
 }
 
 /**
-*
+*	Cycles through the door List and Finds which one is closest to the referenced
+*	Switch object, The closest one is always the connected Door
 */
 void Engine::doorUpdate(float dtAsSeconds, ToggleSwitch *Switch) {
 	//update Doors
@@ -434,7 +448,7 @@ void Engine::doorUpdate(float dtAsSeconds, ToggleSwitch *Switch) {
 }
 
 /**
-*
+*	Calculated the Distance between two objects using their x,y(Sf::Vecor2f) coordinates
 */
 double Engine::calcDistance(sf::Vector2f posOne, sf::Vector2f posTwo)  {
 	double distance;
