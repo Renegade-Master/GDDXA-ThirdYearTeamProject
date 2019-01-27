@@ -35,7 +35,7 @@ private:
 	float m_TimeModifier = 1;
 	float m_BaseTimeLimit = 0;
 	const int NUM_LEVELS = 2;
-
+	//int CurrentLevel();
 
 public:
 	LevelManager();
@@ -45,7 +45,9 @@ public:
 	const int VERTS_IN_QUAD = 4;
 	float getTimeLimit();
 
-	int m_CurrentLevel = 1;
+	int m_CurrentLevel;
+
+	int CurrentLevel();
 
 	sf::Vector2i getStartPosition();
 	sf::Vector2i getEnemyPosition();

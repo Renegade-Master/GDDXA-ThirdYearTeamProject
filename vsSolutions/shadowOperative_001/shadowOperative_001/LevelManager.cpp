@@ -32,9 +32,9 @@ int** LevelManager::nextLevel(sf::VertexArray& rVaLevel) {
 	m_LevelSize.y = 0;
 
 	// Get the next level
-	/*m_CurrentLevel++;
-	if (m_CurrentLevel > NUM_LEVELS) {
-		m_CurrentLevel = 1;
+	//m_CurrentLevel++;
+	/*if (m_CurrentLevel > NUM_LEVELS) {
+		m_CurrentLevel = 0;
 		m_TimeModifier -= .1f;
 	}*/
 
@@ -356,6 +356,16 @@ sf::Vector2i LevelManager::getLevelSize() {
 *	...
 */
 int LevelManager::getCurrentLevel() {
+	return m_CurrentLevel;
+}
+
+/**
+*	...
+*/
+int LevelManager::CurrentLevel() {
+
+	m_CurrentLevel++;
+
 	return m_CurrentLevel;
 }
 
