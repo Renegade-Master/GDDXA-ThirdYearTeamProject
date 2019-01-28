@@ -36,6 +36,7 @@ void Engine::update(float dtAsSeconds) {
 		}
 	}
 	else if (m_GameState == GameState::LEVEL_SELECT) {
+		void refreshWindow();
 		//	Handle Buttons
 		while (m_Window.pollEvent(m_event)) {
 			for (std::list<GUI::Button>::iterator it = m_levelSelectButtons.begin(); it != m_levelSelectButtons.end(); ++it) {

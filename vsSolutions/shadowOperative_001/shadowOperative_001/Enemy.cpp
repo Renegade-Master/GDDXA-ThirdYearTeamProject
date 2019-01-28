@@ -89,9 +89,13 @@ void Enemy::update(float elapsedTime, int** m_ArrayLevel/*, sf::Vector2f playPos
 		switch (move) {
 		case patrolLeft:
 			this->m_Position.x += this->m_Speed*elapsedTime;
+			m_Sprite = sf::Sprite(TextureHolder::GetTexture(
+				"graphics/D-EnemyRight.png"));
 			break;
 		case patrolRight:
 			this->m_Position.x -= this->m_Speed*elapsedTime;
+			m_Sprite = sf::Sprite(TextureHolder::GetTexture(
+				"graphics/D-EnemyLeft.png"));
 			break;
 		}
 		if (Enemy::patrolLeft) {
