@@ -19,7 +19,7 @@
 
 class Enemy : public PlayableCharacter {
 public:
-	void update(float elapsedTIme,int** m_ArrayLevel/*, sf::Vector2f playPos*/);
+	void update(float elapsedTIe,int** m_ArrayLevel/*, sf::Vector2f playPos*/);
 	void spawn(sf::Vector2i startPosition, float gravity,sf::Time gameStart);
 	void alterPatrol(bool patrol);
 	sf::FloatRect getPosition();
@@ -47,9 +47,9 @@ private:
 	bool patrolValid = false;
 	// This is a pure virtual function
 	virtual void PlayableCharacter::handleInput();
-	enum patrolDir { patrolLeft, patrolRight };
-	patrolDir move = patrolLeft;
-	friend patrolDir& operator++(patrolDir& mv, int incr);
+	/*enum patrolDir { patrolLeft, patrolRight };
+	patrolDir move = patrolLeft;*/
+	
 	int sincePatrolAlter = 0;
 	char direction;
 	
