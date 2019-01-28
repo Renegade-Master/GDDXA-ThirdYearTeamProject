@@ -19,7 +19,7 @@
 
 class Enemy : public PlayableCharacter {
 public:
-	void update(float elapsedTIme,int** m_ArrayLevel/*, sf::Vector2f playPos*/);
+	void update(float elapsedTIe,int** m_ArrayLevel/*, sf::Vector2f playPos*/);
 	void spawn(sf::Vector2i startPosition, float gravity,sf::Time gameStart);
 	void alterPatrol(bool patrol);
 	sf::FloatRect getPosition();

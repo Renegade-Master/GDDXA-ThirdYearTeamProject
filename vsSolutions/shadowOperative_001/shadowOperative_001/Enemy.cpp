@@ -25,7 +25,7 @@ void Enemy::spawn(sf::Vector2i startPosition, float gravity, sf::Time gameStart)
 	lastDetectionEvent = gameStart;
 	detectMeter.setSize(sf::Vector2f(10, this->getAwareness()));
 	detectMeter.setFillColor(sf::Color::Red);
-	detectMeter.setPosition(this->getCenter().x-5, this->getCenter().y - 30);
+	detectMeter.setPosition(this->getCenter().x - 5, this->getCenter().y - 30);
 	laserRange = detectionDistance;
 }
 
@@ -58,7 +58,7 @@ void Enemy::update(float elapsedTime, int** m_ArrayLevel/*, sf::Vector2f playPos
 		//see if the enemy is moving and if not Choose a direction to patrol
 		if (sincePatrolAlter <= 0) {
 			for (int x = startX; x < endX; x++) {
-				for (int y = startY; y < endY; y++)	{
+				for (int y = startY; y < endY; y++) {
 					// Initialize the starting position of the current block
 					block.left = x * TILE_SIZE;
 					block.top = y * TILE_SIZE;
@@ -94,14 +94,23 @@ void Enemy::update(float elapsedTime, int** m_ArrayLevel/*, sf::Vector2f playPos
 			this->m_Position.x -= this->m_Speed*elapsedTime;
 			break;
 		}
-		if (Enemy::patrolLeft) {
+		if (this->move == patrolDir::patrolLeft) {
 			direction = 'm';
 		}
-		else if(Enemy::patrolRight){
+		else if (this->move == patrolDir::patrolRight) {
 			direction = 'f';
 		}
 		m_Sprite.setPosition(this->m_Position);
-		detectionDistance = reCalculateMaxRange(direction,m_ArrayLevel,maxDistance);
+		detectionDistance = reCalculateMaxRange(direction, m_ArrayLevel, maxDistance);
+		//for (std::list<Door*>::iterator doorIt = doors.begin();
+		//	doorIt != doors.end();doorIt++) {
+		//	if (this->getCone().getGlobalBounds().intersects((*doorIt)->getPosition())) {
+		//		if (calcDistance(this->getCenter(), (*doorIt)->getCenter()) < detectionDistance) {
+		//			detectionDistance = calcDistance(this->getCenter(), (*doorIt)->getCenter());
+		//		}
+		//	}
+		//}
+		
 		if (move == patrolLeft) {
 			cone.updateConePos(this->m_Position, this->detectionDistance, this->sightAngle, true);
 		}
@@ -322,44 +331,61 @@ sf::String Enemy::getClassName() {
 */
 double Enemy::reCalculateMaxRange(char dir, int** m_ArrayLevel, double laserRange) {
 	int x = (this->m_Position.x / 50);
+	int y = (this->m_Position.y / 50);
+	//std::cout << "\n\n\n\ny= " << y;
+	double calculatedrange = 0;
 	if (this->getClassName() == "LaserPointer") {
+		//std::cout << "\nLaserpointer";
+		calculatedrange = 75;
 		int y = (this->m_Position.y / 50);
 	}
 	else if (this->getClassName() == "Enemy") {
+		//std::cout << "\nEnemy";
 		int y = (this->getCone().getPoint(0).y / 50)-1;
-	}
-	int y = (this->m_Position.y / 50);
-	double calculatedrange = 75;
-	//Enemies only Move Left and Right
-	if (this->getClassName() == "Enemy") {
+		y *= (0.5);
 		//y -= 1;
-		if (dir == 'm') {//LEFT
-			for (int i = 0;i < (laserRange / 50);++i) {
-				if ((m_ArrayLevel[y][x-i] == 0) || (m_ArrayLevel[y][x-i] == 'T')) {
-					calculatedrange += 50;
-				}
-				else {
-					break;
-				}
-			}
-		}
-		else if (dir == 'f') {//RIGHT
-			for (int i = 0;i < (laserRange / 50);++i) {
-				if ((m_ArrayLevel[y][x+i] == 0) || (m_ArrayLevel[y][x+i] == 'T')) {
-					calculatedrange += 50;
-				}
-				else {
-					break;
-				}
-			}
-		}
-		return calculatedrange;
+		 calculatedrange = 0;
 	}
+	//std::cout << "\n\nThis->m_Position " << this->m_Position.x << ", " << this->m_Position.y;
+	//std::cout << "  Y= " << y<<" ,X"<<x;
+	/*std::cout << "\ny= " << y;
+	std::cout << "\nThis->getPosition() " << this->m_Position.x << " ," << this->m_Position.y;
+	
+	std::cout << "\ny= " << y;
+	std::cout << "\nThis->getPosition() " << this->m_Position.x << " ," << this->m_Position.y;*/
+	
+	//Enemies only Move Left and Right
+	//if (this->getClassName() == "Enemy") {
+	//	//y -= 1;
+	//	if (dir == 'm') {//LEFT
+	//		for (int i = 0;i < (laserRange / 50);++i) {
+	//			
+	//			if ((m_ArrayLevel[y][x-i] == 0) || (m_ArrayLevel[y][x-i] == 'T')) {
+	//				calculatedrange += 50;
+	//			}
+	//			else {
+	//				break;
+	//			}
+	//		}
+	//	}
+	//	else if (dir == 'f') {//RIGHT
+	//		for (int i = 0;i < (laserRange / 50);++i) {
+	//			if ((m_ArrayLevel[y][x+i] == 0) || (m_ArrayLevel[y][x+i] == 'T')) {
+	//				calculatedrange += 50;
+	//			}
+	//			else {
+	//				break;
+	//			}
+	//		}
+	//	}
+	//	return calculatedrange;
+	//}
 	//LaserPointer implementation
-	if (this->getClassName() == "LaserPointer") {
+	std::cout << "\nDirection" << dir;
 		if (dir == 'a') {//UP
 			for (int i = 1;i < (laserRange / 50);++i) {
-				if (m_ArrayLevel[y - i][x] == 0) {
+				if ((m_ArrayLevel[y - i][x] == 0)|| (m_ArrayLevel[y - i][x] == 'T')
+					|| (m_ArrayLevel[y - i][x] == 48) || (m_ArrayLevel[y - i][x] == 84)) {
 					calculatedrange += 50;
 				}
 				else {
@@ -369,7 +395,8 @@ double Enemy::reCalculateMaxRange(char dir, int** m_ArrayLevel, double laserRang
 		}
 		else if (dir == 'n') {//DOWN
 			for (int i = 1;i < (laserRange / 50);++i) {
-				if (m_ArrayLevel[y + i][x] == 0) {
+				if ((m_ArrayLevel[y + i][x] == 0) || (m_ArrayLevel[y + i][x] == 'T')
+					|| (m_ArrayLevel[y + i][x] == 48) || (m_ArrayLevel[y + i][x] == 84)) {
 					calculatedrange += 50;
 				}
 				else {
@@ -378,25 +405,42 @@ double Enemy::reCalculateMaxRange(char dir, int** m_ArrayLevel, double laserRang
 			}
 		}
 		else if (dir == 'm') {//LEFT
+			std::cout << "\nLeft";
 			for (int i = 1;i < (laserRange / 50);++i) {
-				if (m_ArrayLevel[y][x - i] == 0) {
+				int block = int(m_ArrayLevel[y][x - i]);
+				//std::cout << "\nBlock = " << block;
+
+				if (this->getClassName() == sf::String("Enemy")) { 
+					//std::cout<< "BREAK HERE" << std::endl;
+				}
+
+				if (	(block == 0)	|| (block == 'T')
+					||	(block == 48)	|| (block == 84)) {
+
+					//std::cout << "\nAll clear";
 					calculatedrange += 50;
 				}
 				else {
+					//std::cout << "\nHit Wall";
 					break;
 				}
 			}
 		}
 		else if (dir == 'f') {//RIGHT
 			for (int i = 1;i < (laserRange / 50);++i) {
-				if (m_ArrayLevel[y][x + i] == 0) {
+				char block = m_ArrayLevel[y][x - i];
+				//std::cout << "\nBlock = " << m_ArrayLevel[y][x - i];
+				if ((m_ArrayLevel[y][x + i] == 0)|| (m_ArrayLevel[y][x + i] == 'T')
+					|| (m_ArrayLevel[y][x+i] == 48) || (m_ArrayLevel[y][x+i] == 84)) {
+					//std::cout << "\nAll clear";
 					calculatedrange += 50;
 				}
 				else {
+					//std::cout << "\nHit Wall";
 					break;
 				}
 			}
 		}
+		std::cout << "\nReturning: " << calculatedrange;
 		return calculatedrange;
-	}
 }
