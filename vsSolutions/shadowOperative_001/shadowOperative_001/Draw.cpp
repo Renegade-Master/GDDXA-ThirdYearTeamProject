@@ -27,6 +27,7 @@ void Engine::draw() {
 		}
 	}
 	else if (m_GameState == GameState::LEVEL_SELECT) {
+		void refreshWindow();
 		// Switch to m_MainView
 		m_Window.setView(m_MainView);
 
