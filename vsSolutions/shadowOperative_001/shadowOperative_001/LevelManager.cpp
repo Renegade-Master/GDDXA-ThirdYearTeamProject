@@ -396,15 +396,6 @@ sf::Vector2i LevelManager::getLevelSize() {
 int LevelManager::getCurrentLevel() {
 	return m_CurrentLevel;
 }
-/*
-*	Get Time Limit for Level
-*/
-int LevelManager::CurrentLevel() {
-
-	m_CurrentLevel++;
-
-	return m_CurrentLevel;
-}
 
 /**
 *	...

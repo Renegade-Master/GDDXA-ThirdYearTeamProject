@@ -7,13 +7,12 @@
 */
 
 #include "Engine.h"
-//#include "LevelManager.h"
 
 /**
 *	Detect collisions between entities in the Game.
 */
 bool Engine::detectCollisions(PlayableCharacter& character) {
-	bool reachedGoal = false;
+	//bool reachedGoal = false;
 	// Make a rect for all his parts
 	sf::FloatRect detectionZone = character.getPosition();
 
@@ -47,13 +46,11 @@ bool Engine::detectCollisions(PlayableCharacter& character) {
 	}
 
 	// Has the character fallen out of the map?
-	//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!This can be part of level manager!!!!!!!!!!!!!!!!!!!!!!!!
 	sf::FloatRect level(0, 0, m_LM.getLevelSize().x * TILE_SIZE, m_LM.getLevelSize().y * TILE_SIZE);
 	if (!character.getPosition().intersects(level))	{
 		// respawn the character
 		std::cout << "YOU DIED!" << std::endl;
 		character.spawn(m_LM.getStartPosition(), GRAVITY);
-		//this->Engine::m_GameState = Engine::m_GameState::MAIN_MENU;
 	}
 	
 	//if Door is valid pass through
@@ -145,15 +142,12 @@ bool Engine::detectCollisions(PlayableCharacter& character) {
 			*/
 
 			// Has the character reached the goal?
-			if (m_ArrayLevel[y][x] == 'Q') {
-
-				m_LM.m_CurrentLevel=2;
-				//reachedGoal = true;
-				std::cout << "You should be in level select. " << std::endl;
-			    //CurrentLevel();
+			if (m_ArrayLevel[y][x] == 'Q'
+				&& character.getClassName() == sf::String("Player")) {
+				return(true);
 			}
 		}
 	}
 	// All done, return, whether or not a new level might be required
-	return reachedGoal;
+	return(false);
 }

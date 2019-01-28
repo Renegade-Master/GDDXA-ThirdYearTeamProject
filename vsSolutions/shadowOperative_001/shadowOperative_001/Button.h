@@ -60,6 +60,7 @@ namespace GUI {
 		sf::Vector2f getPosition() { return m_position; };
 		sf::Vector2f getDimensions() { return sf::Vector2f(m_button.getGlobalBounds().width, m_button.getGlobalBounds().height); };
 		sf::Uint32 getState() { return m_btnstate; };
+		void setState(sf::Uint32 newState) { m_btnstate = newState; };
 
 		void update(sf::Event& e, sf::Time t, sf::RenderWindow& window);
 

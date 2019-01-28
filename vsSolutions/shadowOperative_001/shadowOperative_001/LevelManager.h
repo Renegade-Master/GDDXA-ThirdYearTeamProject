@@ -56,8 +56,6 @@ public:
 
 	int m_CurrentLevel;
 
-	int CurrentLevel();
-
 	//Enemies
 	sf::Vector2i getStartPosition();
 	sf::Vector2i getEnemyPosition();
