@@ -13,35 +13,11 @@
 #include "PlayableCharacter.h"
 #include "TextureHolder.h"
 #include "visionCone.h"
+#include"laser.h"
+
+
 
 class Enemy : public PlayableCharacter {
-private:
-	sf::Vector2i m_SpawnPosition;
-	bool patrolValid = false;
-	// This is a pure virtual function
-	virtual void handleInput();
-	enum patrolDir { patrolLeft, patrolRight };
-	patrolDir move = patrolLeft;
-	friend patrolDir& operator++(patrolDir& mv, int incr);
-	int sincePatrolAlter = 0;
-	int sightAngle = 60;
-	int detectionDistance = 300;
-	visionCone cone;
-	float awarenessOfPlayer = 0.0f;
-
-	//detection Event recorder used to slow execution of detection events to reasonable pace
-	sf::Time lastDetectionEvent;
-	//detection meter
-	sf::RectangleShape detectMeter;
-
-	//Enemy Health
-	float health = 100.0f;
-	const float regenRate = 0.5f;
-	const float maxHealth = 100.0f;
-	bool conscious =  true;
-
-	sf::String getClassName();
-
 public:
 	void update(float elapsedTIme,int** m_ArrayLevel/*, sf::Vector2f playPos*/);
 	void spawn(sf::Vector2i startPosition, float gravity,sf::Time gameStart);
@@ -61,6 +37,45 @@ public:
 	bool isConscious();
 	void regen(float elapsedTime);
 	void EnemyCrate();
+
+	//Calculate Max field of vision
+	double reCalculateMaxRange(char dir, int** m_ArrayLevel, double laserRange);
+	void toggleTargeting();
+
+private:
+	sf::Vector2i m_SpawnPosition;
+	bool patrolValid = false;
+	// This is a pure virtual function
+	virtual void PlayableCharacter::handleInput();
+	enum patrolDir { patrolLeft, patrolRight };
+	patrolDir move = patrolLeft;
+	friend patrolDir& operator++(patrolDir& mv, int incr);
+	int sincePatrolAlter = 0;
+	char direction;
+	
+protected:
+	//Enemy Health
+	float health = 100.0f;
+	const float regenRate = 0.5f;
+	const float maxHealth = 100.0f;
+	bool concious = true;
+	//Enemy Sight
+	int sightAngle = 60;
+	double detectionDistance = 500;
+	const double maxDistance = detectionDistance;
+	//This Characters cone of vision
+	visionCone cone;
+	laser visionLaser;
+	double laserRange = 500;
+	double maxLaserRange;
+	float awarenessOfPlayer = 0.0f;
+	//detection Event recorder used to slow execution of detection events to reasonable pace
+	sf::Time lastDetectionEvent;
+	//detection meter
+	sf::RectangleShape detectMeter;
+	sf::String getClassName();
+
+
 };
 
 #endif // !ENEMY_H

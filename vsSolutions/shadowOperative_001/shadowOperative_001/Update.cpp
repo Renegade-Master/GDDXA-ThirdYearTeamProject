@@ -56,6 +56,11 @@ void Engine::update(float dtAsSeconds) {
 			m_GameState = GameState::LOADING;
 			loadLevel();
 		}
+		
+		//	Assign the active controller
+		while (m_Window.pollEvent(m_event)) {
+			//m_InputHandler.m_controllerIndex = m_event.joystickConnect.joystickId;
+		}
 
 		//Update Switches		
 		for (std::list<ToggleSwitch*>::iterator switchIt = m_SwitchList.begin();
@@ -89,6 +94,20 @@ void Engine::update(float dtAsSeconds) {
 				itemIter++;
 			}
 		}
+
+		//Update Lasers
+		for (std::list<LaserPointer*>::iterator lasIt = m_LaserPointerList.begin();
+			lasIt != m_LaserPointerList.end();lasIt++) {
+			(*lasIt)->update(m_GameTimeTotal);
+			//is the laser Active
+			if ((*lasIt)->isActive()) {
+				//If so is the player touching it
+				if ((*lasIt)->getLaser().getGlobalBounds().intersects(m_Player.getPosition())) {
+					std::cout << "\nDetected";
+				}
+			}
+		}
+
 		// Update Player
 		m_Player.update(dtAsSeconds, m_ArrayLevel);
 
@@ -97,6 +116,7 @@ void Engine::update(float dtAsSeconds) {
 			//std::cout << "\nUpdating targeting";
 			m_Player.updateTargeting(mouseWorldPosition);
 		}
+
 		//Handle-Update bullets
 		//std::cout << "\nGun Charge:" << m_Player.getChargeLevel();
 		if ((m_GameTimeTotal.asMilliseconds()
@@ -168,7 +188,6 @@ void Engine::update(float dtAsSeconds) {
 			}
 		}
 
-
 		//update Enemy
 		for (std::list<Enemy*>::iterator it = m_EnemyList.begin(); it != m_EnemyList.end(); it++)
 		{
@@ -196,7 +215,8 @@ void Engine::update(float dtAsSeconds) {
 				if (m_GameTimeTotal.asMilliseconds()
 					- (*it)->getlastdetectTime() > 500)
 				{
-					(*it)->increaseAwarenessLevel(m_Player.getCenter(), m_Player.getDetectLevel(), m_GameTimeTotal);
+					(*it)->increaseAwarenessLevel(m_Player.getCenter(),
+						m_Player.getDetectLevel(),m_GameTimeTotal);
 					if ((*it)->getAwareness() <= 100.0)
 					{
 						std::cout << "\nDetected";
@@ -228,6 +248,66 @@ void Engine::update(float dtAsSeconds) {
 				}
 			}
 		}
+
+		//update Cameras
+		for (std::list<Camera*>::iterator cameraIt = m_CameraList.begin();
+			cameraIt != m_CameraList.end();cameraIt++) {
+			//double distance  = (*cameraIt)->detectCollsions((*cameraIt)->getCone(),m_ArrayLevel,TILE_SIZE);
+			(*cameraIt)->update(dtAsSeconds, m_ArrayLevel);
+
+			//check for bulletCollision
+			for (int i = 0;i < 5;i++)
+			{
+				if (bullets[i].isInFlight())
+				{
+					if (bullets[i].getSprite().getGlobalBounds().intersects
+					((*cameraIt)->getSprite().getGlobalBounds()))
+					{
+						std::cout << "\n Taking damage!!!!!!";
+						bullets[i].stop();
+						//(*it)->//LosesHealthDies
+						(*cameraIt)->takeDamage();
+						//(*it)->//is Enemy knoicked unconcious?
+					}
+				}
+			}
+
+			//check for player
+			if ((*cameraIt)->getCone().getGlobalBounds().
+				intersects(m_Player.getPosition())) {
+				if (m_GameTimeTotal.asMilliseconds() - (*cameraIt)->getlastdetectTime() > 500) {
+					//increase awareness
+					(*cameraIt)->increaseAwarenessLevel(m_Player.getCenter(),
+					m_Player.getDetectLevel(), m_GameTimeTotal);
+					//is player detetced
+					if ((*cameraIt)->getAwareness() <= 100) {
+						std::cout << "\nDetetced";
+					}
+					std::cout << "\n" << (*cameraIt)->getAwareness();
+				}
+			}
+			//Decrease awareness Level
+			else if ((*cameraIt)->getAwareness() >= 0) {
+				if (m_GameTimeTotal.asMilliseconds()
+					- (*cameraIt)->getlastdetectTime() > 500) {
+					(*cameraIt)->reduceAwareness(m_GameTimeTotal);
+				}
+			}
+			//check for Dead Ally
+			for (std::list<Enemy*>::iterator checkDeathOnCamIter = m_EnemyList.begin();
+				checkDeathOnCamIter != m_EnemyList.end();checkDeathOnCamIter++) {
+				//is camera visionCone intersecting Enemy sprite
+				if((*checkDeathOnCamIter)->getCone().getLocalBounds().
+					intersects((*checkDeathOnCamIter)->getPosition())) {
+					//if Enemy is unconcious..... "CONCERN!!!!"
+					if (!(*checkDeathOnCamIter)->isConscious()) {
+						(*checkDeathOnCamIter)->increaseAwarenessLevel(
+						(*checkDeathOnCamIter)->getCenter(), 1, m_GameTimeTotal);
+					}
+				}
+			}
+		}
+
 		// Detect collisions and see if characters have reached the goal tile
 		// The second part of the if condition is only executed
 		// when player is touching the home tile
@@ -347,7 +427,8 @@ void Engine::update(float dtAsSeconds) {
 }
 
 /**
-*
+*	Cycles through the door List and Finds which one is closest to the referenced
+*	Switch object, The closest one is always the connected Door
 */
 void Engine::doorUpdate(float dtAsSeconds, ToggleSwitch *Switch) {
 	//update Doors
@@ -373,7 +454,7 @@ void Engine::doorUpdate(float dtAsSeconds, ToggleSwitch *Switch) {
 }
 
 /**
-*
+*	Calculated the Distance between two objects using their x,y(Sf::Vecor2f) coordinates
 */
 double Engine::calcDistance(sf::Vector2f posOne, sf::Vector2f posTwo)  {
 	double distance;

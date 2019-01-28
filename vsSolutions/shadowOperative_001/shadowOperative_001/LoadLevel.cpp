@@ -41,8 +41,13 @@ void Engine::loadLevel() {
 		if (m_LM.getNumOfDoors() >= 1) {
 			doorSpawn();
 		}
+		//Spawn switches
 		if (m_LM.getNumSwitches() >= 1) {
 			spawnSwitches();
+		}
+		//Spawn LaserPointer
+		if(m_LM.getNumLaserPointers()>=1){
+			spawnLasers();
 		}
 
 		// Make sure this code isn't run again
@@ -51,4 +56,18 @@ void Engine::loadLevel() {
 		std::cout << "Loading...DONE!" << std::endl;
 		m_GameState = GameState::READYUP;
 	}
+	//Spawn Doors
+	if (m_LM.getNumOfDoors() >= 1) {
+		doorSpawn();
+	}
+	if (m_LM.getNumSwitches() >= 1) {
+		spawnSwitches();
+	}
+	if (m_LM.getNumCams() >= 1) {
+		spawnCamera();
+	}
+
+	// Make sure this code isn't run again
+	m_NewLevelRequired = false;
+	m_GameState = GameState::PLAYING;
 }

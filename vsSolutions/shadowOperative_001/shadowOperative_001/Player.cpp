@@ -218,46 +218,19 @@ void Player::handleInput() {
 	|	HANDLE NON-MOVEMENT	|
 	\***-----------------***/
 	
+
+
 	/***-----------------***\
 	|	HANDLE ALL STANCE	|
 	\***-----------------***/
 
-	//  Moving Left
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
-		this->m_Direction = Direction::LEFT;
-	}
-	//  Moving Right
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
-		this->m_Direction = Direction::RIGHT;
-	}
-	// If nothing is pressed
-	else {
-		this->m_LastDirection = this->m_Direction;
-		this->m_Direction = Direction::IDLE;
-	}
 
-	/***---------------------***\
-	|	HANDLE FALLING STANCE	|
-	\***---------------------***/
-
-	if (this->m_Action == Action::FALLING) {
-		//  Double Jump		
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
-
-			// Character hasn't jumped too many times
-			if (this->m_jumpCounter < this->maxJumps) {
-				this->m_jumpDuration = 0.0f;
-				this->m_Action = Action::JUMPING;
-				this->m_jumpCounter++;
-			}
-		}
-	}
-
+	
 	/***---------------------***\
 	|	HANDLE JUMPING STANCE	|
 	\***---------------------***/
 
-	else if (this->m_Action == Action::JUMPING) {
+	/*else */if (this->m_Action == Action::JUMPING) {
 
 	}
 
@@ -265,7 +238,7 @@ void Player::handleInput() {
 	|	HANDLE RUNNING STANCE	|
 	\***---------------------***/
 
-	else if (this->m_Action == Action::RUNNING) {
+	if (this->m_Action == Action::RUNNING) {
 		// Continue Running
 		if (this->m_Direction == Direction::LEFT
 			|| this->m_Direction == Direction::RIGHT) {
@@ -292,9 +265,7 @@ void Player::handleInput() {
 	|	HANDLE CROUCHING STANCE	|
 	\***---------------------***/
 
-	else if (this->m_Action == Action::CROUCHING) {
-
-	}
+	
 
 	/***---------------------***\
 	|	HANDLE ATTACK STANCE	|
@@ -343,15 +314,12 @@ void Player::handleInput() {
 	|	HANDLE SHOOTING	|
 	\***-------------***/
 
-	if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-		shooting = true;
+	if (!sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+		this->shooting = false;
 	}
-	else {
-		shooting = false;
-	}
-	if (sf::Mouse::isButtonPressed(sf::Mouse::Right)) {
+	/*if (sf::Mouse::isButtonPressed(sf::Mouse::Right)) {
 		this->toggleTargeting();
-	}
+	}*/
 }
 
 /**

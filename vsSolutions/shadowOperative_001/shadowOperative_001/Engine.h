@@ -22,6 +22,7 @@
 #include "EnemyGenerator.h"
 #include "gunBattery.h"
 #include "HUD.h"
+#include "InputHandler.h"
 #include "Item.h"
 #include "LevelManager.h"
 #include "ParticleSystem.h"
@@ -30,6 +31,11 @@
 #include "TextureHolder.h"
 #include "ToggleSwitch.h"
 #include "TutorialManager.h"
+#include "Bullet.h"
+#include "gunBattery.h"
+#include "ToggleSwitch.h"
+#include "Camera.h"
+#include "LaserPointer.h"
 
 class Engine {
 public:
@@ -41,9 +47,6 @@ public:
 private:
 	// Get the screen resolution and create an SFML window and View
 	sf::Vector2f resolution;
-
-	//  Is the Player using a controller?
-	bool m_usingController = true;
 
 	// Handle events
 	sf::Event m_event;
@@ -90,6 +93,15 @@ private:
 
 	//switch list
 	std::list<ToggleSwitch*> m_SwitchList;
+
+	//	Input Handler
+	InputHandler m_IH;
+
+	//camera List
+	std::list<Camera*> m_CameraList;
+
+	//Laserpointer list
+	std::list<LaserPointer*> m_LaserPointerList;
 
 	//Level Manager
 	LevelManager m_LM;
@@ -141,12 +153,11 @@ private:
 	// Declare a shader for the background
 	sf::Shader m_RippleShader;
 
-	// Is character 1 or 2 the current focus?
-	bool m_Character1 = true;
-
 	// How much time is left in the current level
 	float m_TimeRemaining;
 	sf::Time m_GameTimeTotal;
+	sf::Time dt;
+	float dtAsSeconds;
 
 	// Is it time for a new/first level?
 	bool m_NewLevelRequired = true;
@@ -181,6 +192,11 @@ private:
 	//spawn Switches
 	void spawnSwitches();
 
+	//spawn camera
+	void spawnCamera();
+
+	//Spawn Laserpointer 
+	void spawnLasers();
 	// Run will call all the private functions
 	bool detectCollisions(PlayableCharacter& character);
 
@@ -191,19 +207,11 @@ private:
 	// A vector of Vector2f for the fire emiiter locations
 	std::vector <sf::Vector2f> m_FireEmitters;
 
-	//Bullets
-	Bullet bullets[5];
-	int currentBullet = 0;
-	sf::Time m_SinceLastShot;
 
 	// Where is the mouse in relation to world coordinates
 	sf::Vector2f mouseWorldPosition;
 	// Where is the mouse in relation to screen coordinates
 	sf::Vector2i mouseScreenPosition;
-
-	void doorUpdate(float dtAsSeconds, ToggleSwitch *Switch);
-
-	double calcDistance(sf::Vector2f posOne, sf::Vector2f posTwo);
 
 	// Button Lists
 	void initButtons();
@@ -223,5 +231,17 @@ private:
 	std::list<GUI::Button> m_audioSettingsButtons;
 	//		Gameplay Settings
 	std::list<GUI::Button> m_gameplaySettingsButtons;
+
+	//Bullets
+	Bullet bullets[5];
+	int currentBullet = 0;
+	sf::Time m_SinceLastShot;
+
+	//update door states
+	void doorUpdate(float dtAsSeconds, ToggleSwitch *Switch);
+	//calculate distance from enemy to player
+	double calcDistance(sf::Vector2f posOne, sf::Vector2f posTwo);
+
+	
 };
 #endif // !ENGINE_H
