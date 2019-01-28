@@ -67,6 +67,11 @@ private:
 	Command* cont_RIGHT_STICK_RIGHT = nullptr;
 	Command* cont_RIGHT_STICK_UP = nullptr;
 	Command* cont_RIGHT_STICK_DOWN = nullptr;
+
+	Command* cont_RIGHT_STICK_LEFT_UP = nullptr;
+	Command* cont_RIGHT_STICK_LEFT_DOWN = nullptr;
+	Command* cont_RIGHT_STICK_RIGHT_UP = nullptr;
+	Command* cont_RIGHT_STICK_RIGHT_DOWN = nullptr;
 };
 
 #endif // !INPUTHANDLER_H
