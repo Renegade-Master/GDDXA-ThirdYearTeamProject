@@ -78,6 +78,7 @@ private:
 	// Player (PlayerCharacters)
 	Player m_Player;
 
+	//Crate that covers enemy.
 	Enemy m_SpriteCrate;
 
 	//Enemy Generator

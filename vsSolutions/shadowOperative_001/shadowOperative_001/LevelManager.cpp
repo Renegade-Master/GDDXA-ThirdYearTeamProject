@@ -47,6 +47,7 @@ int** LevelManager::nextLevel(sf::VertexArray& rVaLevel) {
 	switch (m_CurrentLevel)	{
 
 	case 1:
+		//This is level 1.
 		levelToLoad = "levels/level1.txt";
 		m_StartPosition.x = 5;
 		m_StartPosition.y = 5;
@@ -54,17 +55,21 @@ int** LevelManager::nextLevel(sf::VertexArray& rVaLevel) {
 		break;
 
 	case 2:
+		//This is level 2. 
 		levelToLoad = "levels/level2.txt";
 		m_StartPosition.x = 100;
 		m_StartPosition.y = 3600;
 		m_BaseTimeLimit = 100.0f;
 		break;
+
 	case 3:
+		//This is level 3
 		levelToLoad = "levels/level3.txt";
 		m_StartPosition.x = 1250;
 		m_StartPosition.y = 0;
 		m_BaseTimeLimit = 30.0f;
 		break;
+
 	default:
 		std::cout << "Map had a promblem" << std::endl;
 		break;
@@ -349,16 +354,16 @@ int** LevelManager::nextLevel(sf::VertexArray& rVaLevel) {
 				verticalOffset = 0;  // End game event.
 				break;
 			case 'i':
-				verticalOffset = 28;  // End game event.
+				verticalOffset = 28;  // This is a frame that is the crane.
 				break;
 			case 'o':
-				verticalOffset = 29;  // End game event.
+				verticalOffset = 29;  // This is the end of the crane.
 				break;
 			case 'r':
-				verticalOffset = 30;  // End game event.
+				verticalOffset = 30;  // This is the weight of the crane.
 				break;
 			case 'l':
-				verticalOffset = 31;  // End game event.
+				verticalOffset = 31;  // This is a line on the crane.
 				break;
 			}
 			verticalOffset *= TILE_SIZE;

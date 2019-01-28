@@ -62,21 +62,21 @@ sf::FloatRect PlayableCharacter::getFeet() {
 }
 
 /**
-*	...
+*	Returns the position of the Head.
 */
 sf::FloatRect PlayableCharacter::getHead() {
 	return this->m_Head;
 }
 
 /**
-*	...
+*	Returns the position of the Left.
 */
 sf::FloatRect PlayableCharacter::getLeft() {
 	return this->m_Left;
 }
 
 /**
-*	...
+*	Returns the position of the Right.
 */
 sf::FloatRect PlayableCharacter::getRight() {
 	return this->m_Right;
@@ -90,7 +90,7 @@ sf::Sprite PlayableCharacter::getSprite() {
 }
 
 /**
-*	...
+*	Returns the crate that covers the enemy.
 */
 sf::Sprite PlayableCharacter::getSpriteCrate() {
 	return this->m_SpriteCrate;

@@ -9,7 +9,7 @@
 #include "Enemy.h"
 
 /**
-*
+* Spawns in the enemy Gives hime a sprite.
 */
 void Enemy::spawn(sf::Vector2i startPosition, float gravity, sf::Time gameStart) {
 	//std::cout << "\nEnemy spawn";
@@ -18,8 +18,10 @@ void Enemy::spawn(sf::Vector2i startPosition, float gravity, sf::Time gameStart)
 	m_Position.x = m_Position.x * 50;
 	m_Position.y = m_Position.y * 50;
 	m_Gravity = gravity;
+	//The sprite for the enemy.
 	m_Sprite = sf::Sprite(TextureHolder::GetTexture(
-		"graphics/Bob.png"));
+		"graphics/D-EnemyRight.png"));
+	//Sets the sprite image to the location of the enemy. 
 	m_Sprite.setPosition(this->m_Position);
 	awarenessOfPlayer = 0.0f;
 	lastDetectionEvent = gameStart;
@@ -29,8 +31,9 @@ void Enemy::spawn(sf::Vector2i startPosition, float gravity, sf::Time gameStart)
 	laserRange = detectionDistance;
 }
 
-/**aaaaa
-*
+/**
+* This Update function will update the enemy every frame.
+*This will mave the enemy and change the sprite of the enemy from left to right. 
 */
 void Enemy::update(float elapsedTime, int** m_ArrayLevel/*, sf::Vector2f playPos*/) {
 	if (concious) {
@@ -89,13 +92,15 @@ void Enemy::update(float elapsedTime, int** m_ArrayLevel/*, sf::Vector2f playPos
 		switch (move) {
 		case patrolLeft:
 			this->m_Position.x += this->m_Speed*elapsedTime;
+			//Changes the enemy to look left.
 			m_Sprite = sf::Sprite(TextureHolder::GetTexture(
-				"graphics/D-EnemyRight.png"));
+				"graphics/D-EnemyLeft.png"));
 			break;
 		case patrolRight:
 			this->m_Position.x -= this->m_Speed*elapsedTime;
+			//Changes the enemy to look Right.
 			m_Sprite = sf::Sprite(TextureHolder::GetTexture(
-				"graphics/D-EnemyLeft.png"));
+				"graphics/D-EnemyRight.png"));
 			break;
 		}
 		if (Enemy::patrolLeft) {
@@ -160,13 +165,12 @@ sf::FloatRect Enemy::getPosition() {
 	return m_Sprite.getGlobalBounds();
 }
 
-//Changes the enmey into a crate.
+//Changes the enemy into a crate.
 void Enemy::EnemyCrate()
 {
 	m_SpriteCrate = sf::Sprite(TextureHolder::GetTexture(
 		"graphics/Crate.png"));
 	m_SpriteCrate.setPosition(this->m_Position);
-	std::cout << "\nCROUCHING";
 }
 
 /**
