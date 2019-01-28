@@ -17,12 +17,29 @@ SoundManager::SoundManager() {
 	m_JumpBuffer.loadFromFile("sound\\jump.wav");
 	m_ReachGoalBuffer.loadFromFile("sound\\reachgoal.wav");
 	m_PlayerShootBuffer.loadFromFile("sound\\PlayerShoot_002.wav");
+	m_PlayerLaserPowerUpBuffer.loadFromFile("sound\\");
+	m_PlayerLaserPowerDownBuffer.loadFromFile("sound\\");
+	m_EnemyHitBuffer.loadFromFile("sound\\");
+	m_EnemyCratedBuffer.loadFromFile("sound\\");
+	m_EnemyDetectionLevel0Buffer.loadFromFile("sound\\");
+	m_EnemyDetectionLevel1Buffer.loadFromFile("sound\\");
+	m_EnemyDetectionLevel2Buffer.loadFromFile("sound\\");
+	m_EnemyDetectionLevel3Buffer.loadFromFile("sound\\");
 
 	// Associate the sounds with the buffers
 	m_ButtonClickSound.setBuffer(m_ButtonClickBuffer);
 	m_JumpSound.setBuffer(m_JumpBuffer);
 	m_ReachGoalSound.setBuffer(m_ReachGoalBuffer);
 	m_PlayerShootSound.setBuffer(m_PlayerShootBuffer);
+	m_PlayerLaserPowerUpSound.setBuffer(m_PlayerLaserPowerUpBuffer);
+	m_PlayerLaserPowerDownSound.setBuffer(m_PlayerLaserPowerDownBuffer);
+	m_EnemyHitSound.setBuffer(m_EnemyHitBuffer);
+	m_EnemyUnconsciousSound.setBuffer(m_EnemyUnconscoiusBuffer);
+	m_EnemyCratedSound.setBuffer(m_EnemyCratedBuffer);
+	m_EnemyDetectionLevel0Sound.setBuffer(m_EnemyDetectionLevel0Buffer);
+	m_EnemyDetectionLevel1Sound.setBuffer(m_EnemyDetectionLevel1Buffer);
+	m_EnemyDetectionLevel2Sound.setBuffer(m_EnemyDetectionLevel2Buffer);
+	m_EnemyDetectionLevel3Sound.setBuffer(m_EnemyDetectionLevel3Buffer);
 
 	// When the player is 50 pixels away sound is full volume
 	float minDistance = 150;
@@ -116,4 +133,68 @@ void SoundManager::playReachGoal() {
 void SoundManager::playPlayerShoot() {
 	m_PlayerShootSound.setRelativeToListener(true);
 	m_PlayerShootSound.play();
+}
+
+/**
+*	Play the ... Sound
+*/
+void SoundManager::playPlayerLaserPowerUp() {
+	m_PlayerLaserPowerUpSound.setRelativeToListener(true);
+	m_PlayerLaserPowerUpSound.play();
+}
+
+/**
+*	Play the ... Sound
+*/
+void SoundManager::playPlayerLaserPowerDown() {
+	m_PlayerLaserPowerDownSound.setRelativeToListener(true);
+	m_PlayerLaserPowerDownSound.play();
+}
+
+/**
+*	Play the ... Sound
+*/
+void SoundManager::playEnemyHit() {
+	m_EnemyHitSound.setRelativeToListener(true);
+	m_EnemyHitSound.play();
+}
+
+/**
+*	Play the ... Sound
+*/
+void SoundManager::playEnemyUnconscious() {
+	m_EnemyUnconsciousSound.setRelativeToListener(true);
+	m_EnemyUnconsciousSound.play();
+}
+
+/**
+*	Play the ... Sound
+*/
+void SoundManager::playEnemyCrated() {
+	m_EnemyCratedSound.setRelativeToListener(true);
+	m_EnemyCratedSound.play();
+}
+
+/**
+*	Play the ... Sound
+*/
+void SoundManager::playEnemyDetectionLevel(int alertness) {
+	switch (alertness) {
+	case 0:
+		m_EnemyDetectionLevel0Sound.setRelativeToListener(true);
+		m_EnemyDetectionLevel0Sound.play();
+		break;
+	case 1:
+		m_EnemyDetectionLevel1Sound.setRelativeToListener(true);
+		m_EnemyDetectionLevel1Sound.play();
+		break;
+	case 2:
+		m_EnemyDetectionLevel2Sound.setRelativeToListener(true);
+		m_EnemyDetectionLevel2Sound.play();
+		break;
+	case 3:
+		m_EnemyDetectionLevel3Sound.setRelativeToListener(true);
+		m_EnemyDetectionLevel3Sound.play();
+		break;
+	}
 }
