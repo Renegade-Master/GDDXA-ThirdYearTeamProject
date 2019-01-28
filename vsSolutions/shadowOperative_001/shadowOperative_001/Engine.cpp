@@ -145,7 +145,7 @@ void Engine::spawnCamera() {
 	int numCams = m_LM.getNumCams();
 	for (int i = 0;i < numCams;i++) {
 		Camera* camera = new Camera();
-		camera->spawn(m_LM.getCamPos(), GRAVITY, m_GameTimeTotal, m_LM.getCamDir());
+		camera->spawn(m_LM.getCamPos(), GRAVITY, m_GameTimeTotal, m_LM.getCamDir(),m_ArrayLevel);
 		m_CameraList.push_back(camera);
 	}
 }

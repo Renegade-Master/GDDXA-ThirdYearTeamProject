@@ -1,8 +1,14 @@
 #include "Camera.h"
+/*
+*	Default Constructor for camera object
+*/
 Camera::Camera() {
 
 }
-void Camera::spawn(sf::Vector2i startPosition, float gravity, sf::Time gameStart, char dir) {
+/*
+*	Initialises the variables of this object at beginning of game
+*/
+void Camera::spawn(sf::Vector2i startPosition, float gravity, sf::Time gameStart, char dir,int** m_ArrayLevel) {
 	this->m_Position = sf::Vector2f(startPosition);
 	m_Position.x = m_Position.x * 50;
 	m_Position.y = m_Position.y * 50;
@@ -12,52 +18,67 @@ void Camera::spawn(sf::Vector2i startPosition, float gravity, sf::Time gameStart
 	std::cout << "\ndir" << dir;
 	this->m_Sprite.setOrigin(this->getCenter().x - this->getCenter().x + 50,
 		this->getCenter().y - this->getCenter().y + 1);
-	if (dir == 'z') {
-		std::cout << "\nRotating: z: -90.0f";
+	if (dir == 'z') {//DOWN
 		m_Sprite.setRotation(-90.0f);
 		rotation = -90.0f;
 		rotationStartPoint = -90.0f;
 		this->m_Position.y -= 25;
+		this->direction = 'n';
+		this->detectionDistance = reCalculateMaxRange(
+			this->direction, m_ArrayLevel, this->maxDistance);
+		this->direction = 'z';
 		m_Sprite.setPosition(this->m_Position);
 	}
-	else if (dir == 'c') {
-		std::cout << "\nRotating: c: 90.0f";
+	else if (dir == 'c') {//UP
 		m_Sprite.setRotation(90.0f);
 		rotation = 90.0f;
 		rotationStartPoint = 90.0f;
+		std::cout << "\nChanging direction to 'a'";
+		this->direction = 'a';
+		this->detectionDistance = reCalculateMaxRange(
+			this->direction, m_ArrayLevel, this->maxDistance);
+		this->direction = 'c';
 		m_Sprite.setPosition(this->m_Position);
 	}
-	else if (dir == 'v') {
-		std::cout << "\nRotating: v: 180.0f";
+	else if (dir == 'v') {//RIGHT
 		m_Sprite.setRotation(180.0f);
 		rotation = 180.0f;
 		rotationStartPoint = 180.0f;
 		this->m_Position.x -= 25;
+		this->direction = 'f';
+		this->detectionDistance = reCalculateMaxRange(
+			this->direction, m_ArrayLevel, this->maxDistance);
+		this->direction = 'v';
 		m_Sprite.setPosition(this->m_Position);
 	}
-	else if (dir == 'x') {
+	else if (dir == 'x') {//LEFT
 		this->m_Position.y += 25;
 		this->m_Position.x += 75;
+		this->direction = 'm';
+		this->detectionDistance = reCalculateMaxRange(
+			this->direction, m_ArrayLevel, this->maxDistance);
+		this->direction = 'x';
 		m_Sprite.setPosition(this->m_Position);
 		rotation = 0.0f;
 		rotationStartPoint = 0.0f;
 	}
-	direction = dir;
+	
 	awarenessOfPlayer = 0.0;
 	lastDetectionEvent = gameStart;
 	detectMeter.setSize(sf::Vector2f(10, this->getAwareness()));
 	detectMeter.setFillColor(sf::Color::Red);
 	detectMeter.setPosition(this->getCenter().x - 5, this->getCenter().y - 30);
-	std::cout << "\n This.getCenter().x: " << this->getCenter().x << ", this->getCenter().y: " << this->getCenter().y;
 	
-	std::cout << "\nthis->getSprite().getOrigin().x: " << this->getSprite().getOrigin().x
-		<< ", this->getSprite().getOrigin().y" << this->getSprite().getOrigin().y;
-	//std::cout << "\nThis->get" << this->getSprite().g;
-	//m_Sprite.setOrigin(this->getCenter().x, this->getCenter().y);
 }
+/*
+*	Return the rotation of the camera object
+*/
 float Camera::getRotation() {
 	return rotation;
 }
+/*
+*	Update the Camera object for this frame
+*/
 void Camera::update(float elapsedTime, int** m_ArrayLevel) {
 	if (concious) {
 
@@ -85,7 +106,7 @@ void Camera::update(float elapsedTime, int** m_ArrayLevel) {
 				//std::cout << "\nForward = true";
 			}
 		}
-		
+
 		cone.updateCamConePos(this->m_Position, this->detectionDistance,
 			this->sightAngle, this->rotation, this->forward, this->direction);
 	}
@@ -102,4 +123,10 @@ void Camera::takeDamage() {
 	else {
 		health = 0;
 	}
+}
+/*
+*	Return the class Name for this class
+*/
+sf::String Camera::getClassName() {
+	return(sf::String("Camera"));
 }

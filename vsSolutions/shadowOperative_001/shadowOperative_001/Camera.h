@@ -14,10 +14,11 @@ private:
 	//What direction is the camera Facing
 	char direction;
 public:
-	void spawn(sf::Vector2i startPosition, float gravity, sf::Time gameStart,char dir);
+	void spawn(sf::Vector2i startPosition, float gravity, sf::Time gameStart,char dir,int** m_ArrayLevel);
 	void update(float elapsedTime, int** m_ArrayLevel);
 	Camera();
 	float getRotation();
 	void takeDamage();
+	sf::String getClassName();
 };
 #endif //CAMERA_H
