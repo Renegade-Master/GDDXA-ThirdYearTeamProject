@@ -90,7 +90,7 @@ private:
 	std::list<ToggleSwitch*> m_SwitchList;
 
 	//	Input Handler
-	InputHandler m_InputHandler;
+	InputHandler m_IH;
 
 	//Level Manager
 	LevelManager m_LM;

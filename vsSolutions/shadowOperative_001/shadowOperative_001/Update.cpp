@@ -58,7 +58,7 @@ void Engine::update(float dtAsSeconds) {
 		
 		//	Assign the active controller
 		while (m_Window.pollEvent(m_event)) {
-			m_InputHandler.m_controllerIndex = m_event.joystickConnect.joystickId;
+			//m_InputHandler.m_controllerIndex = m_event.joystickConnect.joystickId;
 		}
 
 		//Update Switches		

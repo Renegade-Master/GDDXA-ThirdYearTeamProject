@@ -110,7 +110,7 @@ void Engine::input() {
 		//m_Player.handleInput();
 
 		//	Get User input
-		Command* cmd = m_InputHandler.handleInput(dt);
+		Command* cmd = m_IH.handleInput(dt);
 
 		if (cmd) {
 			cmd->execute(m_Player);
@@ -222,18 +222,18 @@ void Engine::input() {
 			int i = 0;
 			for (std::list<GUI::Button>::iterator it = m_gameplaySettingsButtons.begin(); it != m_gameplaySettingsButtons.end(); ++it) {
 				switch (i++) {
-				case 0: // Enable Controller
+				case 0: // Control Scheme A - Default
 					if (it->getState() == GUI::ButtonState::clicked) {
 						m_SM.playButtonClick();
+						m_IH.chooseScheme(ControlScheme::DEFAULT);
 						std::cout << "THE CONTROLLER IS INFERIOR" << std::endl;
-						//m_InputHandler.m_isControllerN00b = true;
 					}
 					break;
 				case 1: // Disable Controller
 					if (it->getState() == GUI::ButtonState::clicked) {
 						m_SM.playButtonClick();
+						m_IH.chooseScheme(ControlScheme::BUMPERJUMPER);
 						std::cout << "THE KEYBAORD IS SUPERIOR" <<std::endl;
-						//m_InputHandler.m_isControllerN00b = false;
 					}
 					break;
 				case 2: // Back
