@@ -53,6 +53,11 @@ void Engine::update(float dtAsSeconds) {
 		// Put Paused Screen Update code here
 	}
 	else if (m_GameState == GameState::PLAYING) {
+		//	Assign the active controller
+		while (m_Window.pollEvent(m_event)) { //	<--	More Jesus code
+			//m_InputHandler.m_controllerIndex = m_event.joystickConnect.joystickId;
+		}
+
 		//Update Switches		
 		for (std::list<ToggleSwitch*>::iterator switchIt = m_SwitchList.begin();
 			switchIt != m_SwitchList.end(); switchIt++) {
