@@ -168,6 +168,13 @@ void Enemy::EnemyCrate()
 /**
 *
 */
+void Enemy::toggleTargeting() {
+	//	...
+}
+
+/**
+*
+*/
 sf::ConvexShape Enemy::getCone() {
 	return cone.getCone();
 }

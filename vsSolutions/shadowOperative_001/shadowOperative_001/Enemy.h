@@ -18,11 +18,31 @@
 
 
 class Enemy : public PlayableCharacter {
+public:
+	void update(float elapsedTIme,int** m_ArrayLevel/*, sf::Vector2f playPos*/);
+	void spawn(sf::Vector2i startPosition, float gravity,sf::Time gameStart);
+	void alterPatrol(bool patrol);
+	sf::FloatRect getPosition();
+	bool detectPlayer(sf::Vector2f playPos);
+	sf::ConvexShape getCone();
+	void increaseAwarenessLevel(sf::Vector2f playPos,int detectionLevel,sf::Time gameTimeTotal);
+	float getAwareness();
+	double calcDistance(sf::Vector2f playPos,sf::Vector2f thisPos);
+	float getlastdetectTime();
+	sf::RectangleShape getDetectMeter();
+	void reduceAwareness(sf::Time gameTimeTotal);
+	
+	//damage and healing
+	void takeDamage(float shotPower);
+	bool isConscious();
+	void regen(float elapsedTime);
+	void EnemyCrate();
+
 private:
 	sf::Vector2i m_SpawnPosition;
 	bool patrolValid = false;
 	// This is a pure virtual function
-	virtual void handleInput();
+	virtual void PlayableCharacter::handleInput();
 	enum patrolDir { patrolLeft, patrolRight };
 	patrolDir move = patrolLeft;
 	friend patrolDir& operator++(patrolDir& mv, int incr);
@@ -48,33 +68,6 @@ protected:
 	//detection meter
 	sf::RectangleShape detectMeter;
 	sf::String getClassName();
-	//what is the maximum distance of the laser
-	double maxLaserRange;
-	//what is the current maximum distance of the laser
-	double laserRange = 500;
-
-public:
-	void update(float elapsedTIme,int** m_ArrayLevel/*, sf::Vector2f playPos*/);
-	void spawn(sf::Vector2i startPosition, float gravity,sf::Time gameStart);
-	void alterPatrol(bool patrol);
-	sf::FloatRect getPosition();
-	//bool detectPlayer(sf::Vector2f playPos);
-	sf::ConvexShape getCone();
-	void increaseAwarenessLevel(sf::Vector2f playPos,int detectionLevel,sf::Time gameTimeTotal);
-	float getAwareness();
-	double calcDistance(sf::Vector2f playPos,sf::Vector2f thisPos);
-	float getlastdetectTime();
-	sf::RectangleShape getDetectMeter();
-	void reduceAwareness(sf::Time gameTimeTotal);
-	
-	//damage and healing
-	void takeDamage(float shotPower);
-	bool isConscious();
-	void regen(float elapsedTime);
-	void EnemyCrate();
-
-	//Calculate Max field of vision
-	double reCalculateMaxRange(char dir, int** m_ArrayLevel, double laserRange);
 
 
 };

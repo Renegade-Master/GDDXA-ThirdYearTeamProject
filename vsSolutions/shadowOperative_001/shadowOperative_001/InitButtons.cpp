@@ -141,13 +141,13 @@ void Engine::initButtons() {
 	
 	//		Gameplay Settings
 	m_gameplaySettingsButtons.push_back(GUI::Button(
-		"Enable Controller",
+		"Controller Scheme A",
 		m_buttonFont,
 		sf::Vector2f(resolution.x * 0.3f, resolution.y * 0.3f),
 		GUI::ButtonStyle::none));
 	
 	m_gameplaySettingsButtons.push_back(GUI::Button(
-		"Force Disable Controller",
+		"Controller Scheme B",
 		m_buttonFont,
 		sf::Vector2f(resolution.x* 0.7f, resolution.y* 0.3f),
 		GUI::ButtonStyle::none));
