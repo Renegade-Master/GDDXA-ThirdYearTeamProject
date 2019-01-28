@@ -359,13 +359,11 @@ void Player::playerShot(bool shot) {
 }
 
 /**
-*
+*	Charges Gun relative to rechargeRate and time Elapsed
 */
 void Player::chargeGun(float dtAsSeconds) {
 	if (!shooting) {
 		if (gunChargeLevel + gunChargeRate * dtAsSeconds <= maxGunChargeLevel) {
-			/*std::cout << "\n gunChargeLevel:" << gunChargeLevel << " += gunChargeRate * dtAsSeconds = "
-				<< gunChargeLevel + gunChargeRate * dtAsSeconds;*/
 			gunChargeLevel += gunChargeRate * dtAsSeconds;
 		}
 		else {

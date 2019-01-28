@@ -320,7 +320,7 @@ sf::String Enemy::getClassName() {
 	return(sf::String("Enemy"));
 }
 /*
-*	Find if Laser Hits a wall
+*	Find if Laser/Viewcone Hits a wall
 */
 double Enemy::reCalculateMaxRange(char dir, int** m_ArrayLevel, double laserRange) {
 	int x = (this->m_Position.x / 50);
@@ -388,6 +388,5 @@ double Enemy::reCalculateMaxRange(char dir, int** m_ArrayLevel, double laserRang
 			}
 		}
 	}
-	std::cout << "\n\nCalculatedRange " << calculatedrange;
 	return calculatedrange;
 }

@@ -15,7 +15,6 @@ void Camera::spawn(sf::Vector2i startPosition, float gravity, sf::Time gameStart
 	m_Gravity = gravity;
 	m_Sprite = sf::Sprite(TextureHolder::GetTexture(
 		"graphics/camera.png"));
-	std::cout << "\ndir" << dir;
 	this->m_Sprite.setOrigin(this->getCenter().x - this->getCenter().x + 50,
 		this->getCenter().y - this->getCenter().y + 1);
 	if (dir == 'z') {//DOWN
