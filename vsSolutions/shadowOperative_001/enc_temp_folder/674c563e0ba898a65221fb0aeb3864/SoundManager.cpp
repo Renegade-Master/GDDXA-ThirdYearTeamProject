@@ -16,7 +16,7 @@ SoundManager::SoundManager() {
 	m_ButtonClickBuffer.loadFromFile("sound\\ButtonClick.wav");
 	m_JumpBuffer.loadFromFile("sound\\jump.wav");
 	m_ReachGoalBuffer.loadFromFile("sound\\reachgoal.wav");
-	m_PlayerShootBuffer.loadFromFile("sound\\PlayerShoot_002.wav");
+	m_PlayerShootBuffer.loadFromFile("sound\\PlayerShoot_001.wav");
 
 	// Associate the sounds with the buffers
 	m_ButtonClickSound.setBuffer(m_ButtonClickBuffer);
