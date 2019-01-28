@@ -36,10 +36,11 @@ public:
 	
 	//aiming
 	virtual void toggleTargeting();
-	bool isTargeting();
+	virtual bool isTargeting();
+	sf::Vector2f getTarget();
 	
 	//Conditions which decide targeting laser Origin
-	void updateTargeting(sf::Vector2f mousePos);
+	void updateTargeting();
 	sf::ConvexShape getlaser();
 
 	sf::String getClassName();
@@ -52,6 +53,6 @@ private:
 
 	//aiming
 	bool targeting = false;
-	laser targetingLaser;
+	
 };
 #endif // !PLAYER_H

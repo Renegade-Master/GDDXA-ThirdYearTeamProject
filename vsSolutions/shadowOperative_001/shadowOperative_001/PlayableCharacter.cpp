@@ -161,3 +161,7 @@ PlayableCharacter::Direction& operator++(PlayableCharacter::Direction& mv, int) 
 		return(mv);
 	}
 }
+
+bool PlayableCharacter::isTargeting() {
+	return false;
+}
