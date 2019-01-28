@@ -392,6 +392,11 @@ double Enemy::reCalculateMaxRange(char dir, int** m_ArrayLevel, double laserRang
 			}
 		}
 	}
-	std::cout << "\n\nCalculatedRange " << calculatedrange;
 	return calculatedrange;
+}
+/*
+*	Virtual function never intended to be called
+*/
+bool Enemy::isTargeting() {
+	return false;
 }

@@ -110,7 +110,7 @@ void Engine::update(float dtAsSeconds) {
 		if (m_Player.isTargeting())
 		{
 			//std::cout << "\nUpdating targeting";
-			m_Player.updateTargeting(mouseWorldPosition);
+			m_Player.updateTargeting();
 		}
 
 		//Handle-Update bullets
@@ -126,22 +126,22 @@ void Engine::update(float dtAsSeconds) {
 				if (m_Player.getDir() == PlayableCharacter::Direction::IDLE) {
 					bullets[currentBullet].shoot(
 						m_Player.getCenter().x - 10, m_Player.getCenter().y - 25,
-						mouseWorldPosition.x, mouseWorldPosition.y);
+						m_Player.getTarget().x, m_Player.getTarget().y);
 				}
 				else if (m_Player.getDir() == PlayableCharacter::Direction::RIGHT) {
 					bullets[currentBullet].shoot(
 						m_Player.getCenter().x - 10, m_Player.getCenter().y - 25,
-						mouseWorldPosition.x, mouseWorldPosition.y);
+						m_Player.getTarget().x, m_Player.getTarget().y);
 				}
 				else if (m_Player.getDir() == PlayableCharacter::Direction::LEFT) {
 					bullets[currentBullet].shoot(
 						m_Player.getCenter().x - 40, m_Player.getCenter().y - 25,
-						mouseWorldPosition.x, mouseWorldPosition.y);
+						m_Player.getTarget().x, m_Player.getTarget().y);
 				}
 				else {
 					bullets[currentBullet].shoot(
 						m_Player.getCenter().x - 10, m_Player.getCenter().y - 25,
-						mouseWorldPosition.x, mouseWorldPosition.y);
+						m_Player.getTarget().x, m_Player.getTarget().y);
 				}
 				bullets[currentBullet].setShotPower(11);
 				currentBullet++;

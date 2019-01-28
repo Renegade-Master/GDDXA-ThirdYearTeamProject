@@ -105,4 +105,101 @@ public:
 	}
 };
 
+/*
+*	Move Aim Location to the left using Right analog stick
+*/
+class cmd_AimLeft : public Command {
+public:
+	virtual void execute(PlayableCharacter& pc) {
+		if (pc.isTargeting()) {
+			pc.targetingLaser.updateLine(pc.m_Position,
+				sf::Vector2f(pc.target.x -= 5, pc.target.y));
+		}
+	}
+};                   
+/*
+*	Move Aim Location to the right using Right analog stick
+*/
+class cmd_AimRight : public Command {
+public:
+	virtual void execute(PlayableCharacter& pc) {
+		if (pc.isTargeting()) {
+			pc.targetingLaser.updateLine(pc.m_Position,
+				sf::Vector2f(pc.target.x += 5, pc.target.y));
+		}
+	}
+};
+/*
+*	Move Aim Location up using Right analog stick
+*/
+class cmd_AimUp : public Command {
+public:
+	virtual void execute(PlayableCharacter& pc) {
+		if (pc.isTargeting()) {
+			pc.targetingLaser.updateLine(pc.m_Position,
+				sf::Vector2f(pc.target.x, pc.target.y -= 5));
+		}
+	}
+};
+/*
+*	Move Aim Location Down using Right analog stick
+*/
+class cmd_AimDown : public Command {
+public:
+	virtual void execute(PlayableCharacter& pc) {
+		if (pc.isTargeting()) {
+			pc.targetingLaser.updateLine(pc.m_Position,
+				sf::Vector2f(pc.target.x, pc.target.y += 5));
+		}
+	}
+};
+
+/*
+*	Move Aim Location UP Left using Right analog stick
+*/
+class cmd_LEFT_UP : public Command {
+public:
+	virtual void execute(PlayableCharacter& pc) {
+		if (pc.isTargeting()) {
+			pc.targetingLaser.updateLine(pc.m_Position,
+				sf::Vector2f(pc.target.x-=5, pc.target.y += 5));
+		}
+	}
+};
+/*
+*	Move Aim Location Down Left using Right analog stick
+*/
+class cmd_LEFT_DOWN : public Command {
+public:
+	virtual void execute(PlayableCharacter& pc) {
+		if (pc.isTargeting()) {
+			pc.targetingLaser.updateLine(pc.m_Position,
+				sf::Vector2f(pc.target.x -= 5, pc.target.y -= 5));
+		}
+	}
+};
+/*
+*	Move Aim Location Down RIGHT using Right analog stick
+*/
+class cmd_RIGHT_DOWN : public Command {
+public:
+	virtual void execute(PlayableCharacter& pc) {
+		if (pc.isTargeting()) {
+			pc.targetingLaser.updateLine(pc.m_Position,
+				sf::Vector2f(pc.target.x += 5, pc.target.y += 5));
+		}
+	}
+};
+/*
+*	Move Aim Location Down RIGHT using Right analog stick
+*/
+class cmd_RIGHT_UP : public Command {
+public:
+	virtual void execute(PlayableCharacter& pc) {
+		if (pc.isTargeting()) {
+			pc.targetingLaser.updateLine(pc.m_Position,
+				sf::Vector2f(pc.target.x += 5, pc.target.y -= 5));
+		}
+	}
+};
 #endif // !COMMAND_H

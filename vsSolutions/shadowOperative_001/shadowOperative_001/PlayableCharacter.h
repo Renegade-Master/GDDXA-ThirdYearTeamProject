@@ -76,6 +76,9 @@ public:
 
 	virtual void toggleTargeting() = 0;
 	bool shooting = false;
+	virtual bool isTargeting() = 0;
+	sf::Vector2f target;
+	laser targetingLaser;
 
 	virtual sf::String getClassName() = 0;
 
@@ -116,9 +119,6 @@ protected:
 
 	// A texture
 	sf::Texture m_Texture;
-
-	//laserTargeting
-	laser targetingLaser;
 
 	friend PlayableCharacter::Direction& operator++(PlayableCharacter::Direction& mv, int);
 };
