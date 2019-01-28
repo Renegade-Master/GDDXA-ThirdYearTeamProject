@@ -324,10 +324,10 @@ double Enemy::reCalculateMaxRange(char dir, int** m_ArrayLevel, double laserRang
 	double calculatedrange = 0;
 	if (this->getClassName() == "LaserPointer") {
 		calculatedrange = 75;
-		y = (this->m_Position.y / 50);
+		int y = (this->m_Position.y / 50);
 	}
 	else if (this->getClassName() == "Enemy") {
-		y = (this->getCone().getPoint(0).y / 50)-1;
+		int y = (this->getCone().getPoint(0).y / 50)-1;
 		y *= (0.5);
 		calculatedrange = 20;
 	}
