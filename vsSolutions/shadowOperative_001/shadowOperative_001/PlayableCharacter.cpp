@@ -146,3 +146,18 @@ void PlayableCharacter::toggleTargeting() {
 PlayableCharacter::Direction PlayableCharacter::getDir() {
 	return this->m_Direction;
 }
+
+/**
+*	Increment dat operator
+*/
+PlayableCharacter::Direction& operator++(PlayableCharacter::Direction& mv, int) {
+	switch (mv)
+	{
+	case PlayableCharacter::Direction::LEFT:
+		mv = PlayableCharacter::Direction::RIGHT;
+		return(mv);
+	case PlayableCharacter::Direction::RIGHT:
+		mv = PlayableCharacter::Direction::LEFT;
+		return(mv);
+	}
+}

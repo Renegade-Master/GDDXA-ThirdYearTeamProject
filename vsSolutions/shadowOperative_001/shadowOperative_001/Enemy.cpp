@@ -27,6 +27,7 @@ void Enemy::spawn(sf::Vector2i startPosition, float gravity, sf::Time gameStart)
 	detectMeter.setFillColor(sf::Color::Red);
 	detectMeter.setPosition(this->getCenter().x - 5, this->getCenter().y - 30);
 	laserRange = detectionDistance;
+	this->m_Direction = Direction::LEFT;
 }
 
 /**aaaaa
@@ -81,23 +82,23 @@ void Enemy::update(float elapsedTime, int** m_ArrayLevel/*, sf::Vector2f playPos
 			sincePatrolAlter--;
 		}
 		if (!patrolValid) {
-			move++;
+			m_Direction++;
 			patrolValid = true;
 		}
 
 
-		switch (move) {
-		case patrolLeft:
+		switch (m_Direction) {
+		case PlayableCharacter::Direction::LEFT:
 			this->m_Position.x += this->m_Speed*elapsedTime;
 			break;
-		case patrolRight:
+		case PlayableCharacter::Direction::RIGHT:
 			this->m_Position.x -= this->m_Speed*elapsedTime;
 			break;
 		}
-		if (this->move == patrolDir::patrolLeft) {
+		if (this->m_Direction == PlayableCharacter::Direction::LEFT) {
 			direction = 'm';
 		}
-		else if (this->move == patrolDir::patrolRight) {
+		else if (this->m_Direction == PlayableCharacter::Direction::RIGHT) {
 			direction = 'f';
 		}
 		m_Sprite.setPosition(this->m_Position);
@@ -110,8 +111,8 @@ void Enemy::update(float elapsedTime, int** m_ArrayLevel/*, sf::Vector2f playPos
 		//		}
 		//	}
 		//}
-		
-		if (move == patrolLeft) {
+
+		if (m_Direction == PlayableCharacter::Direction::LEFT) {
 			cone.updateConePos(this->m_Position, this->detectionDistance, this->sightAngle, true);
 		}
 		else {
@@ -122,20 +123,7 @@ void Enemy::update(float elapsedTime, int** m_ArrayLevel/*, sf::Vector2f playPos
 }
 
 
-/**
-*
-*/
-Enemy::patrolDir& operator++(Enemy::patrolDir& mv, int) {
-	switch (mv)
-	{
-	case Enemy::patrolLeft:
-		mv = Enemy::patrolRight;
-		return(mv);
-	case Enemy::patrolRight:
-		mv = Enemy::patrolLeft;
-		return(mv);
-	}
-}
+
 
 /**
 *
@@ -405,7 +393,7 @@ double Enemy::reCalculateMaxRange(char dir, int** m_ArrayLevel, double laserRang
 			}
 		}
 		else if (dir == 'm') {//LEFT
-			std::cout << "\nLeft";
+			//std::cout << "\nLeft";
 			for (int i = 1;i < (laserRange / 50);++i) {
 				int block = int(m_ArrayLevel[y][x - i]);
 				//std::cout << "\nBlock = " << block;
@@ -441,6 +429,6 @@ double Enemy::reCalculateMaxRange(char dir, int** m_ArrayLevel, double laserRang
 				}
 			}
 		}
-		std::cout << "\nReturning: " << calculatedrange;
+		//std::cout << "\nReturning: " << calculatedrange;
 		return calculatedrange;
 }

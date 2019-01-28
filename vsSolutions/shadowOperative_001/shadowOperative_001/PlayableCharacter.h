@@ -119,6 +119,8 @@ protected:
 
 	//laserTargeting
 	laser targetingLaser;
+
+	friend PlayableCharacter::Direction& operator++(PlayableCharacter::Direction& mv, int);
 };
 
 #endif // !PLAYABLECHARACTER_H

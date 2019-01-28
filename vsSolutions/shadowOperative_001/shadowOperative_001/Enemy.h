@@ -47,9 +47,9 @@ private:
 	bool patrolValid = false;
 	// This is a pure virtual function
 	virtual void PlayableCharacter::handleInput();
-	enum patrolDir { patrolLeft, patrolRight };
-	patrolDir move = patrolLeft;
-	friend patrolDir& operator++(patrolDir& mv, int incr);
+	/*enum patrolDir { patrolLeft, patrolRight };
+	patrolDir move = patrolLeft;*/
+	
 	int sincePatrolAlter = 0;
 	char direction;
 	
