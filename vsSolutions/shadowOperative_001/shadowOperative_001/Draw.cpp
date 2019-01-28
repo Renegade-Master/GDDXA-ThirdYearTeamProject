@@ -208,10 +208,11 @@ void Engine::draw() {
 		}
 	}
 	else if (m_GameState == GameState::ENDGAME) {
+		// Switch to m_MainView
+		m_Window.setView(m_MainView);
 
 		// Draw the endgame Credits.
-		m_Window.draw(m_EndBackgroundSprite);
-
+		m_Window.draw(m_EndBackgroundSprite, &m_RippleShader);
 	}
 
 	// Show everything we have just drawn

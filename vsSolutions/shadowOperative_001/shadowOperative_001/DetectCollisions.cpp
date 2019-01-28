@@ -153,7 +153,7 @@ bool Engine::detectCollisions(PlayableCharacter& character) {
 				//reachedGoal = true;
 				//std::cout << "You should be in level select. " << std::endl;
 				//CurrentLevel();
-				m_GameState = GameState::LOADING;
+				m_GameState = GameState::ENDGAME;
 			}
 		}
 	}

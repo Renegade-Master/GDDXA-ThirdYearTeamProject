@@ -413,20 +413,26 @@ void Engine::update(float dtAsSeconds) {
 		}	
 	}
 	else if (m_GameState == GameState::ENDGAME) {
-	// Handle Animated Background for the EndGame
-	if (m_endAnimatedBackgroundFrame >= m_endAnimatedBackgroundMaxFrames) {
-		m_endAnimatedBackgroundFrame = 0;
-	}
+		// Handle Animated Background for the EndGame
+		if (m_endAnimatedBackgroundFrame >= m_endAnimatedBackgroundMaxFrames) {
+			m_GameState = GameState::MAIN_MENU;
+			m_endAnimatedBackgroundFrame = 0;
+		}
 
-	//This code will read in the folder that has the images to make the EndCredits.
-	m_endAnimatedBackgroundImage.loadFromFile(
-		std::string("graphics/Menu_Video/EndCredits/EndCredits  ")
-		.append(std::to_string(m_animatedBackgroundFrame++))
-		.append(".png"));
+		std::cout << "Loading Image #" << m_endAnimatedBackgroundFrame << std::endl;
+		std::cout << "Attempting to Load image" << std::endl << std::string("graphics\\Menu_Video\\EndCredits\\EndCredits ")
+			.append(std::to_string(m_endAnimatedBackgroundFrame))
+			.append(".png") << std::endl;
 
-	//Sets the images to be drawn to the background for the endgame. 
-	m_EndBackgroundTexture.loadFromImage(m_endAnimatedBackgroundImage);
-	m_EndBackgroundSprite.setTexture(m_EndBackgroundTexture);
+		//This code will read in the folder that has the images to make the EndCredits.
+		m_endAnimatedBackgroundImage.loadFromFile(
+			std::string("graphics/Menu_Video/EndCredits/EndCredits ")
+			.append(std::to_string(m_endAnimatedBackgroundFrame++))
+			.append(".png"));
+
+		//Sets the images to be drawn to the background for the endgame. 
+		m_EndBackgroundTexture.loadFromImage(m_endAnimatedBackgroundImage);
+		m_EndBackgroundSprite.setTexture(m_EndBackgroundTexture);
 	}
 }
 
