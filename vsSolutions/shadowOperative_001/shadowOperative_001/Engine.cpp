@@ -156,7 +156,7 @@ void Engine::spawnLasers() {
 	int numLas = m_LM.getNumLaserPointers();
 	for (int i = 0; i < numLas;i++) {
 		LaserPointer* laser = new LaserPointer();
-		laser->spawn(m_LM.getLaserPos(),GRAVITY,m_GameTimeTotal,m_LM.getLaserDir());
+		laser->spawn(m_LM.getLaserPos(),GRAVITY,m_GameTimeTotal,m_LM.getLaserDir(),m_ArrayLevel);
 		m_LaserPointerList.push_back(laser);
 	}
 }
