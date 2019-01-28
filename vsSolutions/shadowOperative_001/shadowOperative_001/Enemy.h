@@ -38,6 +38,10 @@ public:
 	void regen(float elapsedTime);
 	void EnemyCrate();
 
+	//Calculate Max field of vision
+	double reCalculateMaxRange(char dir, int** m_ArrayLevel, double laserRange);
+	void toggleTargeting();
+
 private:
 	sf::Vector2i m_SpawnPosition;
 	bool patrolValid = false;
@@ -62,6 +66,8 @@ protected:
 	//This Characters cone of vision
 	visionCone cone;
 	laser visionLaser;
+	double laserRange = 500;
+	double maxLaserRange;
 	float awarenessOfPlayer = 0.0f;
 	//detection Event recorder used to slow execution of detection events to reasonable pace
 	sf::Time lastDetectionEvent;
