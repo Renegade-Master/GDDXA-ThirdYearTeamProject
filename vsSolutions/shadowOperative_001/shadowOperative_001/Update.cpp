@@ -3,7 +3,7 @@
 *					Owen O'Dea	[K00218956]
 *					Rory Ryan	[K00218864]
 *	@creationDate	2018/11/01	YYYY/MM/DD
-*	@description
+*	@description	...
 */
 
 #include "Engine.h"
@@ -19,12 +19,12 @@ void Engine::update(float dtAsSeconds) {
 		if(m_animatedBackgroundFrame >= m_animatedBackgroundMaxFrames) {
 			m_animatedBackgroundFrame = 0;
 		}
-
+		//This code will read in the folder that has the images to make the start video.
 		m_animatedBackgroundImage.loadFromFile(
 			std::string("graphics/Menu_Video/Short_142_FirstVideo/Short_142 ")
 			.append(std::to_string(m_animatedBackgroundFrame++))
 			.append(".png"));
-
+		//Sets the images to be drawn to the background. 
 		m_MenuBackgroundTexture.loadFromImage(m_animatedBackgroundImage);
 		m_MenuBackgroundSprite.setTexture(m_MenuBackgroundTexture);
 
@@ -406,6 +406,22 @@ void Engine::update(float dtAsSeconds) {
 				}
 			}
 		}	
+	}
+	else if (m_GameState == GameState::ENDGAME) {
+	// Handle Animated Background for the EndGame
+	if (m_endAnimatedBackgroundFrame >= m_endAnimatedBackgroundMaxFrames) {
+		m_endAnimatedBackgroundFrame = 0;
+	}
+
+	//This code will read in the folder that has the images to make the EndCredits.
+	m_endAnimatedBackgroundImage.loadFromFile(
+		std::string("graphics/Menu_Video/EndCredits/EndCredits  ")
+		.append(std::to_string(m_animatedBackgroundFrame++))
+		.append(".png"));
+
+	//Sets the images to be drawn to the background for the endgame. 
+	m_EndBackgroundTexture.loadFromImage(m_endAnimatedBackgroundImage);
+	m_EndBackgroundSprite.setTexture(m_EndBackgroundTexture);
 	}
 }
 
