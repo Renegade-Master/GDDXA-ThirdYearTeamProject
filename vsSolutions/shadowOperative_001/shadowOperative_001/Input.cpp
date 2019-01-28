@@ -12,8 +12,6 @@
 *	...
 */
 void Engine::input() {
-	//sf::Event m_event;
-
 	if (m_GameState == GameState::MAIN_MENU) {
 		m_Window.setMouseCursorVisible(true);
 
@@ -25,7 +23,6 @@ void Engine::input() {
 				if (it->getState() == GUI::ButtonState::clicked) {
 					it->setState(GUI::ButtonState::normal);
 					m_SM.playButtonClick();
-					//m_GameState = GameState::PAUSED;
 					m_GameState = GameState::LEVEL_SELECT;
 				}
 				break;
@@ -48,7 +45,6 @@ void Engine::input() {
 		}
 	}
 	else if (m_GameState == GameState::LEVEL_SELECT) {
-		//refreshWindow();
 		m_Window.setMouseCursorVisible(true);
 
 		// Handle Level Select Buttons
@@ -60,7 +56,7 @@ void Engine::input() {
 					it->setState(GUI::ButtonState::normal);
 					m_SM.playButtonClick();
 					m_LM.m_CurrentLevel = 1;
-					m_GameState = GameState::READYUP;
+					m_GameState = GameState::LOADING;
 				}
 				break;
 			case 1: // Level 2
@@ -68,7 +64,7 @@ void Engine::input() {
 					it->setState(GUI::ButtonState::normal);
 					m_SM.playButtonClick();
 					m_LM.m_CurrentLevel = 2;
-					m_GameState = GameState::READYUP;
+					m_GameState = GameState::LOADING;
 				}
 				break;
 			case 2: // Level 3
@@ -76,7 +72,7 @@ void Engine::input() {
 					it->setState(GUI::ButtonState::normal);
 					m_SM.playButtonClick();
 					m_LM.m_CurrentLevel = 3;
-					m_GameState = GameState::READYUP;
+					m_GameState = GameState::LOADING;
 				}
 				break;
 			case 3: // Quit

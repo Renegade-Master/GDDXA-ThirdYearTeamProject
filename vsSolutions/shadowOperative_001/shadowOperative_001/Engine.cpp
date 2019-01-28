@@ -73,6 +73,7 @@ void Engine::run() {
 	sf::Clock clock;
 	
 	while (m_Window.isOpen()) {
+		std::cout << "GameState: " << int(this->m_GameState) << std::endl;
 		dt = clock.restart();
 	   	// Update the total game time
 		m_GameTimeTotal += dt;
@@ -179,3 +180,13 @@ void Engine::refreshWindow() {
 	m_Window.setVerticalSyncEnabled(m_vSyncActive);
 }
 
+/**
+*	Calculated the Distance between two objects using their x,y(Sf::Vecor2f) coordinates
+*/
+double Engine::calcDistance(sf::Vector2f posOne, sf::Vector2f posTwo) {
+	double distance;
+	double distancex = ((posOne.x - posTwo.x) * (posOne.x - posTwo.x));
+	double distancey = ((posOne.y - posTwo.y) * (posOne.y - posTwo.y));
+
+	return distance = sqrt(distancex - distancey);
+}

@@ -159,9 +159,6 @@ private:
 	sf::Time dt;
 	float dtAsSeconds;
 
-	// Is it time for a new/first level?
-	bool m_NewLevelRequired = true;
-
 	// The vertex array for the level design
 	sf::VertexArray m_VALevel;
 

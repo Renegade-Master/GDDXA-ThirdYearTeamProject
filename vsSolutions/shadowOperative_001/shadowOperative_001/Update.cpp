@@ -36,7 +36,6 @@ void Engine::update(float dtAsSeconds) {
 		}
 	}
 	else if (m_GameState == GameState::LEVEL_SELECT) {
-		//refreshWindow();
 		//	Handle Buttons
 		while (m_Window.pollEvent(m_event)) {
 			for (std::list<GUI::Button>::iterator it = m_levelSelectButtons.begin(); it != m_levelSelectButtons.end(); ++it) {
@@ -45,23 +44,15 @@ void Engine::update(float dtAsSeconds) {
 		}
 	}
 	else if (m_GameState == GameState::LOADING) {
-		// Put Loading Screen Update code here
+		// Load a Level
+		loadLevel();
+
+		m_GameState = GameState::READYUP;
 	}
 	else if (m_GameState == GameState::READYUP) {
 		// Put Paused Screen Update code here
 	}
 	else if (m_GameState == GameState::PLAYING) {
-		if (m_NewLevelRequired) {
-			// Load a Level
-			m_GameState = GameState::LOADING;
-			loadLevel();
-		}
-		
-		//	Assign the active controller
-		while (m_Window.pollEvent(m_event)) {
-			//m_InputHandler.m_controllerIndex = m_event.joystickConnect.joystickId;
-		}
-
 		//Update Switches		
 		for (std::list<ToggleSwitch*>::iterator switchIt = m_SwitchList.begin();
 			switchIt != m_SwitchList.end(); switchIt++) {
@@ -313,19 +304,11 @@ void Engine::update(float dtAsSeconds) {
 		// when player is touching the home tile
 		if (detectCollisions(m_Player)) {
 			// New level required
-			m_NewLevelRequired = true;
+			m_GameState = GameState::MAIN_MENU;
 
 			// Play the reach goal sound
 			m_SM.playReachGoal();
 
-		}
-
-		// Count down the time the player has left
-		//m_TimeRemaining -= dtAsSeconds;
-
-		// Have Player and Bob run out of time?
-		if (m_TimeRemaining <= 0) {
-			m_NewLevelRequired = true;
 		}
 
 		// Check if a fire sound needs to be played
@@ -363,7 +346,7 @@ void Engine::update(float dtAsSeconds) {
 			std::stringstream ssLevel;
 
 			// Update the time text
-			ssTime << (int)m_TimeRemaining;
+			ssTime << int(m_TimeRemaining);
 			m_Hud.setTime(ssTime.str());
 
 			// Update the level text
@@ -451,15 +434,4 @@ void Engine::doorUpdate(float dtAsSeconds, ToggleSwitch *Switch) {
 	shortest->doorState();
 	shortest->update(dtAsSeconds, m_ArrayLevel);
 	//std::cout << "\nupdating Shortest";
-}
-
-/**
-*	Calculated the Distance between two objects using their x,y(Sf::Vecor2f) coordinates
-*/
-double Engine::calcDistance(sf::Vector2f posOne, sf::Vector2f posTwo)  {
-	double distance;
-	double distancex = ((posOne.x - posTwo.x) * (posOne.x - posTwo.x));
-	double distancey = ((posOne.y - posTwo.y) * (posOne.y - posTwo.y));
-
-	return distance = sqrt(distancex - distancey);
 }
