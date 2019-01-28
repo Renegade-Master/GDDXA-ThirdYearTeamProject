@@ -11,6 +11,7 @@
 #define COMMAND_H
 
 #include "PlayableCharacter.h"
+#include "SoundManager.h"
 //#include "Enemy.h"
 //#include "Player.h"
 

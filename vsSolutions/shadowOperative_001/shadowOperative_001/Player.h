@@ -16,7 +16,7 @@
 class Player : public PlayableCharacter {
 public:
 	// A constructor specific to Player
-	Player();		// Was Player::Player() but that wasn't working
+	Player();
 
 	virtual void update(float elapsedTime, int** m_ArrayLevel);
 

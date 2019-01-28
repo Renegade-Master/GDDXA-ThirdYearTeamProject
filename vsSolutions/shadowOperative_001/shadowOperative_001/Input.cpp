@@ -56,7 +56,7 @@ void Engine::input() {
 				if (it->getState() == GUI::ButtonState::clicked) {
 					m_SM.playButtonClick();
 					m_LM.m_CurrentLevel = 1;
-					m_GameState = GameState::READYUP;
+					m_GameState = GameState::READYUP;					
 				}
 				break;
 			case 1: // Level 2

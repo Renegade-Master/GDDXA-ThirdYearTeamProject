@@ -233,7 +233,7 @@ private:
 	std::list<GUI::Button> m_gameplaySettingsButtons;
 
 	//Bullets
-	Bullet bullets[5];
+	Bullet bullets[5];	//	Max bullets in play
 	int currentBullet = 0;
 	sf::Time m_SinceLastShot;
 

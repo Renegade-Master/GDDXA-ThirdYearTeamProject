@@ -7,7 +7,6 @@
 */
 
 #include "Engine.h"
-//#include "LevelManager.h"
 
 /**
 *	Detect collisions between entities in the Game.
@@ -47,13 +46,11 @@ bool Engine::detectCollisions(PlayableCharacter& character) {
 	}
 
 	// Has the character fallen out of the map?
-	//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!This can be part of level manager!!!!!!!!!!!!!!!!!!!!!!!!
 	sf::FloatRect level(0, 0, m_LM.getLevelSize().x * TILE_SIZE, m_LM.getLevelSize().y * TILE_SIZE);
 	if (!character.getPosition().intersects(level))	{
 		// respawn the character
 		std::cout << "YOU DIED!" << std::endl;
 		character.spawn(m_LM.getStartPosition(), GRAVITY);
-		//this->Engine::m_GameState = Engine::m_GameState::MAIN_MENU;
 	}
 	
 	//if Door is valid pass through
