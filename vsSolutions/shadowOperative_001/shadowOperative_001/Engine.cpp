@@ -73,7 +73,7 @@ void Engine::run() {
 	sf::Clock clock;
 	
 	while (m_Window.isOpen()) {
-		std::cout << "GameState: " << int(this->m_GameState) << std::endl;
+		//std::cout << "GameState: " << int(this->m_GameState) << std::endl;
 		dt = clock.restart();
 	   	// Update the total game time
 		m_GameTimeTotal += dt;
