@@ -118,7 +118,7 @@ int** LevelManager::nextLevel(sf::VertexArray& rVaLevel) {
 				temp.y = y;
 				m_DoorPosition.push_back(temp);
 				m_DoorType.push_back('9');
-				arrayLevel[y][x] = '0';
+				arrayLevel[y][x] = '9';
 				break;
 			case 'P':
 				m_StartPosition.x = x * TILE_SIZE;
@@ -134,7 +134,7 @@ int** LevelManager::nextLevel(sf::VertexArray& rVaLevel) {
 				temp.y = y;
 				m_DoorPosition.push_back(temp);
 				m_DoorType.push_back('D');
-				arrayLevel[y][x] = '0';
+				arrayLevel[y][x] = 'D';
 				break;
 			case 'd':
 				//closed Door
@@ -142,7 +142,7 @@ int** LevelManager::nextLevel(sf::VertexArray& rVaLevel) {
 				temp.y = y;
 				m_DoorPosition.push_back(temp);
 				m_DoorType.push_back('d');
-				arrayLevel[y][x] = '0';
+				arrayLevel[y][x] = 'd';
 				break;
 			case 'b':
 				arrayLevel[y][x] = 'b';
