@@ -91,7 +91,6 @@ void Engine::input() {
 			// Maybe replace with nested Switch statement?
 			//  Keyboard Controls
 			if (m_event.type == sf::Event::KeyPressed) {
-				m_usingController = false;
 				// Handle the player quitting
 				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
 					m_Window.close();
@@ -107,8 +106,18 @@ void Engine::input() {
 	}
 	else if (m_GameState == GameState::PLAYING) {
 		m_Window.setMouseCursorVisible(false);
-		// Handle input specific to Player
-		m_Player.handleInput();
+
+		//m_Player.handleInput();
+
+		//	Get User input
+		Command* cmd = m_IH.handleInput(dt);
+
+		if (cmd) {
+			cmd->execute(m_Player);
+
+			//	Delete the command once it is no longer useful
+			//cmd->~Command();
+		}
 	}
 	else if (m_GameState == GameState::PAUSED) {
 		m_Window.setMouseCursorVisible(false);
@@ -213,16 +222,18 @@ void Engine::input() {
 			int i = 0;
 			for (std::list<GUI::Button>::iterator it = m_gameplaySettingsButtons.begin(); it != m_gameplaySettingsButtons.end(); ++it) {
 				switch (i++) {
-				case 0: // Enable Controller
+				case 0: // Control Scheme A - Default
 					if (it->getState() == GUI::ButtonState::clicked) {
 						m_SM.playButtonClick();
+						m_IH.chooseScheme(ControlScheme::DEFAULT);
 						std::cout << "THE CONTROLLER IS INFERIOR" << std::endl;
 					}
 					break;
-				case 1: // Force Disable Controller
+				case 1: // Disable Controller
 					if (it->getState() == GUI::ButtonState::clicked) {
 						m_SM.playButtonClick();
-						std::cout << "THE CONTROLLER IS INFERIOR" <<std::endl;
+						m_IH.chooseScheme(ControlScheme::BUMPERJUMPER);
+						std::cout << "THE KEYBAORD IS SUPERIOR" <<std::endl;
 					}
 					break;
 				case 2: // Back

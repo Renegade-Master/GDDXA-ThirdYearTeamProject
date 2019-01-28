@@ -59,6 +59,13 @@ public:
 	void stopLeft(float position);
 	void stopJump();
 
+	// Jump Controls
+	float m_jumpDuration = 0.0f;
+	int m_jumpCounter = 0;
+
+	float maxJumpDuration = 0.5f;
+	int	maxJumps = 1;
+
 	// Where is the center of the character
 	sf::Vector2f getCenter();
 
@@ -66,6 +73,9 @@ public:
 
 	//return Direction enum state
 	PlayableCharacter::Direction getDir();
+
+	virtual void toggleTargeting() = 0;
+	bool shooting = false;
 
 	virtual sf::String getClassName() = 0;
 
@@ -85,13 +95,6 @@ protected:
 	sf::Sprite m_SpriteRunningRight;
 	sf::Sprite m_SpriteRunningLeft;
 	sf::Sprite m_SpriteFalling;
-
-	// Jump Controls
-	float m_jumpDuration = 0.0f;
-	int m_jumpCounter = 0;
-	
-	float maxJumpDuration = 0.5f;
-	int	maxJumps = 1;
 
 	// Has the player just initialted a jump
 	//bool m_JustJumped = false;
