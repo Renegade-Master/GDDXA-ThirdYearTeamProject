@@ -147,10 +147,20 @@ bool Engine::detectCollisions(PlayableCharacter& character) {
 			// Has the character reached the goal?
 			if (m_ArrayLevel[y][x] == 'Q') {
 
-				m_LM.m_CurrentLevel=2;
+				//m_LM.m_CurrentLevel=2;
 				//reachedGoal = true;
-				std::cout << "You should be in level select. " << std::endl;
+				//std::cout << "You should be in level select. " << std::endl;
 			    //CurrentLevel();
+				//m_GameState = GameState::LOADING;
+			}
+
+			if (m_ArrayLevel[y][x] == 'q') {
+
+				//m_LM.m_CurrentLevel=2;
+				//reachedGoal = true;
+				//std::cout << "You should be in level select. " << std::endl;
+				//CurrentLevel();
+				m_GameState = GameState::LOADING;
 			}
 		}
 	}

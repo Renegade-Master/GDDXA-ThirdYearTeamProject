@@ -209,6 +209,12 @@ void Engine::draw() {
 			}
 		}
 	}
+	else if (m_GameState == GameState::ENDGAME) {
+
+		// Draw the endgame Credits.
+		m_Window.draw(m_EndBackgroundSprite);
+
+	}
 
 	// Show everything we have just drawn
 	m_Window.display();

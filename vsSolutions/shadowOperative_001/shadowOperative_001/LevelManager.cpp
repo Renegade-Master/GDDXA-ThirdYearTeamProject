@@ -255,6 +255,9 @@ int** LevelManager::nextLevel(sf::VertexArray& rVaLevel) {
 			case 'l':
 				arrayLevel[y][x] = 'l';
 				break;
+			case 'q':
+				arrayLevel[y][x] = 'q';
+				break;
 			}
 		}
 		y++;
@@ -364,6 +367,9 @@ int** LevelManager::nextLevel(sf::VertexArray& rVaLevel) {
 				break;
 			case 'l':
 				verticalOffset = 31;  // This is a line on the crane.
+				break;
+			case 'q':
+				verticalOffset = 0;  // Play the video for the end game credits.
 				break;
 			}
 			verticalOffset *= TILE_SIZE;

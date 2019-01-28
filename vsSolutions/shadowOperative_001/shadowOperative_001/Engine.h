@@ -55,7 +55,7 @@ private:
 	//TutorialManager tm;
 
 	// Game States
-	enum class GameState { MAIN_MENU, LEVEL_SELECT, LOADING, READYUP, PLAYING, PAUSED, SETTINGS };
+	enum class GameState { MAIN_MENU, LEVEL_SELECT, LOADING, READYUP, PLAYING, PAUSED, SETTINGS, ENDGAME};
 	GameState m_GameState = GameState::MAIN_MENU;
 
 	// Main Menu Pages
@@ -150,6 +150,15 @@ private:
 	sf::Image m_animatedBackgroundImage;
 	int m_animatedBackgroundFrame = 0;
 	int m_animatedBackgroundMaxFrames = 142;
+
+	// Declare a sprite and a Texture for the background in the EndCredits
+	sf::Sprite m_EndBackgroundSprite;
+	sf::Texture m_EndBackgroundTexture;
+
+	// Varaibles for the EndCredits GIF background
+	sf::Image m_endAnimatedBackgroundImage;
+	int m_endAnimatedBackgroundFrame = 0;
+	int m_endAnimatedBackgroundMaxFrames = 203;
 
 	// Declare a shader for the background
 	sf::Shader m_RippleShader;

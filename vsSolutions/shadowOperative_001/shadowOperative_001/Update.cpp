@@ -424,6 +424,22 @@ void Engine::update(float dtAsSeconds) {
 			}
 		}	
 	}
+	else if (m_GameState == GameState::ENDGAME) {
+	// Handle Animated Background for the EndGame
+	if (m_endAnimatedBackgroundFrame >= m_endAnimatedBackgroundMaxFrames) {
+		m_endAnimatedBackgroundFrame = 0;
+	}
+
+	//This code will read in the folder that has the images to make the EndCredits.
+	m_endAnimatedBackgroundImage.loadFromFile(
+		std::string("graphics/Menu_Video/EndCredits/EndCredits  ")
+		.append(std::to_string(m_animatedBackgroundFrame++))
+		.append(".png"));
+
+	//Sets the images to be drawn to the background for the endgame. 
+	m_EndBackgroundTexture.loadFromImage(m_endAnimatedBackgroundImage);
+	m_EndBackgroundSprite.setTexture(m_EndBackgroundTexture);
+	}
 }
 
 /**
