@@ -26,9 +26,10 @@ void Enemy::spawn(sf::Vector2i startPosition, float gravity, sf::Time gameStart)
 	detectMeter.setSize(sf::Vector2f(10, this->getAwareness()));
 	detectMeter.setFillColor(sf::Color::Red);
 	detectMeter.setPosition(this->getCenter().x-5, this->getCenter().y - 30);
+	laserRange = detectionDistance;
 }
 
-/**
+/**aaaaa
 *
 */
 void Enemy::update(float elapsedTime, int** m_ArrayLevel/*, sf::Vector2f playPos*/) {
@@ -93,9 +94,14 @@ void Enemy::update(float elapsedTime, int** m_ArrayLevel/*, sf::Vector2f playPos
 			this->m_Position.x -= this->m_Speed*elapsedTime;
 			break;
 		}
-
+		if (Enemy::patrolLeft) {
+			direction = 'm';
+		}
+		else if(Enemy::patrolRight){
+			direction = 'f';
+		}
 		m_Sprite.setPosition(this->m_Position);
-		
+		detectionDistance = reCalculateMaxRange(direction,m_ArrayLevel,maxDistance);
 		if (move == patrolLeft) {
 			cone.updateConePos(this->m_Position, this->detectionDistance, this->sightAngle, true);
 		}
@@ -105,6 +111,7 @@ void Enemy::update(float elapsedTime, int** m_ArrayLevel/*, sf::Vector2f playPos
 	}
 	this->regen(elapsedTime);
 }
+
 
 /**
 *
@@ -235,7 +242,7 @@ void Enemy::reduceAwareness(sf::Time gameTimeTotal) {
 }
 
 /**
-*
+*	Apply damage(take from health) when called
 */
 void Enemy::takeDamage(float shotPower) {
 	if (this->isConscious())	{
@@ -250,14 +257,15 @@ void Enemy::takeDamage(float shotPower) {
 }
 
 /**
-*
+*	Return whether or not The character is Concious
 */
 bool Enemy::isConscious() {
 	return concious;
 }
 
 /**
-*
+*	Increases the Characters Health relative to the amount of time passed 
+		and their regenRate variable called once per frame
 */
 void Enemy::regen(float elapsedTime) {
 	//std::cout << "\nCALLING REGEN!!!";
@@ -305,57 +313,83 @@ sf::String Enemy::getClassName() {
 /*
 *	Find if Laser goes through wall
 */
-double Enemy::reCalculateMaxRange(char dir, int** m_ArrayLevel) {
+double Enemy::reCalculateMaxRange(char dir, int** m_ArrayLevel, double laserRange) {
 	int x = (this->m_Position.x / 50);
-	std::cout << "\nX = " << x;
+	if (this->getClassName() == "LaserPointer") {
+		int y = (this->m_Position.y / 50);
+	}
+	else if (this->getClassName() == "Enemy") {
+		int y = (this->getCone().getPoint(0).y / 50)-1;
+	}
 	int y = (this->m_Position.y / 50);
 	double calculatedrange = 75;
-	if (dir == 'a') {//UP
-		std::cout << "\nChecking UP";
-		for (int i = 1;i < (laserRange / 50);++i) {
-			std::cout << "\nX = " << x;
-			std::cout << "\nY = " << y;
-			std::cout << "\nY-i = " << y - i;
-			if (m_ArrayLevel[y - i][x] == 0) {
-				calculatedrange += 50;
-			}
-			else {
-				break;
-			}
-		}
-	}
-	else if (dir == 'n') {//DOWN
-		std::cout << "\nChecking Down";
-		for (int i = 1;i < (laserRange / 50);++i) {
-			if (m_ArrayLevel[y + i][x] == 0) {
-				calculatedrange += 50;
-			}
-			else {
-				break;
+	//Enemies only Move Left and Right
+	if (this->getClassName() == "Enemy") {
+		//y -= 1;
+		if (dir == 'm') {//LEFT
+			for (int i = 0;i < (laserRange / 50);++i) {
+				if ((m_ArrayLevel[y][x-i] == 0) || (m_ArrayLevel[y][x-i] == 'T')) {
+					calculatedrange += 50;
+				}
+				else {
+					break;
+				}
 			}
 		}
-	}
-	else if (dir == 'm') {//LEFT
-		std::cout << "\nChecking LEFT";
-		for (int i = 1;i < (laserRange / 50);++i) {
-			if (m_ArrayLevel[y][x - i] == 0) {
-				calculatedrange += 50;
-			}
-			else {
-				break;
-			}
-		}
-	}
-	else if (dir == 'f') {//RIGHT
-		std::cout << "\nChecking RIGHT";
-		for (int i = 1;i < (laserRange / 50);++i) {
-			if (m_ArrayLevel[y][x + i] == 0) {
-				calculatedrange += 50;
-			}
-			else {
-				break;
+		else if (dir == 'f') {//RIGHT
+			for (int i = 0;i < (laserRange / 50);++i) {
+				if ((m_ArrayLevel[y][x+i] == 0) || (m_ArrayLevel[y][x+i] == 'T')) {
+					calculatedrange += 50;
+				}
+				else {
+					break;
+				}
 			}
 		}
+		return calculatedrange;
 	}
-	return calculatedrange;
+	//LaserPointer implementation
+	if (this->getClassName() == "LaserPointer") {
+		if (dir == 'a') {//UP
+			for (int i = 1;i < (laserRange / 50);++i) {
+				if (m_ArrayLevel[y - i][x] == 0) {
+					calculatedrange += 50;
+				}
+				else {
+					break;
+				}
+			}
+		}
+		else if (dir == 'n') {//DOWN
+			for (int i = 1;i < (laserRange / 50);++i) {
+				if (m_ArrayLevel[y + i][x] == 0) {
+					calculatedrange += 50;
+				}
+				else {
+					break;
+				}
+			}
+		}
+		else if (dir == 'm') {//LEFT
+			for (int i = 1;i < (laserRange / 50);++i) {
+				if (m_ArrayLevel[y][x - i] == 0) {
+					calculatedrange += 50;
+				}
+				else {
+					break;
+				}
+			}
+		}
+		else if (dir == 'f') {//RIGHT
+			for (int i = 1;i < (laserRange / 50);++i) {
+				if (m_ArrayLevel[y][x + i] == 0) {
+					calculatedrange += 50;
+				}
+				else {
+					break;
+				}
+			}
+		}
+		return calculatedrange;
+	}
 }
