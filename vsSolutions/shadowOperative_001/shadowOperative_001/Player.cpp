@@ -34,6 +34,8 @@ Player::Player() {
 	this->m_maxAnimationFrames = 10;
 	this->m_Action = Action::FALLING;
 	this->m_Direction = Direction::IDLE;
+	this->target.x = this->m_Position.x;
+	this->target.y = this->m_Position.y;
 }
 
 /**
@@ -410,6 +412,18 @@ void Player::toggleTargeting() {
 	}
 	else {
 		targeting = true;
+		if (this->m_Direction == Direction::RIGHT) {
+			target = sf::Vector2f(this->m_Position.x + 100,
+				this->m_Position.y);
+		}
+		else if (this->m_Direction == Direction::LEFT) {
+			target = sf::Vector2f(this->m_Position.x - 100,
+				this->m_Position.y);
+		}
+		else {
+			target = sf::Vector2f(this->m_Position.x + 100,
+				this->m_Position.y);
+		}
 	}
 }
 
@@ -424,39 +438,39 @@ bool Player::isTargeting() {
 *	Choose Origin Point of Laser dependant on Animation State
 *	and Mouse Position
 */
-void Player::updateTargeting(sf::Vector2f mousePos) {
+void Player::updateTargeting() {
 	sf::Vector2f directPosition = this->m_Position;
 	if (this->m_Direction == Direction::RIGHT) {
-		if (mousePos.x < this->m_Position.x) {
+		if (this->target.x < this->m_Position.x) {
 			directPosition.x -= 35;
 			directPosition.y -= 35;
-			targetingLaser.updateLine(directPosition, mousePos);
+			targetingLaser.updateLine(directPosition, this->target);
 		}
 		else {
 			directPosition.y -= 35;
-			targetingLaser.updateLine(directPosition, mousePos);
+			targetingLaser.updateLine(directPosition, this->target);
 		}
 	}
 	else if (this->m_Direction == Direction::LEFT) {
-		if (mousePos.x < this->m_Position.x) {
+		if (this->target.x < this->m_Position.x) {
 			directPosition.x -= 50;
 			directPosition.y -= 35;
-			targetingLaser.updateLine(directPosition, mousePos);
+			targetingLaser.updateLine(directPosition, this->target);
 		}
 		else{
 			directPosition.y -= 35;
-			targetingLaser.updateLine(directPosition, mousePos);
+			targetingLaser.updateLine(directPosition, this->target);
 		}
 	}
 	else if (this->m_Direction == Direction::IDLE) {
-		if (mousePos.x < this->m_Position.x){
+		if (this->target.x < this->m_Position.x){
 			directPosition.x -= 40;
 			directPosition.y -= 35;
-			targetingLaser.updateLine(directPosition, mousePos);
+			targetingLaser.updateLine(directPosition, this->target);
 		}
 		else{
 			directPosition.y -= 35;
-			targetingLaser.updateLine(directPosition, mousePos);
+			targetingLaser.updateLine(directPosition, this->target);
 		}
 	}
 }
@@ -485,4 +499,8 @@ void Player::chargeFromPickup(float charge) {
 */
 sf::String Player::getClassName() {
 	return(sf::String("Player"));
+}
+
+sf::Vector2f Player::getTarget() {
+	return this->target;
 }

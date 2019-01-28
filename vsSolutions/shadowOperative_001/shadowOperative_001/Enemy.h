@@ -41,6 +41,7 @@ public:
 	//Calculate Max field of vision
 	double reCalculateMaxRange(char dir, int** m_ArrayLevel, double laserRange);
 	void toggleTargeting();
+	virtual bool isTargeting();
 
 private:
 	sf::Vector2i m_SpawnPosition;

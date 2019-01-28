@@ -395,3 +395,7 @@ double Enemy::reCalculateMaxRange(char dir, int** m_ArrayLevel, double laserRang
 	std::cout << "\n\nCalculatedRange " << calculatedrange;
 	return calculatedrange;
 }
+
+bool Enemy::isTargeting() {
+	return false;
+}

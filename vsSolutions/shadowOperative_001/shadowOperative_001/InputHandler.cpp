@@ -48,10 +48,11 @@ void InputHandler::chooseScheme(sf::Uint32 scheme) {
 		cont_LEFT_STICK_UP = nullptr;
 		cont_LEFT_STICK_DOWN = nullptr;
 
-		cont_RIGHT_STICK_LEFT = nullptr;
-		cont_RIGHT_STICK_RIGHT = nullptr;
-		cont_RIGHT_STICK_UP = nullptr;
-		cont_RIGHT_STICK_DOWN = nullptr;
+		//Control Aiming(Right Analog)
+		cont_RIGHT_STICK_LEFT = new cmd_AimLeft;
+		cont_RIGHT_STICK_RIGHT = new cmd_AimRight;
+		cont_RIGHT_STICK_UP = new cmd_AimUp;
+		cont_RIGHT_STICK_DOWN = new cmd_AimDown;
 	}
 	else if (scheme == ControlScheme::BUMPERJUMPER) {
 		//	Keyboard Keys we want to use
