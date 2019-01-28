@@ -7,13 +7,13 @@
 */
 
 #include "Engine.h"
-#include "LevelManager.h"
+//#include "LevelManager.h"
 
 /**
 *	Detect collisions between entities in the Game.
 */
 bool Engine::detectCollisions(PlayableCharacter& character) {
-	//bool reachedGoal = false;
+	bool reachedGoal = false;
 	// Make a rect for all his parts
 	sf::FloatRect detectionZone = character.getPosition();
 
@@ -146,17 +146,14 @@ bool Engine::detectCollisions(PlayableCharacter& character) {
 
 			// Has the character reached the goal?
 			if (m_ArrayLevel[y][x] == 'Q') {
-				// Character has reached the goal
+
+				m_LM.m_CurrentLevel=2;
 				//reachedGoal = true;
-				//m_CurrentLevel = 1;
-				m_LM.m_CurrentLevel++;
-				//this->Engine::m_GameState = Engine::GameState::LEVEL_SELECT;
-				//m_GameState = GameState::LOADING;
-				//loadLevel();
+				std::cout << "You should be in level select. " << std::endl;
+			    //CurrentLevel();
 			}
 		}
 	}
-
 	// All done, return, whether or not a new level might be required
-	return false;
+	return reachedGoal;
 }
