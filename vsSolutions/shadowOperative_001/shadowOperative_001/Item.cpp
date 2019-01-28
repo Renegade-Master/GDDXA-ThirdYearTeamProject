@@ -29,7 +29,7 @@ void Item::spawn() {
 }
 
 /**
-*	...
+*	The function set the position of the sprite to the item.
 */
 void Item::update(float elapsedTime, int** m_ArrayLevel) {
 	this->m_ItemSprite.setPosition(this->m_Position);
@@ -44,14 +44,14 @@ float Item::getCapacity() {
 }
 
 /**
-*	...
+*	This gets the posititon of the item. 
 */
 sf::FloatRect Item::getPosition() {
 	return m_ItemSprite.getGlobalBounds();
 }
 
 /**
-*	...
+*	This function gets the center of the sprite.
 */
 sf::Vector2f Item::getCenter() {
 	return sf::Vector2f(
@@ -61,32 +61,34 @@ sf::Vector2f Item::getCenter() {
 }
 
 /**
-*	...
+*	This function gets the bottem of the sprite.
 */
 sf::FloatRect Item::getBottom() {
 	return m_Bottom;
 }
 
 /**
-*	...
+*	This function gets the Top of the sprite.
 */
 sf::FloatRect Item::getTop() {
 	return m_Top;
 }
-
+/**
+*	This function gets the Left of the sprite.
+*/
 sf::FloatRect Item::getLeft() {
 	return m_Left;
 }
 
 /**
-*	...
+*	This function gets the Right of the sprite.
 */
 sf::FloatRect Item::getRight() {
 	return m_Right;
 }
 
 /**
-*	...
+*	This function gets the item sprite.
 */
 sf::Sprite Item::getSprite() {
 	return m_ItemSprite;

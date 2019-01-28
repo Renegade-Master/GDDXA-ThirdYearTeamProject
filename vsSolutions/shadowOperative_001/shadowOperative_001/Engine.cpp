@@ -43,6 +43,7 @@ Engine::Engine() {
 			"shaders/rippleShader.frag");*/
 	}
 
+	//This is the background of the game.
 	m_BackgroundTexture = TextureHolder::GetTexture(
 		"graphics/background1-720.png");
 
