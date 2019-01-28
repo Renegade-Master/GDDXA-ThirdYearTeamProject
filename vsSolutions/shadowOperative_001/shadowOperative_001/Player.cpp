@@ -443,33 +443,35 @@ void Player::updateTargeting() {
 	if (this->m_Direction == Direction::RIGHT) {
 		if (this->target.x < this->m_Position.x) {
 			directPosition.x -= 35;
-			directPosition.y -= 35;
+			directPosition.y -= 0;
 			targetingLaser.updateLine(directPosition, this->target);
 		}
 		else {
-			directPosition.y -= 35;
+			directPosition.x += 35;
+			directPosition.y -= 0;
 			targetingLaser.updateLine(directPosition, this->target);
 		}
 	}
 	else if (this->m_Direction == Direction::LEFT) {
 		if (this->target.x < this->m_Position.x) {
 			directPosition.x -= 50;
-			directPosition.y -= 35;
+			directPosition.y -= 0;
 			targetingLaser.updateLine(directPosition, this->target);
 		}
 		else{
-			directPosition.y -= 35;
+			directPosition.y -= 0;
 			targetingLaser.updateLine(directPosition, this->target);
 		}
 	}
 	else if (this->m_Direction == Direction::IDLE) {
 		if (this->target.x < this->m_Position.x){
 			directPosition.x -= 40;
-			directPosition.y -= 35;
+			directPosition.y -= 0;
 			targetingLaser.updateLine(directPosition, this->target);
 		}
 		else{
-			directPosition.y -= 35;
+			directPosition.x += 20;
+			directPosition.y -= 0;
 			targetingLaser.updateLine(directPosition, this->target);
 		}
 	}
