@@ -29,7 +29,7 @@
 */
 Player::Player() {
 	this->maxJumps = 2;
-
+	//Reads in the player animation sheet.
 	this->m_animationSheet.loadFromFile("graphics\\PlayerAnimationSheet_05.png");
 	this->m_maxAnimationFrames = 10;
 	this->m_Action = Action::FALLING;
@@ -59,6 +59,7 @@ void Player::update(float elapsedTime, int** m_ArrayLevel) {
 	this->m_LastDirection = this->m_Direction;
 	this->m_LastPosition = this->m_Position;*/
 
+	//Reads in the characters aniamtion for falling.
 	if (this->m_Action == Action::FALLING) {
 		this->frameWidth = 55;
 		this->frameHeight = 56;
@@ -66,6 +67,7 @@ void Player::update(float elapsedTime, int** m_ArrayLevel) {
 
 		this->m_Position.y += this->m_Gravity * 0.0167f;
 	}
+	//Reads in the characters aniamtion for jumping.
 	else if (this->m_Action == Action::JUMPING) {
 		this->frameWidth = 56;
 		this->frameHeight = 70;
@@ -82,20 +84,24 @@ void Player::update(float elapsedTime, int** m_ArrayLevel) {
 			this->m_Action = Action::FALLING;
 		}
 	}
+	//Reads in the characters aniamtion for running
 	else if (this->m_Action == Action::RUNNING) {
 		this->frameWidth = 51;
 		this->frameHeight = 70;
 		this->frameXOffset = 35;
 	}
+	//Reads in the characters aniamtion for Attacking.
 	else if (this->m_Action == Action::ATTACKING) {
 		this->frameWidth = 69;
 		this->frameHeight = 75;
 		this->frameXOffset = 142;
 	}
+	//Reads in the characters aniamtion for crouching.
 	else if (this->m_Action == Action::CROUCHING) {
 		/*this->frameWidth = 0;
 		this->frameHeight = 0;*/
 	}
+	//Reads in the characters aniamtion for Idle.
 	else if (this->m_Action == Action::IDLE) {
 		this->frameWidth = 36;
 		this->frameHeight = 66;
