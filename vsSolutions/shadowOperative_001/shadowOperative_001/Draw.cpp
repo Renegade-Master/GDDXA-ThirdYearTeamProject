@@ -27,7 +27,6 @@ void Engine::draw() {
 		}
 	}
 	else if (m_GameState == GameState::LEVEL_SELECT) {
-		void refreshWindow();
 		// Switch to m_MainView
 		m_Window.setView(m_MainView);
 
@@ -36,7 +35,6 @@ void Engine::draw() {
 		for (std::list<GUI::Button>::iterator it = m_levelSelectButtons.begin(); it != m_levelSelectButtons.end(); ++it) {
 			m_Window.draw(*it);
 		}
-
 	}
 	else if (m_GameState == GameState::LOADING) {
 		// Put Loading Screen draw code here

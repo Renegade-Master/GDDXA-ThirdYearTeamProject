@@ -159,9 +159,6 @@ private:
 	sf::Time dt;
 	float dtAsSeconds;
 
-	// Is it time for a new/first level?
-	bool m_NewLevelRequired = true;
-
 	// The vertex array for the level design
 	sf::VertexArray m_VALevel;
 
@@ -233,7 +230,7 @@ private:
 	std::list<GUI::Button> m_gameplaySettingsButtons;
 
 	//Bullets
-	Bullet bullets[5];
+	Bullet bullets[5];	//	Max bullets in play
 	int currentBullet = 0;
 	sf::Time m_SinceLastShot;
 

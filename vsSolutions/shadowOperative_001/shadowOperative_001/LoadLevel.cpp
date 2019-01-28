@@ -30,9 +30,10 @@ void Engine::loadLevel() {
 		// How long is this new time limit
 		m_TimeRemaining = m_LM.getTimeLimit();
 
-		// Spawn Player and Bob
+		// Spawn Player and Enemies
 		m_Player.spawn(m_LM.getStartPosition(), GRAVITY);
 		enemySpawn();
+
 		//Spawn Items
 		if (m_LM.getNumOfItems() >= 1) {
 			ItemSpawn();
@@ -46,28 +47,18 @@ void Engine::loadLevel() {
 			spawnSwitches();
 		}
 		//Spawn LaserPointer
-		if(m_LM.getNumLaserPointers()>=1){
+		if (m_LM.getNumLaserPointers() >= 1) {
 			spawnLasers();
+		}
+		//	Spawn Cameras
+		if (m_LM.getNumCams() >= 1) {
+			spawnCamera();
 		}
 
 		// Make sure this code isn't run again
-		m_NewLevelRequired = false;
+		//m_NewLevelRequired = false;
 
 		std::cout << "Loading...DONE!" << std::endl;
 		m_GameState = GameState::READYUP;
 	}
-	//Spawn Doors
-	if (m_LM.getNumOfDoors() >= 1) {
-		doorSpawn();
-	}
-	if (m_LM.getNumSwitches() >= 1) {
-		spawnSwitches();
-	}
-	if (m_LM.getNumCams() >= 1) {
-		spawnCamera();
-	}
-
-	// Make sure this code isn't run again
-	m_NewLevelRequired = false;
-	m_GameState = GameState::PLAYING;
 }
