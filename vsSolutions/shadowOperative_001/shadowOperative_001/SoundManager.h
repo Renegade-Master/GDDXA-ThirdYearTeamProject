@@ -18,11 +18,13 @@ private:
 	sf::SoundBuffer m_ButtonClickBuffer;
 	sf::SoundBuffer m_JumpBuffer;
 	sf::SoundBuffer m_ReachGoalBuffer;
+	sf::SoundBuffer m_PlayerShootBuffer;
 
 	// The Sounds
 	sf::Sound m_ButtonClickSound;
 	sf::Sound m_JumpSound;
 	sf::Sound m_ReachGoalSound;
+	sf::Sound m_PlayerShootSound;
 
 	// Which sound should we use next, fire 1, 2 or 3
 	//int m_NextSound = 1;
@@ -34,6 +36,7 @@ public:
 	void playButtonClick();
 	void playJump();
 	void playReachGoal();
+	void playPlayerShoot();
 };
 #endif // !SOUNDMANAGER_H
 

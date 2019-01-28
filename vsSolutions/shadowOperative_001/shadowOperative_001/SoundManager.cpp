@@ -13,14 +13,16 @@
 */
 SoundManager::SoundManager() {
 	// Load the sound in to the buffers
-	m_ButtonClickBuffer.loadFromFile("sound/ButtonClick.wav");
-	m_JumpBuffer.loadFromFile("sound/jump.wav");
-	m_ReachGoalBuffer.loadFromFile("sound/reachgoal.wav");
+	m_ButtonClickBuffer.loadFromFile("sound\\ButtonClick.wav");
+	m_JumpBuffer.loadFromFile("sound\\jump.wav");
+	m_ReachGoalBuffer.loadFromFile("sound\\reachgoal.wav");
+	m_PlayerShootBuffer.loadFromFile("sound\\PlayerShoot_001.wav");
 
 	// Associate the sounds with the buffers
 	m_ButtonClickSound.setBuffer(m_ButtonClickBuffer);
 	m_JumpSound.setBuffer(m_JumpBuffer);
 	m_ReachGoalSound.setBuffer(m_ReachGoalBuffer);
+	m_PlayerShootSound.setBuffer(m_PlayerShootBuffer);
 
 	// When the player is 50 pixels away sound is full volume
 	float minDistance = 150;
@@ -106,4 +108,12 @@ void SoundManager::playJump() {
 void SoundManager::playReachGoal() {
 	m_ReachGoalSound.setRelativeToListener(true);
 	m_ReachGoalSound.play();
+}
+
+/**
+*	Play the Player Shooting Sound
+*/
+void SoundManager::playPlayerShoot() {
+	m_PlayerShootSound.setRelativeToListener(true);
+	m_PlayerShootSound.play();
 }
