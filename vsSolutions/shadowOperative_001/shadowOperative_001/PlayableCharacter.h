@@ -12,11 +12,11 @@
 
 #include <fstream>
 #include <iostream>
-
 #include <SFML/Graphics.hpp>
-
 #include "laser.h"
 #include "TextureHolder.h"
+#include "list"
+#include "door.h"
 
 class PlayableCharacter {
 public:
@@ -119,6 +119,8 @@ protected:
 
 	//laserTargeting
 	laser targetingLaser;
+
+	friend PlayableCharacter::Direction& operator++(PlayableCharacter::Direction& mv, int);
 };
 
 #endif // !PLAYABLECHARACTER_H
