@@ -23,7 +23,6 @@ public:
 	void spawn(sf::Vector2i startPosition, float gravity,sf::Time gameStart);
 	void alterPatrol(bool patrol);
 	sf::FloatRect getPosition();
-	bool detectPlayer(sf::Vector2f playPos);
 	sf::ConvexShape getCone();
 	void increaseAwarenessLevel(sf::Vector2f playPos,int detectionLevel,sf::Time gameTimeTotal,
 		SoundManager& m_SM);

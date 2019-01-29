@@ -337,6 +337,7 @@ void Engine::update(float dtAsSeconds) {
 
 		// Update the HUD every m_TargetFramesPerHUDUpdate frames
 		if (m_FramesSinceLastHUDUpdate > m_TargetFramesPerHUDUpdate) {
+			std::cout << "\nUpdating HUD";
 			// Update game HUD text
 			std::stringstream ssTime;
 			std::stringstream ssLevel;
@@ -346,8 +347,10 @@ void Engine::update(float dtAsSeconds) {
 			m_Hud.setTime(ssTime.str());
 
 			// Update the level text
-			sf::Text isHidden = m_Hud.getHidden();
-			m_Hud.setHidden(isHidden);
+			
+			m_Hud.setHidden(m_Player.getHudDetectLevel());
+			//sf::Text isHidden = m_Hud.getHidden();
+			//m_Hud.setHidden(isHidden);
 			//add call to player Gun later
 			m_Hud.setGunCharge(100);
 			m_FramesSinceLastHUDUpdate = 0;

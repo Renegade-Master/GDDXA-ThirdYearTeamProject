@@ -120,7 +120,7 @@ private:
 	//How Long Since last HUD update?
 	int m_FramesSinceLastHUDUpdate = 0;
 	//At what point should the Hud be refreshed
-	int m_TargetFramesPerHUDUpdate = 500;
+	int m_TargetFramesPerHUDUpdate = 60;
 	//How many vertices should be in each tile of the map
 	const int VERTS_IN_QUAD = 4;
 

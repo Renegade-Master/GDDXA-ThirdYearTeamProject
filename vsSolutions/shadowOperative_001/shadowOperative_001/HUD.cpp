@@ -87,7 +87,6 @@ sf::Text Hud::getTime() {
 *	...
 */
 sf::Text Hud::getHidden() {
-	m_isHidden.setString("Hidden(temp)");
 	return m_isHidden;
 }
 
@@ -103,7 +102,7 @@ void Hud::setLevel(sf::String text) {
 */
 void Hud::setHidden(sf::Text text)
 {
-	m_isHidden = text;
+	m_isHidden.setString(text.getString());
 }
 
 /**
@@ -136,6 +135,7 @@ void Hud::setGunChargeBackground(float maxCharge) {
 
 /**
 *	...
-*/sf::RectangleShape Hud::getGunBackground() {
+*/
+sf::RectangleShape Hud::getGunBackground() {
 	return m_GunChargeBackground;
 }
