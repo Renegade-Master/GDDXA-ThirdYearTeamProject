@@ -198,10 +198,6 @@ private:
 	// Run will call all the private functions
 	bool detectCollisions(PlayableCharacter& character);
 
-	// Make a vector of the best places to emit sounds from
-	void populateEmitters(std::vector <sf::Vector2f>& vSoundEmitters,
-		int** arrayLevel);
-
 	// A vector of Vector2f for the fire emiiter locations
 	//std::vector <sf::Vector2f> m_FireEmitters;
 
@@ -241,6 +237,6 @@ private:
 	void doorUpdate(float dtAsSeconds, ToggleSwitch *Switch);
 	
 	//calculate distance from enemy to player
-	double calcDistance(sf::Vector2f posOne, sf::Vector2f posTwo);	
+	float calcDistance(sf::Vector2f posOne, sf::Vector2f posTwo);	
 };
 #endif // !ENGINE_H

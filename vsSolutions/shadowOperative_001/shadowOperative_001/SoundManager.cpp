@@ -11,7 +11,7 @@
 /**
 *	Default Constructor
 */
-SoundManager::SoundManager() {
+SoundManager::SoundManager() noexcept {
 	// Load the sound in to the buffers
 	m_ButtonClickBuffer.loadFromFile("sound\\ButtonClick.wav");
 	m_JumpBuffer.loadFromFile("sound\\jump.wav");

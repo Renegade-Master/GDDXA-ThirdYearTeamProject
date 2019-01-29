@@ -25,7 +25,7 @@ public:
 	void increaseAwarenessLevel(sf::Vector2f playPos,int detectionLevel,sf::Time gameTimeTotal,
 		SoundManager& m_SM);
 	float getAwareness();
-	double calcDistance(sf::Vector2f playPos,sf::Vector2f thisPos);
+	float calcDistance(sf::Vector2f playPos,sf::Vector2f thisPos);
 	float getlastdetectTime();
 	sf::RectangleShape getDetectMeter();
 	void reduceAwareness(sf::Time gameTimeTotal);
@@ -36,7 +36,7 @@ public:
 	void regen(float elapsedTime);
 
 	//	Calculate Max field of vision
-	double reCalculateMaxRange(char dir, int** m_ArrayLevel, double laserRange);
+	float reCalculateMaxRange(char dir, int** m_ArrayLevel, float laserRange);
 	void toggleTargeting(SoundManager& m_SM);
 	virtual bool isTargeting();
 
@@ -51,7 +51,7 @@ private:
 	//Variable counts ticks since patrol altered
 	int sincePatrolAlter = 0;
 	//Holds the current direction
-	char direction;
+	char direction = NULL;
 protected:
 	//	Enemy Health
 	float health = 100.0f;
@@ -65,9 +65,9 @@ protected:
 	//	Enemy Line-of-Sight
 	int sightAngle = 60;
 	//Default viewing distance is maximum viewing distance
-	double detectionDistance = 500;
+	float detectionDistance = 500;
 	//Maximum range in front of the Enemy that it is able to view
-	const double maxDistance = detectionDistance;
+	const float maxDistance = detectionDistance;
 	//This Characters cone of vision a ConvexShape object called of type visionCone
 	visionCone cone;
 	//Varaible how close this Enemy object is to detecting the player character

@@ -28,7 +28,7 @@ public:
 */
 class cmd_Null : public Command {
 public:
-	virtual void execute(PlayableCharacter& pc) {
+	virtual void execute(PlayableCharacter& pc) override {
 		pc.m_Direction = PlayableCharacter::Direction::IDLE;
 	}
 };
@@ -38,7 +38,7 @@ public:
 */
 class cmd_RunLeft : public Command {
 public:
-	virtual void execute(PlayableCharacter& pc) { 
+	virtual void execute(PlayableCharacter& pc) override {
 		pc.m_Direction = PlayableCharacter::Direction::LEFT;
 
 		if (pc.m_Action != PlayableCharacter::Action::FALLING
@@ -54,7 +54,7 @@ public:
 */
 class cmd_RunRight : public Command {
 public:
-	virtual void execute(PlayableCharacter& pc) {
+	virtual void execute(PlayableCharacter& pc) override {
 		pc.m_Direction = PlayableCharacter::Direction::RIGHT;
 
 		if (pc.m_Action != PlayableCharacter::Action::FALLING
@@ -71,7 +71,7 @@ public:
 */
 class cmd_Jump : public Command {
 public:
-	virtual void execute(PlayableCharacter& pc) { 
+	virtual void execute(PlayableCharacter& pc) override {
 		//pc.m_Action = PlayableCharacter::Action::JUMPING;
 		// Character hasn't jumped too many times
 		if (pc.m_jumpCounter < pc.maxJumps) {
@@ -88,7 +88,7 @@ public:
 */
 class cmd_Shoot : public Command {
 public:
-	virtual void execute(PlayableCharacter& pc) {
+	virtual void execute(PlayableCharacter& pc) override {
 		pc.m_Action = PlayableCharacter::Action::ATTACKING;
 		pc.shooting = true;
 	}
@@ -99,7 +99,7 @@ public:
 */
 class cmd_ToggleAim : public Command {
 public:
-	virtual void execute(PlayableCharacter& pc) {
+	virtual void execute(PlayableCharacter& pc) override {
 		pc.toggleTargeting(m_SM);
 	}
 };
@@ -109,7 +109,7 @@ public:
 */
 class cmd_AimLeft : public Command {
 public:
-	virtual void execute(PlayableCharacter& pc) {
+	virtual void execute(PlayableCharacter& pc) override {
 		if (pc.isTargeting()) {
 			pc.targetingLaser.updateLine(pc.m_Position,
 				sf::Vector2f(pc.target.x -= 5, pc.target.y));
@@ -122,7 +122,7 @@ public:
 */
 class cmd_AimRight : public Command {
 public:
-	virtual void execute(PlayableCharacter& pc) {
+	virtual void execute(PlayableCharacter& pc) override {
 		if (pc.isTargeting()) {
 			pc.targetingLaser.updateLine(pc.m_Position,
 				sf::Vector2f(pc.target.x += 5, pc.target.y));
@@ -135,7 +135,7 @@ public:
 */
 class cmd_AimUp : public Command {
 public:
-	virtual void execute(PlayableCharacter& pc) {
+	virtual void execute(PlayableCharacter& pc) override {
 		if (pc.isTargeting()) {
 			pc.targetingLaser.updateLine(pc.m_Position,
 				sf::Vector2f(pc.target.x, pc.target.y -= 5));
@@ -148,7 +148,7 @@ public:
 */
 class cmd_AimDown : public Command {
 public:
-	virtual void execute(PlayableCharacter& pc) {
+	virtual void execute(PlayableCharacter& pc) override {
 		if (pc.isTargeting()) {
 			pc.targetingLaser.updateLine(pc.m_Position,
 				sf::Vector2f(pc.target.x, pc.target.y += 5));
@@ -161,7 +161,7 @@ public:
 */
 class cmd_LEFT_UP : public Command {
 public:
-	virtual void execute(PlayableCharacter& pc) {
+	virtual void execute(PlayableCharacter& pc) override {
 		if (pc.isTargeting()) {
 			pc.targetingLaser.updateLine(pc.m_Position,
 				sf::Vector2f(pc.target.x-=5, pc.target.y += 5));
@@ -174,7 +174,7 @@ public:
 */
 class cmd_LEFT_DOWN : public Command {
 public:
-	virtual void execute(PlayableCharacter& pc) {
+	virtual void execute(PlayableCharacter& pc) override {
 		if (pc.isTargeting()) {
 			pc.targetingLaser.updateLine(pc.m_Position,
 				sf::Vector2f(pc.target.x -= 5, pc.target.y -= 5));
@@ -187,7 +187,7 @@ public:
 */
 class cmd_RIGHT_DOWN : public Command {
 public:
-	virtual void execute(PlayableCharacter& pc) {
+	virtual void execute(PlayableCharacter& pc) override {
 		if (pc.isTargeting()) {
 			pc.targetingLaser.updateLine(pc.m_Position,
 				sf::Vector2f(pc.target.x += 5, pc.target.y += 5));
@@ -200,7 +200,7 @@ public:
 */
 class cmd_RIGHT_UP : public Command {
 public:
-	virtual void execute(PlayableCharacter& pc) {
+	virtual void execute(PlayableCharacter& pc) override {
 		if (pc.isTargeting()) {
 			pc.targetingLaser.updateLine(pc.m_Position,
 				sf::Vector2f(pc.target.x += 5, pc.target.y -= 5));

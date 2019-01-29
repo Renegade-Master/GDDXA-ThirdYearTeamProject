@@ -34,7 +34,7 @@ public:
 	Action m_LastAction = Action::IDLE;
 
 	// What is the gravity
-	float m_Gravity;
+	float m_Gravity = NULL;
 
 	// Returns the current Position
 	sf::FloatRect getPosition();
@@ -140,7 +140,7 @@ protected:
 	sf::Texture m_Texture;
 
 	//	Overload the '<Direction>++' operator
-	friend PlayableCharacter::Direction& operator++(PlayableCharacter::Direction& mv, int);
+	friend PlayableCharacter::Direction& operator++(PlayableCharacter::Direction& mv, int) noexcept;
 };
 
 #endif // !PLAYABLECHARACTER_H

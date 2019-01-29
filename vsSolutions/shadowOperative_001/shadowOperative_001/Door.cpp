@@ -41,7 +41,7 @@ Door::Door(char state, sf::Vector2i position) {
 /**
 *	Alter State when triggered
 */
-void Door::doorState(){
+void Door::doorState() {
 	if (m_DoorState == State::STATIC) {
 		return;
 	}
@@ -71,7 +71,7 @@ void Door::update(float elapsedTime, int** m_ArrayLevel) {
 */
 float Door::getCapacity() {
 	std::cout << "\nWe should not be here";
-	return 1.0f;
+	return -1.0f;
 }
 
 /**

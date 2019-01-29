@@ -165,10 +165,10 @@ void Engine::refreshWindow() {
 /**
 *	Calculated the Distance between two objects using their x,y(Sf::Vecor2f) coordinates
 */
-double Engine::calcDistance(sf::Vector2f posOne, sf::Vector2f posTwo) {
-	double distance;
-	double distancex = ((posOne.x - posTwo.x) * (posOne.x - posTwo.x));
-	double distancey = ((posOne.y - posTwo.y) * (posOne.y - posTwo.y));
+float Engine::calcDistance(sf::Vector2f posOne, sf::Vector2f posTwo) {
+	float distance;
+	float distancex = ((posOne.x - posTwo.x) * (posOne.x - posTwo.x));
+	float distancey = ((posOne.y - posTwo.y) * (posOne.y - posTwo.y));
 
 	return distance = sqrt(distancex - distancey);
 }

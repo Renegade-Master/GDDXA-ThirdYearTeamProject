@@ -71,7 +71,7 @@ void Player::update(float elapsedTime, int** m_ArrayLevel) {
 		this->m_jumpDuration += elapsedTime;
 
 		// Apply the Jump to the Character
-		this->m_Position.y -= this->m_Gravity * 2 * 0.0167;
+		this->m_Position.y -= this->m_Gravity * 2 * 0.0167f;
 
 		// Character jump has gone on long enough
 		if (this->m_jumpDuration >= this->maxJumpDuration) {
