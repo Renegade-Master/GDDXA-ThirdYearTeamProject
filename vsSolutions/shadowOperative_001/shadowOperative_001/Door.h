@@ -18,7 +18,7 @@ public:
     Door(char state, sf::Vector2i position);
 	
 	// We will call this function once every frame
-	virtual void update(float elapsedTime, int** m_ArrayLevel);
+	virtual void update(float elapsedTime, int** m_ArrayLevel) override;
 
 	//return capacity
 	virtual float getCapacity();

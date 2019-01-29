@@ -219,10 +219,10 @@ float Enemy::getlastdetectTime() {
 /**
 *
 */
-double Enemy::calcDistance(sf::Vector2f playPos, sf::Vector2f thisPos) {
-	double distance;
-	double distancex = ((playPos.x - thisPos.x) * (playPos.x - thisPos.x));
-	double distancey = ((playPos.y - thisPos.y) * (playPos.y - thisPos.y));
+float Enemy::calcDistance(sf::Vector2f playPos, sf::Vector2f thisPos) {
+	float distance;
+	float distancex = ((playPos.x - thisPos.x) * (playPos.x - thisPos.x));
+	float distancey = ((playPos.y - thisPos.y) * (playPos.y - thisPos.y));
 
 	return distance = sqrt(distancex - distancey);
 }
@@ -315,11 +315,11 @@ sf::String Enemy::getClassName() {
 /*
 *	Find if Laser Hits a wall
 */
-double Enemy::reCalculateMaxRange(char dir, int** m_ArrayLevel, double laserRange) {
+float Enemy::reCalculateMaxRange(char dir, int** m_ArrayLevel, float laserRange) {
 	//	Get current position
 	int x = (this->m_Position.x / TILE_SIZE);
 	int y = (this->m_Position.y / TILE_SIZE);
-	double calculatedrange = 0;
+	float calculatedrange = 0;
 
 	//	Fine-Tune position depending on Class
 	if (this->getClassName() == "LaserPointer") {

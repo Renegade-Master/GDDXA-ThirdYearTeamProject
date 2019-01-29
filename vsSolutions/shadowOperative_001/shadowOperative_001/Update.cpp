@@ -404,8 +404,8 @@ void Engine::update(float dtAsSeconds) {
 */
 void Engine::doorUpdate(float dtAsSeconds, ToggleSwitch *Switch) {
 	//update Doors
-	double currentShortest = std::numeric_limits<double>::infinity();
-	Door* shortest = NULL;
+	float currentShortest = std::numeric_limits<float>::infinity();
+	Door* shortest = nullptr;
 
 	for (std::list<Door*>::iterator doorIt = m_DoorList.begin(); 
 			doorIt != m_DoorList.end(); doorIt++) {

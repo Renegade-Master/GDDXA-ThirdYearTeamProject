@@ -87,10 +87,11 @@ int** LevelManager::nextLevel(sf::VertexArray& rVaLevel) {
 	}
 
 	// Loop through the file and store all the values in the 2d array
-	std::string row;
+	std::string row = NULL;
 	sf::Vector2i temp;
-	int verticalOffset;
+	int verticalOffset = 0;
 	int y = 0;
+
 	while (inputFile >> row) {
 		for (int x = 0; x < row.length(); x++) {
 			const char val = row[x];

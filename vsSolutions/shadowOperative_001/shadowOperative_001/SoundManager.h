@@ -79,7 +79,7 @@ private:
 	//int m_NextSound = 1;
 
 public:
-	SoundManager();
+	SoundManager() noexcept;
 
 	void playButtonClick();
 	void playJump();

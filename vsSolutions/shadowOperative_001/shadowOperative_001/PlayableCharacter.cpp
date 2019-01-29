@@ -130,6 +130,9 @@ void PlayableCharacter::stopJump() {
 	this->m_Action = Action::FALLING;
 }
 
+/**
+*	...
+*/
 void PlayableCharacter::toggleTargeting(SoundManager& m_SM) {
 	//	...
 }
@@ -144,7 +147,7 @@ PlayableCharacter::Direction PlayableCharacter::getDir() {
 /**
 *	Increment dat operator
 */
-PlayableCharacter::Direction& operator++(PlayableCharacter::Direction& mv, int) {
+PlayableCharacter::Direction& operator++(PlayableCharacter::Direction& mv, int) noexcept {
 	switch (mv)
 	{
 	case PlayableCharacter::Direction::LEFT:

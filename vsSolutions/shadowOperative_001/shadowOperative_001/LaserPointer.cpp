@@ -14,6 +14,7 @@ LaserPointer::LaserPointer() {
 	m_Sprite = sf::Sprite(TextureHolder::GetTexture(
 		"graphics/LaserPointer.png"));
 }
+
 /*
 *	initialises the variables of the LaserPointer object
 */
@@ -122,5 +123,3 @@ bool LaserPointer::isActive() {
 sf::String LaserPointer::getClassName() {
 	return(sf::String("LaserPointer"));
 }
-
-

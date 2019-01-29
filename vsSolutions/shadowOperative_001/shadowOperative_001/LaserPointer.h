@@ -36,9 +36,9 @@ private:
 	//The Laser object fired by The LaserPointer
 	laser visionLaser;
 	//The range of the Laser
-	double laserRange = 500;
+	float laserRange = 500;
 	//Max Range of the Laser = laserRange Default
-	double maxLaserRange;
+	float maxLaserRange;
 };
 #endif // !LASERPOINTER_H
 

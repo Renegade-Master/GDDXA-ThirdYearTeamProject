@@ -11,7 +11,7 @@
 /**
 *	Default Constructor
 */
-laser::laser(){
+laser::laser() {
 	laserLine.setPointCount(4);
 	laserLine.setFillColor(sf::Color::Color(255, 0, 0, 25));
 	laserLine.setOutlineThickness(1);

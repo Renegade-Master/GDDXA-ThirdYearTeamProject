@@ -20,7 +20,7 @@
 
 class TextureHolder {
 public:
-	TextureHolder();
+	TextureHolder() noexcept;
 	static sf::Texture& GetTexture(std::string const& filename);
 
 private:

@@ -70,7 +70,7 @@ void visionCone::updateCamConePos(sf::Vector2f charPos, int charSightRange,
 	int charSightAngle, float cameraAngle, bool forward, char direction) {
 	
 	//Convert angle(Degrees) to angle (radians)
-	double angleRadians = (cameraAngle * (PIE / 180));
+	float angleRadians = (cameraAngle * (PIE / 180));
 	
 	calculatedOrigin = charPos;
 	if (direction == 'v') {
