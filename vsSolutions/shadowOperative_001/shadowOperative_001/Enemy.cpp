@@ -129,6 +129,11 @@ void Enemy::update(float elapsedTime, int** m_ArrayLevel/*, sf::Vector2f playPos
 			cone.updateConePos(this->m_Position, this->detectionDistance, this->sightAngle, false);
 		}
 	}
+	else
+	{
+		//m_Sprite = sf::Sprite(TextureHolder::GetTexture(
+		//	"graphics/Crate.png"));
+	}
 	this->regen(elapsedTime);
 }
 
