@@ -79,7 +79,7 @@ void LaserPointer::spawn(sf::Vector2i startPosition, float gravity, sf::Time gam
 /*
 *	Updates the LaserPointer object for current frame
 */
-void LaserPointer::update(sf::Time m_GameTimeTotal) {
+void LaserPointer::update(sf::Time m_GameTimeTotal,SoundManager& m_SM) {
 	if (active) {
 		if (m_GameTimeTotal.asMilliseconds() -
 			lastToggleEvent.asMilliseconds() > 15000) {
@@ -87,6 +87,7 @@ void LaserPointer::update(sf::Time m_GameTimeTotal) {
 			active = false;
 			//std::cout << "\nLaser off!!";
 			lastToggleEvent = m_GameTimeTotal;
+			m_SM.playLaserPowerUp();
 		}
 	}
 	else {
@@ -96,6 +97,7 @@ void LaserPointer::update(sf::Time m_GameTimeTotal) {
 			active = true;
 			//std::cout << "\nLaser on!!";
 			lastToggleEvent = m_GameTimeTotal;
+			m_SM.playLaserPowerDown();
 		}
 	}
 }

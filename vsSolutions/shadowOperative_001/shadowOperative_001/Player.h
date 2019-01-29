@@ -46,11 +46,17 @@ public:
 	sf::String getClassName();
 
 private:
+	//Detection Level - Higher the value tyhe faster enemies detect the player
 	int detectionLevel;
+	//Default gun charge level
 	float gunChargeLevel = 100.0f;
-	float gunChargeRate = 2.0f;
-	float maxGunChargeLevel = 100.0f;
+	//Modifies how fast the gun recharges
+	const float gunChargeRate = 2.0f;
+	//Maximum charge Level of the gun = gunChargeLevel default  
+	const float maxGunChargeLevel = gunChargeLevel;
+	//How much energy a shot uses
 	float shotCost = 10.0f;
+	//Text used to display detection state to the screen
 	sf::Text hudText;
 
 	//aiming

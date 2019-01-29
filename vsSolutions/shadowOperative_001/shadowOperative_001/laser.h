@@ -11,14 +11,14 @@
 #define LASER_H
 
 #include <SFML/Graphics.hpp>
-
-class laser {
+class laser
+{
 public:
 	void updateLine(sf::Vector2f playPos, sf::Vector2f mousePos);
 	sf::ConvexShape getLine();
 	laser();
-
 private:
+	//ConvexShape that constitutes the Laser object
 	sf::ConvexShape laserLine;
 };
 
