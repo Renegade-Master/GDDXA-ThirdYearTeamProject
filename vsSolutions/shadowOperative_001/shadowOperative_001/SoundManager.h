@@ -12,6 +12,7 @@
 
 #include <SFML/Audio.hpp>
 
+
 class SoundManager {
 private:
 	// The buffers

@@ -22,6 +22,7 @@ class Command {
 public:
 	virtual ~Command() { /*delete this;*/ }
 	virtual void execute(PlayableCharacter& pc) = 0;
+	SoundManager m_SM =  SoundManager();
 };
 
 /**
@@ -101,7 +102,7 @@ public:
 class cmd_ToggleAim : public Command {
 public:
 	virtual void execute(PlayableCharacter& pc) {
-		pc.toggleTargeting();
+		pc.toggleTargeting(m_SM);
 	}
 };
 
