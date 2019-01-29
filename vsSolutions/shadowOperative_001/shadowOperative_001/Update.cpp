@@ -93,7 +93,7 @@ void Engine::update(float dtAsSeconds) {
 		//Update Lasers
 		for (std::list<LaserPointer*>::iterator lasIt = m_LaserPointerList.begin();
 			lasIt != m_LaserPointerList.end();lasIt++) {
-			(*lasIt)->update(m_GameTimeTotal);
+			(*lasIt)->update(m_GameTimeTotal,m_SM);
 			//is the laser Active
 			if ((*lasIt)->isActive()) {
 				//If so is the player touching it

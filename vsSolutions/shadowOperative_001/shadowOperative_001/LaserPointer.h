@@ -15,7 +15,7 @@ class LaserPointer :public Enemy {
 public:
 	LaserPointer();
 	void spawn(sf::Vector2i startPosition, float gravity, sf::Time gameStart, char dir, int** m_ArrayLevel);
-	void update(sf::Time m_GameTimeTotal);
+	void update(sf::Time m_GameTimeTotal, SoundManager& m_SM);
 	sf::ConvexShape getLaser();
 	bool isActive();
 	sf::String getClassName();

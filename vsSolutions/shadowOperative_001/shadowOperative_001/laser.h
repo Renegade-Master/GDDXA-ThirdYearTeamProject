@@ -13,15 +13,12 @@
 #include <SFML/Graphics.hpp>
 class laser
 {
-private:
-	//ConvexShape that constitutes the Laser object
-	sf::ConvexShape laserLine;
 public:
 	void updateLine(sf::Vector2f playPos, sf::Vector2f mousePos);
 	sf::ConvexShape getLine();
 	laser();
-
 private:
+	//ConvexShape that constitutes the Laser object
 	sf::ConvexShape laserLine;
 };
 

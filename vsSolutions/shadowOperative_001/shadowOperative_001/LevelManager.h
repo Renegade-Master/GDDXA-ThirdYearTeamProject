@@ -13,47 +13,7 @@
 #include "Camera.h"
 
 class LevelManager {
-private:
-	//What size is the level X*Y
-	sf::Vector2i m_LevelSize;
-	//Where does the Player Character Spawn in this Level
-	sf::Vector2i m_StartPosition;
-	//Where is The finishing location of the level(objective)
-	sf::Vector2i m_EndPosition;
-	//List containing all the spawn coordinates of Enemies(Factory Method)
-	std::list<sf::Vector2i> m_EnemyPosition;
 
-	//Item creation Data
-	//List containing all the spawn coordinates of Items(Factory Method)
-	std::list<sf::Vector2i> m_ItemPosition;
-	//List containing the item Type data of Items(Factory Method)
-	std::list<char> m_ItemType;
-	//Door Creation Data
-	//List containing all the spawn coordinates of doors(Factory Method)
-	std::list<sf::Vector2i> m_DoorPosition;
-	//List containing the door spawn state data of doors(Factory Method)
-	std::list<char> m_DoorType;
-	//List containing all the spawn coordinates of Switches(Factory Method)
-	std::list<sf::Vector2i> m_SwitchPosition;
-
-	//Camera
-	//List containing all the spawn coordinates of cameras(Factory Method)
-	std::list<sf::Vector2i> m_CameraPosition;
-	//List containing the camera spawn state data of Camera's(Factory Method)
-	std::list<char> m_CameraType;
-
-	//LaserPointer
-	//List containing all the spawn coordinates of LaserPointers(Factory Method)
-	std::list<sf::Vector2i> m_LaserPointerPos;
-	//List containing the LaserPointer spawn state data of LaserPointers(Factory Method)
-	std::list<char> m_LaserDir;
-
-	//Time modifier for the level
-	float m_TimeModifier = 1;
-	//Time Limit for the level
-	float m_BaseTimeLimit = 0;
-	//Number of level in the game
-	const int NUM_LEVELS = 2;
 
 public:
 	LevelManager();
@@ -96,26 +56,45 @@ public:
 	char getLaserDir();
 
 private:
+	//What size is the level X*Y
 	sf::Vector2i m_LevelSize;
+	//Where does the Player Character Spawn in this Level
 	sf::Vector2i m_StartPosition;
+	//Where is The finishing location of the level(objective)
 	sf::Vector2i m_EndPosition;
+	//List containing all the spawn coordinates of Enemies(Factory Method)
 	std::list<sf::Vector2i> m_EnemyPosition;
 
 	//Item creation Data
+	//List containing all the spawn coordinates of Items(Factory Method)
 	std::list<sf::Vector2i> m_ItemPosition;
+	//List containing the item Type data of Items(Factory Method)
 	std::list<char> m_ItemType;
 	//Door Creation Data
+	//List containing all the spawn coordinates of doors(Factory Method)
 	std::list<sf::Vector2i> m_DoorPosition;
+	//List containing the door spawn state data of doors(Factory Method)
 	std::list<char> m_DoorType;
-	//switch
+	//List containing all the spawn coordinates of Switches(Factory Method)
 	std::list<sf::Vector2i> m_SwitchPosition;
 
 	//Camera
+	//List containing all the spawn coordinates of cameras(Factory Method)
 	std::list<sf::Vector2i> m_CameraPosition;
+	//List containing the camera spawn state data of Camera's(Factory Method)
 	std::list<char> m_CameraType;
 
 	//LaserPointer
+	//List containing all the spawn coordinates of LaserPointers(Factory Method)
 	std::list<sf::Vector2i> m_LaserPointerPos;
+	//List containing the LaserPointer spawn state data of LaserPointers(Factory Method)
 	std::list<char> m_LaserDir;
+
+	//Time modifier for the level
+	float m_TimeModifier = 1;
+	//Time Limit for the level
+	float m_BaseTimeLimit = 0;
+	//Number of level in the game
+	const int NUM_LEVELS = 2;
 };
 #endif // !LEVELMANAGER_H
