@@ -43,9 +43,7 @@ void Enemy::update(float elapsedTime, int** m_ArrayLevel/*, sf::Vector2f playPos
 		patrolValid = false;
 		sf::FloatRect detectionZone = getPosition();
 
-		//update detection meter
-		detectMeter.setSize((sf::Vector2f(10, this->getAwareness()*0.5)));
-		detectMeter.setPosition(this->getCenter().x - 5, this->getCenter().y - 30);
+
 
 		// Make a FloatRect to test each block
 		sf::FloatRect block;
