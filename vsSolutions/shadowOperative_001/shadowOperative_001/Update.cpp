@@ -84,7 +84,6 @@ void Engine::update(float dtAsSeconds) {
 				m_Player.chargeFromPickup((*itemIter)->getCapacity(),m_SM);
 				delete* itemIter;
 				itemIter = m_ItemList.erase(itemIter++);
-				//(*itemIter)->~Item();
 			}
 			else {
 				itemIter++;
@@ -99,7 +98,7 @@ void Engine::update(float dtAsSeconds) {
 			if ((*lasIt)->isActive()) {
 				//If so is the player touching it
 				if ((*lasIt)->getLaser().getGlobalBounds().intersects(m_Player.getPosition())) {
-					std::cout << "\nDetected";
+					m_GameState = GameState::ENDGAME;
 				}
 			}
 		}
@@ -174,11 +173,8 @@ void Engine::update(float dtAsSeconds) {
 				if (bulletY > m_LM.getLevelSize().y) {
 					bulletY = m_LM.getLevelSize().y;
 				}
-				/*std::cout << "\nbulletX:" << bulletX;
-				std::cout << "\nbulletY:" << bulletY;*/
 				if ((m_ArrayLevel[bulletY][bulletX] == 1) || (m_ArrayLevel[bulletY][bulletX] == 2) ||
 					(m_ArrayLevel[bulletY][bulletX] == 3) || (m_ArrayLevel[bulletY][bulletX] == 5)) {
-					//std::cout << "\nBullet hit wall";
 					bullets[i].stop(m_SM);
 				}
 			}
@@ -197,9 +193,7 @@ void Engine::update(float dtAsSeconds) {
 					((*it)->getSprite().getGlobalBounds()))
 					{
 						bullets[i].stop(m_SM);
-						//(*it)->//LosesHealthDies
 						(*it)->takeDamage(bullets[i].getShotPower());
-						//(*it)->//is Enemy knoicked unconscious?
 					}
 				}
 			}
@@ -212,9 +206,9 @@ void Engine::update(float dtAsSeconds) {
 				{
 					(*it)->increaseAwarenessLevel(m_Player.getCenter(),
 						m_Player.getDetectLevel(),m_GameTimeTotal,m_SM);
-					if ((*it)->getAwareness() <= 100.0)
+					if ((*it)->getAwareness() >= 100.0)
 					{
-						std::cout << "\nDetected";
+						m_GameState = GameState::ENDGAME;
 					}
 					std::cout << "\n" << (*it)->getAwareness();
 				}
@@ -259,11 +253,8 @@ void Engine::update(float dtAsSeconds) {
 					if (bullets[i].getSprite().getGlobalBounds().intersects
 					((*cameraIt)->getSprite().getGlobalBounds()))
 					{
-						std::cout << "\n Taking damage!!!!!!";
 						bullets[i].stop(m_SM);
-						//(*it)->//LosesHealthDies
 						(*cameraIt)->takeDamage();
-						//(*it)->//is Enemy knoicked unconcious?
 					}
 				}
 			}
@@ -276,10 +267,9 @@ void Engine::update(float dtAsSeconds) {
 					(*cameraIt)->increaseAwarenessLevel(m_Player.getCenter(),
 					m_Player.getDetectLevel(), m_GameTimeTotal,m_SM);
 					//is player detetced
-					if ((*cameraIt)->getAwareness() <= 100) {
-						std::cout << "\nDetetced";
+					if ((*cameraIt)->getAwareness() >= 100) {
+						m_GameState = GameState::ENDGAME;
 					}
-					std::cout << "\n" << (*cameraIt)->getAwareness();
 				}
 			}
 			//Decrease awareness Level
