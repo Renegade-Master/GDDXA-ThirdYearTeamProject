@@ -42,6 +42,7 @@ void Engine::draw() {
 	else if (m_GameState == GameState::READYUP) {
 		//Background of paused menu
 		m_Window.draw(m_BackgroundSprite);
+
 		//Message for the paused Game state
 		m_Window.draw(m_Hud.getMessage());
 
@@ -53,8 +54,6 @@ void Engine::draw() {
 
 		// Switch to background view
 		m_Window.setView(m_BGMainView);
-		// Draw the background
-		//m_Window.draw(m_BackgroundSprite);
 
 		// Draw the background, complete with shader effect
 		m_Window.draw(m_BackgroundSprite);
@@ -103,10 +102,8 @@ void Engine::draw() {
 
 		//Draw Enemies
 		if (!m_EnemyList.empty()) {
-			//std::cout << "\nNumber of enemies:" << m_LM.getNumOfEnemies();
 			for (std::list<Enemy*>::iterator it = m_EnemyList.begin();
 				it != m_EnemyList.end(); it++) {
-				//std::cout << "\nDrawing enemies";
 				m_Window.draw((*it)->getSprite());
 				m_Window.draw((*it)->getDetectMeter());
 			}
@@ -115,8 +112,6 @@ void Engine::draw() {
 		//Draw the bullets
 		for (int i = 0; i < 5; i++) {
 			if (bullets[i].isInFlight()) {
-				//std::cout << "\nDrawing bullets" << i;
-				//m_Window.draw(bullets[i].getShape());
 				m_Window.draw(bullets[i].getSprite());
 			}
 		}
@@ -129,6 +124,7 @@ void Engine::draw() {
 		/***---------------------***\
 		|	  HANDLE DRAWING HUD	|
 		\***---------------------***/
+		
 		// Switch to m_HudView
 		m_Window.setView(m_HudView);
 		m_Window.draw(m_Hud.getHidden());
@@ -138,11 +134,13 @@ void Engine::draw() {
 		/***---------------------***\
 		|  HANDLE DRAWING MINI_MAP	|
 		\***---------------------***/
+		
 		m_Window.setView(m_BGMiniMap);
 		m_Window.draw(m_BackgroundSprite);
 		m_Window.setView(m_MiniMap);
 		m_Window.draw(m_VALevel, &m_TextureTiles);
 		m_Window.draw(m_Player.getSprite());
+		
 		//Draw the doors
 		for (std::list<Door*>::iterator doorIt = m_DoorList.begin();
 			doorIt != m_DoorList.end();doorIt++) {
@@ -155,8 +153,8 @@ void Engine::draw() {
 			m_Window.draw((*iter)->getSprite());
 			m_Window.draw((*iter)->getCone());
 		}
-		std::list<Camera*>::iterator camIt = m_CameraList.begin();
-		for (;camIt != m_CameraList.end();camIt++) {
+		
+		for (std::list<Camera*>::iterator camIt = m_CameraList.begin();camIt != m_CameraList.end();camIt++) {
 			m_Window.draw((*camIt)->getSprite());
 			m_Window.draw((*camIt)->getCone());
 		}

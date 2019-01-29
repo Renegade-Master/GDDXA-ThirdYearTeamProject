@@ -203,7 +203,7 @@ private:
 		int** arrayLevel);
 
 	// A vector of Vector2f for the fire emiiter locations
-	std::vector <sf::Vector2f> m_FireEmitters;
+	//std::vector <sf::Vector2f> m_FireEmitters;
 
 	// Where is the mouse in relation to world coordinates
 	sf::Vector2f mouseWorldPosition;

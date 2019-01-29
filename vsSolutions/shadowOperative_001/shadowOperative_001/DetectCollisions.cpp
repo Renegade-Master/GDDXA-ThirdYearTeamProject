@@ -12,8 +12,7 @@
 *	Detect collisions between entities in the Game.
 */
 bool Engine::detectCollisions(PlayableCharacter& character) {
-	//bool reachedGoal = false;
-	// Make a rect for all his parts
+	// Make a Rect for Character hitbox
 	sf::FloatRect detectionZone = character.getPosition();
 
 	// Make a FloatRect to test each block
@@ -120,28 +119,7 @@ bool Engine::detectCollisions(PlayableCharacter& character) {
 					> (character.m_LastPosition.y == (character.m_LastPosition.y += character.m_Gravity * 0.0167f)))) {	// less than (last Y + Gravity)
 
 					character.m_Action = PlayableCharacter::Action::IDLE;
-				}
-			//}
-
-
-			
-
-			/*
-			//// More collision detection here once we have learned about particle effects
-			// Has the characters' feet touched fire or water?
-			// If so, start a particle effect
-			// Make sure this is the first time we have detected this
-			// by seeing if an effect is already running			
-			if (!m_PS.running()) {
-				if (m_ArrayLevel[y][x] == 2 || m_ArrayLevel[y][x] == 3)	{
-					if (character.getFeet().intersects(block)) {
-						// position and start the particle system
-						m_PS.emitParticles(character.getCenter());
-
-					}
-				}
 			}
-			*/
 
 			// Has the character reached the goal?
 			if (m_ArrayLevel[y][x] == 'Q'
@@ -154,6 +132,7 @@ bool Engine::detectCollisions(PlayableCharacter& character) {
 			}
 		}
 	}
-	// All done, return, whether or not a new level might be required
+
+	//	Return false if this point is reached
 	return(false);
 }

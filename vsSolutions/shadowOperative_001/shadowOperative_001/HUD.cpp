@@ -25,7 +25,7 @@ Hud::Hud() {
 	m_StartText.setFont(m_Font);
 	m_StartText.setCharacterSize(100);
 	m_StartText.setFillColor(sf::Color::White);
-	m_StartText.setString("Press Enter when ready!");
+	m_StartText.setString("Press Enter to BEGIN!");
 
 	// Position the text
 	sf::FloatRect textRect = m_StartText.getLocalBounds();
@@ -60,27 +60,11 @@ Hud::Hud() {
 	m_GunCharge.setFillColor(sf::Color::Yellow);
 }
 
-
 /**
 *	...
 */
 sf::Text Hud::getMessage() {
 	return m_StartText;
-}
-
-
-/**
-*	...
-*/
-sf::Text Hud::getLevel() {
-	return m_LevelText;
-}
-
-/**
-*	...
-*/
-sf::Text Hud::getTime() {
-	return m_TimeText;
 }
 
 /**

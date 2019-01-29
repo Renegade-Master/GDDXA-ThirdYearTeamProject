@@ -34,18 +34,10 @@ int** LevelManager::nextLevel(sf::VertexArray& rVaLevel) {
 	m_LevelSize.x = 0;
 	m_LevelSize.y = 0;
 
-	// Get the next level
-	//m_CurrentLevel++;
-	/*if (m_CurrentLevel > NUM_LEVELS) {
-		m_CurrentLevel = 0;
-		m_TimeModifier -= .1f;
-	}*/
-
 	// Load the appropriate level from a text file
 	std::string levelToLoad;
 
 	switch (m_CurrentLevel)	{
-
 	case 1:
 		//This is level 1.
 		levelToLoad = "levels/level1.txt";
@@ -369,8 +361,8 @@ int** LevelManager::nextLevel(sf::VertexArray& rVaLevel) {
 				verticalOffset = 0;  // Play the video for the end game credits.
 				break;
 			}
+
 			verticalOffset *= TILE_SIZE;
-			//std::cout << arrayLevel[y][x] << std::endl;;
 
 			rVaLevel[currentVertex + 0].texCoords =
 				sf::Vector2f(0, 0 + verticalOffset);
@@ -391,28 +383,28 @@ int** LevelManager::nextLevel(sf::VertexArray& rVaLevel) {
 	return arrayLevel;
 }
 
-/*
+/**
 *	Get X*Y size of current Level
 */
 sf::Vector2i LevelManager::getLevelSize() {
 	return m_LevelSize;
 }
 
-/*
+/**
 *	Get Current Level e.g Level 1,Level 2...
 */
 int LevelManager::getCurrentLevel() {
 	return m_CurrentLevel;
 }
 
-/*
+/**
 *	Get Starting Position of Player character for this level
 */
 sf::Vector2i LevelManager::getStartPosition() {
 	return m_StartPosition;
 }
 
-/*
+/**
 *	Get the spawn coordinates of Enemies by popping them off the back of the queue
 */
 sf::Vector2i LevelManager::getEnemyPosition(){
@@ -421,20 +413,20 @@ sf::Vector2i LevelManager::getEnemyPosition(){
 	return temp;
 }
 
-/*
+/**
 *	Get size of List of Enemy coordinates
 */
 int LevelManager::getNumOfEnemies(){
 	return m_EnemyPosition.size();
 }
 
-/*
+/**
 *	Get size of List of Items coordinates
 */
 int LevelManager::getNumOfItems() {
 	return m_ItemType.size();
 }
-/*
+/**
 *	Get Item type by popping the identifier off the back of the queue
 */
 char LevelManager::getItemType(){
@@ -442,7 +434,7 @@ char LevelManager::getItemType(){
 	m_ItemType.pop_back();
 	return temp;
 }
-/*
+/**
 *	Get the spawn coordinates of Items by popping them off the back of the queue
 */
 sf::Vector2i LevelManager::getItemPos(){
@@ -450,13 +442,13 @@ sf::Vector2i LevelManager::getItemPos(){
 	m_ItemPosition.pop_back();
 	return itemTemp;
 }
-/*
+/**
 *	Get size of List of Doors coordinates
 */
 int LevelManager::getNumOfDoors(){
 	return m_DoorPosition.size();
 }
-/*
+/**
 *	Get the spawn coordinates of Doors by popping them off the back of the queue
 */
 sf::Vector2i LevelManager::getDoorPos() {
@@ -464,7 +456,7 @@ sf::Vector2i LevelManager::getDoorPos() {
 	m_DoorPosition.pop_back();
 	return doorTemp;
 }
-/*
+/**
 *	Get Door type by popping the identifier off the back of the queue
 */
 char LevelManager::getDoorType(){
@@ -479,7 +471,8 @@ char LevelManager::getDoorType(){
 int LevelManager::getNumSwitches() {
 	return m_SwitchPosition.size();
 }
-/*
+
+/**
 *	Get the spawn coordinates of Switches by popping them off the back of the queue
 */
 sf::Vector2i LevelManager::getSwitchPos() {
@@ -487,13 +480,15 @@ sf::Vector2i LevelManager::getSwitchPos() {
 	m_SwitchPosition.pop_back();
 	return switchTemp;
 }
+
 /**
 *	Get size of List of Cameras coordinates
 */
 int LevelManager::getNumCams() {
 	return m_CameraPosition.size();
 }
-/*
+
+/**
 *	Get the spawn coordinates of Camera's by popping them off the back of the queue
 */
 sf::Vector2i LevelManager::getCamPos() {
@@ -501,7 +496,8 @@ sf::Vector2i LevelManager::getCamPos() {
 	m_CameraPosition.pop_back();
 	return camTemp;
 }
-/*
+
+/**
 *	Get Camera type by popping the identifier off the back of the queue
 */
 char LevelManager::getCamDir() {
@@ -516,7 +512,8 @@ char LevelManager::getCamDir() {
 int LevelManager::getNumLaserPointers() {
 	return m_LaserPointerPos.size();
 }
-/*
+
+/**
 *	Get the spawn coordinates of LaserPointer by popping them off the back of the queue
 */
 sf::Vector2i LevelManager::getLaserPos() {
@@ -524,7 +521,8 @@ sf::Vector2i LevelManager::getLaserPos() {
 	m_LaserPointerPos.pop_back();
 	return lasTemp;
 }
-/*
+
+/**
 *	Get Laserpointer direction by popping the identifier off the back of the queue
 */
 char LevelManager::getLaserDir() {

@@ -17,8 +17,6 @@ class Hud {
 public:
 	Hud();
 	sf::Text getMessage();
-	sf::Text getLevel();
-	sf::Text getTime();
 
 	sf::Text getHidden();
 	void setHidden(sf::Text text);

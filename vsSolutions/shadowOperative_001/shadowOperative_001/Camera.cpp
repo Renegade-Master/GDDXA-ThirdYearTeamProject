@@ -1,10 +1,20 @@
+/**
+*	@author			Ciaran Bent [K00221230]
+*					Owen O'Dea	[K00218956]
+*					Rory Ryan	[K00218864]
+*	@creationDate	2019/01/15	YYYY/MM/DD
+*	@description
+*/
+
 #include "Camera.h"
+
 /*
 *	Default Constructor for camera object
 */
 Camera::Camera() {
 
 }
+
 /*
 *	Initialises the variables of this object at beginning of game
 */
@@ -13,11 +23,14 @@ void Camera::spawn(sf::Vector2i startPosition, float gravity, sf::Time gameStart
 	m_Position.x = m_Position.x * TILE_SIZE;
 	m_Position.y = m_Position.y * TILE_SIZE;
 	m_Gravity = gravity;
+	
 	m_Sprite = sf::Sprite(TextureHolder::GetTexture(
 		"graphics/camera.png"));
 	std::cout << "\ndir" << dir;
+	
 	this->m_Sprite.setOrigin(this->getCenter().x - this->getCenter().x + TILE_SIZE,
 		this->getCenter().y - this->getCenter().y + 1);
+	
 	if (dir == 'z') {//DOWN
 		m_Sprite.setRotation(-90.0f);
 		rotation = -90.0f;
@@ -67,15 +80,16 @@ void Camera::spawn(sf::Vector2i startPosition, float gravity, sf::Time gameStart
 	lastDetectionEvent = gameStart;
 	detectMeter.setSize(sf::Vector2f(10, this->getAwareness()));
 	detectMeter.setFillColor(sf::Color::Red);
-	detectMeter.setPosition(this->getCenter().x - 5, this->getCenter().y - 30);
-	
+	detectMeter.setPosition(this->getCenter().x - 5, this->getCenter().y - 30);	
 }
+
 /*
 *	Return the rotation of the camera object
 */
 float Camera::getRotation() {
 	return rotation;
 }
+
 /*
 *	Update the Camera object for this frame
 */
@@ -112,6 +126,7 @@ void Camera::update(float elapsedTime, int** m_ArrayLevel) {
 	}
 	this->regen(elapsedTime);
 }
+
 /*
 *	Camera takes Damage from bullet Collision
 */
@@ -124,6 +139,7 @@ void Camera::takeDamage() {
 		health = 0;
 	}
 }
+
 /*
 *	Return the class Name for this class
 */
