@@ -241,6 +241,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
+    <None Include="ClassDiagram2.cd" />
     <None Include="graphics\Enemy001.xcf" />
     <None Include="shaders\rippleShader.frag" />
     <None Include="shaders\vertShader.vert" />

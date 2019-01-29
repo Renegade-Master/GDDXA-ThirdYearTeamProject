@@ -376,5 +376,6 @@
     <None Include="graphics\Enemy001.xcf">
       <Filter>Resource Files\graphics</Filter>
     </None>
+    <None Include="ClassDiagram2.cd" />
   </ItemGroup>
 </Project>
