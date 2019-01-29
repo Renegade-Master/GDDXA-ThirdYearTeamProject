@@ -168,6 +168,7 @@
     <ClInclude Include="Button.h" />
     <ClInclude Include="Command.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="Constants.h" />
     <ClInclude Include="Door.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="EnemyGenerator.h" />
