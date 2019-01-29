@@ -20,7 +20,7 @@ void Engine::draw() {
 		m_Window.setView(m_MainView);
 
 		// Draw the background, complete with shader effect for the Menu
-		m_Window.draw(m_MenuBackgroundSprite, &m_RippleShader);
+		m_Window.draw(m_MenuBackgroundSprite);
 
 		for (std::list<GUI::Button>::iterator it = m_mainMenuButtons.begin(); it != m_mainMenuButtons.end(); ++it) {
 			m_Window.draw(*it);
@@ -30,7 +30,7 @@ void Engine::draw() {
 		// Switch to m_MainView
 		m_Window.setView(m_MainView);
 
-		m_Window.draw(m_BackgroundSprite, &m_RippleShader);
+		m_Window.draw(m_BackgroundSprite);
 
 		for (std::list<GUI::Button>::iterator it = m_levelSelectButtons.begin(); it != m_levelSelectButtons.end(); ++it) {
 			m_Window.draw(*it);
@@ -41,7 +41,7 @@ void Engine::draw() {
 	}
 	else if (m_GameState == GameState::READYUP) {
 		//Background of paused menu
-		m_Window.draw(m_BackgroundSprite, &m_RippleShader);
+		m_Window.draw(m_BackgroundSprite);
 		//Message for the paused Game state
 		m_Window.draw(m_Hud.getMessage());
 
@@ -50,8 +50,6 @@ void Engine::draw() {
 		/***---------------------***\
 		|  HANDLE DRAWING WINDOW	|
 		\***---------------------***/
-		// Update the shader parameters
-		m_RippleShader.setUniform("uTime", m_GameTimeTotal.asSeconds());
 
 		// Switch to background view
 		m_Window.setView(m_BGMainView);
@@ -59,7 +57,7 @@ void Engine::draw() {
 		//m_Window.draw(m_BackgroundSprite);
 
 		// Draw the background, complete with shader effect
-		m_Window.draw(m_BackgroundSprite, &m_RippleShader);
+		m_Window.draw(m_BackgroundSprite);
 
 		// Switch to m_MainView
 		m_Window.setView(m_MainView);
@@ -128,11 +126,6 @@ void Engine::draw() {
 			m_Window.draw((*itemIter)->getSprite());
 		}
 
-		// Draw the particle system
-		if (m_PS.running()) {
-			m_Window.draw(m_PS);
-		}
-
 		/***---------------------***\
 		|	  HANDLE DRAWING HUD	|
 		\***---------------------***/
@@ -176,7 +169,7 @@ void Engine::draw() {
 		m_Window.setView(m_MainView);
 
 		// Put Settings Screen draw code here
-		m_Window.draw(m_BackgroundSprite, &m_RippleShader);
+		m_Window.draw(m_BackgroundSprite);
 		
 		//	List all Settings Pages
 		if (m_SettingsPage == SettingsPage::LIST) {			

@@ -5,18 +5,21 @@
 *	@creationDate	2018/11/01	YYYY/MM/DD
 *	@description
 */
+
 #pragma once
 #ifndef LASER_H
 #define LASER_H
+
 #include <SFML/Graphics.hpp>
-class laser
-{
-private:
-	sf::ConvexShape laserLine;
-	
+
+class laser {
 public:
 	void updateLine(sf::Vector2f playPos, sf::Vector2f mousePos);
 	sf::ConvexShape getLine();
 	laser();
+
+private:
+	sf::ConvexShape laserLine;
 };
-#endif
+
+#endif	//	!LASER_H

@@ -10,33 +10,20 @@
 #ifndef ENGINE_H
 #define ENGINE_H
 
-#include <list>
 #include <sstream>
-
-#include <SFML/Graphics.hpp>
 
 #include "Bullet.h"
 #include "Button.h"
 #include "Constants.h"
 #include "Door.h"
-#include "Enemy.h"
 #include "EnemyGenerator.h"
 #include "gunBattery.h"
 #include "HUD.h"
 #include "InputHandler.h"
-#include "Item.h"
-#include "LevelManager.h"
-#include "ParticleSystem.h"
-#include "Player.h"
-#include "SoundManager.h"
-#include "TextureHolder.h"
-#include "ToggleSwitch.h"
-#include "TutorialManager.h"
-#include "Bullet.h"
-#include "gunBattery.h"
-#include "ToggleSwitch.h"
-#include "Camera.h"
 #include "LaserPointer.h"
+#include "LevelManager.h"
+#include "Player.h"
+#include "ToggleSwitch.h"
 
 class Engine {
 public:
@@ -51,9 +38,6 @@ private:
 
 	// Handle events
 	sf::Event m_event;
-
-	// The Tutorial System
-	//TutorialManager tm;
 
 	// Game States
 	enum class GameState { MAIN_MENU, LEVEL_SELECT, LOADING, READYUP, PLAYING, PAUSED, SETTINGS, ENDGAME};
@@ -77,13 +61,8 @@ private:
 	// The texture holder
 	TextureHolder th;
 
-	// create a particle system
-	ParticleSystem m_PS;
-
 	// Player (PlayerCharacters)
 	Player m_Player;
-
-	//Enemy Generator
 
 	//Enemy list
 	std::list<Enemy*> m_EnemyList;
@@ -112,21 +91,18 @@ private:
 	// Create a SoundManager
 	SoundManager m_SM;
 
-	//The door
+	//	The door
 	bool doorValid;
 
 	// The HUD
 	Hud m_Hud;
+	
 	//How Long Since last HUD update?
 	int m_FramesSinceLastHUDUpdate = 0;
+	
 	//At what point should the Hud be refreshed
 	int m_TargetFramesPerHUDUpdate = 60;
-	//How many vertices should be in each tile of the map
-	const int VERTS_IN_QUAD = 4;
-
-	// The force pushing the characters down
-	const int GRAVITY = 300;
-
+	
 	// A regular RenderWindow
 	sf::RenderWindow m_Window;
 
@@ -171,9 +147,6 @@ private:
 	int m_endAnimatedBackgroundFrame = 38;
 	//Maximum frames for animation background for end credits
 	int m_endAnimatedBackgroundMaxFrames = 203;
-
-	// Declare a shader for the background
-	sf::Shader m_RippleShader;
 
 	// How much time is left in the current level
 	float m_TimeRemaining;
@@ -232,9 +205,9 @@ private:
 	// A vector of Vector2f for the fire emiiter locations
 	std::vector <sf::Vector2f> m_FireEmitters;
 
-
 	// Where is the mouse in relation to world coordinates
 	sf::Vector2f mouseWorldPosition;
+	
 	// Where is the mouse in relation to screen coordinates
 	sf::Vector2i mouseScreenPosition;
 
@@ -266,7 +239,8 @@ private:
 
 	//update door states
 	void doorUpdate(float dtAsSeconds, ToggleSwitch *Switch);
+	
 	//calculate distance from enemy to player
-	double calcDistance(sf::Vector2f posOne, sf::Vector2f posTwo);
+	double calcDistance(sf::Vector2f posOne, sf::Vector2f posTwo);	
 };
 #endif // !ENGINE_H

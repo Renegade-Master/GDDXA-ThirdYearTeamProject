@@ -10,10 +10,8 @@
 #ifndef BULLET_H
 #define BULLET_H
 
-#include <SFML/Graphics.hpp>
-#include <iostream>
-#include "TextureHolder.h"
 #include "SoundManager.h"
+#include "TextureHolder.h"
 
 class Bullet {
 private:

@@ -32,6 +32,7 @@ public:
 	sf::Time m_LastToggleEvent = sf::Time::Zero;
 
 private:
+	//	Which control scheme to use
 	sf::Uint32 m_ControlScheme = ControlScheme::DEFAULT;
 	
 	//	Null command

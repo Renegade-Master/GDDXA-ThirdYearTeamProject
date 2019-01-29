@@ -10,13 +10,14 @@
 #ifndef BUTTON_H
 #define BUTTON_H
 
-#include <iostream>
-
 #include <SFML\Graphics.hpp>
 
 #include "SoundManager.h"
 
+//	Keep Button related code inside GUI namespace
 namespace GUI {
+
+	//	Preset appearances for the Button
 	namespace ButtonStyle {
 		enum {
 			none = 0,
@@ -26,6 +27,7 @@ namespace GUI {
 		};
 	};
 
+	//	Button states for attaching events to
 	namespace ButtonState {
 		enum {
 			normal = 0,
@@ -34,6 +36,7 @@ namespace GUI {
 		};
 	};
 
+	//	Button class.  Implements Drawable interface 
 	class Button : public sf::Drawable {
 	public:
 		Button();
@@ -60,17 +63,17 @@ namespace GUI {
 		sf::Vector2f getPosition() { return m_position; };
 		sf::Vector2f getDimensions() { return sf::Vector2f(m_button.getGlobalBounds().width, m_button.getGlobalBounds().height); };
 		sf::Uint32 getState() { return m_btnstate; };
-		void setState(sf::Uint32 newState) { m_btnstate = newState; };
 
+		//	Set the state of this button externally
+		void setState(sf::Uint32 newState) { this->m_btnstate = newState; };
+
+		//	Update the button with the mouse position, time, and the active window
 		void update(sf::Event& e, sf::Time t, sf::RenderWindow& window);
 
-		GUI::Button* getPointer();
-
 	private:
-		void init();
-
 		virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
-		//Default Color for Button Objects
+
+		//	Colours for defining different states
 		sf::Color m_bgNormal;
 		//Color For Button Objects when mouse Hovers over
 		sf::Color m_bgHover;
@@ -84,11 +87,12 @@ namespace GUI {
 		sf::Color m_textClicked;
 		//Border Color for Button Objects
 		sf::Color m_border;
-		//Thickness applied to the border surrounding Button objects
+
+		//	Outline properties of the Button
 		float m_borderThickness;
 		//radius of Button Object Borders
 		float m_borderRadius;
-		//Size of Button Objects
+		sf::RectangleShape m_button;
 		sf::Vector2f m_size;
 		//Position of Button Objects
 		sf::Vector2f m_position;
@@ -96,9 +100,8 @@ namespace GUI {
 		sf::Uint32 m_style;
 		//Stores the button State(Clicked,Hovered,etc)
 		sf::Uint32 m_btnstate;
-		//RectangleShape(Button)
-		sf::RectangleShape m_button;
-		//Button Text Font
+
+		//	Appearance of Text on the Button
 		sf::Font m_font;
 		//Text Font size
 		unsigned int m_fontSize;
@@ -106,7 +109,8 @@ namespace GUI {
 		sf::Text m_text;
 		//Text styled to look like a shadow
 		sf::Text m_shadow;
-		//Records Time of last Click
+
+		//	Time since last click to prevent multiple presses
 		sf::Time m_sinceLastClick;
 	};
 };

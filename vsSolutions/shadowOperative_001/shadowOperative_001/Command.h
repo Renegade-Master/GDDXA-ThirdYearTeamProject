@@ -12,8 +12,6 @@
 
 #include "PlayableCharacter.h"
 #include "SoundManager.h"
-//#include "Enemy.h"
-//#include "Player.h"
 
 /**
 *	Parent/Superclass
@@ -35,8 +33,8 @@ public:
 	}
 };
 
-/*
-*	Supplies the run left command
+/**
+*	Set the Character to run Left
 */
 class cmd_RunLeft : public Command {
 public:
@@ -51,8 +49,8 @@ public:
 	}
 };
 
-/*
-*	Supplies the run right command
+/**
+*	Set the Character to run Right
 */
 class cmd_RunRight : public Command {
 public:
@@ -86,7 +84,7 @@ public:
 };
 
 /**
-*	Supplies the shoot command
+*	Set the Character to Attacking
 */
 class cmd_Shoot : public Command {
 public:
@@ -97,7 +95,7 @@ public:
 };
 
 /**
-*	Supplies the toggle aim command
+*	Toggle the Laser aim
 */
 class cmd_ToggleAim : public Command {
 public:
@@ -117,7 +115,8 @@ public:
 				sf::Vector2f(pc.target.x -= 5, pc.target.y));
 		}
 	}
-};                   
+};
+
 /*
 *	Move Aim Location to the right using Right analog stick
 */
@@ -130,6 +129,7 @@ public:
 		}
 	}
 };
+
 /*
 *	Move Aim Location up using Right analog stick
 */
@@ -142,6 +142,7 @@ public:
 		}
 	}
 };
+
 /*
 *	Move Aim Location Down using Right analog stick
 */
@@ -167,6 +168,7 @@ public:
 		}
 	}
 };
+
 /*
 *	Move Aim Location Down Left using Right analog stick
 */
@@ -179,6 +181,7 @@ public:
 		}
 	}
 };
+
 /*
 *	Move Aim Location Down RIGHT using Right analog stick
 */
@@ -191,6 +194,7 @@ public:
 		}
 	}
 };
+
 /*
 *	Move Aim Location Down RIGHT using Right analog stick
 */
@@ -203,4 +207,5 @@ public:
 		}
 	}
 };
+
 #endif // !COMMAND_H

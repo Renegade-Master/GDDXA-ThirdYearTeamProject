@@ -121,23 +121,20 @@ void Bullet::update(float elapsedTime) {
 /**
 *	...
 */
-sf::Vector2f Bullet::getCenter()
-{
+sf::Vector2f Bullet::getCenter() {
 	return m_Position;
 }
 
 /**
 *	...
 */
-void Bullet::setShotPower(float power)
-{
+void Bullet::setShotPower(float power) {
 	this->shotPower = power;
 }
 
 /**
 *	...
 */
-float Bullet::getShotPower()
-{
+float Bullet::getShotPower() {
 	return shotPower;
 }

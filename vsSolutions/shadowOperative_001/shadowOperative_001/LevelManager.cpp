@@ -51,7 +51,6 @@ int** LevelManager::nextLevel(sf::VertexArray& rVaLevel) {
 		levelToLoad = "levels/level1.txt";
 		m_StartPosition.x = 5;
 		m_StartPosition.y = 5;
-		m_BaseTimeLimit = 30.0f;
 		break;
 
 	case 2:
@@ -59,7 +58,6 @@ int** LevelManager::nextLevel(sf::VertexArray& rVaLevel) {
 		levelToLoad = "levels/level2.txt";
 		m_StartPosition.x = 100;
 		m_StartPosition.y = 3600;
-		m_BaseTimeLimit = 100.0f;
 		break;
 
 	case 3:
@@ -67,11 +65,10 @@ int** LevelManager::nextLevel(sf::VertexArray& rVaLevel) {
 		levelToLoad = "levels/level3.txt";
 		m_StartPosition.x = 1250;
 		m_StartPosition.y = 0;
-		m_BaseTimeLimit = 30.0f;
 		break;
 
 	default:
-		std::cout << "Map had a promblem" << std::endl;
+		std::cout << "Map had a problem" << std::endl;
 		break;
 	}
 
@@ -408,12 +405,6 @@ int LevelManager::getCurrentLevel() {
 	return m_CurrentLevel;
 }
 
-/**
-*	...
-*/
-float LevelManager::getTimeLimit() {
-	return m_BaseTimeLimit * m_TimeModifier;
-}
 /*
 *	Get Starting Position of Player character for this level
 */
