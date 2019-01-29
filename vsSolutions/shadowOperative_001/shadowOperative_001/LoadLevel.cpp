@@ -19,6 +19,14 @@ void Engine::loadLevel() {
 
 		}
 		delete[] m_ArrayLevel;
+		m_CameraList.clear();
+		m_DoorList.clear();
+		m_EnemyList.clear();
+		m_ItemList.clear();
+		m_LaserPointerList.clear();
+		m_SwitchList.clear();
+		m_FireEmitters.clear();
+
 
 		// Load the next 2d array with the map for the level
 		// And repopulate the vertex array as well

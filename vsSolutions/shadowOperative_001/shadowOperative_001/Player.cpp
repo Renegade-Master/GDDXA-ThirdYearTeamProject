@@ -406,9 +406,11 @@ float Player::getMaxCharge() {
 /**
 *
 */
-void Player::toggleTargeting() {
+void Player::toggleTargeting(SoundManager& m_SM) {
 	if (targeting) {
 		targeting = false;
+		std::cout << "\nToggling Target";
+		m_SM.playLaserPowerDown();
 	}
 	else {
 		targeting = true;
@@ -424,6 +426,8 @@ void Player::toggleTargeting() {
 			target = sf::Vector2f(this->m_Position.x + 100,
 				this->m_Position.y);
 		}
+		std::cout << "\nToggling Target";
+		m_SM.playLaserPowerUp();
 	}
 }
 

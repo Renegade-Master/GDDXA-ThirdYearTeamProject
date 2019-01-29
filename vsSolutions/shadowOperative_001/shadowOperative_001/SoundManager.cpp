@@ -13,14 +13,35 @@
 */
 SoundManager::SoundManager() {
 	// Load the sound in to the buffers
-	m_ButtonClickBuffer.loadFromFile("sound/ButtonClick.wav");
-	m_JumpBuffer.loadFromFile("sound/jump.wav");
-	m_ReachGoalBuffer.loadFromFile("sound/reachgoal.wav");
+	m_ButtonClickBuffer.loadFromFile("sound\\ButtonClick.wav");
+	m_JumpBuffer.loadFromFile("sound\\jump.wav");
+	m_ReachGoalBuffer.loadFromFile("sound\\LevelComplete.wav");
+	m_PlayerShootBuffer.loadFromFile("sound\\PlayerShoot_002.wav");
+	m_LaserPowerUpBuffer.loadFromFile("sound\\LaserPowerUp.wav");
+	m_LaserPowerDownBuffer.loadFromFile("sound\\LaserPowerDown.wav");
+	m_EnemyUnconscoiusBuffer.loadFromFile("sound\\EnemyUnconscious.wav");
+	m_EnemyHitBuffer.loadFromFile("sound\\EnemyHit.wav");
+	m_EnemyUnconscoiusBuffer.loadFromFile("sound\\EnemyUnconscious.wav");
+	m_EnemyCratedBuffer.loadFromFile("sound\\EnemyCrated.wav");
+	m_EnemyDetectionLevel0Buffer.loadFromFile("sound\\");
+	m_EnemyDetectionLevel1Buffer.loadFromFile("sound\\EnemyAlertLevel.wav");
+	m_EnemyDetectionLevel2Buffer.loadFromFile("sound\\");
+	m_EnemyDetectionLevel3Buffer.loadFromFile("sound\\");
 
 	// Associate the sounds with the buffers
 	m_ButtonClickSound.setBuffer(m_ButtonClickBuffer);
 	m_JumpSound.setBuffer(m_JumpBuffer);
 	m_ReachGoalSound.setBuffer(m_ReachGoalBuffer);
+	m_PlayerShootSound.setBuffer(m_PlayerShootBuffer);
+	m_LaserPowerUpSound.setBuffer(m_LaserPowerUpBuffer);
+	m_LaserPowerDownSound.setBuffer(m_LaserPowerDownBuffer);
+	m_EnemyHitSound.setBuffer(m_EnemyHitBuffer);
+	m_EnemyUnconsciousSound.setBuffer(m_EnemyUnconscoiusBuffer);
+	m_EnemyCratedSound.setBuffer(m_EnemyCratedBuffer);
+	m_EnemyDetectionLevel0Sound.setBuffer(m_EnemyDetectionLevel0Buffer);
+	m_EnemyDetectionLevel1Sound.setBuffer(m_EnemyDetectionLevel1Buffer);
+	m_EnemyDetectionLevel2Sound.setBuffer(m_EnemyDetectionLevel2Buffer);
+	m_EnemyDetectionLevel3Sound.setBuffer(m_EnemyDetectionLevel3Buffer);
 
 	// When the player is 50 pixels away sound is full volume
 	float minDistance = 150;
@@ -106,4 +127,77 @@ void SoundManager::playJump() {
 void SoundManager::playReachGoal() {
 	m_ReachGoalSound.setRelativeToListener(true);
 	m_ReachGoalSound.play();
+}
+
+/**
+*	Play the Player Shooting Sound
+*/
+void SoundManager::playPlayerShoot() {
+	m_PlayerShootSound.setRelativeToListener(true);
+	m_PlayerShootSound.play();
+}
+
+/**
+*	Play the ... Sound
+*/
+void SoundManager::playLaserPowerUp() {
+	m_LaserPowerUpSound.setRelativeToListener(true);
+	m_LaserPowerUpSound.play();
+}
+
+/**
+*	Play the ... Sound
+*/
+void SoundManager::playLaserPowerDown() {
+	m_LaserPowerDownSound.setRelativeToListener(true);
+	m_LaserPowerDownSound.play();
+}
+
+/**
+*	Play the ... Sound
+*/
+void SoundManager::playEnemyHit() {
+	m_EnemyHitSound.setRelativeToListener(true);
+	m_EnemyHitSound.play();
+}
+
+/**
+*	Play the ... Sound
+*/
+void SoundManager::playEnemyUnconscious() {
+	m_EnemyUnconsciousSound.setRelativeToListener(true);
+	m_EnemyUnconsciousSound.play();
+}
+
+/**
+*	Play the ... Sound
+*/
+void SoundManager::playEnemyCrated() {
+	m_EnemyCratedSound.setRelativeToListener(true);
+	m_EnemyCratedSound.play();
+}
+
+/**
+*	Play the ... Sound
+*/
+void SoundManager::playEnemyDetectionLevel(int alertness) {
+	switch (alertness) {
+	case 0:
+		m_EnemyDetectionLevel0Sound.setRelativeToListener(true);
+		m_EnemyDetectionLevel0Sound.play();
+		break;
+	case 1:
+		m_EnemyDetectionLevel1Sound.setRelativeToListener(true);
+		m_EnemyDetectionLevel1Sound.setLoop(true);
+		m_EnemyDetectionLevel1Sound.play();
+		break;
+	case 2:
+		m_EnemyDetectionLevel2Sound.setRelativeToListener(true);
+		m_EnemyDetectionLevel2Sound.play();
+		break;
+	case 3:
+		m_EnemyDetectionLevel3Sound.setRelativeToListener(true);
+		m_EnemyDetectionLevel3Sound.play();
+		break;
+	}
 }

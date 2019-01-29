@@ -40,7 +40,7 @@ public:
 
 	//Calculate Max field of vision
 	double reCalculateMaxRange(char dir, int** m_ArrayLevel, double laserRange);
-	void toggleTargeting();
+	void toggleTargeting(SoundManager& m_SM);
 	virtual bool isTargeting();
 
 private:

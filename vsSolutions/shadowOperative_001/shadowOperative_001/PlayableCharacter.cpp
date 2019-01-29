@@ -136,7 +136,7 @@ void PlayableCharacter::stopJump() {
 	this->m_Action = Action::FALLING;
 }
 
-void PlayableCharacter::toggleTargeting() {
+void PlayableCharacter::toggleTargeting(SoundManager& m_SM) {
 	//	...
 }
 

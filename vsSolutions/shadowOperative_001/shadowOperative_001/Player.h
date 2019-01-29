@@ -35,7 +35,7 @@ public:
 	float getMaxCharge();
 	
 	//aiming
-	virtual void toggleTargeting();
+	virtual void toggleTargeting(SoundManager& m_SM);
 	virtual bool isTargeting();
 	sf::Vector2f getTarget();
 	

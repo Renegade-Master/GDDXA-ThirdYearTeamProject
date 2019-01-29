@@ -144,11 +144,11 @@ void Engine::update(float dtAsSeconds) {
 						m_Player.getTarget().x, m_Player.getTarget().y);
 				}
 				bullets[currentBullet].setShotPower(11);
+				m_SM.playPlayerShoot();
 				currentBullet++;
 				m_Player.playerShot(false);
 				m_SinceLastShot = m_GameTimeTotal;
-				if (currentBullet > 4)
-				{
+				if (currentBullet > 4) {
 					currentBullet = 0;
 				}
 			}
