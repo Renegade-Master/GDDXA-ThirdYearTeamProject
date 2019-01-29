@@ -85,18 +85,19 @@ void ToggleSwitch::update(sf::Time elapsedTime, int** m_ArrayLevel) {
 /*
 *	if switch can be toggled, toggle
 */
-bool ToggleSwitch::toggle(sf::Time elapsedTime) {
+bool ToggleSwitch::toggle(sf::Time elapsedTime, SoundManager& m_SM) {
 	if (elapsedTime.asMilliseconds() -
 		m_LastToggleEvent.asMilliseconds() > switchTimeDelay) {
 		m_LastToggleEvent = elapsedTime;
+		
 		if (m_ToggleState == ToggleState::TOGGLE_OFF) {
-			//std::cout << "\nWas closed now open return true";
 			m_ToggleState = ToggleState::TOGGLE_ON;
+			m_SM.playButtonClick();
 			return true;
 		}
 		else {
 			m_ToggleState = ToggleState::TOGGLE_OFF;
-			//std::cout << "\nWas open now closed return true";
+			m_SM.playButtonClick();
 			return true;
 		}
 	}
