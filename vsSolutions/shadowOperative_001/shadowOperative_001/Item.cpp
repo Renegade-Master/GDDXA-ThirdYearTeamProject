@@ -23,7 +23,7 @@ Item::~Item() {
 }
 
 /**
-*	...
+*	Spawn Function for Item Class instantiates Object variables
 */
 void Item::spawn() {
 	
@@ -37,10 +37,9 @@ void Item::update(float elapsedTime, int** m_ArrayLevel) {
 }
 
 /**
-*	...
+*	Return the capacity of the Item//Virtual Function should  never be called
 */
 float Item::getCapacity() {
-	std::cout << "\nWe should not be here";
 	return 1.0f;
 }
 

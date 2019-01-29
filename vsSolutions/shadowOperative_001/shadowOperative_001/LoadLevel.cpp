@@ -9,7 +9,7 @@
 #include "Engine.h"
 
 /**
-*	...
+*	Load the Next Level of the game by reading in the map and instantiating objects
 */
 void Engine::loadLevel() {
 	if (m_GameState == GameState::LOADING) {

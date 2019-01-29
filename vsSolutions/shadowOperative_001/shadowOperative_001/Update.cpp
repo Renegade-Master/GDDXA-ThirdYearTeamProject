@@ -8,7 +8,9 @@
 
 #include "Engine.h"
 #include "PlayableCharacter.h"
-
+/**
+*	Update the game for this frame
+*/
 void Engine::update(float dtAsSeconds) {
 
 	if (m_GameState == GameState::MAIN_MENU) {
@@ -407,17 +409,3 @@ void Engine::doorUpdate(float dtAsSeconds, ToggleSwitch *Switch) {
 	float currentShortest = std::numeric_limits<float>::infinity();
 	Door* shortest = nullptr;
 
-	for (std::list<Door*>::iterator doorIt = m_DoorList.begin(); 
-			doorIt != m_DoorList.end(); doorIt++) {
-
-		if ((calcDistance((*doorIt)->getCenter(), (*Switch).getCenter()) < currentShortest)
-			&& (*doorIt)->getDoorState()) {
-
-			currentShortest = calcDistance((*doorIt)->getCenter(), (*Switch).getCenter());
-			shortest = (*doorIt);
-		}
-	}
-
-	shortest->doorState();
-	shortest->update(dtAsSeconds, m_ArrayLevel);
-}
