@@ -74,6 +74,7 @@ public:
 
 	//Bullet damage
 	void setShotPower(float power);
+	//Return the damage the Bullet object will cause
 	float getShotPower();
 };
 

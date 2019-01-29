@@ -70,28 +70,43 @@ namespace GUI {
 		void init();
 
 		virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
-
+		//Default Color for Button Objects
 		sf::Color m_bgNormal;
+		//Color For Button Objects when mouse Hovers over
 		sf::Color m_bgHover;
+		//Color for Buttons when clicked
 		sf::Color m_bgClicked;
+		//Default Text Color for Button Objects
 		sf::Color m_textNormal;
+		//Text Color for Button When Mouse is hovering over
 		sf::Color m_textHover;
+		//Text Color for Button Object when clicked
 		sf::Color m_textClicked;
+		//Border Color for Button Objects
 		sf::Color m_border;
-
+		//Thickness applied to the border surrounding Button objects
 		float m_borderThickness;
+		//radius of Button Object Borders
 		float m_borderRadius;
+		//Size of Button Objects
 		sf::Vector2f m_size;
+		//Position of Button Objects
 		sf::Vector2f m_position;
+		//Stores the Button Type(Color)
 		sf::Uint32 m_style;
+		//Stores the button State(Clicked,Hovered,etc)
 		sf::Uint32 m_btnstate;
-
+		//RectangleShape(Button)
 		sf::RectangleShape m_button;
+		//Button Text Font
 		sf::Font m_font;
+		//Text Font size
 		unsigned int m_fontSize;
+		//Button Text
 		sf::Text m_text;
+		//Text styled to look like a shadow
 		sf::Text m_shadow;
-
+		//Records Time of last Click
 		sf::Time m_sinceLastClick;
 	};
 };

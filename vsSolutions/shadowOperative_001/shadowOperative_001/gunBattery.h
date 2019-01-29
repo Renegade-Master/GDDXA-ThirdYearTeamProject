@@ -6,8 +6,9 @@
 class gunBattery : public Item
 {
 private:
-	//How much energy this will return to the Gun
+	//Enum class for what kind of gunBattery this object is
 	enum class Capacity { SMALL, MEDIUM, LARGE };
+	//Holds the type of gunBattery object for reference
 	Capacity m_Capacity = Capacity::SMALL;
 public:
 	gunBattery(sf::Vector2i startPosition);
