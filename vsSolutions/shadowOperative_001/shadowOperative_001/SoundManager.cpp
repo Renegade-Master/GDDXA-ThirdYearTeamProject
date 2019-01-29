@@ -15,14 +15,15 @@ SoundManager::SoundManager() {
 	// Load the sound in to the buffers
 	m_ButtonClickBuffer.loadFromFile("sound\\ButtonClick.wav");
 	m_JumpBuffer.loadFromFile("sound\\jump.wav");
-	m_ReachGoalBuffer.loadFromFile("sound\\reachgoal.wav");
+	m_ReachGoalBuffer.loadFromFile("sound\\LevelComplete.wav");
 	m_PlayerShootBuffer.loadFromFile("sound\\PlayerShoot_002.wav");
 	m_LaserPowerUpBuffer.loadFromFile("sound\\LaserPowerUp.wav");
 	m_LaserPowerDownBuffer.loadFromFile("sound\\LaserPowerDown.wav");
 	m_EnemyHitBuffer.loadFromFile("sound\\EnemyHit.wav");
+	m_EnemyUnconscoiusBuffer.loadFromFile("sound\\EnemyUnconscious.wav");
 	m_EnemyCratedBuffer.loadFromFile("sound\\EnemyCrated.wav");
 	m_EnemyDetectionLevel0Buffer.loadFromFile("sound\\");
-	m_EnemyDetectionLevel1Buffer.loadFromFile("sound\\");
+	m_EnemyDetectionLevel1Buffer.loadFromFile("sound\\EnemyAlertLevel.wav");
 	m_EnemyDetectionLevel2Buffer.loadFromFile("sound\\");
 	m_EnemyDetectionLevel3Buffer.loadFromFile("sound\\");
 
@@ -186,6 +187,7 @@ void SoundManager::playEnemyDetectionLevel(int alertness) {
 		break;
 	case 1:
 		m_EnemyDetectionLevel1Sound.setRelativeToListener(true);
+		m_EnemyDetectionLevel1Sound.setLoop(true);
 		m_EnemyDetectionLevel1Sound.play();
 		break;
 	case 2:
