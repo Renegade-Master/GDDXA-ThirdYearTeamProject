@@ -149,7 +149,7 @@ private:
 	// Varaibles for the GIF background
 	sf::Image m_animatedBackgroundImage;
 	int m_animatedBackgroundFrame = 0;
-	int m_animatedBackgroundMaxFrames = 142;
+	int m_animatedBackgroundMaxFrames = 1129;
 
 	// Declare a sprite and a Texture for the background in the EndCredits
 	sf::Sprite m_EndBackgroundSprite;
@@ -157,7 +157,7 @@ private:
 
 	// Varaibles for the EndCredits GIF background
 	sf::Image m_endAnimatedBackgroundImage;
-	int m_endAnimatedBackgroundFrame = 0;
+	int m_endAnimatedBackgroundFrame = 38;
 	int m_endAnimatedBackgroundMaxFrames = 203;
 
 	// Declare a shader for the background
