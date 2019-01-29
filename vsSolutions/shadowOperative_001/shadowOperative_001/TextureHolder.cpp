@@ -9,12 +9,16 @@
 #include "TextureHolder.h"
 
 TextureHolder* TextureHolder::m_s_Instance = nullptr;
-
+/**
+*	Default Constructor for TextureHolder
+*/
 TextureHolder::TextureHolder() {
 	assert(m_s_Instance == nullptr);
 	m_s_Instance = this;
 }
-
+/** 
+*	Return the Texture
+*/
 sf::Texture& TextureHolder::GetTexture(std::string const& filename) {
 	// Get a reference to m_Textures using m_S_Instance
 	std::map<std::string,sf::Texture>& m = m_s_Instance->m_Textures;

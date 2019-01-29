@@ -81,7 +81,7 @@ void SoundManager::playPlayerShoot() {
 }
 
 /**
-*	Play the ... Sound
+*	Play the Laser Powering Up Sound
 */
 void SoundManager::playLaserPowerUp() {
 	m_LaserPowerUpSound.setRelativeToListener(true);
@@ -89,7 +89,7 @@ void SoundManager::playLaserPowerUp() {
 }
 
 /**
-*	Play the ... Sound
+*	Play the Laser Powering Down Sound
 */
 void SoundManager::playLaserPowerDown() {
 	m_LaserPowerDownSound.setRelativeToListener(true);
@@ -97,7 +97,7 @@ void SoundManager::playLaserPowerDown() {
 }
 
 /**
-*	Play the ... Sound
+*	Play the EnemyHit  Sound
 */
 void SoundManager::playEnemyHit() {
 	m_EnemyHitSound.setRelativeToListener(true);
@@ -105,7 +105,7 @@ void SoundManager::playEnemyHit() {
 }
 
 /**
-*	Play the ... Sound
+*	Play the Enemy Unconscious Sound
 */
 void SoundManager::playEnemyUnconscious() {
 	m_EnemyUnconsciousSound.setRelativeToListener(true);
@@ -113,7 +113,7 @@ void SoundManager::playEnemyUnconscious() {
 }
 
 /**
-*	Play the ... Sound
+*	Play the Enemy Crate Sound
 */
 void SoundManager::playEnemyCrated() {
 	m_EnemyCratedSound.setRelativeToListener(true);

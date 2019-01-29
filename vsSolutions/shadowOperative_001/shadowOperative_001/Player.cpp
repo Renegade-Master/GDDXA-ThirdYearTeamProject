@@ -344,14 +344,14 @@ int Player::getDetectLevel() {
 }
 
 /**
-*
+*	Return wether or not the player is in a shooting state
 */
 bool Player::isShooting() {
 	return shooting;
 }
 
 /**
-*
+*	Confirm that the player shooting action has been completed
 */
 void Player::playerShot(bool shot) {
 	gunChargeLevel -= shotCost;
@@ -359,7 +359,7 @@ void Player::playerShot(bool shot) {
 }
 
 /**
-*
+*	Charge the gun by the gunChargeRate this frame
 */
 void Player::chargeGun(float dtAsSeconds) {
 	if (!shooting) {
@@ -375,33 +375,32 @@ void Player::chargeGun(float dtAsSeconds) {
 }
 
 /**
-*
+*	Return the current charge Level of the gun
 */
 float Player::getChargeLevel() {
 	return gunChargeLevel;
 }
 
 /**
-*
+*	Return the cost of the current shot from the gun
 */
 float Player::getShotCost() {
 	return shotCost;
 }
 
 /**
-*
+*	return the maxChargeLevel of the gun
 */
 float Player::getMaxCharge() {
 	return maxGunChargeLevel;
 }
 
-/**
-*
+/**	
+*	Toggle the targeting Laser on off
 */
 void Player::toggleTargeting(SoundManager& m_SM) {
 	if (targeting) {
 		targeting = false;
-		std::cout << "\nToggling Target";
 		m_SM.playLaserPowerDown();
 	}
 	else {
@@ -418,7 +417,6 @@ void Player::toggleTargeting(SoundManager& m_SM) {
 			target = sf::Vector2f(this->m_Position.x + 100,
 				this->m_Position.y);
 		}
-		std::cout << "\nToggling Target";
 		m_SM.playLaserPowerUp();
 	}
 }
@@ -494,21 +492,21 @@ void Player::chargeFromPickup(float charge, SoundManager& m_SM) {
 }
 
 /**
-*
+*	Return the class type name for this object
 */
 sf::String Player::getClassName() {
 	return(sf::String("Player"));
 }
 
 /**
-*
+*	Return the current target of the players targetingLaser object
 */
 sf::Vector2f Player::getTarget() {
 	return this->target;
 }
 
 /**
-*
+*	Return the current detection level of the player to display to the HUD
 */
 sf::Text Player::getHudDetectLevel() {
 	int detection = this->getDetectLevel();

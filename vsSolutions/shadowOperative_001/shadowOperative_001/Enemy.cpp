@@ -131,14 +131,14 @@ void Enemy::update(float elapsedTime, int** m_ArrayLevel/*, sf::Vector2f playPos
 }
 
 /**
-*
+*	Virtual function is not called
 */
 void Enemy::handleInput() {
 	// Doesn't seem to be anything to do here.
 }
 
 /**
-*
+*	toggle patrol valid
 */
 void Enemy::alterPatrol(bool patrol) {
 	if (patrol)	{
@@ -150,28 +150,28 @@ void Enemy::alterPatrol(bool patrol) {
 }
 
 /**
-*
+*	retrun the FloatRect bounds of the Sprite for this object
 */
 sf::FloatRect Enemy::getPosition() {
 	return m_Sprite.getGlobalBounds();
 }
 
 /**
-*
+*	virtual function is not called
 */
 void Enemy::toggleTargeting(SoundManager& m_SM) {
 	//	...
 }
 
 /**
-*
+*	return the ConvexShape  of the cone object instantiated within this object
 */
 sf::ConvexShape Enemy::getCone() {
 	return cone.getCone();
 }
 
 /**
-*
+*	increase the awarenessOfplayer variable dependant on player detectionLevel and distance from this object
 */
 void Enemy::increaseAwarenessLevel(sf::Vector2f playPos, int detectionLevel,sf::Time gameTimeTotal,
 	SoundManager& m_SM) {
@@ -203,21 +203,21 @@ void Enemy::increaseAwarenessLevel(sf::Vector2f playPos, int detectionLevel,sf::
 }
 
 /**
-*
+*	return the value of the awraenessOfPlayer object
 */
 float Enemy::getAwareness() {
 	return awarenessOfPlayer;
 }
 
 /**
-*
-*/
+*	return the value of lastDetectionEvent which track time increaseAwarenessLevel() last ran
+*/	
 float Enemy::getlastdetectTime() {
 	return lastDetectionEvent.asMilliseconds();
 }
 
 /**
-*
+*	Cakculate the distnace between this object and the sf::Vector2f of another object that is passed in
 */
 double Enemy::calcDistance(sf::Vector2f playPos, sf::Vector2f thisPos) {
 	double distance;
@@ -228,14 +228,14 @@ double Enemy::calcDistance(sf::Vector2f playPos, sf::Vector2f thisPos) {
 }
 
 /**
-*
+*	return RectangleShape of detectionMeter
 */
 sf::RectangleShape Enemy::getDetectMeter() {
 	return detectMeter;
 }
 
 /**
-*
+*	reduce the value of warenessOfPlayer
 */
 void Enemy::reduceAwareness(sf::Time gameTimeTotal) {
 	awarenessOfPlayer--;
@@ -306,7 +306,7 @@ void Enemy::regen(float elapsedTime) {
 }
 
 /**
-*
+*	Return the class type of this object
 */
 sf::String Enemy::getClassName() {
 	return(sf::String("Enemy"));

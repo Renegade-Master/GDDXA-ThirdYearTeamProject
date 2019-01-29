@@ -9,7 +9,7 @@
 #include "Engine.h"
 
 /**
-*	...
+*	Handle the input from the player for this frame
 */
 void Engine::input() {
 	if (m_GameState == GameState::MAIN_MENU) {

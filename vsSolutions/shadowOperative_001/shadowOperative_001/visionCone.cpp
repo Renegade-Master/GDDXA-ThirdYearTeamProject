@@ -9,7 +9,7 @@
 #include "visionCone.h"
 
 /**
-*	...
+*	Default Constructor for VisionCone
 */
 visionCone::visionCone() {
 	coneOfDetection.setPointCount(3);
@@ -17,7 +17,7 @@ visionCone::visionCone() {
 }
 
 /**
-*	...
+*	Update the Cone Position using Parent Object varibables
 */
 void visionCone::updateConePos(sf::Vector2f charPos, int charSightRange, int charSightAngle,bool faceRight) {
 	if (faceRight) {
@@ -57,14 +57,14 @@ void visionCone::updateConePos(sf::Vector2f charPos, int charSightRange, int cha
 }
 
 /**
-*	...
+*	Return tyhe ConvexShape that is the cone of detection
 */
 sf::ConvexShape visionCone::getCone() {
 	return coneOfDetection;
 }
 
 /**
-*	...
+*	Update The cone of detection for the cameras
 */
 void visionCone::updateCamConePos(sf::Vector2f charPos, int charSightRange,
 	int charSightAngle, float cameraAngle, bool forward, char direction) {

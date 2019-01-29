@@ -28,7 +28,7 @@ LevelManager::LevelManager(){
 }
 
 /**
-*	...
+*	Load Next Level of the game
 */
 int** LevelManager::nextLevel(sf::VertexArray& rVaLevel) {
 	m_LevelSize.x = 0;

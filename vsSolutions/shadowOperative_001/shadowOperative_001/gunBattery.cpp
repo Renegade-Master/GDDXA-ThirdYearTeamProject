@@ -38,7 +38,7 @@ gunBattery::gunBattery(sf::Vector2i startPosition){
 }
 
 /**
-*	...
+*	return the capacity(gun Recharge) of this object
 */
 float gunBattery::getCapacity(){
 	if (this->m_Capacity == Capacity::SMALL) {
@@ -53,7 +53,7 @@ float gunBattery::getCapacity(){
 }
 
 /**
-*	...
+*	update the position of this object fro this frame
 */
 void gunBattery::update(float elapsedTime, int** m_ArrayLevel) {
 	this->m_ItemSprite.setPosition(this->m_Position);
