@@ -36,7 +36,6 @@ public:
 	void takeDamage(float shotPower);
 	bool isConscious();
 	void regen(float elapsedTime);
-	void EnemyCrate();
 
 	//Calculate Max field of vision
 	double reCalculateMaxRange(char dir, int** m_ArrayLevel, double laserRange);

@@ -66,9 +66,8 @@ void Engine::draw() {
 
 		// Draw the Level
 		m_Window.draw(m_VALevel, &m_TextureTiles);
+		
 		//Draw the Switches
-
-
 		for (std::list<ToggleSwitch*>::iterator SwitchIt = m_SwitchList.begin();
 			SwitchIt != m_SwitchList.end(); SwitchIt++) {
 
@@ -112,7 +111,6 @@ void Engine::draw() {
 				//std::cout << "\nDrawing enemies";
 				m_Window.draw((*it)->getSprite());
 				m_Window.draw((*it)->getDetectMeter());
-				m_Window.draw((*it)->getSpriteCrate());
 			}
 		}
 
@@ -164,7 +162,6 @@ void Engine::draw() {
 
 			m_Window.draw((*iter)->getSprite());
 			m_Window.draw((*iter)->getCone());
-			m_Window.draw((*iter)->getSpriteCrate());
 		}
 		std::list<Camera*>::iterator camIt = m_CameraList.begin();
 		for (;camIt != m_CameraList.end();camIt++) {

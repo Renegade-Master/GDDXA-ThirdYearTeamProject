@@ -128,7 +128,12 @@ void Enemy::update(float elapsedTime, int** m_ArrayLevel/*, sf::Vector2f playPos
 			cone.updateConePos(this->m_Position, this->detectionDistance, this->sightAngle, false);
 		}
 	}
-	this->regen(elapsedTime);
+	else if (m_Action == Action::CROUCHING) {
+		m_Sprite = sf::Sprite(TextureHolder::GetTexture(
+			"graphics/Crate.png"));
+		m_Sprite.setPosition(this->m_Position);
+	}
+	else { this->regen(elapsedTime); }
 }
 
 
@@ -160,14 +165,6 @@ void Enemy::alterPatrol(bool patrol) {
 */
 sf::FloatRect Enemy::getPosition() {
 	return m_Sprite.getGlobalBounds();
-}
-
-//Changes the enemy into a crate.
-void Enemy::EnemyCrate()
-{
-	m_SpriteCrate = sf::Sprite(TextureHolder::GetTexture(
-		"graphics/Crate.png"));
-	m_SpriteCrate.setPosition(this->m_Position);
 }
 
 /**

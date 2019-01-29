@@ -69,12 +69,14 @@ bool Engine::detectCollisions(PlayableCharacter& character) {
 		for (std::list<Enemy*>::iterator enem = m_EnemyList.begin();
 			enem != m_EnemyList.end(); enem++) {
 
-			if (!(*enem)->isConscious()) {
-				if (character.getPosition().intersects((*enem)->getPosition())) {
-					(*enem)->EnemyCrate();
+			if (!(*enem)->isConscious()
+					&& character.getPosition().intersects((*enem)->getPosition())) {
+				
+				if ((*enem)->m_Action != PlayableCharacter::Action::CROUCHING) {
+					m_SM.playEnemyCrated();
+					(*enem)->m_Action = PlayableCharacter::Action::CROUCHING;
 				}
 			}
-
 		}
 	}
 

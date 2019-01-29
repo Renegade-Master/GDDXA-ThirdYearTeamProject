@@ -90,13 +90,6 @@ sf::Sprite PlayableCharacter::getSprite() {
 }
 
 /**
-*	Returns the crate that covers the enemy.
-*/
-sf::Sprite PlayableCharacter::getSpriteCrate() {
-	return this->m_SpriteCrate;
-}
-
-/**
 *	Stop FALLING when colliding with an Object.
 */
 void PlayableCharacter::stopFalling(float position) {
