@@ -32,17 +32,6 @@ Engine::Engine() {
 	m_BGMiniMap.setRotation(180.f);
 	m_MiniMap.zoom(-30.00);
 
-	// Can this graphics card use shaders?
-	if (!sf::Shader::isAvailable())	{
-		// Time to get a new PC
-		m_Window.close();
-	}
-	else {
-		// Load two shaders (1 vertex, 1 fragment)
-		/*m_RippleShader.loadFromFile("shaders/vertShader.vert",
-			"shaders/rippleShader.frag");*/
-	}
-
 	//This is the background of the game.
 	m_BackgroundTexture = TextureHolder::GetTexture(
 		"graphics/background1-720.png");
@@ -58,13 +47,12 @@ Engine::Engine() {
 	m_buttonFont.loadFromFile("fonts/Roboto-Light.ttf");
 	
 	//	Load up UI Buttons
-	initButtons();
-	
+	initButtons();	
 }
 
 
 /**
-*	EExecute the main game loop.
+*	Execute the main game loop.
 */
 void Engine::run() {
 	// Timing 	
@@ -127,6 +115,7 @@ void Engine::doorSpawn() {
 		m_DoorList.push_back(door);
 	}
 }
+
 /**
 *	Spawn Switches
 */
@@ -137,6 +126,7 @@ void Engine::spawnSwitches() {
 		m_SwitchList.push_back(togSwitch);
 	}
 }
+
 /**
 *	Spawn Cameras
 */
@@ -148,6 +138,7 @@ void Engine::spawnCamera() {
 		m_CameraList.push_back(camera);
 	}
 }
+
 /**
 *	Spawn Laserpointers
 */
@@ -159,13 +150,6 @@ void Engine::spawnLasers() {
 		m_LaserPointerList.push_back(laser);
 	}
 }
-/**
-*	Is the Player using a controller?
-*//*
-bool Engine::getControls() {
-	return(m_usingController);
-}
-*/
 
 /**
 *	Recreate the Window with new values

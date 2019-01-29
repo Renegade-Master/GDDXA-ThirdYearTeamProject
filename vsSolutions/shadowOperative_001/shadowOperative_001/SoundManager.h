@@ -54,7 +54,6 @@ private:
 public:
 	SoundManager();
 
-	void playFire(sf::Vector2f emitterLocation, sf::Vector2f listenerLocation);
 	void playButtonClick();
 	void playJump();
 	void playReachGoal();

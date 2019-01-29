@@ -14,9 +14,6 @@
 visionCone::visionCone() {
 	coneOfDetection.setPointCount(3);
 	coneOfDetection.setFillColor(sf::Color::Color(255,0,0,100));
-	/*double coneArea = ((coneOfDetection.getPoint(0).x*(coneOfDetection.getPoint(1).y - coneOfDetection.getPoint(2).y))
-		+ (coneOfDetection.getPoint(1).x*(coneOfDetection.getPoint(2).y - coneOfDetection.getPoint(0).y))
-		+ (coneOfDetection.getPoint(2).x*(coneOfDetection.getPoint(0).y - coneOfDetection.getPoint(1).y)));*/
 }
 
 /**
@@ -71,16 +68,9 @@ sf::ConvexShape visionCone::getCone() {
 */
 void visionCone::updateCamConePos(sf::Vector2f charPos, int charSightRange,
 	int charSightAngle, float cameraAngle, bool forward, char direction) {
+	
 	//Convert angle(Degrees) to angle (radians)
 	double angleRadians = (cameraAngle * (PIE / 180));
-	//std::cout <<"\nCamera angle "<< cameraAngle << "\nAngleRadians: " << angleRadians<<"\n\n\n";
-	//std::cout << "\nDistance: " << distance << "compared to  charSightRange: " <<charSightRange;
-	//if (distance < charSightRange) {
-	//	std::cout << "\nDistance is shorter";
-	//	charSightRange = distance;
-	//}
-	//Calculate exact origin using camera direction
-	//Calculate the bounds of the visionCone
 	
 	calculatedOrigin = charPos;
 	if (direction == 'v') {

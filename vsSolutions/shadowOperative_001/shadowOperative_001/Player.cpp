@@ -42,9 +42,6 @@ Player::Player() {
 *	Update the Player based on input from User
 */
 void Player::update(float elapsedTime, int** m_ArrayLevel) {
-	//std::cout << "\nPlayer coordinates: X" << this->m_Position.x
-		//<< " Y" << this->m_Position.y;
-	// Set Sprite Animation Frame
 	if (this->frameYOffset >= this->m_maxAnimationFrames) {
 		this->frameYOffset = 0;
 	}
@@ -55,11 +52,6 @@ void Player::update(float elapsedTime, int** m_ArrayLevel) {
 	/***-------------***\
 	|	HANDLE ACTIONS	|
 	\***-------------***/
-
-	// Save off some data for this Frame
-	/*this->m_LastAction = this->m_Action;
-	this->m_LastDirection = this->m_Direction;
-	this->m_LastPosition = this->m_Position;*/
 
 	//Reads in the characters aniamtion for falling.
 	if (this->m_Action == Action::FALLING) {
@@ -214,7 +206,6 @@ void Player::update(float elapsedTime, int** m_ArrayLevel) {
 
 	//charge weapon
 	this->chargeGun(elapsedTime);
-	//targetingLaser.updateLine(this->m_Position, mousePos);
 }
 
 /**
@@ -238,7 +229,7 @@ void Player::handleInput() {
 	|	HANDLE JUMPING STANCE	|
 	\***---------------------***/
 
-	/*else */if (this->m_Action == Action::JUMPING) {
+	if (this->m_Action == Action::JUMPING) {
 
 	}
 
@@ -509,10 +500,16 @@ sf::String Player::getClassName() {
 	return(sf::String("Player"));
 }
 
+/**
+*
+*/
 sf::Vector2f Player::getTarget() {
 	return this->target;
 }
 
+/**
+*
+*/
 sf::Text Player::getHudDetectLevel() {
 	int detection = this->getDetectLevel();
 	switch (detection)

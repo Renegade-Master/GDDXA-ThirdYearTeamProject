@@ -19,11 +19,13 @@ void Engine::update(float dtAsSeconds) {
 		if(m_animatedBackgroundFrame >= m_animatedBackgroundMaxFrames) {
 			m_animatedBackgroundFrame = 0;
 		}
+
 		//This code will read in the folder that has the images to make the start video.
 		m_animatedBackgroundImage.loadFromFile(
 			std::string("graphics/Menu_Video/Menu/Menu ")
 			.append(std::to_string(m_animatedBackgroundFrame++))
 			.append(".png"));
+
 		//Sets the images to be drawn to the background. 
 		m_MenuBackgroundTexture.loadFromImage(m_animatedBackgroundImage);
 		m_MenuBackgroundSprite.setTexture(m_MenuBackgroundTexture);
@@ -54,8 +56,8 @@ void Engine::update(float dtAsSeconds) {
 	}
 	else if (m_GameState == GameState::PLAYING) {
 		//	Assign the active controller
-		while (m_Window.pollEvent(m_event)) { //	<--	More Jesus code
-			//m_InputHandler.m_controllerIndex = m_event.joystickConnect.joystickId;
+		while (m_Window.pollEvent(m_event)) { //	<--	Needed for input to function
+			
 		}
 
 		//Update Switches		
@@ -70,8 +72,8 @@ void Engine::update(float dtAsSeconds) {
 				}
 			}
 		}
-		//update Items
 
+		//update Items
 		for (std::list<Item*>::iterator itemIter = m_ItemList.begin();
 			itemIter != m_ItemList.end();) {
 
@@ -113,14 +115,11 @@ void Engine::update(float dtAsSeconds) {
 		}
 
 		//Handle-Update bullets
-		//std::cout << "\nGun Charge:" << m_Player.getChargeLevel();
 		if ((m_GameTimeTotal.asMilliseconds()
 			- m_SinceLastShot.asMilliseconds() > 500) &&
-			(m_Player.getChargeLevel() > m_Player.getShotCost()))
-		{
-			//std::cout << "\nvalid shooting";
-			if (m_Player.isShooting())
-			{
+			(m_Player.getChargeLevel() > m_Player.getShotCost())) {
+
+			if (m_Player.isShooting()) {
 				//Choose bullet spawn dependant on current Animation
 				if (m_Player.getDir() == PlayableCharacter::Direction::IDLE) {
 					bullets[currentBullet].shoot(
@@ -142,22 +141,23 @@ void Engine::update(float dtAsSeconds) {
 						m_Player.getCenter().x - 10, m_Player.getCenter().y - 25,
 						m_Player.getTarget().x, m_Player.getTarget().y);
 				}
+				
 				bullets[currentBullet].setShotPower(11);
 				m_SM.playPlayerShoot();
 				currentBullet++;
 				m_Player.playerShot(false);
 				m_SinceLastShot = m_GameTimeTotal;
+				
 				if (currentBullet > 4) {
 					currentBullet = 0;
 				}
 			}
 		}
+
 		m_Hud.setGunCharge(m_Player.getChargeLevel());
-		for (int i = 0; i < 5; i++)
-		{
-			if (bullets[i].isInFlight())
-			{
-				//std::cout << "\nupdating bullets " <<i;
+		
+		for (int i = 0; i < 5; i++) {
+			if (bullets[i].isInFlight()) {
 				bullets[i].update(dtAsSeconds);
 				int bulletX = ((int)bullets[i].getCenter().x / TILE_SIZE);
 				int bulletY = ((int)bullets[i].getCenter().y / TILE_SIZE);
@@ -181,57 +181,51 @@ void Engine::update(float dtAsSeconds) {
 		}
 
 		//update Enemy
-		for (std::list<Enemy*>::iterator it = m_EnemyList.begin(); it != m_EnemyList.end(); it++)
-		{
+		for (std::list<Enemy*>::iterator it = m_EnemyList.begin(); it != m_EnemyList.end(); it++) {
 			(*it)->update(dtAsSeconds, m_ArrayLevel);
-			//check for bulletCollision
-			for (int i = 0; i < 5; i++)
-			{
-				if (bullets[i].isInFlight())
-				{
+
+			//check for bullet Collision
+			for (int i = 0; i < 5; i++) {
+				if (bullets[i].isInFlight()) {
 					if (bullets[i].getSprite().getGlobalBounds().intersects
-					((*it)->getSprite().getGlobalBounds()))
-					{
+					((*it)->getSprite().getGlobalBounds())) {
+
 						bullets[i].stop(m_SM);
 						(*it)->takeDamage(bullets[i].getShotPower());
 					}
 				}
 			}
+
 			//check for player or Dead Enemy
-			if ((*it)->getCone().getLocalBounds().intersects(m_Player.getPosition()))
-			{
+			if ((*it)->getCone().getLocalBounds().intersects(m_Player.getPosition())) {
 				//check if enemy detection Event happened in the last second
 				if (m_GameTimeTotal.asMilliseconds()
-					- (*it)->getlastdetectTime() > 500)
-				{
+					- (*it)->getlastdetectTime() > 500) {
+
 					(*it)->increaseAwarenessLevel(m_Player.getCenter(),
 						m_Player.getDetectLevel(),m_GameTimeTotal,m_SM);
-					if ((*it)->getAwareness() >= 100.0)
-					{
+
+					if ((*it)->getAwareness() >= 100.0) {
 						m_GameState = GameState::ENDGAME;
 					}
-					std::cout << "\n" << (*it)->getAwareness();
 				}
 			}
-			else if ((*it)->getAwareness() >= 0)
-			{
+			else if ((*it)->getAwareness() >= 0) {
 				//check if enemy detection Event happened in the last half second
 				if (m_GameTimeTotal.asMilliseconds()
-					- (*it)->getlastdetectTime() > 500)
-				{
+					- (*it)->getlastdetectTime() > 500) {
+
 					//reduce Enemies detectionLevel
 					(*it)->reduceAwareness(m_GameTimeTotal);
 				}
 			}
 
 			for (std::list<Enemy*>::iterator checkDeathIter = m_EnemyList.begin();
-				checkDeathIter != m_EnemyList.end(); checkDeathIter++)
-			{
-				if ((*it)->getCone().getLocalBounds().intersects((*checkDeathIter)->getPosition()))
-				{
-					if (!(*checkDeathIter)->isConscious())
-					{
-						//std::cout << "\nEnemy Detecting Ally Death";
+				checkDeathIter != m_EnemyList.end(); checkDeathIter++) {
+
+				if ((*it)->getCone().getLocalBounds().intersects((*checkDeathIter)->getPosition()))	{
+					if (!(*checkDeathIter)->isConscious()) {
+						
 						(*it)->increaseAwarenessLevel((*checkDeathIter)->getCenter(), m_Player.getDetectLevel(),
 							m_GameTimeTotal,m_SM);
 					}
@@ -242,17 +236,15 @@ void Engine::update(float dtAsSeconds) {
 		//update Cameras
 		for (std::list<Camera*>::iterator cameraIt = m_CameraList.begin();
 			cameraIt != m_CameraList.end();cameraIt++) {
-			//double distance  = (*cameraIt)->detectCollsions((*cameraIt)->getCone(),m_ArrayLevel,TILE_SIZE);
+
 			(*cameraIt)->update(dtAsSeconds, m_ArrayLevel);
 
 			//check for bulletCollision
-			for (int i = 0;i < 5;i++)
-			{
-				if (bullets[i].isInFlight())
-				{
+			for (int i = 0;i < 5;i++) {
+				if (bullets[i].isInFlight()) {
 					if (bullets[i].getSprite().getGlobalBounds().intersects
-					((*cameraIt)->getSprite().getGlobalBounds()))
-					{
+					((*cameraIt)->getSprite().getGlobalBounds())) {
+
 						bullets[i].stop(m_SM);
 						(*cameraIt)->takeDamage();
 					}
@@ -263,9 +255,11 @@ void Engine::update(float dtAsSeconds) {
 			if ((*cameraIt)->getCone().getGlobalBounds().
 				intersects(m_Player.getPosition())) {
 				if (m_GameTimeTotal.asMilliseconds() - (*cameraIt)->getlastdetectTime() > 500) {
+					
 					//increase awareness
 					(*cameraIt)->increaseAwarenessLevel(m_Player.getCenter(),
 					m_Player.getDetectLevel(), m_GameTimeTotal,m_SM);
+					
 					//is player detetced
 					if ((*cameraIt)->getAwareness() >= 100) {
 						m_GameState = GameState::ENDGAME;
@@ -279,17 +273,22 @@ void Engine::update(float dtAsSeconds) {
 					(*cameraIt)->reduceAwareness(m_GameTimeTotal);
 				}
 			}
+
 			//check for Dead Ally
 			for (std::list<Enemy*>::iterator checkDeathOnCamIter = m_EnemyList.begin();
 				checkDeathOnCamIter != m_EnemyList.end();checkDeathOnCamIter++) {
+
 				//is camera visionCone intersecting Enemy sprite
 				if((*checkDeathOnCamIter)->getCone().getLocalBounds().
 					intersects((*checkDeathOnCamIter)->getPosition())) {
+
 					//if Enemy is unconcious..... "CONCERN!!!!"
 					if (!(*checkDeathOnCamIter)->isConscious()) {
+
 						(*checkDeathOnCamIter)->increaseAwarenessLevel(
-						(*checkDeathOnCamIter)->getCenter(), m_Player.getDetectLevel(),
-							m_GameTimeTotal,m_SM);
+							(*checkDeathOnCamIter)->getCenter(), m_Player.getDetectLevel(),
+							m_GameTimeTotal, m_SM
+						);
 					}
 				}
 			}
@@ -305,26 +304,6 @@ void Engine::update(float dtAsSeconds) {
 			// Play the reach goal sound
 			m_SM.playReachGoal();
 
-		}
-
-		// Check if a fire sound needs to be played
-
-		// Iterate through the vector of Vector2f objects
-		for (std::vector<sf::Vector2f>::iterator it = m_FireEmitters.begin(); it != m_FireEmitters.end(); it++) {
-			// Where is this emitter?
-			// Store the location in pos
-			float posX = (*it).x;
-			float posY = (*it).y;
-
-			// is the emiter near the player?
-			// Make a 500 pixel rectangle around the emitter
-			sf::FloatRect localRect(posX - 250, posY - 250, 500, 500);
-
-			// Is the player inside localRect?
-			if (m_Player.getPosition().intersects(localRect)) {
-				// Play the sound and pass in the location as well
-				m_SM.playFire(sf::Vector2f(posX, posY), m_Player.getCenter());
-			}
 		}
 
 		// Centre full screen around character
@@ -345,13 +324,8 @@ void Engine::update(float dtAsSeconds) {
 			// Update the time text
 			ssTime << int(m_TimeRemaining);
 			m_Hud.setTime(ssTime.str());
-
-			// Update the level text
 			
 			m_Hud.setHidden(m_Player.getHudDetectLevel());
-			//sf::Text isHidden = m_Hud.getHidden();
-			//m_Hud.setHidden(isHidden);
-			//add call to player Gun later
 			m_Hud.setGunCharge(100);
 			m_FramesSinceLastHUDUpdate = 0;
 		}
@@ -412,8 +386,6 @@ void Engine::update(float dtAsSeconds) {
 		m_endAnimatedBackgroundFrame = 38;
 	}
 
-
-
 	//This code will read in the folder that has the images to make the EndCredits.
 	m_endAnimatedBackgroundImage.loadFromFile(
 		std::string("graphics/Menu_Video/EndCredits/EndCredits ")
@@ -432,23 +404,20 @@ void Engine::update(float dtAsSeconds) {
 */
 void Engine::doorUpdate(float dtAsSeconds, ToggleSwitch *Switch) {
 	//update Doors
-	//std::cout << "\nDoor update";	
 	double currentShortest = std::numeric_limits<double>::infinity();
 	Door* shortest = NULL;
 
 	for (std::list<Door*>::iterator doorIt = m_DoorList.begin(); 
 			doorIt != m_DoorList.end(); doorIt++) {
-		//std::cout << "\nNext door";
+
 		if ((calcDistance((*doorIt)->getCenter(), (*Switch).getCenter()) < currentShortest)
 			&& (*doorIt)->getDoorState()) {
 
 			currentShortest = calcDistance((*doorIt)->getCenter(), (*Switch).getCenter());
 			shortest = (*doorIt);
-			//std::cout << "\nnew Shortest";
 		}
 	}
 
 	shortest->doorState();
 	shortest->update(dtAsSeconds, m_ArrayLevel);
-	//std::cout << "\nupdating Shortest";
 }

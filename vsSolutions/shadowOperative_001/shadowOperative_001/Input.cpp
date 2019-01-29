@@ -92,7 +92,6 @@ void Engine::input() {
 	else if (m_GameState == GameState::READYUP) {
 		m_Window.setMouseCursorVisible(true);
 		while (m_Window.pollEvent(m_event)) {
-			// Maybe replace with nested Switch statement?
 			//  Keyboard Controls
 			if (m_event.type == sf::Event::KeyPressed) {
 				// Handle the player quitting
@@ -111,16 +110,11 @@ void Engine::input() {
 	else if (m_GameState == GameState::PLAYING) {
 		m_Window.setMouseCursorVisible(false);
 
-		//m_Player.handleInput();
-
 		//	Get User input
 		Command* cmd = m_IH.handleInput(dt);
 
 		if (cmd) {
 			cmd->execute(m_Player);
-
-			//	Delete the command once it is no longer useful
-			//cmd->~Command();
 		}
 	}
 	else if (m_GameState == GameState::PAUSED) {

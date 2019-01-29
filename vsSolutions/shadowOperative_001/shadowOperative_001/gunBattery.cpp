@@ -6,7 +6,7 @@
 *	@description	...
 */
 
-#include "gunBattery.h"
+#include "GunBattery.h"
 
 /**
 *	Default Constructor
@@ -22,18 +22,18 @@ gunBattery::gunBattery(sf::Vector2i startPosition){
 
 	if (this->m_Capacity == Capacity::SMALL) {
 		m_ItemSprite = sf::Sprite(TextureHolder::GetTexture(
-			"graphics/Batteries/BATTERY_SMALL.png"));
-		std::cout << "\ngraphics/Batteries/BATTERY_SMALL.png";
+			"graphics\\Batteries\\BATTERY_SMALL.png"));
+		std::cout << "\ngraphics\\Batteries\\BATTERY_SMALL.png";
 	}
 	else if (this->m_Capacity == Capacity::MEDIUM) {
 		m_ItemSprite = sf::Sprite(TextureHolder::GetTexture(
-			"graphics/Batteries/BATTERY_MEDIUM.png"));
-		std::cout << "\ngraphics/Batteries/BATTERY_MEDIUM.png";
+			"graphics\\Batteries\\BATTERY_MEDIUM.png"));
+		std::cout << "\ngraphics\\Batteries\\BATTERY_MEDIUM.png";
 	}
 	else if (this->m_Capacity == Capacity::LARGE) {
 		m_ItemSprite = sf::Sprite(TextureHolder::GetTexture(
-			"graphics/Batteries/BATTERY_LARGE.png"));
-		std::cout << "\ngraphics/Batteries/BATTERY_LARGE.png";
+			"graphics\\Batteries\\BATTERY_LARGE.png"));
+		std::cout << "\ngraphics\\Batteries\\BATTERY_LARGE.png";
 	}
 }
 

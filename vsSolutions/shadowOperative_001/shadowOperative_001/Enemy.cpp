@@ -12,24 +12,28 @@
 *	Spawns in the enemy Gives hime a sprite.
 */
 void Enemy::spawn(sf::Vector2i startPosition, float gravity, sf::Time gameStart) {
-	//std::cout << "\nEnemy spawn";
 	this->m_SpawnPosition = startPosition;
 	this->m_Position = (sf::Vector2f)m_SpawnPosition;
 	m_Position.x = m_Position.x * TILE_SIZE;
 	m_Position.y = m_Position.y * TILE_SIZE;
 	m_Gravity = gravity;
+
 	//The sprite for the enemy.
 	m_Sprite = sf::Sprite(TextureHolder::GetTexture(
 		"graphics/D-EnemyRight.png"));
+
 	//Sets the sprite image to the location of the enemy. 
 	m_Sprite.setPosition(this->m_Position);
+	
 	awarenessOfPlayer = 0.0f;
 	lastDetectionEvent = gameStart;
+	
 	detectMeter.setSize(sf::Vector2f(10, this->getAwareness()));
 	detectMeter.setFillColor(sf::Color::Red);
 	detectMeter.setPosition(this->getCenter().x - 5, this->getCenter().y - 30);
-	//laserRange = detectionDistance;
+
 	this->m_Direction = Direction::LEFT;
+
 	cone.getCone().setPoint(0, m_Position);
 }
 
@@ -42,8 +46,6 @@ void Enemy::update(float elapsedTime, int** m_ArrayLevel/*, sf::Vector2f playPos
 		// Make a rect for all his parts
 		patrolValid = false;
 		sf::FloatRect detectionZone = getPosition();
-
-
 
 		// Make a FloatRect to test each block
 		sf::FloatRect block;
@@ -87,7 +89,6 @@ void Enemy::update(float elapsedTime, int** m_ArrayLevel/*, sf::Vector2f playPos
 			patrolValid = true;
 		}
 
-
 		switch (m_Direction) {
 		case PlayableCharacter::Direction::LEFT:
 			this->m_Position.x += this->m_Speed*elapsedTime;
@@ -102,15 +103,16 @@ void Enemy::update(float elapsedTime, int** m_ArrayLevel/*, sf::Vector2f playPos
 				"graphics/D-EnemyRight.png"));
 			break;
 		}
+
 		if (this->m_Direction == PlayableCharacter::Direction::LEFT) {
 			direction = 'f';
 		}
 		else if (this->m_Direction == PlayableCharacter::Direction::RIGHT) {
 			direction = 'm';
 		}
+
 		m_Sprite.setPosition(this->m_Position);
 		detectionDistance = reCalculateMaxRange(direction, m_ArrayLevel, maxDistance);
-
 
 		if (m_Direction == PlayableCharacter::Direction::LEFT) {
 			cone.updateConePos(this->m_Position, this->detectionDistance, this->sightAngle, true);
@@ -119,6 +121,7 @@ void Enemy::update(float elapsedTime, int** m_ArrayLevel/*, sf::Vector2f playPos
 			cone.updateConePos(this->m_Position, this->detectionDistance, this->sightAngle, false);
 		}
 	}
+	//	If Crouching, sleep in a box
 	else if (m_Action == Action::CROUCHING) {
 		m_Sprite = sf::Sprite(TextureHolder::GetTexture(
 			"graphics/Crate.png"));
@@ -126,9 +129,6 @@ void Enemy::update(float elapsedTime, int** m_ArrayLevel/*, sf::Vector2f playPos
 	}
 	else { this->regen(elapsedTime); }
 }
-
-
-
 
 /**
 *
@@ -141,12 +141,10 @@ void Enemy::handleInput() {
 *
 */
 void Enemy::alterPatrol(bool patrol) {
-	if (patrol)
-	{
+	if (patrol)	{
 		patrolValid = true;
 	}
-	else
-	{
+	else {
 		patrolValid = false;
 	}
 }
