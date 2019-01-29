@@ -336,8 +336,9 @@ void Player::handleInput() {
 int Player::getDetectLevel() {
 	if ((this->m_Action == Action::FALLING)
 		|| (this->m_Action == Action::JUMPING)
-		|| (this->m_Action == Action::ATTACKING)) {
-
+		|| (this->m_Action == Action::ATTACKING)
+		|| (this->m_Action == Action::RUNNING)) {
+		std::cout << "\nReturning detection 3";
 		return detectionLevel = 3;
 	}
 	else if (this->m_Action == Action::IDLE) {
@@ -432,7 +433,7 @@ void Player::toggleTargeting(SoundManager& m_SM) {
 }
 
 /**
-*
+*	Return whether or not the player is currently in a targeting stance
 */
 bool Player::isTargeting() {
 	return targeting;
@@ -482,22 +483,23 @@ void Player::updateTargeting() {
 }
 
 /**
-*
+*	Return the Points of the Targeting Laser ConvexShape
 */
 sf::ConvexShape Player::getlaser() {
 	return targetingLaser.getLine();
 }
 
 /**
-*
+*	Charge The gun From power acquired From gunBattery Pickup Item
 */
-void Player::chargeFromPickup(float charge) {
+void Player::chargeFromPickup(float charge, SoundManager& m_SM) {
 	if (this->getChargeLevel() + charge >= maxGunChargeLevel) {
 		gunChargeLevel = maxGunChargeLevel;
 	}
 	else {
 		gunChargeLevel += charge;
 	}
+	m_SM.playChargeFromPickup();
 }
 
 /**

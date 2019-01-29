@@ -81,6 +81,7 @@ public:
 			pc.m_jumpDuration = 0.0f;
 			pc.m_Action = PlayableCharacter::Action::JUMPING;
 			pc.m_jumpCounter++;
+			m_SM.playJump();
 		}
 	}
 };

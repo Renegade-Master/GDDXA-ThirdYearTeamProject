@@ -73,7 +73,8 @@ void Bullet::shoot(float startX, float startY,
 /**
 *	...
 */
-void Bullet::stop() {
+void Bullet::stop(SoundManager& m_SM) {
+	m_SM.playEnemyHit();
 	m_InFlight = false;
 }
 
