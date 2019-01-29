@@ -70,6 +70,7 @@ private:
 	std::list<sf::Vector2i> m_ItemPosition;
 	//List containing the item Type data of Items(Factory Method)
 	std::list<char> m_ItemType;
+
 	//Door Creation Data
 	//List containing all the spawn coordinates of doors(Factory Method)
 	std::list<sf::Vector2i> m_DoorPosition;

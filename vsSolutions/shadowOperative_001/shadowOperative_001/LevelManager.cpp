@@ -28,7 +28,7 @@ LevelManager::LevelManager(){
 }
 
 /**
-*	...
+*	Load Next Level of the game
 */
 int** LevelManager::nextLevel(sf::VertexArray& rVaLevel) {
 	m_LevelSize.x = 0;
@@ -87,7 +87,7 @@ int** LevelManager::nextLevel(sf::VertexArray& rVaLevel) {
 	}
 
 	// Loop through the file and store all the values in the 2d array
-	std::string row = NULL;
+	std::string row;
 	sf::Vector2i temp;
 	int verticalOffset = 0;
 	int y = 0;

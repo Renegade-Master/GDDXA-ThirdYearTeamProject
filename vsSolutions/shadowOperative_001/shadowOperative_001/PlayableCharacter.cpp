@@ -160,7 +160,7 @@ PlayableCharacter::Direction& operator++(PlayableCharacter::Direction& mv, int) 
 }
 
 /**
-*
+*	Return wether or not the player is currently targeting
 */
 bool PlayableCharacter::isTargeting() {
 	return false;
