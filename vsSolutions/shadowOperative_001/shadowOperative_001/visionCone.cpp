@@ -8,6 +8,9 @@
 
 #include "visionCone.h"
 
+/**
+*	...
+*/
 visionCone::visionCone() {
 	coneOfDetection.setPointCount(3);
 	coneOfDetection.setFillColor(sf::Color::Color(255,0,0,100));
@@ -16,9 +19,12 @@ visionCone::visionCone() {
 		+ (coneOfDetection.getPoint(2).x*(coneOfDetection.getPoint(0).y - coneOfDetection.getPoint(1).y)));*/
 }
 
+/**
+*	...
+*/
 void visionCone::updateConePos(sf::Vector2f charPos, int charSightRange, int charSightAngle,bool faceRight) {
 	if (faceRight) {
-		charPos.x += 50;
+		charPos.x += TILE_SIZE;
 		this->coneOfDetection.setPoint(0, charPos);
 		//X
 		this->coneOfDetection.setPoint(
@@ -52,10 +58,17 @@ void visionCone::updateConePos(sf::Vector2f charPos, int charSightRange, int cha
 		);
 	}
 }
+
+/**
+*	...
+*/
 sf::ConvexShape visionCone::getCone() {
 	return coneOfDetection;
 }
 
+/**
+*	...
+*/
 void visionCone::updateCamConePos(sf::Vector2f charPos, int charSightRange,
 	int charSightAngle, float cameraAngle, bool forward, char direction) {
 	//Convert angle(Degrees) to angle (radians)

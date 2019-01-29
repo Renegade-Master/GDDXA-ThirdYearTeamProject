@@ -13,8 +13,8 @@
 */
 ToggleSwitch::ToggleSwitch(sf::Time time, sf::Vector2i spawnPos) {
 	this->m_Position = (sf::Vector2f)spawnPos;
-	m_Position.x = m_Position.x * 50;
-	m_Position.y = m_Position.y * 50;
+	m_Position.x = m_Position.x * TILE_SIZE;
+	m_Position.y = m_Position.y * TILE_SIZE;
 	m_LastToggleEvent = time;
 	m_SpriteToggleOn = sf::Sprite(TextureHolder::GetTexture(
 		"graphics/Switch_ToggleOn.png"));

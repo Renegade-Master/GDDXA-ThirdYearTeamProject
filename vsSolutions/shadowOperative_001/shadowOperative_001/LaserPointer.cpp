@@ -19,10 +19,10 @@ LaserPointer::LaserPointer() {
 */
 void LaserPointer::spawn(sf::Vector2i startPosition, float gravity, sf::Time gameStart, char dir,int** m_ArrayLevel) {
 	this->m_Position = sf::Vector2f(startPosition);
-	this->m_Position.x = this->m_Position.x * 50;
-	this->m_Position.y = this->m_Position.y * 50;
+	this->m_Position.x = this->m_Position.x * TILE_SIZE;
+	this->m_Position.y = this->m_Position.y * TILE_SIZE;
 
-	this->m_Sprite.setOrigin(this->getCenter().x - this->getCenter().x + 50,
+	this->m_Sprite.setOrigin(this->getCenter().x - this->getCenter().x + TILE_SIZE,
 		this->getCenter().y - this->getCenter().y + 1);
 	//Start ToggleEvent Timer
 	lastToggleEvent = gameStart;

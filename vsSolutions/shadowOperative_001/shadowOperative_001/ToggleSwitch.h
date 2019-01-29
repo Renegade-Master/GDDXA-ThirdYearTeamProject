@@ -1,10 +1,21 @@
+/**
+*	@author			Ciaran Bent [K00221230]
+*					Owen O'Dea	[K00218956]
+*					Rory Ryan	[K00218864]
+*	@creationDate	2019/01/29	YYYY/MM/DD
+*	@description
+*/
+
 #pragma once
 
 #ifndef TOGGLESWITCH_H
 #define TOGGLESWITCH_H
+
+#include <iostream>
 #include <SFML/Graphics.hpp>
+
 #include "TextureHolder.h"
-#include<iostream>
+
 class ToggleSwitch{
 private:
 	enum class ToggleState { TOGGLE_ON, TOGGLE_OFF };
@@ -25,5 +36,6 @@ public:
 	void update(sf::Time elapsedTime,int** m_ArrayLevel);
 	bool toggle(sf::Time elapsedTime);
 };
+
 #endif
 

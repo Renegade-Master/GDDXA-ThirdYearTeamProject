@@ -12,13 +12,14 @@
 #define VISIONCONE_H
 
 #include <algorithm>
-#include <math.h>
 #include <iostream>
-#include <SFML/Graphics.hpp>
 #include <cmath>
-#ifndef PIE
-#define PIE (3.14159265358979323846)
-#endif
+#include <math.h>
+
+#include <SFML/Graphics.hpp>
+
+#include "Constants.h"
+
 class visionCone {
 private:
 	sf::ConvexShape coneOfDetection;

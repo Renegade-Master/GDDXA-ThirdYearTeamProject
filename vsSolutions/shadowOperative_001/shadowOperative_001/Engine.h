@@ -17,6 +17,7 @@
 
 #include "Bullet.h"
 #include "Button.h"
+#include "Constants.h"
 #include "Door.h"
 #include "Enemy.h"
 #include "EnemyGenerator.h"
@@ -118,7 +119,6 @@ private:
 	int m_FramesSinceLastHUDUpdate = 0;
 	int m_TargetFramesPerHUDUpdate = 500;
 
-	const int TILE_SIZE = 50;
 	const int VERTS_IN_QUAD = 4;
 
 	// The force pushing the characters down
