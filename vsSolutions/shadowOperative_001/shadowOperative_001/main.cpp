@@ -18,6 +18,8 @@ int main() {
 	// Start the engine
 	engine.run();
 
+	engine.~Engine();
+
 	// Quit in the usual way when the engine is stopped
 	return 0;
 }

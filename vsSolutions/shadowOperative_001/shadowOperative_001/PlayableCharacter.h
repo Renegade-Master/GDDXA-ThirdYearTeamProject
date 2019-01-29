@@ -11,16 +11,10 @@
 #define PLAYABLECHARACTER_H
 
 #include <fstream>
-#include <iostream>
+#include <list>
 
-#include <SFML/Graphics.hpp>
-
-#include "Constants.h"
-#include "Door.h"
 #include "Laser.h"
-#include "List"
 #include "SoundManager.h"
-#include "TextureHolder.h"
 
 class PlayableCharacter {
 public:
@@ -81,6 +75,7 @@ public:
 	sf::Vector2f target;
 	laser targetingLaser;
 
+	//	Every subclass of this class must overload this function
 	virtual sf::String getClassName() = 0;
 
 protected:
@@ -114,6 +109,7 @@ protected:
 	// A texture
 	sf::Texture m_Texture;
 
+	//	Overload the '<Direction>++' operator
 	friend PlayableCharacter::Direction& operator++(PlayableCharacter::Direction& mv, int);
 };
 

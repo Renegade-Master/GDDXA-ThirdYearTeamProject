@@ -11,7 +11,7 @@
 /**
 *	Default Constructor
 */
-Item::Item(){
+Item::Item() {
 
 }
 
@@ -61,49 +61,8 @@ sf::Vector2f Item::getCenter() {
 }
 
 /**
-*	This function gets the bottem of the sprite.
-*/
-sf::FloatRect Item::getBottom() {
-	return m_Bottom;
-}
-
-/**
-*	This function gets the Top of the sprite.
-*/
-sf::FloatRect Item::getTop() {
-	return m_Top;
-}
-/**
-*	This function gets the Left of the sprite.
-*/
-sf::FloatRect Item::getLeft() {
-	return m_Left;
-}
-
-/**
-*	This function gets the Right of the sprite.
-*/
-sf::FloatRect Item::getRight() {
-	return m_Right;
-}
-
-/**
 *	This function gets the item sprite.
 */
 sf::Sprite Item::getSprite() {
 	return m_ItemSprite;
 }
-
-/**
-*	...
-*/
-/*void Item::stopRight(float position) {
-
-	m_Position.x = position - m_DoorSprite.getGlobalBounds().width;
-	m_Sprite.setPosition(m_Position);
-}
-
-void Item::stopLeft(float position) {
-	m_Position.x = position + m_DoorSprite.getGlobalBounds().width;
-	m_Sprite.setPosition(m_Position);
-}*/

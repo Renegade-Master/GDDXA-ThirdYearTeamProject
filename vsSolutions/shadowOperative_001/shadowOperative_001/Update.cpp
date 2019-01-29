@@ -363,11 +363,6 @@ void Engine::update(float dtAsSeconds) {
 			m_FramesSinceLastHUDUpdate = 0;
 		}
 
-		// Update the particles
-		if (m_PS.running()) {
-			m_PS.update(dtAsSeconds);
-		}
-
 		//update Muse positioning
 		mouseScreenPosition = sf::Mouse::getPosition();
 

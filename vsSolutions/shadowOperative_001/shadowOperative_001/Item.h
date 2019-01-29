@@ -10,32 +10,18 @@
 #ifndef ITEM_H
 #define ITEM_H
 
-#include <SFML/Graphics.hpp>
-
 #include "Constants.h"
 #include "TextureHolder.h"
 
-class Item 
-{
+class Item {
 public:
 	// Where is the item
 	sf::FloatRect getPosition();
 
-	// A rectangle representing the position of different parts of the sprite
-	sf::FloatRect getBottom();
-	sf::FloatRect getTop();
-	sf::FloatRect getRight();
-	sf::FloatRect getLeft();
-
-	// Send a copy of the sprite to main
+	// Send a copy of the sprite to main thread
 	sf::Sprite getSprite();
 
-	/*// Make the item stand firm
-	void stopFalling(float position);
-	void stopRight(float position);
-	void stopLeft(float position);*/
-
-	// Where is the center of the character
+	// Where is the center of the item
 	sf::Vector2f getCenter();
 
 	void spawn();
@@ -57,14 +43,8 @@ protected:
 	// Where is the item
 	sf::Vector2f m_Position;
 
-
-	// Where are the items sides?
-	sf::FloatRect m_Bottom;
-	sf::FloatRect m_Top;
-	sf::FloatRect m_Right;
-	sf::FloatRect m_Left;
-
 	// A texture
 	sf::Texture m_Texture;
 };
+
 #endif // !ITEM_H

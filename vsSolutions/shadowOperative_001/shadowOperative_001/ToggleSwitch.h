@@ -11,13 +11,19 @@
 #ifndef TOGGLESWITCH_H
 #define TOGGLESWITCH_H
 
-#include <iostream>
-#include <SFML/Graphics.hpp>
-
+#include "SoundManager.h"
 #include "TextureHolder.h"
-#include<iostream>
-#include "soundManager.h"
+
 class ToggleSwitch{
+public:
+	int switchTimeDelay = 3000;
+	ToggleSwitch(sf::Time time, sf::Vector2i spawnPos);
+	sf::Sprite getSprite();
+	sf::FloatRect getPosition();
+	sf::Vector2f getCenter();
+	void update(sf::Time elapsedTime, int** m_ArrayLevel);
+	bool toggle(sf::Time elapsedTime, SoundManager& m_SM); 
+
 private:
 	enum class ToggleState { TOGGLE_ON, TOGGLE_OFF };
 	ToggleState m_ToggleState = ToggleState::TOGGLE_OFF;
@@ -27,15 +33,6 @@ private:
 	/*Create a delayy between toggles so 
 	m_Player doesnt toggle in rapid succession*/
 	sf::Time m_LastToggleEvent;
-public:
-
-	int switchTimeDelay = 3000;
-	ToggleSwitch(sf::Time time, sf::Vector2i spawnPos);
-	sf::Sprite getSprite();
-	sf::FloatRect getPosition();
-	sf::Vector2f getCenter();
-	void update(sf::Time elapsedTime,int** m_ArrayLevel);
-	bool toggle(sf::Time elapsedTime,SoundManager& m_SM);
 };
 
 #endif

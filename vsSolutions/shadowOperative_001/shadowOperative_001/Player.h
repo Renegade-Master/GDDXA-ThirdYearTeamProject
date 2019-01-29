@@ -11,7 +11,6 @@
 #define PLAYER_H
 
 #include "PlayableCharacter.h"
-#include "laser.h"
 
 class Player : public PlayableCharacter {
 public:
@@ -44,6 +43,7 @@ public:
 	sf::ConvexShape getlaser();
 
 	sf::String getClassName();
+
 private:
 	int detectionLevel;
 	float gunChargeLevel = 100.0f;
@@ -52,7 +52,6 @@ private:
 	float shotCost = 10.0f;
 
 	//aiming
-	bool targeting = false;
-	
+	bool targeting = false;	
 };
 #endif // !PLAYER_H

@@ -54,9 +54,6 @@ Engine::Engine() {
 	m_TextureTiles = TextureHolder::GetTexture(
 		"graphics/tileset_008.png");
 
-	// Initialize the particle system
-	m_PS.init(1000);
-
 	// Initialise all the Buttons
 	m_buttonFont.loadFromFile("fonts/Roboto-Light.ttf");
 	

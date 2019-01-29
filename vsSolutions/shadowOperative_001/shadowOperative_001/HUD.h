@@ -13,16 +13,6 @@
 #include <SFML/Graphics.hpp>
 
 class Hud {
-private:
-	sf::Font m_Font;
-	sf::Text m_StartText;
-	sf::Text m_TimeText;
-	sf::Text m_LevelText;
-
-	sf::Text m_isHidden;
-
-	sf::RectangleShape m_GunCharge;
-	sf::RectangleShape m_GunChargeBackground;
 public:
 	Hud();
 	sf::Text getMessage();
@@ -40,5 +30,15 @@ public:
 	void setLevel(sf::String text);
 	void setTime(sf::String text);
 
+private:
+	sf::Font m_Font;
+	sf::Text m_StartText;
+	sf::Text m_TimeText;
+	sf::Text m_LevelText;
+
+	sf::Text m_isHidden;
+
+	sf::RectangleShape m_GunCharge;
+	sf::RectangleShape m_GunChargeBackground;
 };
 #endif // !HUD_H
