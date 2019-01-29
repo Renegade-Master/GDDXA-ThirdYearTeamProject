@@ -28,7 +28,7 @@ void Enemy::spawn(sf::Vector2i startPosition, float gravity, sf::Time gameStart)
 	detectMeter.setSize(sf::Vector2f(10, this->getAwareness()));
 	detectMeter.setFillColor(sf::Color::Red);
 	detectMeter.setPosition(this->getCenter().x - 5, this->getCenter().y - 30);
-	laserRange = detectionDistance;
+	//laserRange = detectionDistance;
 	this->m_Direction = Direction::LEFT;
 	cone.getCone().setPoint(0, m_Position);
 }
