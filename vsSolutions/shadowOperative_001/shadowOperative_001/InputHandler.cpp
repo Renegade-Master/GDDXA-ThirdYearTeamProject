@@ -53,7 +53,7 @@ void InputHandler::chooseScheme(sf::Uint32 scheme) {
 		cont_RIGHT_STICK_RIGHT = new cmd_AimRight;
 		cont_RIGHT_STICK_UP = new cmd_AimUp;
 		cont_RIGHT_STICK_DOWN = new cmd_AimDown;
-		//Angled Control rIGHT aNALOG
+		//Angled Control(Right Analog)
 		cont_RIGHT_STICK_LEFT_UP = new cmd_LEFT_DOWN;
 		cont_RIGHT_STICK_LEFT_DOWN = new cmd_LEFT_UP;
 		cont_RIGHT_STICK_RIGHT_UP = new cmd_RIGHT_UP;
@@ -181,7 +181,14 @@ Command* InputHandler::handleInput(sf::Time t) {
 			return(cont_CROSS);
 		}
 		if (sf::Joystick::isButtonPressed(0, 1)) {
-			return(cont_CIRCLE);
+			if (m_ControlScheme == ControlScheme::DEFAULT) {
+				if (t.asMilliseconds() - m_LastToggleEvent.asMilliseconds() < 1000) {
+					return(cont_CIRCLE);
+				}
+			}
+			else {
+				return(cont_CIRCLE);
+			}
 		}
 		if (sf::Joystick::isButtonPressed(0, 2)) {
 			return(cont_SQUARE);
@@ -190,7 +197,14 @@ Command* InputHandler::handleInput(sf::Time t) {
 			return(cont_TRIANGLE);
 		}
 		if (sf::Joystick::isButtonPressed(0, 4)) {
-			return(cont_L1);
+			if (m_ControlScheme == ControlScheme::BUMPERJUMPER) {
+				if (t.asMilliseconds() - m_LastToggleEvent.asMilliseconds() < 1000) {
+					return(cont_CIRCLE);
+				}
+			}
+			else {
+				return(cont_CIRCLE);
+			}
 		}
 		if (sf::Joystick::isButtonPressed(0, 5)) {
 			return(cont_R1);
