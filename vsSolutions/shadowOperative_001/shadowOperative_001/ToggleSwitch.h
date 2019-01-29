@@ -16,7 +16,7 @@
 
 class ToggleSwitch{
 public:
-	int switchTimeDelay = 3000;
+	
 	ToggleSwitch(sf::Time time, sf::Vector2i spawnPos);
 	sf::Sprite getSprite();
 	sf::FloatRect getPosition();
@@ -25,13 +25,19 @@ public:
 	bool toggle(sf::Time elapsedTime, SoundManager& m_SM); 
 
 private:
+	//Delay between toggle events on switch
+	int switchTimeDelay = 3000;
+	//enum class of all possible switch states
 	enum class ToggleState { TOGGLE_ON, TOGGLE_OFF };
+	//Holds the current switch state
 	ToggleState m_ToggleState = ToggleState::TOGGLE_OFF;
+	//Sprite for switch toggled on
 	sf::Sprite m_SpriteToggleOn;
+	//Sprite for switch toggled off
 	sf::Sprite m_SpriteToggleOff;
+	//Holds the position of the switch X*Y
 	sf::Vector2f m_Position;
-	/*Create a delayy between toggles so 
-	m_Player doesnt toggle in rapid succession*/
+	//track toggle time to create a delay betwen toggle events
 	sf::Time m_LastToggleEvent;
 };
 
