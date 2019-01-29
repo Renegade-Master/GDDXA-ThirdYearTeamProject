@@ -9,7 +9,7 @@
 #include "Enemy.h"
 
 /**
-* Spawns in the enemy Gives hime a sprite.
+*	Spawns in the enemy Gives hime a sprite.
 */
 void Enemy::spawn(sf::Vector2i startPosition, float gravity, sf::Time gameStart) {
 	//std::cout << "\nEnemy spawn";
@@ -34,8 +34,8 @@ void Enemy::spawn(sf::Vector2i startPosition, float gravity, sf::Time gameStart)
 }
 
 /**
-* This Update function will update the enemy every frame.
-*This will mave the enemy and change the sprite of the enemy from left to right. 
+*	This Update function will update the enemy every frame.
+*	This will mave the enemy and change the sprite of the enemy from left to right. 
 */
 void Enemy::update(float elapsedTime, int** m_ArrayLevel/*, sf::Vector2f playPos*/) {
 	if (concious) {
@@ -274,7 +274,7 @@ bool Enemy::isConscious() {
 
 /**
 *	Increases the Characters Health relative to the amount of time passed 
-		and their regenRate variable called once per frame
+*	and their regenRate variable called once per frame
 */
 void Enemy::regen(float elapsedTime) {
 	//std::cout << "\nCALLING REGEN!!!";
@@ -319,13 +319,17 @@ void Enemy::regen(float elapsedTime) {
 sf::String Enemy::getClassName() {
 	return(sf::String("Enemy"));
 }
+
 /*
 *	Find if Laser Hits a wall
 */
 double Enemy::reCalculateMaxRange(char dir, int** m_ArrayLevel, double laserRange) {
+	//	Get current position
 	int x = (this->m_Position.x / TILE_SIZE);
 	int y = (this->m_Position.y / TILE_SIZE);
 	double calculatedrange = 0;
+
+	//	Fine-Tune position depending on Class
 	if (this->getClassName() == "LaserPointer") {
 		calculatedrange = 75;
 		int y = (this->m_Position.y / TILE_SIZE);
@@ -343,6 +347,7 @@ double Enemy::reCalculateMaxRange(char dir, int** m_ArrayLevel, double laserRang
 		calculatedrange = 30;
 	}
 
+	//	Calculate distance depending on Direction facing
 	if (dir == 'a') {//UP
 		for (int i = 1;i < (laserRange / TILE_SIZE);++i) {
 			
@@ -388,8 +393,10 @@ double Enemy::reCalculateMaxRange(char dir, int** m_ArrayLevel, double laserRang
 			}
 		}
 	}
-	return calculatedrange;
+
+	return(calculatedrange);
 }
+
 /*
 *	Virtual function never intended to be called
 */
