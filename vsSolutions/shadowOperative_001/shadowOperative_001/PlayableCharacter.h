@@ -17,6 +17,7 @@
 #include "TextureHolder.h"
 #include "list"
 #include "door.h"
+#include"SoundManager.h"
 
 class PlayableCharacter {
 public:
@@ -74,7 +75,7 @@ public:
 	//return Direction enum state
 	PlayableCharacter::Direction getDir();
 
-	virtual void toggleTargeting() = 0;
+	virtual void toggleTargeting(SoundManager& m_SM) = 0;
 	bool shooting = false;
 	virtual bool isTargeting() = 0;
 	sf::Vector2f target;

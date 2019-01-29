@@ -174,7 +174,7 @@ void Enemy::EnemyCrate()
 /**
 *
 */
-void Enemy::toggleTargeting() {
+void Enemy::toggleTargeting(SoundManager& m_SM) {
 	//	...
 }
 
