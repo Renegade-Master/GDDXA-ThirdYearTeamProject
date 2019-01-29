@@ -29,6 +29,7 @@ public:
 	unsigned int m_controllerIndex = 0;
 	sf::Time m_inputBlocker = sf::milliseconds(10);
 	sf::Time m_sinceLastInput = sf::Time::Zero;
+	sf::Time m_LastToggleEvent = sf::Time::Zero;
 
 private:
 	sf::Uint32 m_ControlScheme = ControlScheme::DEFAULT;

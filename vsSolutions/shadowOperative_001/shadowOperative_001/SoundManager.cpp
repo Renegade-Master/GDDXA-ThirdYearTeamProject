@@ -23,10 +23,12 @@ SoundManager::SoundManager() {
 	m_EnemyHitBuffer.loadFromFile("sound\\EnemyHit.wav");
 	m_EnemyUnconscoiusBuffer.loadFromFile("sound\\EnemyUnconscious.wav");
 	m_EnemyCratedBuffer.loadFromFile("sound\\EnemyCrated.wav");
-	m_EnemyDetectionLevel0Buffer.loadFromFile("sound\\");
+	m_EnemyDetectionLevel0Buffer.loadFromFile("sound\\EnemyAlertLevel.wav");
 	m_EnemyDetectionLevel1Buffer.loadFromFile("sound\\EnemyAlertLevel.wav");
-	m_EnemyDetectionLevel2Buffer.loadFromFile("sound\\");
-	m_EnemyDetectionLevel3Buffer.loadFromFile("sound\\");
+	m_EnemyDetectionLevel2Buffer.loadFromFile("sound\\EnemyAlertLevel.wav");
+	m_EnemyDetectionLevel3Buffer.loadFromFile("sound\\EnemyAlertLevel.wav");
+	//Energy power up sound,Action is energy transfering from Battery Item to gun
+	m_ChargeFromPickupBuffer.loadFromFile("sound\\");
 
 	// Associate the sounds with the buffers
 	m_ButtonClickSound.setBuffer(m_ButtonClickBuffer);
@@ -42,6 +44,7 @@ SoundManager::SoundManager() {
 	m_EnemyDetectionLevel1Sound.setBuffer(m_EnemyDetectionLevel1Buffer);
 	m_EnemyDetectionLevel2Sound.setBuffer(m_EnemyDetectionLevel2Buffer);
 	m_EnemyDetectionLevel3Sound.setBuffer(m_EnemyDetectionLevel3Buffer);
+	m_ChargeFromPickupSound.setBuffer(m_ChargeFromPickupBuffer);
 
 	// When the player is 50 pixels away sound is full volume
 	float minDistance = 150;
@@ -178,26 +181,43 @@ void SoundManager::playEnemyCrated() {
 }
 
 /**
-*	Play the ... Sound
+*	Play the Detection Sound
 */
 void SoundManager::playEnemyDetectionLevel(int alertness) {
+	//std::cout << "\nAlertness" << alertness;
 	switch (alertness) {
 	case 0:
+		//std::cout << "\nCase 0\n";
 		m_EnemyDetectionLevel0Sound.setRelativeToListener(true);
 		m_EnemyDetectionLevel0Sound.play();
 		break;
 	case 1:
+		//std::cout << "\nCase 1\n";
 		m_EnemyDetectionLevel1Sound.setRelativeToListener(true);
 		m_EnemyDetectionLevel1Sound.setLoop(true);
 		m_EnemyDetectionLevel1Sound.play();
 		break;
 	case 2:
+		//std::cout << "\nCase 2\n";
 		m_EnemyDetectionLevel2Sound.setRelativeToListener(true);
 		m_EnemyDetectionLevel2Sound.play();
 		break;
 	case 3:
+		//std::cout << "\nCase 3\n";
 		m_EnemyDetectionLevel3Sound.setRelativeToListener(true);
 		m_EnemyDetectionLevel3Sound.play();
 		break;
+	default:
+		//std::cout << "\nCase DEFAULT\n";
+		m_EnemyDetectionLevel0Sound.setRelativeToListener(true);
+		m_EnemyDetectionLevel0Sound.play();
+		break;
 	}
+}
+/**
+*	Play the Charge From Pickup Sound
+*/
+void SoundManager::playChargeFromPickup() {
+	m_ChargeFromPickupSound.setRelativeToListener(true);
+	m_ChargeFromPickupSound.play();
 }
