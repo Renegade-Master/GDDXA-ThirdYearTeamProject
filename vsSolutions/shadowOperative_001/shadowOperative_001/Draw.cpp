@@ -139,7 +139,6 @@ void Engine::draw() {
 		// Switch to m_HudView
 		m_Window.setView(m_HudView);
 		m_Window.draw(m_Hud.getHidden());
-		//m_Window.draw(m_Hud.getTime());
 		m_Window.draw(m_Hud.getGunBackground());
 		m_Window.draw(m_Hud.getGunCharge());
 

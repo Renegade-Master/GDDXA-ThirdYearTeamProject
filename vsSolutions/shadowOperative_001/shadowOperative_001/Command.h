@@ -25,8 +25,8 @@ public:
 	SoundManager m_SM =  SoundManager();
 };
 
-/**
-*
+/*
+*	Command supplied as Default when controller input is NULL
 */
 class cmd_Null : public Command {
 public:
@@ -35,8 +35,8 @@ public:
 	}
 };
 
-/**
-*
+/*
+*	Supplies the run left command
 */
 class cmd_RunLeft : public Command {
 public:
@@ -47,13 +47,12 @@ public:
 			&& pc.m_Action != PlayableCharacter::Action::JUMPING) {
 
 			pc.m_Action = PlayableCharacter::Action::RUNNING;
-
 		}
 	}
 };
 
-/**
-*
+/*
+*	Supplies the run right command
 */
 class cmd_RunRight : public Command {
 public:
@@ -70,7 +69,7 @@ public:
 };
 
 /**
-*
+*	Supplies the jump Command
 */
 class cmd_Jump : public Command {
 public:
@@ -87,7 +86,7 @@ public:
 };
 
 /**
-*
+*	Supplies the shoot command
 */
 class cmd_Shoot : public Command {
 public:
@@ -98,7 +97,7 @@ public:
 };
 
 /**
-*
+*	Supplies the toggle aim command
 */
 class cmd_ToggleAim : public Command {
 public:

@@ -11,7 +11,7 @@
 #define	ENEMYGENERATOR_H
 
 #include "Enemy.h"
-
+//Factory method for creating/initialising a list of enemies and returning them to a list in Engine.cpp
 Enemy* createEnemy(sf::Vector2i position, float Gravity,sf::Time gameStart);
 
 #endif // !ENEMYGENERATOR_H

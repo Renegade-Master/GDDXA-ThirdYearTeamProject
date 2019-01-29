@@ -23,6 +23,9 @@ private:
 	bool active;
 	//When is the last Time the Laser turned on/off
 	sf::Time lastToggleEvent;
+	laser visionLaser;
+	double laserRange = 500;
+	double maxLaserRange;
 public:
 	LaserPointer();
 	void spawn(sf::Vector2i startPosition, float gravity, sf::Time gameStart, char dir,int** m_ArrayLevel);

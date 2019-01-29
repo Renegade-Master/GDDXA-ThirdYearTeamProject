@@ -28,7 +28,7 @@ void Enemy::spawn(sf::Vector2i startPosition, float gravity, sf::Time gameStart)
 	detectMeter.setSize(sf::Vector2f(10, this->getAwareness()));
 	detectMeter.setFillColor(sf::Color::Red);
 	detectMeter.setPosition(this->getCenter().x - 5, this->getCenter().y - 30);
-	laserRange = detectionDistance;
+	//laserRange = detectionDistance;
 	this->m_Direction = Direction::LEFT;
 	cone.getCone().setPoint(0, m_Position);
 }
@@ -43,9 +43,7 @@ void Enemy::update(float elapsedTime, int** m_ArrayLevel/*, sf::Vector2f playPos
 		patrolValid = false;
 		sf::FloatRect detectionZone = getPosition();
 
-		//update detection meter
-		detectMeter.setSize(sf::Vector2f(10, this->getAwareness()));
-		detectMeter.setPosition(this->getCenter().x - 5, this->getCenter().y - 30);
+
 
 		// Make a FloatRect to test each block
 		sf::FloatRect block;
@@ -112,14 +110,7 @@ void Enemy::update(float elapsedTime, int** m_ArrayLevel/*, sf::Vector2f playPos
 		}
 		m_Sprite.setPosition(this->m_Position);
 		detectionDistance = reCalculateMaxRange(direction, m_ArrayLevel, maxDistance);
-		//for (std::list<Door*>::iterator doorIt = doors.begin();
-		//	doorIt != doors.end();doorIt++) {
-		//	if (this->getCone().getGlobalBounds().intersects((*doorIt)->getPosition())) {
-		//		if (calcDistance(this->getCenter(), (*doorIt)->getCenter()) < detectionDistance) {
-		//			detectionDistance = calcDistance(this->getCenter(), (*doorIt)->getCenter());
-		//		}
-		//	}
-		//}
+
 
 		if (m_Direction == PlayableCharacter::Direction::LEFT) {
 			cone.updateConePos(this->m_Position, this->detectionDistance, this->sightAngle, true);
@@ -191,20 +182,20 @@ void Enemy::increaseAwarenessLevel(sf::Vector2f playPos, int detectionLevel,sf::
 		//std::cout << "\nAwareness 1";
 		if (calcDistance(playPos, this->getCenter()) <= 50) {
 			std::cout << "\nDistance: <50";
-			awarenessOfPlayer += 1.0;
+			awarenessOfPlayer += 3.0;
 		}
 	case 2:
 		//std::cout << "\nAwareness 2";
 		if (calcDistance(playPos, this->getCenter()) > 50) {
 			std::cout<<"\nDistance: 50+";
-			awarenessOfPlayer += 1.5;
+			awarenessOfPlayer += 4.5;
 		}
 		break;
 	case 3:
 		//std::cout << "\nAwareness 3";
 		if (calcDistance(playPos, this->getCenter()) > 100) {
 			std::cout << "\nDistance: 100+";
-			awarenessOfPlayer += 2.0;
+			awarenessOfPlayer += 6.0;
 		}
 		break;
 	}
@@ -355,7 +346,8 @@ double Enemy::reCalculateMaxRange(char dir, int** m_ArrayLevel, double laserRang
 		for (int i = 1;i < (laserRange / TILE_SIZE);++i) {
 			
 			if ((m_ArrayLevel[y - i][x] == 0)|| (m_ArrayLevel[y - i][x] == 'T')
-				|| (m_ArrayLevel[y - i][x] == 48) || (m_ArrayLevel[y - i][x] == 84)) {
+				|| (m_ArrayLevel[y - i][x] == 48) || (m_ArrayLevel[y - i][x] == 84)
+				|| (m_ArrayLevel[y - i][x] == 8)) {
 				calculatedrange += TILE_SIZE;
 			}
 			else {
@@ -366,7 +358,8 @@ double Enemy::reCalculateMaxRange(char dir, int** m_ArrayLevel, double laserRang
 	else if (dir == 'n') {//DOWN
 		for (int i = 1;i < (laserRange / TILE_SIZE);++i) {
 			if ((m_ArrayLevel[y + i][x] == 0) || (m_ArrayLevel[y + i][x] == 'T')
-				|| (m_ArrayLevel[y + i][x] == 48) || (m_ArrayLevel[y + i][x] == 84)) {
+				|| (m_ArrayLevel[y + i][x] == 48) || (m_ArrayLevel[y + i][x] == 84)
+				||(m_ArrayLevel[y + i][x] == 8)) {
 				calculatedrange += TILE_SIZE;
 			}
 			else {
@@ -377,7 +370,8 @@ double Enemy::reCalculateMaxRange(char dir, int** m_ArrayLevel, double laserRang
 	else if (dir == 'm') {//LEFT
 		for (int i = 1;i < (laserRange / TILE_SIZE);++i) {
 			if ((m_ArrayLevel[y][x - i] == 0) || (m_ArrayLevel[y][x - i] == 'T')
-				|| (m_ArrayLevel[y][x - i] == 48) || (m_ArrayLevel[y][x - i] == 84)) {
+				|| (m_ArrayLevel[y][x - i] == 48) || (m_ArrayLevel[y][x - i] == 84)
+				|| (m_ArrayLevel[y][x - i] == 8)) {
 				calculatedrange += TILE_SIZE;
 			}
 			else {
@@ -388,7 +382,8 @@ double Enemy::reCalculateMaxRange(char dir, int** m_ArrayLevel, double laserRang
 	else if (dir == 'f') {//RIGHT
 		for (int i = 1;i < (laserRange / TILE_SIZE);++i) {
 			if ((m_ArrayLevel[y][x + i] == 0)|| (m_ArrayLevel[y][x + i] == 'T')
-				|| (m_ArrayLevel[y][x+i] == 48) || (m_ArrayLevel[y][x+i] == 84)) {
+				|| (m_ArrayLevel[y][x+i] == 48) || (m_ArrayLevel[y][x+i] == 84)
+				|| (m_ArrayLevel[y][x + i] == 8)) {
 				calculatedrange += TILE_SIZE;
 			}
 			else {

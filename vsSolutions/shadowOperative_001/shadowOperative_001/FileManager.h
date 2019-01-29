@@ -14,9 +14,6 @@ class FileManager {
 public:
 	FileManager() noexcept;
 	~FileManager();
-
-
-
 private:
 	;
 };
