@@ -23,7 +23,9 @@ public:
 	sf::ConvexShape getCone();
 
 private:
+	//Convex shape that is the vision cone
 	sf::ConvexShape coneOfDetection;
+	//origin point point(0) of the vision cone
 	sf::Vector2f calculatedOrigin;
 };
 #endif // !VISIONCONE_H
