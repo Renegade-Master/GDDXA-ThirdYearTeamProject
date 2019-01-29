@@ -12,7 +12,7 @@ TextureHolder* TextureHolder::m_s_Instance = nullptr;
 /**
 *	Default Constructor for TextureHolder
 */
-TextureHolder::TextureHolder() {
+TextureHolder::TextureHolder() noexcept {
 	assert(m_s_Instance == nullptr);
 	m_s_Instance = this;
 }
