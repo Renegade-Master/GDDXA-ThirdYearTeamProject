@@ -22,6 +22,7 @@ public:
 
 private:
 	//Where is the laser is shot from 
+	//Where is the laser shot from 
 	sf::Vector2f laserOrig;
 	
 	//Where is the laser pointing at
@@ -32,8 +33,11 @@ private:
 	
 	//When is the last Time the Laser turned on/off
 	sf::Time lastToggleEvent;
+	//The Laser object fired by The LaserPointer
 	laser visionLaser;
+	//The range of the Laser
 	double laserRange = 500;
+	//Max Range of the Laser = laserRange Default
 	double maxLaserRange;
 };
 #endif // !LASERPOINTER_H
