@@ -188,29 +188,32 @@ sf::ConvexShape Enemy::getCone() {
 /**
 *
 */
-void Enemy::increaseAwarenessLevel(sf::Vector2f playPos, int detectionLevel,sf::Time gameTimeTotal) {
+void Enemy::increaseAwarenessLevel(sf::Vector2f playPos, int detectionLevel,sf::Time gameTimeTotal,
+	SoundManager& m_SM) {
 	switch (detectionLevel)	{
 	case 1: 
-		std::cout << "\nAwareness 1";
+		//std::cout << "\nAwareness 1";
 		if (calcDistance(playPos, this->getCenter()) <= 50) {
 			std::cout << "\nDistance: <50";
 			awarenessOfPlayer += 1.0;
 		}
 	case 2:
-		std::cout << "\nAwareness 2";
+		//std::cout << "\nAwareness 2";
 		if (calcDistance(playPos, this->getCenter()) > 50) {
 			std::cout<<"\nDistance: 50+";
 			awarenessOfPlayer += 1.5;
 		}
 		break;
 	case 3:
-		std::cout << "\nAwareness 3";
+		//std::cout << "\nAwareness 3";
 		if (calcDistance(playPos, this->getCenter()) > 100) {
 			std::cout << "\nDistance: 100+";
 			awarenessOfPlayer += 2.0;
 		}
 		break;
 	}
+	//std::cout << "\nDetectionLevel" << detectionLevel;
+	m_SM.playEnemyDetectionLevel(detectionLevel);
 	lastDetectionEvent = gameTimeTotal;
 }
 

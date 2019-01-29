@@ -65,7 +65,7 @@ void Engine::update(float dtAsSeconds) {
 			(*switchIt)->update(m_GameTimeTotal, m_ArrayLevel);
 			if (m_Player.getSprite().getGlobalBounds().intersects(
 				(*switchIt)->getSprite().getGlobalBounds())) {
-				if ((*switchIt)->toggle(m_GameTimeTotal)) {
+				if ((*switchIt)->toggle(m_GameTimeTotal,m_SM)) {
 					doorUpdate(dtAsSeconds, (*switchIt));
 				}
 			}
@@ -81,7 +81,7 @@ void Engine::update(float dtAsSeconds) {
 			//Pick up Item
 			if (m_Player.getSprite().getGlobalBounds().intersects(
 				(*itemIter)->getSprite().getGlobalBounds())) {
-				m_Player.chargeFromPickup((*itemIter)->getCapacity());
+				m_Player.chargeFromPickup((*itemIter)->getCapacity(),m_SM);
 				delete* itemIter;
 				itemIter = m_ItemList.erase(itemIter++);
 				//(*itemIter)->~Item();
@@ -179,7 +179,7 @@ void Engine::update(float dtAsSeconds) {
 				if ((m_ArrayLevel[bulletY][bulletX] == 1) || (m_ArrayLevel[bulletY][bulletX] == 2) ||
 					(m_ArrayLevel[bulletY][bulletX] == 3) || (m_ArrayLevel[bulletY][bulletX] == 5)) {
 					//std::cout << "\nBullet hit wall";
-					bullets[i].stop();
+					bullets[i].stop(m_SM);
 				}
 			}
 		}
@@ -196,8 +196,7 @@ void Engine::update(float dtAsSeconds) {
 					if (bullets[i].getSprite().getGlobalBounds().intersects
 					((*it)->getSprite().getGlobalBounds()))
 					{
-						std::cout << "\n Taking damage!!!!!!";
-						bullets[i].stop();
+						bullets[i].stop(m_SM);
 						//(*it)->//LosesHealthDies
 						(*it)->takeDamage(bullets[i].getShotPower());
 						//(*it)->//is Enemy knoicked unconscious?
@@ -212,7 +211,7 @@ void Engine::update(float dtAsSeconds) {
 					- (*it)->getlastdetectTime() > 500)
 				{
 					(*it)->increaseAwarenessLevel(m_Player.getCenter(),
-						m_Player.getDetectLevel(),m_GameTimeTotal);
+						m_Player.getDetectLevel(),m_GameTimeTotal,m_SM);
 					if ((*it)->getAwareness() <= 100.0)
 					{
 						std::cout << "\nDetected";
@@ -239,7 +238,8 @@ void Engine::update(float dtAsSeconds) {
 					if (!(*checkDeathIter)->isConscious())
 					{
 						//std::cout << "\nEnemy Detecting Ally Death";
-						(*it)->increaseAwarenessLevel((*checkDeathIter)->getCenter(), 1, m_GameTimeTotal);
+						(*it)->increaseAwarenessLevel((*checkDeathIter)->getCenter(), m_Player.getDetectLevel(),
+							m_GameTimeTotal,m_SM);
 					}
 				}
 			}
@@ -260,7 +260,7 @@ void Engine::update(float dtAsSeconds) {
 					((*cameraIt)->getSprite().getGlobalBounds()))
 					{
 						std::cout << "\n Taking damage!!!!!!";
-						bullets[i].stop();
+						bullets[i].stop(m_SM);
 						//(*it)->//LosesHealthDies
 						(*cameraIt)->takeDamage();
 						//(*it)->//is Enemy knoicked unconcious?
@@ -274,7 +274,7 @@ void Engine::update(float dtAsSeconds) {
 				if (m_GameTimeTotal.asMilliseconds() - (*cameraIt)->getlastdetectTime() > 500) {
 					//increase awareness
 					(*cameraIt)->increaseAwarenessLevel(m_Player.getCenter(),
-					m_Player.getDetectLevel(), m_GameTimeTotal);
+					m_Player.getDetectLevel(), m_GameTimeTotal,m_SM);
 					//is player detetced
 					if ((*cameraIt)->getAwareness() <= 100) {
 						std::cout << "\nDetetced";
@@ -298,7 +298,8 @@ void Engine::update(float dtAsSeconds) {
 					//if Enemy is unconcious..... "CONCERN!!!!"
 					if (!(*checkDeathOnCamIter)->isConscious()) {
 						(*checkDeathOnCamIter)->increaseAwarenessLevel(
-						(*checkDeathOnCamIter)->getCenter(), 1, m_GameTimeTotal);
+						(*checkDeathOnCamIter)->getCenter(), m_Player.getDetectLevel(),
+							m_GameTimeTotal,m_SM);
 					}
 				}
 			}

@@ -29,7 +29,7 @@ public:
 	void playerShot(bool shot);
 
 	void chargeGun(float dtAsSeconds);
-	void chargeFromPickup(float charge);
+	void chargeFromPickup(float charge,SoundManager& m_SM);
 	float getChargeLevel();
 	float getShotCost();
 	float getMaxCharge();

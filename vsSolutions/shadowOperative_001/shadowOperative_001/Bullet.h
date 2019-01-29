@@ -13,6 +13,7 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include "TextureHolder.h"
+#include "SoundManager.h"
 
 class Bullet {
 private:
@@ -50,7 +51,7 @@ public:
 	Bullet();
 
 	// Stop the bullet
-	void stop();
+	void stop(SoundManager& m_SM);
 
 	// Returns the value of m_InFlight
 	bool isInFlight();

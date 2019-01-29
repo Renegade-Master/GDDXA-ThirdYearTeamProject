@@ -11,7 +11,7 @@
 #define SOUNDMANAGER_H
 
 #include <SFML/Audio.hpp>
-
+#include <iostream>
 
 class SoundManager {
 private:
@@ -29,6 +29,7 @@ private:
 	sf::SoundBuffer m_EnemyDetectionLevel1Buffer;
 	sf::SoundBuffer m_EnemyDetectionLevel2Buffer;
 	sf::SoundBuffer m_EnemyDetectionLevel3Buffer;
+	sf::SoundBuffer m_ChargeFromPickupBuffer;
 
 	// The Sounds
 	sf::Sound m_ButtonClickSound;
@@ -44,6 +45,7 @@ private:
 	sf::Sound m_EnemyDetectionLevel1Sound;
 	sf::Sound m_EnemyDetectionLevel2Sound;
 	sf::Sound m_EnemyDetectionLevel3Sound;
+	sf::Sound m_ChargeFromPickupSound;
 
 	// Which sound should we use next, fire 1, 2 or 3
 	//int m_NextSound = 1;
@@ -62,6 +64,7 @@ public:
 	void playEnemyUnconscious();
 	void playEnemyCrated();
 	void playEnemyDetectionLevel(int alertness);	
+	void playChargeFromPickup();
 };
 #endif // !SOUNDMANAGER_H
 
