@@ -12,12 +12,15 @@
 
 #include <fstream>
 #include <iostream>
+
 #include <SFML/Graphics.hpp>
-#include "laser.h"
+
+#include "Constants.h"
+#include "Door.h"
+#include "Laser.h"
+#include "List"
+#include "SoundManager.h"
 #include "TextureHolder.h"
-#include "list"
-#include "door.h"
-#include"SoundManager.h"
 
 class PlayableCharacter {
 public:

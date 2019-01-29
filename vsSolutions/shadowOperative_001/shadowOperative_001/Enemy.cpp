@@ -15,8 +15,8 @@ void Enemy::spawn(sf::Vector2i startPosition, float gravity, sf::Time gameStart)
 	//std::cout << "\nEnemy spawn";
 	this->m_SpawnPosition = startPosition;
 	this->m_Position = (sf::Vector2f)m_SpawnPosition;
-	m_Position.x = m_Position.x * 50;
-	m_Position.y = m_Position.y * 50;
+	m_Position.x = m_Position.x * TILE_SIZE;
+	m_Position.y = m_Position.y * TILE_SIZE;
 	m_Gravity = gravity;
 	//The sprite for the enemy.
 	m_Sprite = sf::Sprite(TextureHolder::GetTexture(
@@ -47,7 +47,6 @@ void Enemy::update(float elapsedTime, int** m_ArrayLevel/*, sf::Vector2f playPos
 		detectMeter.setSize(sf::Vector2f(10, this->getAwareness()));
 		detectMeter.setPosition(this->getCenter().x - 5, this->getCenter().y - 30);
 
-		const int TILE_SIZE = 50;
 		// Make a FloatRect to test each block
 		sf::FloatRect block;
 
@@ -192,20 +191,20 @@ void Enemy::increaseAwarenessLevel(sf::Vector2f playPos, int detectionLevel,sf::
 	switch (detectionLevel)	{
 	case 1: 
 		std::cout << "\nAwareness 1";
-		if (calcDistance(playPos, this->getCenter()) <= 50) {
+		if (calcDistance(playPos, this->getCenter()) <= TILE_SIZE) {
 			std::cout << "\nDistance: <50";
 			awarenessOfPlayer += 1.0;
 		}
 	case 2:
 		std::cout << "\nAwareness 2";
-		if (calcDistance(playPos, this->getCenter()) > 50) {
+		if (calcDistance(playPos, this->getCenter()) > TILE_SIZE) {
 			std::cout<<"\nDistance: 50+";
 			awarenessOfPlayer += 1.5;
 		}
 		break;
 	case 3:
 		std::cout << "\nAwareness 3";
-		if (calcDistance(playPos, this->getCenter()) > 100) {
+		if (calcDistance(playPos, this->getCenter()) > (TILE_SIZE * 2)) {
 			std::cout << "\nDistance: 100+";
 			awarenessOfPlayer += 2.0;
 		}
@@ -327,32 +326,32 @@ sf::String Enemy::getClassName() {
 *	Find if Laser Hits a wall
 */
 double Enemy::reCalculateMaxRange(char dir, int** m_ArrayLevel, double laserRange) {
-	int x = (this->m_Position.x / 50);
-	int y = (this->m_Position.y / 50);
+	int x = (this->m_Position.x / TILE_SIZE);
+	int y = (this->m_Position.y / TILE_SIZE);
 	double calculatedrange = 0;
 	if (this->getClassName() == "LaserPointer") {
 		calculatedrange = 75;
-		int y = (this->m_Position.y / 50);
+		int y = (this->m_Position.y / TILE_SIZE);
 	}
 	else if (this->getClassName() == "Enemy") {
-		int y = (this->getCone().getPoint(0).y / 50)-1;
+		int y = (this->getCone().getPoint(0).y / TILE_SIZE) - 1;
 		y *= (0.5);
 		calculatedrange = 20;
 	}
 	else if (this->getClassName() == "Camera") {
-		if ((this->getCone().getPoint(0).y / 50) != 0) {
-			y = (this->getCone().getPoint(0).y / 50)-1;
-			x = (this->getCone().getPoint(0).x / 50);
+		if ((this->getCone().getPoint(0).y / TILE_SIZE) != 0) {
+			y = (this->getCone().getPoint(0).y / TILE_SIZE)-1;
+			x = (this->getCone().getPoint(0).x / TILE_SIZE);
 		}
 		calculatedrange = 30;
 	}
 
 	if (dir == 'a') {//UP
-		for (int i = 1;i < (laserRange / 50);++i) {
+		for (int i = 1;i < (laserRange / TILE_SIZE);++i) {
 			
 			if ((m_ArrayLevel[y - i][x] == 0)|| (m_ArrayLevel[y - i][x] == 'T')
 				|| (m_ArrayLevel[y - i][x] == 48) || (m_ArrayLevel[y - i][x] == 84)) {
-				calculatedrange += 50;
+				calculatedrange += TILE_SIZE;
 			}
 			else {
 				break;
@@ -360,10 +359,10 @@ double Enemy::reCalculateMaxRange(char dir, int** m_ArrayLevel, double laserRang
 		}
 	}
 	else if (dir == 'n') {//DOWN
-		for (int i = 1;i < (laserRange / 50);++i) {
+		for (int i = 1;i < (laserRange / TILE_SIZE);++i) {
 			if ((m_ArrayLevel[y + i][x] == 0) || (m_ArrayLevel[y + i][x] == 'T')
 				|| (m_ArrayLevel[y + i][x] == 48) || (m_ArrayLevel[y + i][x] == 84)) {
-				calculatedrange += 50;
+				calculatedrange += TILE_SIZE;
 			}
 			else {
 				break;
@@ -371,10 +370,10 @@ double Enemy::reCalculateMaxRange(char dir, int** m_ArrayLevel, double laserRang
 		}
 	}
 	else if (dir == 'm') {//LEFT
-		for (int i = 1;i < (laserRange / 50);++i) {
+		for (int i = 1;i < (laserRange / TILE_SIZE);++i) {
 			if ((m_ArrayLevel[y][x - i] == 0) || (m_ArrayLevel[y][x - i] == 'T')
 				|| (m_ArrayLevel[y][x - i] == 48) || (m_ArrayLevel[y][x - i] == 84)) {
-				calculatedrange += 50;
+				calculatedrange += TILE_SIZE;
 			}
 			else {
 				break;
@@ -382,10 +381,10 @@ double Enemy::reCalculateMaxRange(char dir, int** m_ArrayLevel, double laserRang
 		}
 	}
 	else if (dir == 'f') {//RIGHT
-		for (int i = 1;i < (laserRange / 50);++i) {
+		for (int i = 1;i < (laserRange / TILE_SIZE);++i) {
 			if ((m_ArrayLevel[y][x + i] == 0)|| (m_ArrayLevel[y][x + i] == 'T')
 				|| (m_ArrayLevel[y][x+i] == 48) || (m_ArrayLevel[y][x+i] == 84)) {
-				calculatedrange += 50;
+				calculatedrange += TILE_SIZE;
 			}
 			else {
 				break;

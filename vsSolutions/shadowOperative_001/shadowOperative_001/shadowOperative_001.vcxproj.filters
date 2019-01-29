@@ -206,6 +206,9 @@
     <ClInclude Include="LaserPointer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Constants.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Font Include="fonts\Roboto-Light.ttf">
@@ -376,5 +379,6 @@
     <None Include="graphics\Enemy001.xcf">
       <Filter>Resource Files\graphics</Filter>
     </None>
+    <None Include="ClassDiagram2.cd" />
   </ItemGroup>
 </Project>

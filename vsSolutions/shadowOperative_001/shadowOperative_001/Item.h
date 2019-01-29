@@ -11,8 +11,10 @@
 #define ITEM_H
 
 #include <SFML/Graphics.hpp>
+
+#include "Constants.h"
 #include "TextureHolder.h"
-#include <iostream>
+
 class Item 
 {
 public:

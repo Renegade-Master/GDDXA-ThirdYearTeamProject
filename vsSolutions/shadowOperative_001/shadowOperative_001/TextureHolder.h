@@ -11,9 +11,12 @@
 #define TEXTUREHOLDER_H
 
 #include <assert.h>
+#include <iostream>
 #include <map>
 
 #include <SFML/Graphics.hpp>
+
+#include "Constants.h"
 
 class TextureHolder {
 private:

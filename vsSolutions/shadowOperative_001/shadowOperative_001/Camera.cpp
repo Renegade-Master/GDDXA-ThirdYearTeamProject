@@ -10,13 +10,13 @@ Camera::Camera() {
 */
 void Camera::spawn(sf::Vector2i startPosition, float gravity, sf::Time gameStart, char dir,int** m_ArrayLevel) {
 	this->m_Position = sf::Vector2f(startPosition);
-	m_Position.x = m_Position.x * 50;
-	m_Position.y = m_Position.y * 50;
+	m_Position.x = m_Position.x * TILE_SIZE;
+	m_Position.y = m_Position.y * TILE_SIZE;
 	m_Gravity = gravity;
 	m_Sprite = sf::Sprite(TextureHolder::GetTexture(
 		"graphics/camera.png"));
 	std::cout << "\ndir" << dir;
-	this->m_Sprite.setOrigin(this->getCenter().x - this->getCenter().x + 50,
+	this->m_Sprite.setOrigin(this->getCenter().x - this->getCenter().x + TILE_SIZE,
 		this->getCenter().y - this->getCenter().y + 1);
 	if (dir == 'z') {//DOWN
 		m_Sprite.setRotation(-90.0f);

@@ -13,8 +13,8 @@
 */
 Door::Door(char state, sf::Vector2i position) {
 	this->m_Position = (sf::Vector2f)position;
-	this->m_Position.x = m_Position.x * 50;
-	this->m_Position.y = (m_Position.y * 50)-50 ;
+	this->m_Position.x = m_Position.x * TILE_SIZE;
+	this->m_Position.y = (m_Position.y * TILE_SIZE) - TILE_SIZE ;
 	if (state == 'D') {
 		m_DoorState = State::OPEN;
 	}
