@@ -21,7 +21,7 @@ void Engine::update(float dtAsSeconds) {
 		}
 		//This code will read in the folder that has the images to make the start video.
 		m_animatedBackgroundImage.loadFromFile(
-			std::string("graphics/Menu_Video/Short_142_FirstVideo/Short_142 ")
+			std::string("graphics/Menu_Video/Menu/Menu ")
 			.append(std::to_string(m_animatedBackgroundFrame++))
 			.append(".png"));
 		//Sets the images to be drawn to the background. 
@@ -413,15 +413,22 @@ void Engine::update(float dtAsSeconds) {
 		}	
 	}
 	else if (m_GameState == GameState::ENDGAME) {
+
+	m_MainView.reset(
+		sf::FloatRect(0, 0, 1910, 1081));
+
 	// Handle Animated Background for the EndGame
 	if (m_endAnimatedBackgroundFrame >= m_endAnimatedBackgroundMaxFrames) {
-		m_endAnimatedBackgroundFrame = 0;
+		m_GameState = GameState::MAIN_MENU;
+		m_endAnimatedBackgroundFrame = 38;
 	}
+
+
 
 	//This code will read in the folder that has the images to make the EndCredits.
 	m_endAnimatedBackgroundImage.loadFromFile(
-		std::string("graphics/Menu_Video/EndCredits/EndCredits  ")
-		.append(std::to_string(m_animatedBackgroundFrame++))
+		std::string("graphics/Menu_Video/EndCredits/EndCredits ")
+		.append(std::to_string(m_endAnimatedBackgroundFrame++))
 		.append(".png"));
 
 	//Sets the images to be drawn to the background for the endgame. 
