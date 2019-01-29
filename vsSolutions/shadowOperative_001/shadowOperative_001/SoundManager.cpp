@@ -27,6 +27,7 @@ SoundManager::SoundManager() {
 	m_EnemyDetectionLevel1Buffer.loadFromFile("sound\\EnemyAlertLevel.wav");
 	m_EnemyDetectionLevel2Buffer.loadFromFile("sound\\EnemyAlertLevel.wav");
 	m_EnemyDetectionLevel3Buffer.loadFromFile("sound\\EnemyAlertLevel.wav");
+
 	//Energy power up sound,Action is energy transfering from Battery Item to gun
 	m_ChargeFromPickupBuffer.loadFromFile("sound\\");
 
@@ -45,67 +46,6 @@ SoundManager::SoundManager() {
 	m_EnemyDetectionLevel2Sound.setBuffer(m_EnemyDetectionLevel2Buffer);
 	m_EnemyDetectionLevel3Sound.setBuffer(m_EnemyDetectionLevel3Buffer);
 	m_ChargeFromPickupSound.setBuffer(m_ChargeFromPickupBuffer);
-
-	// When the player is 50 pixels away sound is full volume
-	float minDistance = 150;
-	// The sound reduces steadily as the player moves further away
-	float attenuation = 15;
-
-	// Set all the attenuation levels
-	//m_Fire1Sound.setAttenuation(attenuation);
-
-	// Set all the minimum distance levels
-	//m_Fire1Sound.setMinDistance(minDistance);
-
-	// Loop all the fire sounds
-	// when they are played
-	//m_Fire1Sound.setLoop(true);
-}
-
-/**
-*
-*/
-void SoundManager::playFire(sf::Vector2f emitterLocation, sf::Vector2f listenerLocation) {
-	//// Where is the listener? Player.
-	//sf::Listener::setPosition(listenerLocation.x, listenerLocation.y, 0.0f);
-
-	//switch (m_NextSound) {
-	//case 1:
-	//	// Locate/move the source of the sound
-	//	m_Fire1Sound.setPosition(emitterLocation.x, emitterLocation.y, 0.0f);
-
-	//	if (m_Fire1Sound.getStatus() == sf::Sound::Status::Stopped) {
-	//		// Play the sound, if its not already
-	//		//m_Fire1Sound.play();
-	//	}
-	//	break;
-
-	//case 2:
-	//	// Do the same as previous for the second sound
-	//	m_Fire2Sound.setPosition(emitterLocation.x, emitterLocation.y, 0.0f);
-
-	//	if (m_Fire2Sound.getStatus() == sf::Sound::Status::Stopped) {
-	//		//m_Fire2Sound.play();
-	//	}
-	//	break;
-
-	//case 3:
-	//	// Do the same as previous for the third sound
-	//	m_Fire3Sound.setPosition(emitterLocation.x, emitterLocation.y, 0.0f);
-
-	//	if (m_Fire3Sound.getStatus() == sf::Sound::Status::Stopped) {
-	//		//m_Fire3Sound.play();
-	//	}
-	//	break;
-	//}
-
-	//// Increment to the next fire sound
-	//m_NextSound++;
-
-	//// Go back to 1 when the third sound has been started
-	//if (m_NextSound > 3) {
-	//	m_NextSound = 1;
-	//}
 }
 
 /**

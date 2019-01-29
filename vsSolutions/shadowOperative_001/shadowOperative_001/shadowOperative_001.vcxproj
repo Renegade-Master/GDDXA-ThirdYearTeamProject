@@ -145,7 +145,7 @@
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="InputHandler.cpp" />
     <ClCompile Include="Item.cpp" />
-    <ClCompile Include="laser.cpp" />
+    <ClCompile Include="Laser.cpp" />
     <ClCompile Include="LaserPointer.cpp" />
     <ClCompile Include="LevelManager.cpp" />
     <ClCompile Include="LoadLevel.cpp" />

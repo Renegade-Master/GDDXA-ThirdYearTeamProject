@@ -15,6 +15,7 @@ Door::Door(char state, sf::Vector2i position) {
 	this->m_Position = (sf::Vector2f)position;
 	this->m_Position.x = m_Position.x * TILE_SIZE;
 	this->m_Position.y = (m_Position.y * TILE_SIZE) - TILE_SIZE ;
+	
 	if (state == 'D') {
 		m_DoorState = State::OPEN;
 	}
@@ -30,9 +31,10 @@ Door::Door(char state, sf::Vector2i position) {
 	}
 	m_OpenDoorSprite = sf::Sprite(TextureHolder::GetTexture(
 		"graphics/DoorOpen.png"));
-	m_OpenDoorSprite.setPosition(this->m_Position);
 	m_ClosedDoorSprite = sf::Sprite(TextureHolder::GetTexture(
 		"graphics/DoorLocked.png"));
+
+	m_OpenDoorSprite.setPosition(this->m_Position);
 	m_ClosedDoorSprite.setPosition(this->m_Position);
 }
 
@@ -41,15 +43,12 @@ Door::Door(char state, sf::Vector2i position) {
 */
 void Door::doorState(){
 	if (m_DoorState == State::STATIC) {
-		//std::cout<< "\nStatic";
 		return;
 	}
 	if (m_DoorState == State::CLOSE) {
-		//std::cout << "\nWas open now closed";
 		m_DoorState = State::OPEN;
 	}
 	else if (m_DoorState == State::OPEN) {
-		//std::cout << "\nWas closed now open";
 		m_DoorState = State::CLOSE;
 	}
 }

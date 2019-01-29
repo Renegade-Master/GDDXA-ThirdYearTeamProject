@@ -18,6 +18,7 @@ void Engine::loadLevel() {
 			delete[] m_ArrayLevel[i];
 
 		}
+
 		delete[] m_ArrayLevel;
 		m_CameraList.clear();
 		m_DoorList.clear();
@@ -25,7 +26,6 @@ void Engine::loadLevel() {
 		m_ItemList.clear();
 		m_LaserPointerList.clear();
 		m_SwitchList.clear();
-		m_FireEmitters.clear();
 
 
 		// Load the next 2d array with the map for the level
@@ -57,10 +57,6 @@ void Engine::loadLevel() {
 			spawnCamera();
 		}
 
-		// Make sure this code isn't run again
-		//m_NewLevelRequired = false;
-
-		std::cout << "Loading...DONE!" << std::endl;
 		m_GameState = GameState::READYUP;
 	}
 }

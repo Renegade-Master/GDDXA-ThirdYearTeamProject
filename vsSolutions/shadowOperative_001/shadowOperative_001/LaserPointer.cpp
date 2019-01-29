@@ -24,11 +24,13 @@ void LaserPointer::spawn(sf::Vector2i startPosition, float gravity, sf::Time gam
 
 	this->m_Sprite.setOrigin(this->getCenter().x - this->getCenter().x + TILE_SIZE,
 		this->getCenter().y - this->getCenter().y + 1);
+	
 	//Start ToggleEvent Timer
 	lastToggleEvent = gameStart;
 	active = true;
 	maxLaserRange = laserRange;
 	laserRange = reCalculateMaxRange(dir,m_ArrayLevel,laserRange);
+	
 	/*Orient the Object to the appropriate position
 		and calculate the bounds of the connected laser object*/
 	if (dir == 'a') {//UP
@@ -73,6 +75,7 @@ void LaserPointer::spawn(sf::Vector2i startPosition, float gravity, sf::Time gam
 		this->visionLaser.updateLine(this->laserOrig, this->laserDest);
 	}
 }
+
 /*
 *	Updates the LaserPointer object for current frame
 */
@@ -96,18 +99,24 @@ void LaserPointer::update(sf::Time m_GameTimeTotal) {
 		}
 	}
 }
+
 /*
 *	Return the ConvexShape that is the laser of the LaserPointer
 */
 sf::ConvexShape LaserPointer::getLaser() {
 	return visionLaser.getLine();
 }
+
 /*
 *	Return Whether or not the laser is currently active
 */
 bool LaserPointer::isActive() {
 	return active;
 }
+
+/**
+*	Return the name of this Class for comparison
+*/
 sf::String LaserPointer::getClassName() {
 	return(sf::String("LaserPointer"));
 }

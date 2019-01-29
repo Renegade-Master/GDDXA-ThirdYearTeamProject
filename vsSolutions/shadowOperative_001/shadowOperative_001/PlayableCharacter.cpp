@@ -54,6 +54,7 @@ sf::Vector2f PlayableCharacter::getCenter() {
 		this->m_Position.y + this->m_Sprite.getGlobalBounds().height / 2
 	);
 }
+
 /**
 *	Return various hitboxes.
 */
@@ -155,6 +156,9 @@ PlayableCharacter::Direction& operator++(PlayableCharacter::Direction& mv, int) 
 	}
 }
 
+/**
+*
+*/
 bool PlayableCharacter::isTargeting() {
 	return false;
 }
