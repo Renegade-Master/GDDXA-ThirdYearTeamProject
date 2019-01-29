@@ -17,10 +17,10 @@ SoundManager::SoundManager() {
 	m_JumpBuffer.loadFromFile("sound\\jump.wav");
 	m_ReachGoalBuffer.loadFromFile("sound\\reachgoal.wav");
 	m_PlayerShootBuffer.loadFromFile("sound\\PlayerShoot_002.wav");
-	m_PlayerLaserPowerUpBuffer.loadFromFile("sound\\");
-	m_PlayerLaserPowerDownBuffer.loadFromFile("sound\\");
-	m_EnemyHitBuffer.loadFromFile("sound\\");
-	m_EnemyCratedBuffer.loadFromFile("sound\\");
+	m_LaserPowerUpBuffer.loadFromFile("sound\\LaserPowerUp.wav");
+	m_LaserPowerDownBuffer.loadFromFile("sound\\LaserPowerDown.wav");
+	m_EnemyHitBuffer.loadFromFile("sound\\EnemyHit.wav");
+	m_EnemyCratedBuffer.loadFromFile("sound\\EnemyCrated.wav");
 	m_EnemyDetectionLevel0Buffer.loadFromFile("sound\\");
 	m_EnemyDetectionLevel1Buffer.loadFromFile("sound\\");
 	m_EnemyDetectionLevel2Buffer.loadFromFile("sound\\");
@@ -31,8 +31,8 @@ SoundManager::SoundManager() {
 	m_JumpSound.setBuffer(m_JumpBuffer);
 	m_ReachGoalSound.setBuffer(m_ReachGoalBuffer);
 	m_PlayerShootSound.setBuffer(m_PlayerShootBuffer);
-	m_PlayerLaserPowerUpSound.setBuffer(m_PlayerLaserPowerUpBuffer);
-	m_PlayerLaserPowerDownSound.setBuffer(m_PlayerLaserPowerDownBuffer);
+	m_LaserPowerUpSound.setBuffer(m_LaserPowerUpBuffer);
+	m_LaserPowerDownSound.setBuffer(m_LaserPowerDownBuffer);
 	m_EnemyHitSound.setBuffer(m_EnemyHitBuffer);
 	m_EnemyUnconsciousSound.setBuffer(m_EnemyUnconscoiusBuffer);
 	m_EnemyCratedSound.setBuffer(m_EnemyCratedBuffer);
@@ -138,17 +138,17 @@ void SoundManager::playPlayerShoot() {
 /**
 *	Play the ... Sound
 */
-void SoundManager::playPlayerLaserPowerUp() {
-	m_PlayerLaserPowerUpSound.setRelativeToListener(true);
-	m_PlayerLaserPowerUpSound.play();
+void SoundManager::playLaserPowerUp() {
+	m_LaserPowerUpSound.setRelativeToListener(true);
+	m_LaserPowerUpSound.play();
 }
 
 /**
 *	Play the ... Sound
 */
-void SoundManager::playPlayerLaserPowerDown() {
-	m_PlayerLaserPowerDownSound.setRelativeToListener(true);
-	m_PlayerLaserPowerDownSound.play();
+void SoundManager::playLaserPowerDown() {
+	m_LaserPowerDownSound.setRelativeToListener(true);
+	m_LaserPowerDownSound.play();
 }
 
 /**

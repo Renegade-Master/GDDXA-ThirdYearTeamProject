@@ -19,8 +19,8 @@ private:
 	sf::SoundBuffer m_JumpBuffer;
 	sf::SoundBuffer m_ReachGoalBuffer;
 	sf::SoundBuffer m_PlayerShootBuffer;
-	sf::SoundBuffer m_PlayerLaserPowerUpBuffer;
-	sf::SoundBuffer m_PlayerLaserPowerDownBuffer;
+	sf::SoundBuffer m_LaserPowerUpBuffer;
+	sf::SoundBuffer m_LaserPowerDownBuffer;
 	sf::SoundBuffer m_EnemyHitBuffer;
 	sf::SoundBuffer m_EnemyUnconscoiusBuffer;
 	sf::SoundBuffer m_EnemyCratedBuffer;
@@ -34,8 +34,8 @@ private:
 	sf::Sound m_JumpSound;
 	sf::Sound m_ReachGoalSound;
 	sf::Sound m_PlayerShootSound;
-	sf::Sound m_PlayerLaserPowerUpSound;
-	sf::Sound m_PlayerLaserPowerDownSound;
+	sf::Sound m_LaserPowerUpSound;
+	sf::Sound m_LaserPowerDownSound;
 	sf::Sound m_EnemyHitSound;
 	sf::Sound m_EnemyUnconsciousSound;
 	sf::Sound m_EnemyCratedSound;
@@ -55,8 +55,8 @@ public:
 	void playJump();
 	void playReachGoal();
 	void playPlayerShoot();
-	void playPlayerLaserPowerUp();
-	void playPlayerLaserPowerDown();
+	void playLaserPowerUp();
+	void playLaserPowerDown();
 	void playEnemyHit();
 	void playEnemyUnconscious();
 	void playEnemyCrated();
