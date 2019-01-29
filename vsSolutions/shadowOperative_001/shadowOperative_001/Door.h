@@ -15,7 +15,7 @@
 
 class Door : public Item {
 public:
-	Door(char state, sf::Vector2i position);
+    Door(char state, sf::Vector2i position);
 	
 	// We will call this function once every frame
 	virtual void update(float elapsedTime, int** m_ArrayLevel);
@@ -32,9 +32,16 @@ public:
 	sf::FloatRect getPosition();
 
 private:
+    //enum class for the available State's of the Door
 	enum class State { OPEN, CLOSE, STATIC };
+	
+	//Enum variable for current state of the door
 	State m_DoorState = State::CLOSE;
+	
+	//Sprite for the door during the OPEN State
 	sf::Sprite m_OpenDoorSprite;
+	
+	//Sprite for the door during the CLOSED/STATIC STATE
 	sf::Sprite m_ClosedDoorSprite;
 };
 #endif // !DOOR_H

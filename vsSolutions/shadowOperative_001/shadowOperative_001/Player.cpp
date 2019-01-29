@@ -512,3 +512,26 @@ sf::String Player::getClassName() {
 sf::Vector2f Player::getTarget() {
 	return this->target;
 }
+
+sf::Text Player::getHudDetectLevel() {
+	int detection = this->getDetectLevel();
+	switch (detection)
+	{
+	case 0:  
+		hudText.setString("Hidden");
+		break;
+	case 1:
+		hudText.setString("Undetected");
+		break;
+	case 2:
+		hudText.setString("Caution");
+		break;
+	case 3:
+		hudText.setString("Alert");
+		break;
+	default:
+		hudText.setString("Undetected");
+		break;
+	}
+	return hudText;
+}

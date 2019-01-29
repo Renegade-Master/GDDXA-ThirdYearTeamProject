@@ -11,8 +11,12 @@
 #define CONSTANTS_H
 
 constexpr int GRAVITY = 300;
-constexpr int TILE_SIZE = 50;
 constexpr int VERTS_IN_QUAD = 4;
+
+//The Tile Size of every position in the ASCII Map (TILE_SIZE*TILE_SIZE)
+constexpr int TILE_SIZE = 50;
+
+//PIE defined for mathematical equations throughout the project
 constexpr float PIE = 3.14159265358979323846f;
 
 #endif // !CONSTANTS_H

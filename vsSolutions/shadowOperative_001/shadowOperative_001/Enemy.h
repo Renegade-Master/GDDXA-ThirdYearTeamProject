@@ -41,32 +41,36 @@ public:
 	virtual bool isTargeting();
 
 private:
+	//Holds the default position/spawn location of the enemy
 	sf::Vector2i m_SpawnPosition;
+	//Is the current patrol direction still on a valid path?
 	bool patrolValid = false;
 
 	//	Inherited from Superclass
 	virtual void PlayableCharacter::handleInput();
-	
+	//Variable counts ticks since patrol altered
 	int sincePatrolAlter = 0;
+	//Holds the current direction
 	char direction;
-	
 protected:
 	//	Enemy Health
 	float health = 100.0f;
+	//The speed at which the enemy regenerates health
 	const float regenRate = 0.5f;
+	//The maximum Value of the variable health
 	const float maxHealth = 100.0f;
+	//Is the player currently conscious/unconcsious?
 	bool concious = true;
 	
 	//	Enemy Line-of-Sight
 	int sightAngle = 60;
+	//Default viewing distance is maximum viewing distance
 	double detectionDistance = 500;
+	//Maximum range in front of the Enemy that it is able to view
 	const double maxDistance = detectionDistance;
-	
-	//	This Character's cone of vision
+	//This Characters cone of vision a ConvexShape object called of type visionCone
 	visionCone cone;
-	laser visionLaser;
-	double laserRange = 500;
-	double maxLaserRange;
+	//Varaible how close this Enemy object is to detecting the player character
 	float awarenessOfPlayer = 0.0f;
 	
 	//	Detection Event recorder used to slow execution of detection events to reasonable pace

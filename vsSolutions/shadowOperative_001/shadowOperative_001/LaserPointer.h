@@ -32,6 +32,9 @@ private:
 	
 	//When is the last Time the Laser turned on/off
 	sf::Time lastToggleEvent;
+	laser visionLaser;
+	double laserRange = 500;
+	double maxLaserRange;
 };
 #endif // !LASERPOINTER_H
 

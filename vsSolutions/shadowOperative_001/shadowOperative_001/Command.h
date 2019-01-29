@@ -23,8 +23,8 @@ public:
 	SoundManager m_SM =  SoundManager();
 };
 
-/**
-*	Do nothing
+/*
+*	Command supplied as Default when controller input is NULL
 */
 class cmd_Null : public Command {
 public:
@@ -45,7 +45,6 @@ public:
 			&& pc.m_Action != PlayableCharacter::Action::JUMPING) {
 
 			pc.m_Action = PlayableCharacter::Action::RUNNING;
-
 		}
 	}
 };
@@ -68,7 +67,7 @@ public:
 };
 
 /**
-*	Set the Character to Jumping
+*	Supplies the jump Command
 */
 class cmd_Jump : public Command {
 public:

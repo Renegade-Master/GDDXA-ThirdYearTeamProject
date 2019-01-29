@@ -23,6 +23,7 @@ public:
 	virtual void PlayableCharacter::handleInput();
 
 	int getDetectLevel();
+	sf::Text getHudDetectLevel();
 
 	bool isShooting();
 	void playerShot(bool shot);
@@ -50,6 +51,7 @@ private:
 	float gunChargeRate = 2.0f;
 	float maxGunChargeLevel = 100.0f;
 	float shotCost = 10.0f;
+	sf::Text hudText;
 
 	//aiming
 	bool targeting = false;	
