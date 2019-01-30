@@ -8,7 +8,9 @@
 
 #include "Engine.h"
 #include "PlayableCharacter.h"
-
+/**
+*	Update the game for this frame
+*/
 void Engine::update(float dtAsSeconds) {
 
 	if (m_GameState == GameState::MAIN_MENU) {
@@ -316,7 +318,6 @@ void Engine::update(float dtAsSeconds) {
 
 		// Update the HUD every m_TargetFramesPerHUDUpdate frames
 		if (m_FramesSinceLastHUDUpdate > m_TargetFramesPerHUDUpdate) {
-			std::cout << "\nUpdating HUD";
 			// Update game HUD text
 			std::stringstream ssTime;
 			std::stringstream ssLevel;
@@ -398,26 +399,5 @@ void Engine::update(float dtAsSeconds) {
 	}
 }
 
-/**
-*	Cycles through the door List and Finds which one is closest to the referenced
-*	Switch object, The closest one is always the connected Door
-*/
-void Engine::doorUpdate(float dtAsSeconds, ToggleSwitch *Switch) {
-	//update Doors
-	float currentShortest = std::numeric_limits<float>::infinity();
-	Door* shortest = nullptr;
 
-	for (std::list<Door*>::iterator doorIt = m_DoorList.begin(); 
-			doorIt != m_DoorList.end(); doorIt++) {
 
-		if ((calcDistance((*doorIt)->getCenter(), (*Switch).getCenter()) < currentShortest)
-			&& (*doorIt)->getDoorState()) {
-
-			currentShortest = calcDistance((*doorIt)->getCenter(), (*Switch).getCenter());
-			shortest = (*doorIt);
-		}
-	}
-
-	shortest->doorState();
-	shortest->update(dtAsSeconds, m_ArrayLevel);
-}

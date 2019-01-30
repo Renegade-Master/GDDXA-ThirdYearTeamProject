@@ -90,7 +90,7 @@ sf::Sprite Door::getDoorSprite() {
 }
 
 /**
-*	...
+*	verify wether or not the door is static or changeable
 */
 bool Door::getDoorState() {
 	if (m_DoorState == State::STATIC) {
@@ -102,7 +102,7 @@ bool Door::getDoorState() {
 }
 
 /**
-*	...
+*	Return valid state(Player can pass through)) if the door staye is open
 */
 bool Door::getValidState() {
 	if (m_DoorState == State::OPEN) {

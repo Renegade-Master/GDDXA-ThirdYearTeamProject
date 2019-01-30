@@ -61,28 +61,28 @@ Hud::Hud() {
 }
 
 /**
-*	...
+*	Return the Start Message for the game
 */
 sf::Text Hud::getMessage() {
 	return m_StartText;
 }
 
 /**
-*	...
+*	Return the current m_IsHidden sf::Text variable
 */
 sf::Text Hud::getHidden() {
 	return m_isHidden;
 }
 
 /**
-*	...
+*	Set the current Level Text value
 */
 void Hud::setLevel(sf::String text) {
 	m_LevelText.setString(text);
 }
 
 /**
-*	...
+*	Set the current m_IsHidden value
 */
 void Hud::setHidden(sf::Text text)
 {
@@ -90,35 +90,35 @@ void Hud::setHidden(sf::Text text)
 }
 
 /**
-*	...
+*	Set the current value for m_TimeText
 */
 void Hud::setTime(sf::String text) {
 	m_TimeText.setString(text);
 }
 
 /**
-*	...
+*	set the current size of RectangleShape m_GunCharge based upon current Gun Energy Level
 */
 void Hud::setGunCharge(float charge) {
 	m_GunCharge.setSize(sf::Vector2f(charge, 30));
 }
 
 /**
-*	...
+*	Return the RectangleShape that is m_GunCharge which represents the current gun charge
 */
 sf::RectangleShape Hud::getGunCharge() {
 	return m_GunCharge;
 }
 
 /**
-*	...
+*	Set The RectangleShape m_GunChargeBackground which m_GunCharge overlays
 */
 void Hud::setGunChargeBackground(float maxCharge) {
 	m_GunChargeBackground.setSize(sf::Vector2f(maxCharge, 30));
 }
 
 /**
-*	...
+*	Return the RectangleShape that is m_GunChargeBackground that m_GunCharge overlays
 */
 sf::RectangleShape Hud::getGunBackground() {
 	return m_GunChargeBackground;

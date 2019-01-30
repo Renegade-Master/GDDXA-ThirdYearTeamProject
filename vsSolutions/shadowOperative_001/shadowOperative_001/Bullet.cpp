@@ -20,7 +20,7 @@ Bullet::Bullet() {
 }
 
 /**
-*	...
+*	Set the trajectory of the bullet object using the player's current location and a target location
 */
 void Bullet::shoot(float startX, float startY,
 	float targetX, float targetY) {
@@ -71,7 +71,7 @@ void Bullet::shoot(float startX, float startY,
 }
 
 /**
-*	...
+*	Set m_InFlight signaling to all functions to stop updating this bullet
 */
 void Bullet::stop(SoundManager& m_SM) {
 	m_SM.playEnemyHit();
@@ -79,28 +79,28 @@ void Bullet::stop(SoundManager& m_SM) {
 }
 
 /**
-*	...
+*	Return wether or not the bullet is currently in flight
 */
 bool Bullet::isInFlight() {
 	return m_InFlight;
 }
 
 /**
-*	...
+*	return the floatRect bounds of the players position
 */
 sf::FloatRect Bullet::getPosition() {
 	return m_BulletSprite.getGlobalBounds();
 }
 
 /**
-*	...
+*	Return the Sprite of the bullet object
 */
 sf::Sprite Bullet::getSprite() {
 	return m_BulletSprite;
 }
 
 /**
-*	...
+*	Update the bullet objects location using its trajectory and time elapsed since last update
 */
 void Bullet::update(float elapsedTime) {
 	// Update the bullet position variables
@@ -119,21 +119,21 @@ void Bullet::update(float elapsedTime) {
 }
 
 /**
-*	...
+*	get the center of the object(x,y coordinates)
 */
 sf::Vector2f Bullet::getCenter() {
 	return m_Position;
 }
 
 /**
-*	...
+*	set the amount of power in the shot(How much damage it does)
 */
 void Bullet::setShotPower(float power) {
 	this->shotPower = power;
 }
 
 /**
-*	...
+*	return the amount of power in the shot(How much damage it does)
 */
 float Bullet::getShotPower() {
 	return shotPower;

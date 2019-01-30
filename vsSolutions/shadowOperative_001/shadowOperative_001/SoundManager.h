@@ -75,9 +75,6 @@ private:
 	// The Sound for charging from a pickup
 	sf::Sound m_ChargeFromPickupSound;
 
-	// Which sound should we use next, fire 1, 2 or 3
-	//int m_NextSound = 1;
-
 public:
 	SoundManager() noexcept;
 

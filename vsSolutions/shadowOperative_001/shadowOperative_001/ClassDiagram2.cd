@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="Bullet" Collapsed="true">
-    <Position X="43.5" Y="15.5" Width="1.5" />
+    <Position X="43.5" Y="16.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAIIAAEAGgAIAIAABAAAAAAAAAgQSAAAAIBEAAUAAA=</HashCode>
       <FileName>Bullet.h</FileName>
@@ -129,41 +129,22 @@
       </Enum>
     </NestedTypes>
     <TypeIdentifier>
-      <HashCode>AAAAICAAAAAgKAAgIQAQAAAAAAAABAAAAAAAAAAEEAA=</HashCode>
+      <HashCode>AAAAICAAAAAAKAAgIQAQAAAAAAAABAAAAAAAAAAEEAA=</HashCode>
       <FileName>Door.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Enemy">
     <Position X="1.5" Y="5.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AIQAYQAIAAOAIAAABAgCQAwhICABECCAhgABAAIECAg=</HashCode>
+      <HashCode>AIQAYQAIAAOAIAAABAgCQAQhICABECCAgAABAAIECAg=</HashCode>
       <FileName>Enemy.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Engine" Collapsed="true">
-    <Position X="43.5" Y="17.75" Width="1.5" />
-    <NestedTypes>
-      <Enum Name="Engine::GameState" Collapsed="true">
-        <TypeIdentifier>
-          <NewMemberFileName>Engine.h</NewMemberFileName>
-        </TypeIdentifier>
-      </Enum>
-      <Enum Name="Engine::SettingsPage" Collapsed="true">
-        <TypeIdentifier>
-          <NewMemberFileName>Engine.h</NewMemberFileName>
-        </TypeIdentifier>
-      </Enum>
-    </NestedTypes>
+    <Position X="43.5" Y="18.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>CEcAA5QZMIggCIB0QE8EKSBLEkLrFBSMbAQIzwgeIgg=</HashCode>
+      <HashCode>CEcAA5QZMIggCIB0QE8EKSBJEkLrBBSMZAQIzwgMIgg=</HashCode>
       <FileName>Engine.h</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="FileManager" Collapsed="true">
-    <Position X="43.5" Y="20.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAABAA=</HashCode>
-      <FileName>FileManager.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="gunBattery">
@@ -177,63 +158,49 @@
     </NestedTypes>
     <TypeIdentifier>
       <HashCode>AAAAAASAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAEAAA=</HashCode>
-      <FileName>gunBattery.h</FileName>
+      <FileName>GunBattery.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Hud" Collapsed="true">
-    <Position X="43.5" Y="16.25" Width="1.5" />
+    <Position X="43.5" Y="17" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>CAAAQAAAMAAAABBIIAEAAAAEAIAACAAAAARCAAEwgAA=</HashCode>
+      <HashCode>CAAAQAAAMAAAABBIIAAAAAAEAIAACAAAAARCAAAwgAA=</HashCode>
       <FileName>HUD.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="InputHandler" Collapsed="true">
-    <Position X="43.5" Y="17" Width="1.5" />
+    <Position X="43.5" Y="17.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AIBABoIQBQAAAAEAEAjwAAAQQIAAAEgAIAAUgGGhACA=</HashCode>
+      <HashCode>AIBABoIQBQAAAAEAEAjwAAAQQIAAAEgAIAAUgmGhACA=</HashCode>
       <FileName>InputHandler.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Item">
     <Position X="9.5" Y="4.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAIYAAgCAAAAAAIBAAAAAFCIQAACAAAAAAAAAEiAI=</HashCode>
+      <HashCode>AAAAIQAAACAAAAAAIBAAAAAFAAAAACAAAAAAAAAECAA=</HashCode>
       <FileName>Item.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="laser" Collapsed="true">
-    <Position X="43.5" Y="11.5" Width="1.5" />
+    <Position X="43.5" Y="14" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAQAABAABAAA=</HashCode>
-      <FileName>laser.h</FileName>
+      <FileName>Laser.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="LaserPointer">
     <Position X="3.75" Y="12.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAABAhAAQAAAAAgAAAIgQEQAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAABghAAQBAAAAhAAAIgQEQAA=</HashCode>
       <FileName>LaserPointer.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="LevelManager" Collapsed="true">
-    <Position X="43.5" Y="20" Width="1.5" />
+    <Position X="43.5" Y="20.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAgAAACAIAARCAgUUIE4BkECBUAAAAEAAFAAIDkBhI=</HashCode>
+      <HashCode>AAAgAAACAIAARCAAUUIE4BkECBUAAAAAAAFAAIDgBhI=</HashCode>
       <FileName>LevelManager.h</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Particle" Collapsed="true">
-    <Position X="43.5" Y="10.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAIAAAACAACAAAAAAAAAACAAAAAAQAAAAAAAAEAAA=</HashCode>
-      <FileName>Particle.h</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="ParticleSystem" Collapsed="true">
-    <Position X="43.5" Y="13.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AQAAAAAQBAAAAAAAAAJAAAAAACgAAAIAAAAAAAAEAAA=</HashCode>
-      <FileName>ParticleSystem.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="PlayableCharacter">
@@ -255,19 +222,19 @@
       </Enum>
     </NestedTypes>
     <TypeIdentifier>
-      <HashCode>iKYAcQQAgSGQIAIAYJAJAEAjGAYAQiAiBEIBAQAkAUM=</HashCode>
+      <HashCode>iKYAcQQAgSGQIAAAIJAIAEAhGAYAQiAiBAIBAQAkAUM=</HashCode>
       <FileName>PlayableCharacter.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SoundManager" Collapsed="true">
-    <Position X="43.5" Y="18.5" Width="1.5" />
+    <Position X="43.5" Y="19.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAApAEAAAIARkIAAAAMAGICEAkAQES0AEJAAQACBAWg=</HashCode>
+      <HashCode>IAApAEAAAIARkIAAAAMAGICEAkAwESwAEJAAQACBA2g=</HashCode>
       <FileName>SoundManager.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="TextureHolder" Collapsed="true">
-    <Position X="43.5" Y="19.25" Width="1.5" />
+    <Position X="43.5" Y="20" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAACAAAAAAAAAAAAAAAAAAgAAAAAAAAAQAAAAAg=</HashCode>
       <FileName>TextureHolder.h</FileName>
@@ -276,42 +243,28 @@
   <Class Name="Player">
     <Position X="3.75" Y="6.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AARIAiAAAAHIgQAAJAAgAAAgAAAAAAAQAgQAAQAEBAE=</HashCode>
+      <HashCode>AARIAjAAAAHIgQAAJAQgAAAgAAAAAAAQAgQAAQAEBAE=</HashCode>
       <FileName>Player.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ToggleSwitch" Collapsed="true">
-    <Position X="43.5" Y="12.25" Width="1.5" />
-    <NestedTypes>
-      <Enum Name="ToggleSwitch::ToggleState" Collapsed="true">
-        <TypeIdentifier>
-          <NewMemberFileName>ToggleSwitch.h</NewMemberFileName>
-        </TypeIdentifier>
-      </Enum>
-    </NestedTypes>
+    <Position X="43.5" Y="14.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAIAAAQCAAAgAAABAgAAAAAQAAACAAAAAQAgAEEAA=</HashCode>
       <FileName>ToggleSwitch.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="TutorialManager" Collapsed="true">
-    <Position X="43.5" Y="14.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAgAAAAAAwAAAAAAAAAAAAAAAAAAAAAAAQAAAAAA=</HashCode>
-      <FileName>TutorialManager.h</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="visionCone" Collapsed="true">
-    <Position X="43.5" Y="13" Width="1.5" />
+    <Position X="43.5" Y="15.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>gIAAAAAAAAAAAABAAAAAAAAAAAAAAAABAAAAAQAAAAQ=</HashCode>
-      <FileName>visionCone.h</FileName>
+      <FileName>VisionCone.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="GUI::Button" Collapsed="true">
     <Position X="43.5" Y="21.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>RECEIIAAMHBAggkgAAYABACSAIAggCYBCANAkAcMAAQ=</HashCode>
+      <HashCode>RECEIIAAMHBAggkgAAYABACSAIAggCQBCANAkAcEAAQ=</HashCode>
       <FileName>Button.h</FileName>
     </TypeIdentifier>
   </Class>
@@ -329,7 +282,7 @@
       <FileName>Button.h</FileName>
     </TypeIdentifier>
   </Enum>
-  <Enum Name="ControlScheme::__unnamed_enum_001b_1" Collapsed="true">
+  <Enum Name="ControlScheme::__unnamed_enum_001c_1" Collapsed="true">
     <Position X="41.75" Y="20" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAQAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAA=</HashCode>
