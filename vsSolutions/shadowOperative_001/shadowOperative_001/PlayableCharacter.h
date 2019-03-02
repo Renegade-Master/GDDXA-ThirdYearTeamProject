@@ -18,6 +18,8 @@
 
 class PlayableCharacter {
 public:
+	//set Shooting
+	virtual void setShooting();
 	// PlayableCharacter Direction State
 	enum class Direction { LEFT, RIGHT, IDLE };
 	//Holds Current Direction State for this Character
@@ -116,6 +118,7 @@ protected:
 	sf::Image m_animationSheet;
 	//Sprite for this character
 	sf::Sprite m_Sprite;
+
 
 	// We will call this function once every frame
 	virtual void update(float elapsedTime,int** m_ArrayLevel) = 0;

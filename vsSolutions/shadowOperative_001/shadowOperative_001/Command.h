@@ -11,6 +11,7 @@
 #define COMMAND_H
 
 #include "PlayableCharacter.h"
+#include "Player.h"
 #include "SoundManager.h"
 
 /**
@@ -90,7 +91,8 @@ class cmd_Shoot : public Command {
 public:
 	virtual void execute(PlayableCharacter& pc) override {
 		pc.m_Action = PlayableCharacter::Action::ATTACKING;
-		pc.shooting = true;
+		pc.setShooting();
+		//pc.shooting = true;
 	}
 };
 

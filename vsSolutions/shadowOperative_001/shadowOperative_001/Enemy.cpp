@@ -128,6 +128,9 @@ void Enemy::update(float elapsedTime, int** m_ArrayLevel/*, sf::Vector2f playPos
 		m_Sprite.setPosition(this->m_Position);
 	}
 	else { this->regen(elapsedTime); }
+	detectMeter.setSize(sf::Vector2f(10, (-this->getAwareness())/2));
+	detectMeter.setFillColor(sf::Color::Red);
+	detectMeter.setPosition(this->getCenter().x + 15, this->getCenter().y + 30);
 }
 
 /**
@@ -269,33 +272,23 @@ bool Enemy::isConscious() {
 *	and their regenRate variable called once per frame
 */
 void Enemy::regen(float elapsedTime) {
-	//std::cout << "\nCALLING REGEN!!!";
 	if (health < maxHealth)	{
 		if (this->isConscious())	{
-			//std::cout << "\nconscious";
 			if ((health + (regenRate * elapsedTime)) <= maxHealth) {
-				/*std::cout << "\nhealth:" << health << " + regenRate " << regenRate
-					<< " * elapsedTime: " << elapsedTime << " = " << health + (regenRate * elapsedTime);*/
 				health += regenRate * elapsedTime;
 			}
 			else {
-				//std::cout << "\nHealth at max";
 				health = maxHealth;
 			}
 		}
 		else {
-			//std::cout << "\nNot conscious";
 			if ((health + (regenRate / 2)) * elapsedTime <= maxHealth) {
-				/*std::cout << "\nhealth:" << health << " + (regenRate / 2) " << (regenRate / 2)
-					<< " * elapsedTime: " << elapsedTime << " = " << (health + ((regenRate / 2) * elapsedTime));*/
 				health += ((regenRate / 2) * elapsedTime);
 			}
 			else {
-				//std::cout << "\nHealth at max";
 				health = maxHealth;
 			}
 		}
-		//std::cout << "\nRegen complete Health is now" << this->health;
 	}
 	if ((health >= maxHealth) && (!concious))
 	{
@@ -398,4 +391,10 @@ float Enemy::reCalculateMaxRange(char dir, int** m_ArrayLevel, float laserRange)
 */
 bool Enemy::isTargeting() {
 	return false;
+}
+/**
+*	Instantly set This Enemy to maximum Awrareness level
+*/
+void Enemy::instantDetection() {
+	this->awarenessOfPlayer = 100.0;
 }
