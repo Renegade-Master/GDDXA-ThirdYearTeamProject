@@ -20,7 +20,7 @@ void Enemy::spawn(sf::Vector2i startPosition, float gravity, sf::Time gameStart)
 
 	//The sprite for the enemy.
 	m_Sprite = sf::Sprite(TextureHolder::GetTexture(
-		"graphics/D-EnemyRight.png"));
+		"graphics/R-Enemy_3.png"));
 
 	//Sets the sprite image to the location of the enemy. 
 	m_Sprite.setPosition(this->m_Position);
@@ -94,13 +94,13 @@ void Enemy::update(float elapsedTime, int** m_ArrayLevel/*, sf::Vector2f playPos
 			this->m_Position.x += this->m_Speed*elapsedTime;
 			//Changes the enemy to look left.
 			m_Sprite = sf::Sprite(TextureHolder::GetTexture(
-				"graphics/D-EnemyLeft.png"));
+				"graphics/L-Enemy_3.png"));
 			break;
 		case PlayableCharacter::Direction::RIGHT:
 			this->m_Position.x -= this->m_Speed*elapsedTime;
 			//Changes the enemy to look Right.
 			m_Sprite = sf::Sprite(TextureHolder::GetTexture(
-				"graphics/D-EnemyRight.png"));
+				"graphics/R-Enemy_3.png"));
 			break;
 		}
 
@@ -241,7 +241,9 @@ sf::RectangleShape Enemy::getDetectMeter() {
 *	reduce the value of warenessOfPlayer
 */
 void Enemy::reduceAwareness(sf::Time gameTimeTotal) {
-	awarenessOfPlayer--;
+	if (this->awarenessOfPlayer > 0) {
+		awarenessOfPlayer--;
+	}
 	lastDetectionEvent = gameTimeTotal;
 }
 
