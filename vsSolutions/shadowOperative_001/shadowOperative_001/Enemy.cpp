@@ -392,6 +392,9 @@ float Enemy::reCalculateMaxRange(char dir, int** m_ArrayLevel, float laserRange)
 bool Enemy::isTargeting() {
 	return false;
 }
+/**
+*	Instantly set This Enemy to maximum Awrareness level
+*/
 void Enemy::instantDetection() {
 	this->awarenessOfPlayer = 100.0;
 }

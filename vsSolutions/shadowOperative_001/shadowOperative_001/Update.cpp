@@ -102,7 +102,7 @@ void Engine::update(float dtAsSeconds) {
 			if ((*lasIt)->isActive()) {
 				//If so is the player touching it
 				if ((*lasIt)->getLaser().getGlobalBounds().intersects(m_Player.getPosition())) {
-					m_GameState = GameState::ENDGAME;
+					m_GameState = GameState::MAIN_MENU;
 				}
 			}
 		}
@@ -211,7 +211,7 @@ void Engine::update(float dtAsSeconds) {
 						m_Player.getDetectLevel(),m_GameTimeTotal,m_SM);
 
 					if ((*it)->getAwareness() >= 100.0) {
-						m_GameState = GameState::ENDGAME;
+						m_GameState = GameState::MAIN_MENU;
 					}
 				}
 			}
@@ -267,7 +267,7 @@ void Engine::update(float dtAsSeconds) {
 					
 					//is player detetced
 					if ((*cameraIt)->getAwareness() >= 100) {
-						m_GameState = GameState::ENDGAME;
+						m_GameState = GameState::MAIN_MENU;
 					}
 				}
 			}
