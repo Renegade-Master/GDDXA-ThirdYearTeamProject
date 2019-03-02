@@ -14,40 +14,51 @@
 SoundManager::SoundManager() noexcept {
 	// Load the sound in to the buffers
 	m_ButtonClickBuffer.loadFromFile("sound\\ButtonClick.wav");
-	m_JumpBuffer.loadFromFile("sound\\PlayerJump.wav");
-	m_ReachGoalBuffer.loadFromFile("sound\\LevelComplete.wav");
-	m_PlayerShootBuffer.loadFromFile("sound\\PlayerShoot_002.wav");
-	m_LaserPowerUpBuffer.loadFromFile("sound\\LaserPowerUp.wav");
-	m_LaserPowerDownBuffer.loadFromFile("sound\\LaserPowerDown.wav");
-	m_EnemyUnconscoiusBuffer.loadFromFile("sound\\EnemyUnconscious.wav");
-	m_EnemyHitBuffer.loadFromFile("sound\\EnemyHit.wav");
-	m_EnemyUnconscoiusBuffer.loadFromFile("sound\\EnemyUnconscious.wav");
+	m_ChargeFromPickupBuffer.loadFromFile("sound\\weaponChargePickup.wav");
 	m_EnemyCratedBuffer.loadFromFile("sound\\EnemyCrated.wav");
 	m_EnemyDetectionLevel0Buffer.loadFromFile("sound\\EnemyAlertLevel_01.wav");
 	m_EnemyDetectionLevel1Buffer.loadFromFile("sound\\EnemyAlertLevel_02.wav");
 	m_EnemyDetectionLevel2Buffer.loadFromFile("sound\\EnemyAlertLevel_03.wav");
 	m_EnemyDetectionLevel3Buffer.loadFromFile("sound\\EnemyAlertDetected.wav");
-
-	//Energy power up sound,Action is energy transfering from Battery Item to gun
-	m_ChargeFromPickupBuffer.loadFromFile("sound\\weaponChargePickup.wav");
+	m_EnemyHitBuffer.loadFromFile("sound\\EnemyHit.wav");
+	m_EnemyUnconscoiusBuffer.loadFromFile("sound\\EnemyUnconscious.wav");
+	m_JumpBuffer.loadFromFile("sound\\PlayerJump.wav");
+	m_LaserPowerDownBuffer.loadFromFile("sound\\LaserPowerDown.wav");
+	m_LaserPowerUpBuffer.loadFromFile("sound\\LaserPowerUp.wav");
+	m_PlayerShootBuffer.loadFromFile("sound\\PlayerShoot_002.wav");
+	m_ReachGoalBuffer.loadFromFile("sound\\LevelComplete.wav");
 
 	// Associate the sounds with the buffers
 	m_ButtonClickSound.setBuffer(m_ButtonClickBuffer);
-	m_JumpSound.setBuffer(m_JumpBuffer);
-	m_ReachGoalSound.setBuffer(m_ReachGoalBuffer);
-	m_PlayerShootSound.setBuffer(m_PlayerShootBuffer);
-	m_LaserPowerUpSound.setBuffer(m_LaserPowerUpBuffer);
-	m_LaserPowerDownSound.setBuffer(m_LaserPowerDownBuffer);
-	m_EnemyHitSound.setBuffer(m_EnemyHitBuffer);
-	m_EnemyUnconsciousSound.setBuffer(m_EnemyUnconscoiusBuffer);
+	m_ChargeFromPickupSound.setBuffer(m_ChargeFromPickupBuffer);
 	m_EnemyCratedSound.setBuffer(m_EnemyCratedBuffer);
 	m_EnemyDetectionLevel0Sound.setBuffer(m_EnemyDetectionLevel0Buffer);
 	m_EnemyDetectionLevel1Sound.setBuffer(m_EnemyDetectionLevel1Buffer);
 	m_EnemyDetectionLevel2Sound.setBuffer(m_EnemyDetectionLevel2Buffer);
 	m_EnemyDetectionLevel3Sound.setBuffer(m_EnemyDetectionLevel3Buffer);
-	m_ChargeFromPickupSound.setBuffer(m_ChargeFromPickupBuffer);
+	m_EnemyHitSound.setBuffer(m_EnemyHitBuffer);
+	m_EnemyUnconsciousSound.setBuffer(m_EnemyUnconscoiusBuffer);
+	m_JumpSound.setBuffer(m_JumpBuffer);
+	m_LaserPowerDownSound.setBuffer(m_LaserPowerDownBuffer);
+	m_LaserPowerUpSound.setBuffer(m_LaserPowerUpBuffer);
+	m_PlayerShootSound.setBuffer(m_PlayerShootBuffer);
+	m_ReachGoalSound.setBuffer(m_ReachGoalBuffer);
 
 	//	Change the volume of certain effects
+	m_ButtonClickSound			.setVolume(100.0f);
+	m_ChargeFromPickupSound		.setVolume(100.0f);
+	m_EnemyCratedSound			.setVolume(100.0f);
+	m_EnemyDetectionLevel0Sound	.setVolume(100.0f);
+	m_EnemyDetectionLevel1Sound	.setVolume(100.0f);
+	m_EnemyDetectionLevel2Sound	.setVolume(100.0f);
+	m_EnemyDetectionLevel3Sound	.setVolume(100.0f);
+	m_EnemyHitSound				.setVolume(100.0f);
+	m_EnemyUnconsciousSound		.setVolume(100.0f);
+	m_JumpSound					.setVolume(100.0f);
+	m_LaserPowerDownSound		.setVolume(100.0f);
+	m_LaserPowerUpSound			.setVolume(100.0f);
+	m_PlayerShootSound			.setVolume(100.0f);
+	m_ReachGoalSound			.setVolume(100.0f);
 }
 
 /**
