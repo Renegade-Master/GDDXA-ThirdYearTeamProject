@@ -131,7 +131,43 @@ void Engine::initButtons() {
 		GUI::ButtonStyle::cancel));
 
 	
-	//		Audio Settings
+	//		Audio Settings	
+	m_audioSettingsButtons.push_back(GUI::Button(
+		"SFX Volume Down",
+		m_buttonFont,
+		sf::Vector2f(resolution.x* 0.33f, resolution.y* 0.25f),
+		GUI::ButtonStyle::none));
+
+	m_audioSettingsButtons.push_back(GUI::Button(
+		"SFX Volume Up",
+		m_buttonFont,
+		sf::Vector2f(resolution.x* 0.66f, resolution.y* 0.25f),
+		GUI::ButtonStyle::none));
+
+	m_audioSettingsButtons.push_back(GUI::Button(
+		"Music Volume Down",
+		m_buttonFont,
+		sf::Vector2f(resolution.x* 0.33f, resolution.y* 0.50f),
+		GUI::ButtonStyle::none));
+
+	m_audioSettingsButtons.push_back(GUI::Button(
+		"Music Volume Up",
+		m_buttonFont,
+		sf::Vector2f(resolution.x* 0.66f, resolution.y* 0.50f),
+		GUI::ButtonStyle::none));
+
+	m_audioSettingsButtons.push_back(GUI::Button(
+		"UI Volume Down",
+		m_buttonFont,
+		sf::Vector2f(resolution.x* 0.33f, resolution.y* 0.75f),
+		GUI::ButtonStyle::none));
+
+	m_audioSettingsButtons.push_back(GUI::Button(
+		"UI Volume Up",
+		m_buttonFont,
+		sf::Vector2f(resolution.x* 0.66f, resolution.y* 0.75f),
+		GUI::ButtonStyle::none));
+
 	m_audioSettingsButtons.push_back(GUI::Button(
 		"Back",
 		m_buttonFont,

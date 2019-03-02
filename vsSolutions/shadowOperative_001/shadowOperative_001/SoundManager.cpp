@@ -66,7 +66,26 @@ SoundManager::SoundManager() noexcept {
 */
 void SoundManager::playButtonClick() {
 	m_ButtonClickSound.setRelativeToListener(true);
+	m_ButtonClickSound.setVolume(this->m_UI_VOLUME);
 	m_ButtonClickSound.play();
+}
+
+/**
+*	Play the Charge From Pickup Sound
+*/
+void SoundManager::playChargeFromPickup() {
+	m_ChargeFromPickupSound.setRelativeToListener(true);
+	m_ChargeFromPickupSound.setVolume(this->m_SFX_VOLUME);
+	m_ChargeFromPickupSound.play();
+}
+
+/**
+*	Play the Enemy Crate Sound
+*/
+void SoundManager::playEnemyCrated() {
+	m_EnemyCratedSound.setRelativeToListener(true);
+	m_EnemyCratedSound.setVolume(this->m_SFX_VOLUME);
+	m_EnemyCratedSound.play();
 }
 
 /**
@@ -74,6 +93,7 @@ void SoundManager::playButtonClick() {
 */
 void SoundManager::playJump() {
 	m_JumpSound.setRelativeToListener(true);
+	m_JumpSound.setVolume(this->m_SFX_VOLUME);
 	m_JumpSound.play();
 }
 
@@ -82,6 +102,7 @@ void SoundManager::playJump() {
 */
 void SoundManager::playReachGoal() {
 	m_ReachGoalSound.setRelativeToListener(true);
+	m_ReachGoalSound.setVolume(this->m_SFX_VOLUME);
 	m_ReachGoalSound.play();
 }
 
@@ -90,6 +111,7 @@ void SoundManager::playReachGoal() {
 */
 void SoundManager::playPlayerShoot() {
 	m_PlayerShootSound.setRelativeToListener(true);
+	m_PlayerShootSound.setVolume(this->m_SFX_VOLUME);
 	m_PlayerShootSound.play();
 }
 
@@ -98,6 +120,7 @@ void SoundManager::playPlayerShoot() {
 */
 void SoundManager::playLaserPowerUp() {
 	m_LaserPowerUpSound.setRelativeToListener(true);
+	m_LaserPowerUpSound.setVolume(this->m_SFX_VOLUME);
 	m_LaserPowerUpSound.play();
 }
 
@@ -106,6 +129,7 @@ void SoundManager::playLaserPowerUp() {
 */
 void SoundManager::playLaserPowerDown() {
 	m_LaserPowerDownSound.setRelativeToListener(true);
+	m_LaserPowerDownSound.setVolume(this->m_SFX_VOLUME);
 	m_LaserPowerDownSound.play();
 }
 
@@ -114,6 +138,7 @@ void SoundManager::playLaserPowerDown() {
 */
 void SoundManager::playEnemyHit() {
 	m_EnemyHitSound.setRelativeToListener(true);
+	m_EnemyHitSound.setVolume(this->m_SFX_VOLUME);
 	m_EnemyHitSound.play();
 }
 
@@ -122,15 +147,8 @@ void SoundManager::playEnemyHit() {
 */
 void SoundManager::playEnemyUnconscious() {
 	m_EnemyUnconsciousSound.setRelativeToListener(true);
+	m_EnemyUnconsciousSound.setVolume(this->m_SFX_VOLUME);
 	m_EnemyUnconsciousSound.play();
-}
-
-/**
-*	Play the Enemy Crate Sound
-*/
-void SoundManager::playEnemyCrated() {
-	m_EnemyCratedSound.setRelativeToListener(true);
-	m_EnemyCratedSound.play();
 }
 
 /**
@@ -142,36 +160,33 @@ void SoundManager::playEnemyDetectionLevel(int alertness) {
 	case 0:
 		//std::cout << "\nCase 0\n";
 		m_EnemyDetectionLevel0Sound.setRelativeToListener(true);
+		m_EnemyDetectionLevel0Sound.setVolume(this->m_SFX_VOLUME);
 		m_EnemyDetectionLevel0Sound.play();
 		break;
 	case 1:
 		//std::cout << "\nCase 1\n";
 		m_EnemyDetectionLevel1Sound.setRelativeToListener(true);
+		m_EnemyDetectionLevel1Sound.setVolume(this->m_SFX_VOLUME);
 		m_EnemyDetectionLevel1Sound.setLoop(true);
 		m_EnemyDetectionLevel1Sound.play();
 		break;
 	case 2:
 		//std::cout << "\nCase 2\n";
 		m_EnemyDetectionLevel2Sound.setRelativeToListener(true);
+		m_EnemyDetectionLevel2Sound.setVolume(this->m_SFX_VOLUME);
 		m_EnemyDetectionLevel2Sound.play();
 		break;
 	case 3:
 		//std::cout << "\nCase 3\n";
 		m_EnemyDetectionLevel3Sound.setRelativeToListener(true);
+		m_EnemyDetectionLevel3Sound.setVolume(this->m_SFX_VOLUME);
 		m_EnemyDetectionLevel3Sound.play();
 		break;
 	default:
 		//std::cout << "\nCase DEFAULT\n";
 		m_EnemyDetectionLevel0Sound.setRelativeToListener(true);
+		m_EnemyDetectionLevel0Sound.setVolume(this->m_SFX_VOLUME);
 		m_EnemyDetectionLevel0Sound.play();
 		break;
 	}
-}
-
-/**
-*	Play the Charge From Pickup Sound
-*/
-void SoundManager::playChargeFromPickup() {
-	m_ChargeFromPickupSound.setRelativeToListener(true);
-	m_ChargeFromPickupSound.play();
 }
