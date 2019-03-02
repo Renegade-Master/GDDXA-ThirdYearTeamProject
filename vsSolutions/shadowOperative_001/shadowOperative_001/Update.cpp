@@ -185,6 +185,9 @@ void Engine::update(float dtAsSeconds) {
 		//update Enemy
 		for (std::list<Enemy*>::iterator it = m_EnemyList.begin(); it != m_EnemyList.end(); it++) {
 			(*it)->update(dtAsSeconds, m_ArrayLevel);
+			if ((*it)->getSprite().getGlobalBounds().intersects(m_Player.getPosition())) {
+				(*it)->instantDetection();
+			}
 
 			//check for bullet Collision
 			for (int i = 0; i < 5; i++) {
