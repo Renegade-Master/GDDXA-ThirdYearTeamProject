@@ -45,20 +45,20 @@ SoundManager::SoundManager() noexcept {
 	m_ReachGoalSound.setBuffer(m_ReachGoalBuffer);
 
 	//	Change the volume of certain effects
-	m_ButtonClickSound			.setVolume(100.0f);
-	m_ChargeFromPickupSound		.setVolume(100.0f);
-	m_EnemyCratedSound			.setVolume(100.0f);
-	m_EnemyDetectionLevel0Sound	.setVolume(100.0f);
-	m_EnemyDetectionLevel1Sound	.setVolume(100.0f);
-	m_EnemyDetectionLevel2Sound	.setVolume(100.0f);
-	m_EnemyDetectionLevel3Sound	.setVolume(100.0f);
-	m_EnemyHitSound				.setVolume(100.0f);
-	m_EnemyUnconsciousSound		.setVolume(100.0f);
-	m_JumpSound					.setVolume(100.0f);
-	m_LaserPowerDownSound		.setVolume(100.0f);
-	m_LaserPowerUpSound			.setVolume(100.0f);
-	m_PlayerShootSound			.setVolume(100.0f);
-	m_ReachGoalSound			.setVolume(100.0f);
+	m_ButtonClickSound			.setVolume(this->m_UI_VOLUME);
+	m_ChargeFromPickupSound		.setVolume(this->m_SFX_VOLUME);
+	m_EnemyCratedSound			.setVolume(this->m_SFX_VOLUME);
+	m_EnemyDetectionLevel0Sound	.setVolume(this->m_SFX_VOLUME);
+	m_EnemyDetectionLevel1Sound	.setVolume(this->m_SFX_VOLUME);
+	m_EnemyDetectionLevel2Sound	.setVolume(this->m_SFX_VOLUME);
+	m_EnemyDetectionLevel3Sound	.setVolume(this->m_SFX_VOLUME);
+	m_EnemyHitSound				.setVolume(this->m_SFX_VOLUME);
+	m_EnemyUnconsciousSound		.setVolume(this->m_SFX_VOLUME);
+	m_JumpSound					.setVolume(this->m_SFX_VOLUME);
+	m_LaserPowerDownSound		.setVolume(this->m_SFX_VOLUME);
+	m_LaserPowerUpSound			.setVolume(this->m_SFX_VOLUME);
+	m_PlayerShootSound			.setVolume(this->m_SFX_VOLUME);
+	m_ReachGoalSound			.setVolume(this->m_SFX_VOLUME);
 }
 
 /**

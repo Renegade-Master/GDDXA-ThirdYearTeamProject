@@ -15,6 +15,26 @@
 #include <SFML/Audio.hpp>
 
 class SoundManager {
+public:
+	SoundManager() noexcept;
+
+	//	Volume Controls
+	float m_SFX_VOLUME = 100.0f;
+	float m_MUSIC_VOLUME = 100.0f;
+	float m_UI_VOLUME = 100.0f;
+
+	void playButtonClick();
+	void playJump();
+	void playReachGoal();
+	void playPlayerShoot();
+	void playLaserPowerUp();
+	void playLaserPowerDown();
+	void playEnemyHit();
+	void playEnemyUnconscious();
+	void playEnemyCrated();
+	void playEnemyDetectionLevel(int alertness);
+	void playChargeFromPickup();
+
 private:
 	// The buffers
 	//Sound buffer for button clicks
@@ -74,21 +94,6 @@ private:
 	sf::Sound m_EnemyDetectionLevel3Sound;
 	// The Sound for charging from a pickup
 	sf::Sound m_ChargeFromPickupSound;
-
-public:
-	SoundManager() noexcept;
-
-	void playButtonClick();
-	void playJump();
-	void playReachGoal();
-	void playPlayerShoot();
-	void playLaserPowerUp();
-	void playLaserPowerDown();
-	void playEnemyHit();
-	void playEnemyUnconscious();
-	void playEnemyCrated();
-	void playEnemyDetectionLevel(int alertness);	
-	void playChargeFromPickup();
 };
 #endif // !SOUNDMANAGER_H
 
