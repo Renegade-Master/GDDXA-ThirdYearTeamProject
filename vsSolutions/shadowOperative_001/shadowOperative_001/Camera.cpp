@@ -26,7 +26,7 @@ void Camera::spawn(sf::Vector2i startPosition, float gravity, sf::Time gameStart
 	
 	m_Sprite = sf::Sprite(TextureHolder::GetTexture(
 		"graphics/camera.png"));
-	std::cout << "\ndir" << dir;
+	//std::cout << "\ndir" << dir;
 	
 	this->m_Sprite.setOrigin(this->getCenter().x - this->getCenter().x + TILE_SIZE,
 		this->getCenter().y - this->getCenter().y + 1);
@@ -46,7 +46,7 @@ void Camera::spawn(sf::Vector2i startPosition, float gravity, sf::Time gameStart
 		m_Sprite.setRotation(90.0f);
 		rotation = 90.0f;
 		rotationStartPoint = 90.0f;
-		std::cout << "\nChanging direction to 'a'";
+		//std::cout << "\nChanging direction to 'a'";
 		this->direction = 'a';
 		this->detectionDistance = reCalculateMaxRange(
 			this->direction, m_ArrayLevel, this->maxDistance);

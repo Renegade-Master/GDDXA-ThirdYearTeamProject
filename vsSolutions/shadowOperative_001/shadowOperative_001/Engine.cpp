@@ -89,20 +89,17 @@ void Engine::enemySpawn() {
 *	Spawns Items into the game
 */
 void Engine::ItemSpawn() {
-	//std::cout << "\n start";
 	Item* newItem = nullptr;
 	int numOfItems = m_LM.getNumOfItems();
 	//std::cout<<"\nThis is how many Items we Have:" << m_LM.getNumOfItems();
 	for (int i = 0;i < numOfItems;i++){
-		//std::cout << "\n Entering For Loop";
 		char type = m_LM.getItemType();
 		if (type == 'B') {
-			//std::cout << "\n Should not be here";
 			newItem = new gunBattery(m_LM.getItemPos());
 		}
 		m_ItemList.push_back(newItem);
 	}
-	std::cout << "\nItem Spawned";
+	//std::cout << "\nItem Spawned";
 }
 
 /**

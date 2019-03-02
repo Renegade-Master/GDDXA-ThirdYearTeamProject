@@ -48,7 +48,7 @@ bool Engine::detectCollisions(PlayableCharacter& character) {
 	sf::FloatRect level(0, 0, m_LM.getLevelSize().x * TILE_SIZE, m_LM.getLevelSize().y * TILE_SIZE);
 	if (!character.getPosition().intersects(level))	{
 		// respawn the character
-		std::cout << "YOU DIED!" << std::endl;
+		//std::cout << "YOU DIED!" << std::endl;
 		character.spawn(m_LM.getStartPosition(), GRAVITY);
 	}
 	

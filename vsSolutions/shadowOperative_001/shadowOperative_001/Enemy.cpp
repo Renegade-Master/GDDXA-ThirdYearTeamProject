@@ -182,20 +182,20 @@ void Enemy::increaseAwarenessLevel(sf::Vector2f playPos, int detectionLevel,sf::
 	case 1: 
 		//std::cout << "\nAwareness 1";
 		if (calcDistance(playPos, this->getCenter()) <= 50) {
-			std::cout << "\nDistance: <50";
+			//std::cout << "\nDistance: <50";
 			awarenessOfPlayer += 3.0;
 		}
 	case 2:
 		//std::cout << "\nAwareness 2";
 		if (calcDistance(playPos, this->getCenter()) > 50) {
-			std::cout<<"\nDistance: 50+";
+			//std::cout<<"\nDistance: 50+";
 			awarenessOfPlayer += 4.5;
 		}
 		break;
 	case 3:
 		//std::cout << "\nAwareness 3";
 		if (calcDistance(playPos, this->getCenter()) > 100) {
-			std::cout << "\nDistance: 100+";
+			//std::cout << "\nDistance: 100+";
 			awarenessOfPlayer += 6.0;
 		}
 		break;
@@ -292,7 +292,7 @@ void Enemy::regen(float elapsedTime) {
 	}
 	if ((health >= maxHealth) && (!concious))
 	{
-		std::cout << "\nConcious";
+		//std::cout << "\nConcious";
 		concious = true;
 	}
 	
