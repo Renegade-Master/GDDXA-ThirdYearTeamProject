@@ -14,7 +14,7 @@
 SoundManager::SoundManager() noexcept {
 	// Load the sound in to the buffers
 	m_ButtonClickBuffer.loadFromFile("sound\\ButtonClick.wav");
-	m_JumpBuffer.loadFromFile("sound\\jump.wav");
+	m_JumpBuffer.loadFromFile("sound\\PlayerJump.wav");
 	m_ReachGoalBuffer.loadFromFile("sound\\LevelComplete.wav");
 	m_PlayerShootBuffer.loadFromFile("sound\\PlayerShoot_002.wav");
 	m_LaserPowerUpBuffer.loadFromFile("sound\\LaserPowerUp.wav");
@@ -23,13 +23,13 @@ SoundManager::SoundManager() noexcept {
 	m_EnemyHitBuffer.loadFromFile("sound\\EnemyHit.wav");
 	m_EnemyUnconscoiusBuffer.loadFromFile("sound\\EnemyUnconscious.wav");
 	m_EnemyCratedBuffer.loadFromFile("sound\\EnemyCrated.wav");
-	m_EnemyDetectionLevel0Buffer.loadFromFile("sound\\EnemyAlertLevel.wav");
-	m_EnemyDetectionLevel1Buffer.loadFromFile("sound\\EnemyAlertLevel.wav");
-	m_EnemyDetectionLevel2Buffer.loadFromFile("sound\\EnemyAlertLevel.wav");
-	m_EnemyDetectionLevel3Buffer.loadFromFile("sound\\EnemyAlertLevel.wav");
+	m_EnemyDetectionLevel0Buffer.loadFromFile("sound\\EnemyAlertLevel_01.wav");
+	m_EnemyDetectionLevel1Buffer.loadFromFile("sound\\EnemyAlertLevel_02.wav");
+	m_EnemyDetectionLevel2Buffer.loadFromFile("sound\\EnemyAlertLevel_03.wav");
+	m_EnemyDetectionLevel3Buffer.loadFromFile("sound\\EnemyAlertDetected.wav");
 
 	//Energy power up sound,Action is energy transfering from Battery Item to gun
-	m_ChargeFromPickupBuffer.loadFromFile("sound\\");
+	m_ChargeFromPickupBuffer.loadFromFile("sound\\weaponChargePickup.wav");
 
 	// Associate the sounds with the buffers
 	m_ButtonClickSound.setBuffer(m_ButtonClickBuffer);
@@ -46,6 +46,8 @@ SoundManager::SoundManager() noexcept {
 	m_EnemyDetectionLevel2Sound.setBuffer(m_EnemyDetectionLevel2Buffer);
 	m_EnemyDetectionLevel3Sound.setBuffer(m_EnemyDetectionLevel3Buffer);
 	m_ChargeFromPickupSound.setBuffer(m_ChargeFromPickupBuffer);
+
+	//	Change the volume of certain effects
 }
 
 /**
@@ -154,6 +156,7 @@ void SoundManager::playEnemyDetectionLevel(int alertness) {
 		break;
 	}
 }
+
 /**
 *	Play the Charge From Pickup Sound
 */
