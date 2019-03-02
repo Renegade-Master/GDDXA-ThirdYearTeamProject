@@ -534,6 +534,7 @@ sf::Text Player::getHudDetectLevel() {
 	}
 	return hudText;
 }
+
 /**
 *	Toggle for Shooting
 */

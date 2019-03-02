@@ -45,7 +45,7 @@ public:
 
 	sf::String getClassName();
 
-	virtual void setShooting();
+	void setShooting();
 
 private:
 	//Detection Level - Higher the value tyhe faster enemies detect the player
