@@ -165,3 +165,9 @@ PlayableCharacter::Direction& operator++(PlayableCharacter::Direction& mv, int) 
 bool PlayableCharacter::isTargeting() {
 	return false;
 }
+/**
+*	Virtual toggle for shooting
+*/
+void PlayableCharacter::setShooting() {
+	//Overridden
+}

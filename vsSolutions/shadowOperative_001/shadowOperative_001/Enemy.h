@@ -24,6 +24,7 @@ public:
 	sf::ConvexShape getCone();
 	void increaseAwarenessLevel(sf::Vector2f playPos,int detectionLevel,sf::Time gameTimeTotal,
 		SoundManager& m_SM);
+	void instantDetection();
 	float getAwareness();
 	float calcDistance(sf::Vector2f playPos,sf::Vector2f thisPos);
 	float getlastdetectTime();
