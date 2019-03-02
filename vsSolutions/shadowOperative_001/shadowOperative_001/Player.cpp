@@ -330,7 +330,7 @@ int Player::getDetectLevel() {
 		|| (this->m_Action == Action::JUMPING)
 		|| (this->m_Action == Action::ATTACKING)
 		|| (this->m_Action == Action::RUNNING)) {
-		std::cout << "\nReturning detection 3";
+		//std::cout << "\nReturning detection 3";
 		return detectionLevel = 3;
 	}
 	else if (this->m_Action == Action::IDLE) {

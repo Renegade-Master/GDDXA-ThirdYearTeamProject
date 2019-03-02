@@ -22,14 +22,8 @@
     <Filter Include="Resource Files\levels">
       <UniqueIdentifier>{9595f56d-8492-4cec-b424-c1b8c34d86c7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files\shaders">
-      <UniqueIdentifier>{89700ae5-7484-4544-8fcc-8b700d222ebe}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Resource Files\sounds">
       <UniqueIdentifier>{74837387-7e86-4950-a638-90ed3c94efb1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resource Files\tutorials">
-      <UniqueIdentifier>{f23deb2e-c05d-49cf-ab64-9248f90b9b42}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -189,98 +183,6 @@
     </Font>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="graphics\background.png">
-      <Filter>Resource Files\graphics</Filter>
-    </Image>
-    <Image Include="graphics\bob.png">
-      <Filter>Resource Files\graphics</Filter>
-    </Image>
-    <Image Include="graphics\thomas.png">
-      <Filter>Resource Files\graphics</Filter>
-    </Image>
-    <Image Include="graphics\tiles_sheet.png">
-      <Filter>Resource Files\graphics</Filter>
-    </Image>
-    <Image Include="graphics\industrial-tileset.png">
-      <Filter>Resource Files\graphics</Filter>
-    </Image>
-    <Image Include="graphics\tileset_001.png">
-      <Filter>Resource Files\graphics</Filter>
-    </Image>
-    <Image Include="graphics\tileset_002.png">
-      <Filter>Resource Files\graphics</Filter>
-    </Image>
-    <Image Include="graphics\Crouch_down_000.png">
-      <Filter>Resource Files\graphics</Filter>
-    </Image>
-    <Image Include="graphics\Fly_004.png">
-      <Filter>Resource Files\graphics</Filter>
-    </Image>
-    <Image Include="graphics\Idle_004.png">
-      <Filter>Resource Files\graphics</Filter>
-    </Image>
-    <Image Include="graphics\Jump_DOWN_000.png">
-      <Filter>Resource Files\graphics</Filter>
-    </Image>
-    <Image Include="graphics\tileset_003.png">
-      <Filter>Resource Files\graphics</Filter>
-    </Image>
-    <Image Include="graphics\Walk_003.png">
-      <Filter>Resource Files\graphics</Filter>
-    </Image>
-    <Image Include="graphics\Walk_left.png">
-      <Filter>Resource Files\graphics</Filter>
-    </Image>
-    <Image Include="graphics\background_001.png">
-      <Filter>Resource Files\graphics</Filter>
-    </Image>
-    <Image Include="graphics\background_002.png">
-      <Filter>Resource Files\graphics</Filter>
-    </Image>
-    <Image Include="graphics\background_003.png">
-      <Filter>Resource Files\graphics</Filter>
-    </Image>
-    <Image Include="graphics\background_005.png">
-      <Filter>Resource Files\graphics</Filter>
-    </Image>
-    <Image Include="graphics\background_007.png">
-      <Filter>Resource Files\graphics</Filter>
-    </Image>
-    <Image Include="graphics\background1-720.png">
-      <Filter>Resource Files\graphics</Filter>
-    </Image>
-    <Image Include="graphics\Enemy000.png">
-      <Filter>Resource Files\graphics</Filter>
-    </Image>
-    <Image Include="graphics\Enemy001.png">
-      <Filter>Resource Files\graphics</Filter>
-    </Image>
-    <Image Include="graphics\Glide_000.png">
-      <Filter>Resource Files\graphics</Filter>
-    </Image>
-    <Image Include="graphics\Idle__001.png">
-      <Filter>Resource Files\graphics</Filter>
-    </Image>
-    <Image Include="graphics\MenuBackground.png">
-      <Filter>Resource Files\graphics</Filter>
-    </Image>
-    <Image Include="graphics\PlayerAnimationSheet.png">
-      <Filter>Resource Files\graphics</Filter>
-    </Image>
-    <Image Include="graphics\Run__002.png">
-      <Filter>Resource Files\graphics</Filter>
-    </Image>
-    <Image Include="graphics\RunLeft__001.png">
-      <Filter>Resource Files\graphics</Filter>
-    </Image>
-    <Image Include="graphics\RunRight__001.png">
-      <Filter>Resource Files\graphics</Filter>
-    </Image>
-    <Image Include="graphics\PlayerAnimationSheet_02.png">
-      <Filter>Resource Files\graphics</Filter>
-    </Image>
-  </ItemGroup>
-  <ItemGroup>
     <Text Include="levels\level5.txt">
       <Filter>Resource Files\levels</Filter>
     </Text>
@@ -315,43 +217,39 @@
     </Media>
   </ItemGroup>
   <ItemGroup>
-    <None Include="shaders\rippleShader.frag">
-      <Filter>Resource Files\shaders</Filter>
-    </None>
-    <None Include="shaders\vertShader.vert">
-      <Filter>Resource Files\shaders</Filter>
-    </None>
     <None Include="ClassDiagram.cd" />
-    <None Include="tutorials\tut_jumping.tutorial">
-      <Filter>Resource Files\tutorials</Filter>
-    </None>
-    <None Include="tutorials\tut_doublejumping.tutorial">
-      <Filter>Resource Files\tutorials</Filter>
-    </None>
-    <None Include="tutorials\tut_holdoffceilings.tutorial">
-      <Filter>Resource Files\tutorials</Filter>
-    </None>
-    <None Include="tutorials\tut_holdwalls.tutorial">
-      <Filter>Resource Files\tutorials</Filter>
-    </None>
-    <None Include="tutorials\tut_infoEnemy.tutorial">
-      <Filter>Resource Files\tutorials</Filter>
-    </None>
-    <None Include="tutorials\tut_sneak.tutorial">
-      <Filter>Resource Files\tutorials</Filter>
-    </None>
-    <None Include="tutorials\tut_sprint.tutorial">
-      <Filter>Resource Files\tutorials</Filter>
-    </None>
-    <None Include="tutorials\tut_stungun.tutorial">
-      <Filter>Resource Files\tutorials</Filter>
-    </None>
-    <None Include="tutorials\tut_switch.tutorial">
-      <Filter>Resource Files\tutorials</Filter>
-    </None>
-    <None Include="graphics\Enemy001.xcf">
-      <Filter>Resource Files\graphics</Filter>
-    </None>
     <None Include="ClassDiagram2.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="graphics\background1-720.png">
+      <Filter>Resource Files\graphics</Filter>
+    </Image>
+    <Image Include="graphics\Camera.png">
+      <Filter>Resource Files\graphics</Filter>
+    </Image>
+    <Image Include="graphics\Crate.png">
+      <Filter>Resource Files\graphics</Filter>
+    </Image>
+    <Image Include="graphics\DoorLocked.png">
+      <Filter>Resource Files\graphics</Filter>
+    </Image>
+    <Image Include="graphics\DoorOpen.png">
+      <Filter>Resource Files\graphics</Filter>
+    </Image>
+    <Image Include="graphics\DoorStatic.png">
+      <Filter>Resource Files\graphics</Filter>
+    </Image>
+    <Image Include="graphics\LaserPointer.png">
+      <Filter>Resource Files\graphics</Filter>
+    </Image>
+    <Image Include="graphics\PlayerAnimationSheet_05.png">
+      <Filter>Resource Files\graphics</Filter>
+    </Image>
+    <Image Include="graphics\Switch_ToggleOn.png">
+      <Filter>Resource Files\graphics</Filter>
+    </Image>
+    <Image Include="graphics\tileset_008.png">
+      <Filter>Resource Files\graphics</Filter>
+    </Image>
   </ItemGroup>
 </Project>

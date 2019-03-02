@@ -215,7 +215,79 @@ void Engine::input() {
 			int i = 0;
 			for (std::list<GUI::Button>::iterator it = m_audioSettingsButtons.begin(); it != m_audioSettingsButtons.end(); ++it) {
 				switch (i++) {
-				case 0: // Back
+				case 0: // Sound Effects Volume Down
+					if (it->getState() == GUI::ButtonState::clicked) {
+						it->setState(GUI::ButtonState::normal);
+						m_SM.playButtonClick();
+						if (m_SM.m_SFX_VOLUME >= 10.0f) {
+							m_SM.m_SFX_VOLUME -= 10.0f;
+						}
+						else {
+							m_SM.m_SFX_VOLUME = 0.0f;
+						}
+					}
+					break;
+				case 1: // Sound Effects Volume Up
+					if (it->getState() == GUI::ButtonState::clicked) {
+						it->setState(GUI::ButtonState::normal);
+						m_SM.playButtonClick();
+						if (m_SM.m_SFX_VOLUME <= 90.0f) {
+							m_SM.m_SFX_VOLUME += 10.0f;
+						}
+						else {
+							m_SM.m_SFX_VOLUME = 100.0f;
+						}
+					}
+					break;
+				case 2: // Music Volume Down
+					if (it->getState() == GUI::ButtonState::clicked) {
+						it->setState(GUI::ButtonState::normal);
+						m_SM.playButtonClick();
+						if (m_SM.m_MUSIC_VOLUME >= 10.0f) {
+							m_SM.m_MUSIC_VOLUME -= 10.0f;
+						}
+						else {
+							m_SM.m_MUSIC_VOLUME = 0.0f;
+						}
+					}
+					break;
+				case 3: // Music Volume Up
+					if (it->getState() == GUI::ButtonState::clicked) {
+						it->setState(GUI::ButtonState::normal);
+						m_SM.playButtonClick();
+						if (m_SM.m_MUSIC_VOLUME <= 90.0f) {
+							m_SM.m_MUSIC_VOLUME += 10.0f;
+						}
+						else {
+							m_SM.m_MUSIC_VOLUME = 100.0f;
+						}
+					}
+					break;
+				case 4: // UI Volume Down
+					if (it->getState() == GUI::ButtonState::clicked) {
+						it->setState(GUI::ButtonState::normal);
+						if (m_SM.m_UI_VOLUME >= 10.0f) {
+							m_SM.m_UI_VOLUME -= 10.0f;
+						}
+						else {
+							m_SM.m_UI_VOLUME = 0.0f;
+						}
+						m_SM.playButtonClick();
+					}
+					break;
+				case 5: // UI Volume Up
+					if (it->getState() == GUI::ButtonState::clicked) {
+						it->setState(GUI::ButtonState::normal);
+						if (m_SM.m_UI_VOLUME <= 90.0f) {
+							m_SM.m_UI_VOLUME += 10.0f;
+						}
+						else {
+							m_SM.m_UI_VOLUME = 100.0f;
+						}
+						m_SM.playButtonClick();
+					}
+					break;
+				case 6: // Back
 					if (it->getState() == GUI::ButtonState::clicked) {
 						it->setState(GUI::ButtonState::normal);
 						m_SM.playButtonClick();
@@ -235,7 +307,6 @@ void Engine::input() {
 						it->setState(GUI::ButtonState::normal);
 						m_SM.playButtonClick();
 						m_IH.chooseScheme(ControlScheme::DEFAULT);
-						std::cout << "THE CONTROLLER IS INFERIOR" << std::endl;
 					}
 					break;
 				case 1: // Disable Controller
@@ -243,7 +314,6 @@ void Engine::input() {
 						it->setState(GUI::ButtonState::normal);
 						m_SM.playButtonClick();
 						m_IH.chooseScheme(ControlScheme::BUMPERJUMPER);
-						std::cout << "THE KEYBAORD IS SUPERIOR" << std::endl;
 					}
 					break;
 				case 2: // Back

@@ -70,7 +70,7 @@ void Door::update(float elapsedTime, int** m_ArrayLevel) {
 *	Virtual Function need never be called
 */
 float Door::getCapacity() {
-	std::cout << "\nWe should not be here";
+	//std::cout << "\nWe should not be here";
 	return -1.0f;
 }
 

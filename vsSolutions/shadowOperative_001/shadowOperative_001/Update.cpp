@@ -57,6 +57,9 @@ void Engine::update(float dtAsSeconds) {
 		// Put Paused Screen Update code here
 	}
 	else if (m_GameState == GameState::PLAYING) {
+		//	Play the Ambient Sounds
+		this->m_SM.playAmbientMusic();
+
 		//	Assign the active controller
 		while (m_Window.pollEvent(m_event)) { //	<--	Needed for input to function
 			

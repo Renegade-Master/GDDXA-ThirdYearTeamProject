@@ -186,38 +186,6 @@
     <Font Include="fonts\Roboto-Light.ttf" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="graphics\background.png" />
-    <Image Include="graphics\background1-720.png" />
-    <Image Include="graphics\background_001.png" />
-    <Image Include="graphics\background_002.png" />
-    <Image Include="graphics\background_003.png" />
-    <Image Include="graphics\background_005.png" />
-    <Image Include="graphics\background_007.png" />
-    <Image Include="graphics\bob.png" />
-    <Image Include="graphics\Crouch_down_000.png" />
-    <Image Include="graphics\Enemy000.png" />
-    <Image Include="graphics\Enemy001.png" />
-    <Image Include="graphics\Fly_004.png" />
-    <Image Include="graphics\Glide_000.png" />
-    <Image Include="graphics\Idle_004.png" />
-    <Image Include="graphics\Idle__001.png" />
-    <Image Include="graphics\industrial-tileset.png" />
-    <Image Include="graphics\Jump_DOWN_000.png" />
-    <Image Include="graphics\MenuBackground.png" />
-    <Image Include="graphics\PlayerAnimationSheet.png" />
-    <Image Include="graphics\PlayerAnimationSheet_02.png" />
-    <Image Include="graphics\RunLeft__001.png" />
-    <Image Include="graphics\RunRight__001.png" />
-    <Image Include="graphics\Run__002.png" />
-    <Image Include="graphics\thomas.png" />
-    <Image Include="graphics\tileset_001.png" />
-    <Image Include="graphics\tileset_002.png" />
-    <Image Include="graphics\tileset_003.png" />
-    <Image Include="graphics\tiles_sheet.png" />
-    <Image Include="graphics\Walk_003.png" />
-    <Image Include="graphics\Walk_left.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Text Include="levels\level2.txt" />
     <Text Include="levels\level3.txt" />
     <Text Include="levels\_Legend.md" />
@@ -234,18 +202,18 @@
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
     <None Include="ClassDiagram2.cd" />
-    <None Include="graphics\Enemy001.xcf" />
-    <None Include="shaders\rippleShader.frag" />
-    <None Include="shaders\vertShader.vert" />
-    <None Include="tutorials\tut_doublejumping.tutorial" />
-    <None Include="tutorials\tut_holdoffceilings.tutorial" />
-    <None Include="tutorials\tut_holdwalls.tutorial" />
-    <None Include="tutorials\tut_infoEnemy.tutorial" />
-    <None Include="tutorials\tut_jumping.tutorial" />
-    <None Include="tutorials\tut_sneak.tutorial" />
-    <None Include="tutorials\tut_sprint.tutorial" />
-    <None Include="tutorials\tut_stungun.tutorial" />
-    <None Include="tutorials\tut_switch.tutorial" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="graphics\background1-720.png" />
+    <Image Include="graphics\Camera.png" />
+    <Image Include="graphics\Crate.png" />
+    <Image Include="graphics\DoorLocked.png" />
+    <Image Include="graphics\DoorOpen.png" />
+    <Image Include="graphics\DoorStatic.png" />
+    <Image Include="graphics\LaserPointer.png" />
+    <Image Include="graphics\PlayerAnimationSheet_05.png" />
+    <Image Include="graphics\Switch_ToggleOn.png" />
+    <Image Include="graphics\tileset_008.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
