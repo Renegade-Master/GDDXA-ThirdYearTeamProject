@@ -11,40 +11,44 @@
 /**
 *	Default Constructor
 */
-SoundManager::SoundManager() noexcept {
+SoundManager::SoundManager() {
 	// Load the sound in to the buffers
-	this->m_ButtonClickBuffer.loadFromFile("sound\\ButtonClick.wav");
-	this->m_ChargeFromPickupBuffer.loadFromFile("sound\\weaponChargePickup.wav");
-	this->m_EnemyCratedBuffer.loadFromFile("sound\\EnemyCrated.wav");
-	this->m_EnemyDetectionLevel0Buffer.loadFromFile("sound\\EnemyAlertLevel_01.wav");
-	this->m_EnemyDetectionLevel1Buffer.loadFromFile("sound\\EnemyAlertLevel_02.wav");
-	this->m_EnemyDetectionLevel2Buffer.loadFromFile("sound\\EnemyAlertLevel_03.wav");
-	this->m_EnemyDetectionLevel3Buffer.loadFromFile("sound\\EnemyAlertDetected.wav");
-	this->m_EnemyHitBuffer.loadFromFile("sound\\EnemyHit.wav");
-	this->m_EnemyUnconscoiusBuffer.loadFromFile("sound\\EnemyUnconscious.wav");
-	this->m_JumpBuffer.loadFromFile("sound\\PlayerJump.wav");
-	this->m_LaserPowerDownBuffer.loadFromFile("sound\\LaserPowerDown.wav");
-	this->m_LaserPowerUpBuffer.loadFromFile("sound\\LaserPowerUp.wav");
-	this->m_PlayerShootBuffer.loadFromFile("sound\\PlayerShoot_002.wav");
-	this->m_ReachGoalBuffer.loadFromFile("sound\\LevelComplete.wav");
+	this->m_ButtonClickBuffer			.loadFromFile("sound\\ButtonClick.wav");
+	this->m_ChargeFromPickupBuffer		.loadFromFile("sound\\weaponChargePickup.wav");
+	this->m_EnemyCratedBuffer			.loadFromFile("sound\\EnemyCrated.wav");
+	this->m_EnemyDetectionLevel0Buffer	.loadFromFile("sound\\EnemyAlertLevel_01.wav");
+	this->m_EnemyDetectionLevel1Buffer	.loadFromFile("sound\\EnemyAlertLevel_02.wav");
+	this->m_EnemyDetectionLevel2Buffer	.loadFromFile("sound\\EnemyAlertLevel_03.wav");
+	this->m_EnemyDetectionLevel3Buffer	.loadFromFile("sound\\EnemyAlertDetected.wav");
+	this->m_EnemyDetectionSpottedBuffer	.loadFromFile("sound\\EnemyAlertSpotted.wav");
+	this->m_EnemyHitBuffer				.loadFromFile("sound\\EnemyHit.wav");
+	this->m_EnemyUnconscoiusBuffer		.loadFromFile("sound\\EnemyUnconscious.wav");
+	this->m_JumpBuffer					.loadFromFile("sound\\PlayerJump.wav");
+	this->m_LaserPowerDownBuffer		.loadFromFile("sound\\LaserPowerDown.wav");
+	this->m_LaserPowerUpBuffer			.loadFromFile("sound\\LaserPowerUp.wav");
+	this->m_PlayerShootBuffer			.loadFromFile("sound\\PlayerShoot_002.wav");
+	this->m_ReachGoalBuffer				.loadFromFile("sound\\LevelComplete.wav");
+	this->m_music_AmbientBuffer			.loadFromFile("sound\\AmbientSound.wav");
 
 	// Associate the sounds with the buffers
-	this->m_ButtonClickSound.setBuffer(this->m_ButtonClickBuffer);
-	this->m_ChargeFromPickupSound.setBuffer(this->m_ChargeFromPickupBuffer);
-	this->m_EnemyCratedSound.setBuffer(this->m_EnemyCratedBuffer);
-	this->m_EnemyDetectionLevel0Sound.setBuffer(this->m_EnemyDetectionLevel0Buffer);
-	this->m_EnemyDetectionLevel1Sound.setBuffer(this->m_EnemyDetectionLevel1Buffer);
-	this->m_EnemyDetectionLevel2Sound.setBuffer(this->m_EnemyDetectionLevel2Buffer);
-	this->m_EnemyDetectionLevel3Sound.setBuffer(this->m_EnemyDetectionLevel3Buffer);
-	this->m_EnemyHitSound.setBuffer(this->m_EnemyHitBuffer);
-	this->m_EnemyUnconsciousSound.setBuffer(this->m_EnemyUnconscoiusBuffer);
-	this->m_JumpSound.setBuffer(this->m_JumpBuffer);
-	this->m_LaserPowerDownSound.setBuffer(this->m_LaserPowerDownBuffer);
-	this->m_LaserPowerUpSound.setBuffer(this->m_LaserPowerUpBuffer);
-	this->m_PlayerShootSound.setBuffer(this->m_PlayerShootBuffer);
-	this->m_ReachGoalSound.setBuffer(this->m_ReachGoalBuffer);
+	this->m_ButtonClickSound			.setBuffer(this->m_ButtonClickBuffer);
+	this->m_ChargeFromPickupSound		.setBuffer(this->m_ChargeFromPickupBuffer);
+	this->m_EnemyCratedSound			.setBuffer(this->m_EnemyCratedBuffer);
+	this->m_EnemyDetectionLevel0Sound	.setBuffer(this->m_EnemyDetectionLevel0Buffer);
+	this->m_EnemyDetectionLevel1Sound	.setBuffer(this->m_EnemyDetectionLevel1Buffer);
+	this->m_EnemyDetectionLevel2Sound	.setBuffer(this->m_EnemyDetectionLevel2Buffer);
+	this->m_EnemyDetectionLevel3Sound	.setBuffer(this->m_EnemyDetectionLevel3Buffer);
+	this->m_EnemyDetectionSpottedSound	.setBuffer(this->m_EnemyDetectionSpottedBuffer);
+	this->m_EnemyHitSound				.setBuffer(this->m_EnemyHitBuffer);
+	this->m_EnemyUnconsciousSound		.setBuffer(this->m_EnemyUnconscoiusBuffer);
+	this->m_JumpSound					.setBuffer(this->m_JumpBuffer);
+	this->m_LaserPowerDownSound			.setBuffer(this->m_LaserPowerDownBuffer);
+	this->m_LaserPowerUpSound			.setBuffer(this->m_LaserPowerUpBuffer);
+	this->m_PlayerShootSound			.setBuffer(this->m_PlayerShootBuffer);
+	this->m_ReachGoalSound				.setBuffer(this->m_ReachGoalBuffer);
+	this->m_music_AmbientSound			.setBuffer(this->m_music_AmbientBuffer);
 
-	//	Change the volume of certain effects
+	//	Change the volume of effects
 	this->m_ButtonClickSound			.setVolume(this->m_UI_VOLUME);
 	this->m_ChargeFromPickupSound		.setVolume(this->m_SFX_VOLUME);
 	this->m_EnemyCratedSound			.setVolume(this->m_SFX_VOLUME);
@@ -52,6 +56,7 @@ SoundManager::SoundManager() noexcept {
 	this->m_EnemyDetectionLevel1Sound	.setVolume(this->m_SFX_VOLUME);
 	this->m_EnemyDetectionLevel2Sound	.setVolume(this->m_SFX_VOLUME);
 	this->m_EnemyDetectionLevel3Sound	.setVolume(this->m_SFX_VOLUME);
+	this->m_EnemyDetectionSpottedSound	.setVolume(this->m_SFX_VOLUME);
 	this->m_EnemyHitSound				.setVolume(this->m_SFX_VOLUME);
 	this->m_EnemyUnconsciousSound		.setVolume(this->m_SFX_VOLUME);
 	this->m_JumpSound					.setVolume(this->m_SFX_VOLUME);
@@ -59,6 +64,7 @@ SoundManager::SoundManager() noexcept {
 	this->m_LaserPowerUpSound			.setVolume(this->m_SFX_VOLUME);
 	this->m_PlayerShootSound			.setVolume(this->m_SFX_VOLUME);
 	this->m_ReachGoalSound				.setVolume(this->m_SFX_VOLUME);
+	this->m_music_AmbientSound			.setVolume(this->m_MUSIC_VOLUME);
 }
 
 /**
@@ -173,5 +179,16 @@ void SoundManager::playEnemyDetectionLevel(int alertness) {
 		this->m_EnemyDetectionLevel0Sound.setVolume(this->m_SFX_VOLUME);
 		this->m_EnemyDetectionLevel0Sound.play();
 		break;
+	}
+}
+
+/**
+*	Play the Ambient Music Sound
+*/
+void SoundManager::playAmbientMusic() {
+	this->m_music_AmbientSound.setVolume(this->m_MUSIC_VOLUME);
+	if (this->m_music_AmbientSound.getStatus() != sf::Sound::Status::Playing) {
+		this->m_music_AmbientSound.setLoop(true);
+		this->m_music_AmbientSound.play();
 	}
 }

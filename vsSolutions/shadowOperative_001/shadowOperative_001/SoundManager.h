@@ -16,7 +16,7 @@
 
 class SoundManager {
 public:
-	SoundManager() noexcept;
+	SoundManager();
 
 	//	Volume Controls
 	float m_SFX_VOLUME = 100.0f;
@@ -34,6 +34,7 @@ public:
 	void playEnemyCrated();
 	void playEnemyDetectionLevel(int alertness);
 	void playChargeFromPickup();
+	void playAmbientMusic();
 
 private:
 	// The buffers
@@ -63,8 +64,12 @@ private:
 	sf::SoundBuffer m_EnemyDetectionLevel2Buffer;
 	//Sound buffer for Enemy Detection Level increase
 	sf::SoundBuffer m_EnemyDetectionLevel3Buffer;
+	//Sound Buffer for Enemy Spotted Alert Level
+	sf::SoundBuffer m_EnemyDetectionSpottedBuffer;
 	//Sound buffer for charging gun from Pickup
 	sf::SoundBuffer m_ChargeFromPickupBuffer;
+	//Sound Buffer for ambient sound
+	sf::SoundBuffer m_music_AmbientBuffer;
 
 	// The Sound for clicking Buttons
 	sf::Sound m_ButtonClickSound;
@@ -92,8 +97,12 @@ private:
 	sf::Sound m_EnemyDetectionLevel2Sound;
 	// The Sound for incresed enemy detection Level
 	sf::Sound m_EnemyDetectionLevel3Sound;
+	// The Sound for Enemy Spotted Alert Level
+	sf::Sound m_EnemyDetectionSpottedSound;
 	// The Sound for charging from a pickup
 	sf::Sound m_ChargeFromPickupSound;
+	//Sound for ambient sound
+	sf::Sound m_music_AmbientSound;
 };
 #endif // !SOUNDMANAGER_H
 
