@@ -102,7 +102,7 @@ void Engine::update(float dtAsSeconds) {
 			if ((*lasIt)->isActive()) {
 				//If so is the player touching it
 				if ((*lasIt)->getLaser().getGlobalBounds().intersects(m_Player.getPosition())) {
-					m_GameState = GameState::ENDGAME;
+					m_GameState = GameState::MAIN_MENU;
 				}
 			}
 		}
@@ -185,6 +185,9 @@ void Engine::update(float dtAsSeconds) {
 		//update Enemy
 		for (std::list<Enemy*>::iterator it = m_EnemyList.begin(); it != m_EnemyList.end(); it++) {
 			(*it)->update(dtAsSeconds, m_ArrayLevel);
+			if ((*it)->getSprite().getGlobalBounds().intersects(m_Player.getPosition())) {
+				(*it)->instantDetection();
+			}
 
 			//check for bullet Collision
 			for (int i = 0; i < 5; i++) {
@@ -208,7 +211,7 @@ void Engine::update(float dtAsSeconds) {
 						m_Player.getDetectLevel(),m_GameTimeTotal,m_SM);
 
 					if ((*it)->getAwareness() >= 100.0) {
-						m_GameState = GameState::ENDGAME;
+						m_GameState = GameState::MAIN_MENU;
 					}
 				}
 			}
@@ -264,7 +267,7 @@ void Engine::update(float dtAsSeconds) {
 					
 					//is player detetced
 					if ((*cameraIt)->getAwareness() >= 100) {
-						m_GameState = GameState::ENDGAME;
+						m_GameState = GameState::MAIN_MENU;
 					}
 				}
 			}
