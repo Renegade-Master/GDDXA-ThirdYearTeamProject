@@ -185,6 +185,9 @@ void Engine::update(float dtAsSeconds) {
 		//update Enemy
 		for (std::list<Enemy*>::iterator it = m_EnemyList.begin(); it != m_EnemyList.end(); it++) {
 			(*it)->update(dtAsSeconds, m_ArrayLevel);
+			if ((*it)->getAwareness() >= 100) {
+				m_GameState = GameState::MAIN_MENU;
+			}
 			if ((*it)->getSprite().getGlobalBounds().intersects(m_Player.getPosition())) {
 				(*it)->instantDetection();
 			}
