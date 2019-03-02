@@ -241,7 +241,9 @@ sf::RectangleShape Enemy::getDetectMeter() {
 *	reduce the value of warenessOfPlayer
 */
 void Enemy::reduceAwareness(sf::Time gameTimeTotal) {
-	awarenessOfPlayer--;
+	if (this->awarenessOfPlayer > 0) {
+		awarenessOfPlayer--;
+	}
 	lastDetectionEvent = gameTimeTotal;
 }
 

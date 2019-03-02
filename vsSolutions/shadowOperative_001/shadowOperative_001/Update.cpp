@@ -188,9 +188,7 @@ void Engine::update(float dtAsSeconds) {
 			if ((*it)->getAwareness() >= 100) {
 				m_GameState = GameState::MAIN_MENU;
 			}
-			if ((*it)->getSprite().getGlobalBounds().intersects(m_Player.getPosition())) {
-				(*it)->instantDetection();
-			}
+
 
 			//check for bullet Collision
 			for (int i = 0; i < 5; i++) {
@@ -206,6 +204,10 @@ void Engine::update(float dtAsSeconds) {
 
 			//check for player or Dead Enemy
 			if ((*it)->isConscious()) {
+				std::cout << "\nConcious";
+				if ((*it)->getSprite().getGlobalBounds().intersects(m_Player.getPosition())) {
+					(*it)->instantDetection();
+				}
 				if ((*it)->getCone().getLocalBounds().intersects(m_Player.getPosition())) {
 					//check if enemy detection Event happened in the last second
 					if (m_GameTimeTotal.asMilliseconds()
