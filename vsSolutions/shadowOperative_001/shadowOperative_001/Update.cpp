@@ -205,39 +205,44 @@ void Engine::update(float dtAsSeconds) {
 			}
 
 			//check for player or Dead Enemy
-			if ((*it)->getCone().getLocalBounds().intersects(m_Player.getPosition())) {
-				//check if enemy detection Event happened in the last second
-				if (m_GameTimeTotal.asMilliseconds()
-					- (*it)->getlastdetectTime() > 500) {
+			if ((*it)->isConscious()) {
+				if ((*it)->getCone().getLocalBounds().intersects(m_Player.getPosition())) {
+					//check if enemy detection Event happened in the last second
+					if (m_GameTimeTotal.asMilliseconds()
+						- (*it)->getlastdetectTime() > 500) {
 
-					(*it)->increaseAwarenessLevel(m_Player.getCenter(),
-						m_Player.getDetectLevel(),m_GameTimeTotal,m_SM);
+						(*it)->increaseAwarenessLevel(m_Player.getCenter(),
+							m_Player.getDetectLevel(), m_GameTimeTotal, m_SM);
 
-					if ((*it)->getAwareness() >= 100.0) {
-						m_GameState = GameState::MAIN_MENU;
+						if ((*it)->getAwareness() >= 100.0) {
+							m_GameState = GameState::MAIN_MENU;
+						}
+					}
+				}
+				else if ((*it)->getAwareness() >= 0) {
+					//check if enemy detection Event happened in the last half second
+					if (m_GameTimeTotal.asMilliseconds()
+						- (*it)->getlastdetectTime() > 500) {
+
+						//reduce Enemies detectionLevel
+						(*it)->reduceAwareness(m_GameTimeTotal);
+					}
+				}
+
+				for (std::list<Enemy*>::iterator checkDeathIter = m_EnemyList.begin();
+					checkDeathIter != m_EnemyList.end(); checkDeathIter++) {
+
+					if ((*it)->getCone().getLocalBounds().intersects((*checkDeathIter)->getPosition())) {
+						if (!(*checkDeathIter)->isConscious()) {
+
+							(*it)->increaseAwarenessLevel((*checkDeathIter)->getCenter(), m_Player.getDetectLevel(),
+								m_GameTimeTotal, m_SM);
+						}
 					}
 				}
 			}
-			else if ((*it)->getAwareness() >= 0) {
-				//check if enemy detection Event happened in the last half second
-				if (m_GameTimeTotal.asMilliseconds()
-					- (*it)->getlastdetectTime() > 500) {
-
-					//reduce Enemies detectionLevel
-					(*it)->reduceAwareness(m_GameTimeTotal);
-				}
-			}
-
-			for (std::list<Enemy*>::iterator checkDeathIter = m_EnemyList.begin();
-				checkDeathIter != m_EnemyList.end(); checkDeathIter++) {
-
-				if ((*it)->getCone().getLocalBounds().intersects((*checkDeathIter)->getPosition()))	{
-					if (!(*checkDeathIter)->isConscious()) {
-						
-						(*it)->increaseAwarenessLevel((*checkDeathIter)->getCenter(), m_Player.getDetectLevel(),
-							m_GameTimeTotal,m_SM);
-					}
-				}
+			else {
+				(*it)->reduceAwareness(m_GameTimeTotal);
 			}
 		}
 
@@ -260,45 +265,50 @@ void Engine::update(float dtAsSeconds) {
 			}
 
 			//check for player
-			if ((*cameraIt)->getCone().getGlobalBounds().
-				intersects(m_Player.getPosition())) {
-				if (m_GameTimeTotal.asMilliseconds() - (*cameraIt)->getlastdetectTime() > 500) {
-					
-					//increase awareness
-					(*cameraIt)->increaseAwarenessLevel(m_Player.getCenter(),
-					m_Player.getDetectLevel(), m_GameTimeTotal,m_SM);
-					
-					//is player detetced
-					if ((*cameraIt)->getAwareness() >= 100) {
-						m_GameState = GameState::MAIN_MENU;
+			if ((*cameraIt)->isConscious()) {
+				if ((*cameraIt)->getCone().getGlobalBounds().
+					intersects(m_Player.getPosition())) {
+					if (m_GameTimeTotal.asMilliseconds() - (*cameraIt)->getlastdetectTime() > 500) {
+
+						//increase awareness
+						(*cameraIt)->increaseAwarenessLevel(m_Player.getCenter(),
+							m_Player.getDetectLevel(), m_GameTimeTotal, m_SM);
+
+						//is player detetced
+						if ((*cameraIt)->getAwareness() >= 100) {
+							m_GameState = GameState::MAIN_MENU;
+						}
+					}
+				}
+				//Decrease awareness Level
+				else if ((*cameraIt)->getAwareness() >= 0) {
+					if (m_GameTimeTotal.asMilliseconds()
+						- (*cameraIt)->getlastdetectTime() > 500) {
+						(*cameraIt)->reduceAwareness(m_GameTimeTotal);
+					}
+				}
+
+				//check for Dead Ally
+				for (std::list<Enemy*>::iterator checkDeathOnCamIter = m_EnemyList.begin();
+					checkDeathOnCamIter != m_EnemyList.end();checkDeathOnCamIter++) {
+
+					//is camera visionCone intersecting Enemy sprite
+					if ((*checkDeathOnCamIter)->getCone().getLocalBounds().
+						intersects((*checkDeathOnCamIter)->getPosition())) {
+
+						//if Enemy is unconcious..... "CONCERN!!!!"
+						if (!(*checkDeathOnCamIter)->isConscious()) {
+
+							(*checkDeathOnCamIter)->increaseAwarenessLevel(
+								(*checkDeathOnCamIter)->getCenter(), m_Player.getDetectLevel(),
+								m_GameTimeTotal, m_SM
+							);
+						}
 					}
 				}
 			}
-			//Decrease awareness Level
-			else if ((*cameraIt)->getAwareness() >= 0) {
-				if (m_GameTimeTotal.asMilliseconds()
-					- (*cameraIt)->getlastdetectTime() > 500) {
-					(*cameraIt)->reduceAwareness(m_GameTimeTotal);
-				}
-			}
-
-			//check for Dead Ally
-			for (std::list<Enemy*>::iterator checkDeathOnCamIter = m_EnemyList.begin();
-				checkDeathOnCamIter != m_EnemyList.end();checkDeathOnCamIter++) {
-
-				//is camera visionCone intersecting Enemy sprite
-				if((*checkDeathOnCamIter)->getCone().getLocalBounds().
-					intersects((*checkDeathOnCamIter)->getPosition())) {
-
-					//if Enemy is unconcious..... "CONCERN!!!!"
-					if (!(*checkDeathOnCamIter)->isConscious()) {
-
-						(*checkDeathOnCamIter)->increaseAwarenessLevel(
-							(*checkDeathOnCamIter)->getCenter(), m_Player.getDetectLevel(),
-							m_GameTimeTotal, m_SM
-						);
-					}
-				}
+			else {
+				(*cameraIt)->reduceAwareness(m_GameTimeTotal);
 			}
 		}
 
