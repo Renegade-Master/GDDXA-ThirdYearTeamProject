@@ -36,6 +36,7 @@ Player::Player() {
 	this->m_Direction = Direction::IDLE;
 	this->target.x = this->m_Position.x;
 	this->target.y = this->m_Position.y;
+	this->gunChargeLevel = 100.0f;
 }
 
 /**
@@ -354,22 +355,29 @@ bool Player::isShooting() {
 *	Confirm that the player shooting action has been completed
 */
 void Player::playerShot(bool shot) {
-	gunChargeLevel -= shotCost;
-	shooting = false;
+	if ((this->gunChargeLevel - this->shotCost) <= 0) {
+		this->gunChargeLevel == 0;
+	}
+	else {
+		this->gunChargeLevel -= this->shotCost;
+	}
+	this->shooting = false;
 }
 
 /**
 *	Charge the gun by the gunChargeRate this frame
 */
 void Player::chargeGun(float dtAsSeconds) {
+	std::cout << "\nShooting: " << shooting;
 	if (!shooting) {
-		if (gunChargeLevel + gunChargeRate * dtAsSeconds <= maxGunChargeLevel) {
+		std::cout << "\nCharging Gun";
+		if ((this->gunChargeLevel + (this->gunChargeRate * dtAsSeconds)) < this->maxGunChargeLevel) {
 			/*std::cout << "\n gunChargeLevel:" << gunChargeLevel << " += gunChargeRate * dtAsSeconds = "
 				<< gunChargeLevel + gunChargeRate * dtAsSeconds;*/
-			gunChargeLevel += gunChargeRate * dtAsSeconds;
+			this->gunChargeLevel += (this->gunChargeRate * dtAsSeconds);
 		}
 		else {
-			gunChargeLevel = maxGunChargeLevel;
+			this->gunChargeLevel = maxGunChargeLevel;
 		}
 	}
 }
@@ -378,33 +386,33 @@ void Player::chargeGun(float dtAsSeconds) {
 *	Return the current charge Level of the gun
 */
 float Player::getChargeLevel() {
-	return gunChargeLevel;
+	return this->gunChargeLevel;
 }
 
 /**
 *	Return the cost of the current shot from the gun
 */
 float Player::getShotCost() {
-	return shotCost;
+	return this->shotCost;
 }
 
 /**
 *	return the maxChargeLevel of the gun
 */
 float Player::getMaxCharge() {
-	return maxGunChargeLevel;
+	return this->maxGunChargeLevel;
 }
 
 /**	
 *	Toggle the targeting Laser on off
 */
 void Player::toggleTargeting(SoundManager& m_SM) {
-	if (targeting) {
-		targeting = false;
+	if (this->targeting) {
+		this->targeting = false;
 		m_SM.playLaserPowerDown();
 	}
 	else {
-		targeting = true;
+		this->targeting = true;
 		if (this->m_Direction == Direction::RIGHT) {
 			target = sf::Vector2f(this->m_Position.x + 100,
 				this->m_Position.y);
@@ -425,7 +433,7 @@ void Player::toggleTargeting(SoundManager& m_SM) {
 *	Return whether or not the player is currently in a targeting stance
 */
 bool Player::isTargeting() {
-	return targeting;
+	return this->targeting;
 }
 
 /**
@@ -529,4 +537,15 @@ sf::Text Player::getHudDetectLevel() {
 		break;
 	}
 	return hudText;
+}
+/**
+*	Toggle for Shooting
+*/
+void Player::setShooting() {
+	if ((this->getChargeLevel() - this->getShotCost()) > 0) {
+		shooting = true;
+	}
+	else {
+		shooting = false;
+	}
 }
