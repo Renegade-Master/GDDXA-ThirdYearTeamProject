@@ -14,38 +14,51 @@
 SoundManager::SoundManager() noexcept {
 	// Load the sound in to the buffers
 	m_ButtonClickBuffer.loadFromFile("sound\\ButtonClick.wav");
-	m_JumpBuffer.loadFromFile("sound\\jump.wav");
-	m_ReachGoalBuffer.loadFromFile("sound\\LevelComplete.wav");
-	m_PlayerShootBuffer.loadFromFile("sound\\PlayerShoot_002.wav");
-	m_LaserPowerUpBuffer.loadFromFile("sound\\LaserPowerUp.wav");
-	m_LaserPowerDownBuffer.loadFromFile("sound\\LaserPowerDown.wav");
-	m_EnemyUnconscoiusBuffer.loadFromFile("sound\\EnemyUnconscious.wav");
+	m_ChargeFromPickupBuffer.loadFromFile("sound\\weaponChargePickup.wav");
+	m_EnemyCratedBuffer.loadFromFile("sound\\EnemyCrated.wav");
+	m_EnemyDetectionLevel0Buffer.loadFromFile("sound\\EnemyAlertLevel_01.wav");
+	m_EnemyDetectionLevel1Buffer.loadFromFile("sound\\EnemyAlertLevel_02.wav");
+	m_EnemyDetectionLevel2Buffer.loadFromFile("sound\\EnemyAlertLevel_03.wav");
+	m_EnemyDetectionLevel3Buffer.loadFromFile("sound\\EnemyAlertDetected.wav");
 	m_EnemyHitBuffer.loadFromFile("sound\\EnemyHit.wav");
 	m_EnemyUnconscoiusBuffer.loadFromFile("sound\\EnemyUnconscious.wav");
-	m_EnemyCratedBuffer.loadFromFile("sound\\EnemyCrated.wav");
-	m_EnemyDetectionLevel0Buffer.loadFromFile("sound\\EnemyAlertLevel.wav");
-	m_EnemyDetectionLevel1Buffer.loadFromFile("sound\\EnemyAlertLevel.wav");
-	m_EnemyDetectionLevel2Buffer.loadFromFile("sound\\EnemyAlertLevel.wav");
-	m_EnemyDetectionLevel3Buffer.loadFromFile("sound\\EnemyAlertLevel.wav");
-
-	//Energy power up sound,Action is energy transfering from Battery Item to gun
-	m_ChargeFromPickupBuffer.loadFromFile("sound\\");
+	m_JumpBuffer.loadFromFile("sound\\PlayerJump.wav");
+	m_LaserPowerDownBuffer.loadFromFile("sound\\LaserPowerDown.wav");
+	m_LaserPowerUpBuffer.loadFromFile("sound\\LaserPowerUp.wav");
+	m_PlayerShootBuffer.loadFromFile("sound\\PlayerShoot_002.wav");
+	m_ReachGoalBuffer.loadFromFile("sound\\LevelComplete.wav");
 
 	// Associate the sounds with the buffers
 	m_ButtonClickSound.setBuffer(m_ButtonClickBuffer);
-	m_JumpSound.setBuffer(m_JumpBuffer);
-	m_ReachGoalSound.setBuffer(m_ReachGoalBuffer);
-	m_PlayerShootSound.setBuffer(m_PlayerShootBuffer);
-	m_LaserPowerUpSound.setBuffer(m_LaserPowerUpBuffer);
-	m_LaserPowerDownSound.setBuffer(m_LaserPowerDownBuffer);
-	m_EnemyHitSound.setBuffer(m_EnemyHitBuffer);
-	m_EnemyUnconsciousSound.setBuffer(m_EnemyUnconscoiusBuffer);
+	m_ChargeFromPickupSound.setBuffer(m_ChargeFromPickupBuffer);
 	m_EnemyCratedSound.setBuffer(m_EnemyCratedBuffer);
 	m_EnemyDetectionLevel0Sound.setBuffer(m_EnemyDetectionLevel0Buffer);
 	m_EnemyDetectionLevel1Sound.setBuffer(m_EnemyDetectionLevel1Buffer);
 	m_EnemyDetectionLevel2Sound.setBuffer(m_EnemyDetectionLevel2Buffer);
 	m_EnemyDetectionLevel3Sound.setBuffer(m_EnemyDetectionLevel3Buffer);
-	m_ChargeFromPickupSound.setBuffer(m_ChargeFromPickupBuffer);
+	m_EnemyHitSound.setBuffer(m_EnemyHitBuffer);
+	m_EnemyUnconsciousSound.setBuffer(m_EnemyUnconscoiusBuffer);
+	m_JumpSound.setBuffer(m_JumpBuffer);
+	m_LaserPowerDownSound.setBuffer(m_LaserPowerDownBuffer);
+	m_LaserPowerUpSound.setBuffer(m_LaserPowerUpBuffer);
+	m_PlayerShootSound.setBuffer(m_PlayerShootBuffer);
+	m_ReachGoalSound.setBuffer(m_ReachGoalBuffer);
+
+	//	Change the volume of certain effects
+	m_ButtonClickSound			.setVolume(this->m_UI_VOLUME);
+	m_ChargeFromPickupSound		.setVolume(this->m_SFX_VOLUME);
+	m_EnemyCratedSound			.setVolume(this->m_SFX_VOLUME);
+	m_EnemyDetectionLevel0Sound	.setVolume(this->m_SFX_VOLUME);
+	m_EnemyDetectionLevel1Sound	.setVolume(this->m_SFX_VOLUME);
+	m_EnemyDetectionLevel2Sound	.setVolume(this->m_SFX_VOLUME);
+	m_EnemyDetectionLevel3Sound	.setVolume(this->m_SFX_VOLUME);
+	m_EnemyHitSound				.setVolume(this->m_SFX_VOLUME);
+	m_EnemyUnconsciousSound		.setVolume(this->m_SFX_VOLUME);
+	m_JumpSound					.setVolume(this->m_SFX_VOLUME);
+	m_LaserPowerDownSound		.setVolume(this->m_SFX_VOLUME);
+	m_LaserPowerUpSound			.setVolume(this->m_SFX_VOLUME);
+	m_PlayerShootSound			.setVolume(this->m_SFX_VOLUME);
+	m_ReachGoalSound			.setVolume(this->m_SFX_VOLUME);
 }
 
 /**
@@ -154,6 +167,7 @@ void SoundManager::playEnemyDetectionLevel(int alertness) {
 		break;
 	}
 }
+
 /**
 *	Play the Charge From Pickup Sound
 */
