@@ -368,12 +368,8 @@ void Player::playerShot(bool shot) {
 *	Charge the gun by the gunChargeRate this frame
 */
 void Player::chargeGun(float dtAsSeconds) {
-	std::cout << "\nShooting: " << shooting;
 	if (!shooting) {
-		std::cout << "\nCharging Gun";
 		if ((this->gunChargeLevel + (this->gunChargeRate * dtAsSeconds)) < this->maxGunChargeLevel) {
-			/*std::cout << "\n gunChargeLevel:" << gunChargeLevel << " += gunChargeRate * dtAsSeconds = "
-				<< gunChargeLevel + gunChargeRate * dtAsSeconds;*/
 			this->gunChargeLevel += (this->gunChargeRate * dtAsSeconds);
 		}
 		else {
