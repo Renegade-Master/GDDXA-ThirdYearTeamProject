@@ -29,7 +29,7 @@ Engine::Engine() {
 	m_MiniMap.setViewport(sf::FloatRect(0.001f, 0.8f, 0.25f, 0.2f));
 	m_BGMiniMap.setViewport(sf::FloatRect(0.001f, 0.8f, 0.25f, 0.2f));
 	m_MiniMap.setRotation(180.f);
-	m_BGMiniMap.setRotation(180.f);
+	m_BGMiniMap.setRotation(0.f);
 	m_MiniMap.zoom(-30.00);
 
 	//This is the background of the game.
