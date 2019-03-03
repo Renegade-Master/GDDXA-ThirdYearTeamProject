@@ -50,7 +50,7 @@ private:
 	SettingsPage m_SettingsPage = SettingsPage::LIST;
 
 	//	Varaibles for tracking Window information
-	sf::Uint32 m_windowedStatus = sf::Style::Default;
+	sf::Uint32 m_windowedStatus = sf::Style::Fullscreen;
 	//Framerate variable
 	unsigned int m_frameRate = 60;
 	//V-Sync Active/Inactive?

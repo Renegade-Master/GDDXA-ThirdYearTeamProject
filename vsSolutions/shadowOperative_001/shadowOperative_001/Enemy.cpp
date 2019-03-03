@@ -123,13 +123,15 @@ void Enemy::update(float elapsedTime, int** m_ArrayLevel/*, sf::Vector2f playPos
 			}
 		}
 	}
+	
 	//	If Crouching, sleep in a box
-	else if (m_Action == Action::CROUCHING) {
+	if (m_Action == Action::CROUCHING) {
 		m_Sprite = sf::Sprite(TextureHolder::GetTexture(
 			"graphics/Crate.png"));
 		m_Sprite.setPosition(this->m_Position);
 	}
 	else { this->regen(elapsedTime); }
+	
 	detectMeter.setSize(sf::Vector2f(10, (-this->getAwareness())/2));
 	detectMeter.setFillColor(sf::Color::Red);
 	detectMeter.setPosition(this->getCenter().x + 15, this->getCenter().y + 30);
