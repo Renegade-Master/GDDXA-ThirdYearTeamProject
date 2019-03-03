@@ -42,83 +42,85 @@ void Enemy::spawn(sf::Vector2i startPosition, float gravity, sf::Time gameStart)
 *	This will mave the enemy and change the sprite of the enemy from left to right. 
 */
 void Enemy::update(float elapsedTime, int** m_ArrayLevel/*, sf::Vector2f playPos*/) {
-	if (concious) {
-		// Make a rect for all his parts
-		patrolValid = false;
-		sf::FloatRect detectionZone = getPosition();
+	if (m_Direction != Direction::DETECTION) {
+		if (concious) {
+			// Make a rect for all his parts
+			patrolValid = false;
+			sf::FloatRect detectionZone = getPosition();
 
-		// Make a FloatRect to test each block
-		sf::FloatRect block;
+			// Make a FloatRect to test each block
+			sf::FloatRect block;
 
-		block.width = TILE_SIZE;
-		block.height = TILE_SIZE;
+			block.width = TILE_SIZE;
+			block.height = TILE_SIZE;
 
-		//Check Zone around characters
-		int startX = (int)(detectionZone.left / TILE_SIZE) - 1;
-		int startY = (int)(detectionZone.top / TILE_SIZE) - 1;
-		int endX = (int)(detectionZone.left / TILE_SIZE) + 2;
-		int endY = (int)(detectionZone.top / TILE_SIZE) + 3;
+			//Check Zone around characters
+			int startX = (int)(detectionZone.left / TILE_SIZE) - 1;
+			int startY = (int)(detectionZone.top / TILE_SIZE) - 1;
+			int endX = (int)(detectionZone.left / TILE_SIZE) + 2;
+			int endY = (int)(detectionZone.top / TILE_SIZE) + 3;
 
-		//see if the enemy is moving and if not Choose a direction to patrol
-		if (sincePatrolAlter <= 0) {
-			for (int x = startX; x < endX; x++) {
-				for (int y = startY; y < endY; y++) {
-					// Initialize the starting position of the current block
-					block.left = x * TILE_SIZE;
-					block.top = y * TILE_SIZE;
-					if (m_ArrayLevel[y][x] == 'T' || m_ArrayLevel[y - 1][x] == 'T') {
-						//std::cout << "\nChecking patrol loop";
-						if (getFeet().intersects(block)) {
-							//std::cout << "\\nNot intersect block";
-							patrolValid = false;
-							sincePatrolAlter = 8;
-						}
-						else {
-							//std::cout << "\nIntersecting block";
-							patrolValid = true;
+			//see if the enemy is moving and if not Choose a direction to patrol
+			if (sincePatrolAlter <= 0) {
+				for (int x = startX; x < endX; x++) {
+					for (int y = startY; y < endY; y++) {
+						// Initialize the starting position of the current block
+						block.left = x * TILE_SIZE;
+						block.top = y * TILE_SIZE;
+						if (m_ArrayLevel[y][x] == 'T' || m_ArrayLevel[y - 1][x] == 'T') {
+							//std::cout << "\nChecking patrol loop";
+							if (getFeet().intersects(block)) {
+								//std::cout << "\\nNot intersect block";
+								patrolValid = false;
+								sincePatrolAlter = 8;
+							}
+							else {
+								//std::cout << "\nIntersecting block";
+								patrolValid = true;
+							}
 						}
 					}
 				}
 			}
-		}
-		else {
-			sincePatrolAlter--;
-		}
-		if (!patrolValid) {
-			m_Direction++;
-			patrolValid = true;
-		}
+			else {
+				sincePatrolAlter--;
+			}
+			if (!patrolValid) {
+				m_Direction++;
+				patrolValid = true;
+			}
 
-		switch (m_Direction) {
-		case PlayableCharacter::Direction::LEFT:
-			this->m_Position.x += this->m_Speed*elapsedTime;
-			//Changes the enemy to look left.
-			m_Sprite = sf::Sprite(TextureHolder::GetTexture(
-				"graphics/L-Enemy_3.png"));
-			break;
-		case PlayableCharacter::Direction::RIGHT:
-			this->m_Position.x -= this->m_Speed*elapsedTime;
-			//Changes the enemy to look Right.
-			m_Sprite = sf::Sprite(TextureHolder::GetTexture(
-				"graphics/R-Enemy_3.png"));
-			break;
-		}
+			switch (m_Direction) {
+			case PlayableCharacter::Direction::LEFT:
+				this->m_Position.x += this->m_Speed*elapsedTime;
+				//Changes the enemy to look left.
+				m_Sprite = sf::Sprite(TextureHolder::GetTexture(
+					"graphics/L-Enemy_3.png"));
+				break;
+			case PlayableCharacter::Direction::RIGHT:
+				this->m_Position.x -= this->m_Speed*elapsedTime;
+				//Changes the enemy to look Right.
+				m_Sprite = sf::Sprite(TextureHolder::GetTexture(
+					"graphics/R-Enemy_3.png"));
+				break;
+			}
 
-		if (this->m_Direction == PlayableCharacter::Direction::LEFT) {
-			direction = 'f';
-		}
-		else if (this->m_Direction == PlayableCharacter::Direction::RIGHT) {
-			direction = 'm';
-		}
+			if (this->m_Direction == PlayableCharacter::Direction::LEFT) {
+				direction = 'f';
+			}
+			else if (this->m_Direction == PlayableCharacter::Direction::RIGHT) {
+				direction = 'm';
+			}
 
-		m_Sprite.setPosition(this->m_Position);
-		detectionDistance = reCalculateMaxRange(direction, m_ArrayLevel, maxDistance);
+			m_Sprite.setPosition(this->m_Position);
+			detectionDistance = reCalculateMaxRange(direction, m_ArrayLevel, maxDistance);
 
-		if (m_Direction == PlayableCharacter::Direction::LEFT) {
-			cone.updateConePos(this->m_Position, this->detectionDistance, this->sightAngle, true);
-		}
-		else {
-			cone.updateConePos(this->m_Position, this->detectionDistance, this->sightAngle, false);
+			if (m_Direction == PlayableCharacter::Direction::LEFT) {
+				cone.updateConePos(this->m_Position, this->detectionDistance, this->sightAngle, true);
+			}
+			else {
+				cone.updateConePos(this->m_Position, this->detectionDistance, this->sightAngle, false);
+			}
 		}
 	}
 	//	If Crouching, sleep in a box
@@ -178,29 +180,24 @@ sf::ConvexShape Enemy::getCone() {
 */
 void Enemy::increaseAwarenessLevel(sf::Vector2f playPos, int detectionLevel,sf::Time gameTimeTotal,
 	SoundManager& m_SM) {
+	if (this->m_Direction != Direction::DETECTION) {
+		this->m_Direction = Direction::DETECTION;
+	}
 	switch (detectionLevel)	{
 	case 1: 
 		//std::cout << "\nAwareness 1";
-		if (calcDistance(playPos, this->getCenter()) <= 50) {
-			//std::cout << "\nDistance: <50";
-			awarenessOfPlayer += 3.0;
-		}
+		//std::cout << "\nDistance: <50";
+			this->awarenessOfPlayer += 3.0;
 	case 2:
 		//std::cout << "\nAwareness 2";
-		if (calcDistance(playPos, this->getCenter()) > 50) {
-			//std::cout<<"\nDistance: 50+";
-			awarenessOfPlayer += 4.5;
-		}
+		this->awarenessOfPlayer += 4.5;
 		break;
 	case 3:
 		//std::cout << "\nAwareness 3";
-		if (calcDistance(playPos, this->getCenter()) > 100) {
-			//std::cout << "\nDistance: 100+";
-			awarenessOfPlayer += 6.0;
-		}
+		this->awarenessOfPlayer += 6.0;
 		break;
 	}
-	//std::cout << "\nDetectionLevel" << detectionLevel;
+	std::cout << "\n\n\n\n\n\n\n\nDetectionLevel" << detectionLevel;
 	m_SM.playEnemyDetectionLevel(detectionLevel);
 	lastDetectionEvent = gameTimeTotal;
 }
@@ -209,7 +206,7 @@ void Enemy::increaseAwarenessLevel(sf::Vector2f playPos, int detectionLevel,sf::
 *	return the value of the awraenessOfPlayer object
 */
 float Enemy::getAwareness() {
-	return awarenessOfPlayer;
+	return this->awarenessOfPlayer;
 }
 
 /**
@@ -241,6 +238,9 @@ sf::RectangleShape Enemy::getDetectMeter() {
 *	reduce the value of warenessOfPlayer
 */
 void Enemy::reduceAwareness(sf::Time gameTimeTotal) {
+	if (this->m_Direction == Direction::DETECTION) {
+		this->m_Direction = Direction::LEFT;
+	}
 	if (this->awarenessOfPlayer > 0) {
 		awarenessOfPlayer--;
 	}
