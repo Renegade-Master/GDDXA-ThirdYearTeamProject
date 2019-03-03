@@ -21,12 +21,12 @@ public:
 	//set Shooting
 	virtual void setShooting();
 	// PlayableCharacter Direction State
-	enum class Direction { LEFT, RIGHT, IDLE };
+	enum class Direction { LEFT, RIGHT, IDLE, DETECTION};
 	//Holds Current Direction State for this Character
 	Direction m_Direction = Direction::IDLE;
 	
 	// PlayableCharacter Action State
-	enum class Action { FALLING, JUMPING, RUNNING, CROUCHING, ATTACKING, IDLE };
+	enum class Action { FALLING, JUMPING, RUNNING, CROUCHING, ATTACKING, IDLE,};
 	//Holds Current Action State for this character
 	Action m_Action = Action::IDLE;
 

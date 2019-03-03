@@ -46,7 +46,6 @@ void Camera::spawn(sf::Vector2i startPosition, float gravity, sf::Time gameStart
 		m_Sprite.setRotation(90.0f);
 		rotation = 90.0f;
 		rotationStartPoint = 90.0f;
-		//std::cout << "\nChanging direction to 'a'";
 		this->direction = 'a';
 		this->detectionDistance = reCalculateMaxRange(
 			this->direction, m_ArrayLevel, this->maxDistance);
@@ -81,6 +80,7 @@ void Camera::spawn(sf::Vector2i startPosition, float gravity, sf::Time gameStart
 	detectMeter.setSize(sf::Vector2f(10, this->getAwareness()));
 	detectMeter.setFillColor(sf::Color::Red);
 	detectMeter.setPosition(this->getCenter().x - 5, this->getCenter().y - 30);	
+	this->m_Direction = Direction::LEFT;
 }
 
 /*
@@ -95,35 +95,32 @@ float Camera::getRotation() {
 */
 void Camera::update(float elapsedTime, int** m_ArrayLevel) {
 	if (concious) {
-
-		detectMeter.setSize(sf::Vector2f(10, this->getAwareness()*0.5));
-		detectMeter.setPosition(this->getCenter().x - 5, this->getCenter().y - 30);
-		if (forward) {
-			rotation += 0.5f;
-			m_Sprite.setRotation(rotation);
-			//std::cout << "\nRotating Forward";
-		}
-		else {
-			rotation -= 0.5f;
-			m_Sprite.setRotation(rotation);
-			//std::cout << "\nRotating Back";
-		}
-		if (forward) {
-			if (rotation >= rotationStartPoint+20.0f) {
-				forward = false;
-				//std::cout << "\nForward = false";
+		detectMeter.setSize(sf::Vector2f(10, (-this->getAwareness()) / 2));
+		detectMeter.setPosition(this->getCenter().x + 15, this->getCenter().y + 30);
+			if (m_Direction != Direction::DETECTION) {
+				if (forward) {
+					rotation += 0.5f;
+					m_Sprite.setRotation(rotation);
+				}
+				else {
+					rotation -= 0.5f;
+					m_Sprite.setRotation(rotation);
+				}
+				if (forward) {
+					if (rotation >= rotationStartPoint + 20.0f) {
+						forward = false;
+					}
+				}
+				else {
+					if (rotation <= rotationStartPoint - 20.0f) {
+						forward = true;
+					}
+				}
 			}
-		}
-		else {
-			if (rotation <= rotationStartPoint-20.0f) {
-				forward = true;
-				//std::cout << "\nForward = true";
-			}
-		}
-
-		cone.updateCamConePos(this->m_Position, this->detectionDistance,
-			this->sightAngle, this->rotation, this->forward, this->direction);
+			cone.updateCamConePos(this->m_Position, this->detectionDistance,
+				this->sightAngle, this->rotation, this->forward, this->direction);
 	}
+
 	this->regen(elapsedTime);
 }
 
