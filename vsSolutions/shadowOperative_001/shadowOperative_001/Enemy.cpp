@@ -9,7 +9,7 @@
 #include "Enemy.h"
 
 /**
-*	Spawns in the enemy Gives hime a sprite.
+*	Spawns in the enemy Gives him a sprite.
 */
 void Enemy::spawn(sf::Vector2i startPosition, float gravity, sf::Time gameStart) {
 	this->m_SpawnPosition = startPosition;
@@ -197,7 +197,6 @@ void Enemy::increaseAwarenessLevel(sf::Vector2f playPos, int detectionLevel,sf::
 		this->awarenessOfPlayer += 6.0;
 		break;
 	}
-	std::cout << "\n\n\n\n\n\n\n\nDetectionLevel" << detectionLevel;
 	m_SM.playEnemyDetectionLevel(detectionLevel);
 	lastDetectionEvent = gameTimeTotal;
 }

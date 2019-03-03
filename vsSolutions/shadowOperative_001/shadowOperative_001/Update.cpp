@@ -253,8 +253,6 @@ void Engine::update(float dtAsSeconds) {
 		//update Cameras
 		for (std::list<Camera*>::iterator cameraIt = m_CameraList.begin();
 			cameraIt != m_CameraList.end();cameraIt++) {
-			std::cout << "\nCamera";
-
 
 			(*cameraIt)->update(dtAsSeconds, m_ArrayLevel);
 
@@ -272,13 +270,10 @@ void Engine::update(float dtAsSeconds) {
 
 			//check for player
 			if ((*cameraIt)->isConscious()) {
-				std::cout << "\nCamera Is  concious";
 				if ((*cameraIt)->getCone().getGlobalBounds().
 					intersects(m_Player.getPosition())) {
-					std::cout << "\n Detecting player";
 					if (m_GameTimeTotal.asMilliseconds() - 
 						(*cameraIt)->getlastdetectTime() > 500) {
-						std::cout << "\n\n\n\n\n\n\n\n\nINcreasing awraeness";
 						//increase awareness
 						(*cameraIt)->increaseAwarenessLevel(m_Player.getCenter(),
 							m_Player.getDetectLevel(), m_GameTimeTotal, m_SM);
@@ -293,7 +288,6 @@ void Engine::update(float dtAsSeconds) {
 				else if ((*cameraIt)->getAwareness() >= 0) {
 					if (m_GameTimeTotal.asMilliseconds()
 						- (*cameraIt)->getlastdetectTime() > 500) {
-						std::cout << "\nReducing awareness";
 						(*cameraIt)->reduceAwareness(m_GameTimeTotal);
 					}
 				}
