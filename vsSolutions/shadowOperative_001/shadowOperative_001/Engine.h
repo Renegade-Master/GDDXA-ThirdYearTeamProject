@@ -134,7 +134,7 @@ private:
 	//Current Frame of animated background
 	int m_animatedBackgroundFrame = 0;
 	//Maximum Number of frames for animated background
-	int m_animatedBackgroundMaxFrames = 947;
+	int m_animatedBackgroundMaxFrames = 1126;
 
 	// Declare a sprite for the background in the EndCredits
 	sf::Sprite m_EndBackgroundSprite;

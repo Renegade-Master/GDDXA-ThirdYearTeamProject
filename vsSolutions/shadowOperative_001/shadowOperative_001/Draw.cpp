@@ -130,7 +130,7 @@ void Engine::draw() {
 		m_Window.draw(m_Hud.getHidden());
 		m_Window.draw(m_Hud.getGunBackground());
 		m_Window.draw(m_Hud.getGunCharge());
-
+		
 		/***---------------------***\
 		|  HANDLE DRAWING MINI_MAP	|
 		\***---------------------***/
